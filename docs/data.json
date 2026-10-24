@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-24T22:54:42Z",
+  "generated_at": "2026-10-24T22:57:52Z",
   "data_origin": "BoxerBase public views and optionally Instagram official API",
   "boxers": [
     {
@@ -28,7 +28,7 @@
     },
     {
       "id": "rLyNGj8sCoF7",
-      "name": "Josias Joseph",
+      "name": "Josias Joseph Ndikumana",
       "boxerbase_url": "https://boxerbase.com/boxer/rLyNGj8sCoF7",
       "matches": 0,
       "wins": null,
@@ -76,6 +76,39 @@
     }
   ],
   "matches": [
+    {
+      "id": "eqMxgdF-ilSr",
+      "boxer": "Gleb Simanov",
+      "opponent": "Sampo Paananen",
+      "result": "tappio",
+      "decision": "5-0",
+      "event": "Hämeenlinnan Kisan 110-vuotisjuhlakisat",
+      "event_date": "2026-10-24",
+      "event_url": "https://fin.boxerbase.com/e/d6jfSSe5nRpe",
+      "url": "https://fin.boxerbase.com/e/d6jfSSe5nRpe/m/eqMxgdF-ilSr"
+    },
+    {
+      "id": "b2IAmmiSwxiR",
+      "boxer": "Kosmo Grönroos",
+      "opponent": "Khaled Samkanai",
+      "result": "tappio",
+      "decision": "5-0",
+      "event": "Hämeenlinnan Kisan 110-vuotisjuhlakisat",
+      "event_date": "2026-10-24",
+      "event_url": "https://fin.boxerbase.com/e/d6jfSSe5nRpe",
+      "url": "https://fin.boxerbase.com/e/d6jfSSe5nRpe/m/b2IAmmiSwxiR"
+    },
+    {
+      "id": "KUBbw2IueSRU",
+      "boxer": "Simo Pöyry",
+      "opponent": "Lauri Mäenpää",
+      "result": "tappio",
+      "decision": "3-2",
+      "event": "Hämeenlinnan Kisan 110-vuotisjuhlakisat",
+      "event_date": "2026-10-24",
+      "event_url": "https://fin.boxerbase.com/e/d6jfSSe5nRpe",
+      "url": "https://fin.boxerbase.com/e/d6jfSSe5nRpe/m/KUBbw2IueSRU"
+    },
     {
       "id": "TLympII5-8lF",
       "boxer": "Rami Vuori",
@@ -134,8 +167,8 @@
   ],
   "instagram": [],
   "errors": [],
-  "boxers_checked_at": "2026-10-24T22:54:42Z",
+  "boxers_checked_at": "2026-10-24T22:57:52Z",
   "club_id": "1Le8shnOwPIW",
   "club_url": "https://boxerbase.com/o/1Le8shnOwPIW/boxers",
-  "matches_checked_at": "2026-10-24T22:54:42Z"
+  "matches_checked_at": "2026-10-24T22:57:52Z"
 }
