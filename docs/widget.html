@@ -49,9 +49,9 @@ function updates(d){
 function boxers(d){
  head('Nyrkkeilijät','Seuran ottelijat');root.appendChild(mk('p','','Ottelutilastot päivittyvät automaattisesti. Näkyvät luvut kattavat lähteeseen kirjatut ottelut eivätkä välttämättä koko otteluhistoriaa.'));
  let grid=mk('div','grid');
- for(const b of d.boxers||[]){let card=mk('div','card');append(card,mk('div','name',b.name),mk('p','',b.matches==null?'Ottelumäärä ei saatavilla':b.matches+' kirjattua ottelua'));
+ for(const b of d.boxers||[]){let card=mk('div','card');append(card,mk('div','name',b.name),mk('p','',b.matches==null?'Ottelumäärä ei saatavilla':b.matches+(b.matches===1?' kirjattu ottelu':' kirjattua ottelua')));
  if(Number.isInteger(b.wins)&&Number.isInteger(b.losses))card.appendChild(mk('div','dim',b.wins+' voittoa · '+b.losses+' tappiota'));
- card.appendChild(link('Lähdeprofiili ↗',b.boxerbase_url));
+ card.appendChild(link('Lähdeprofiili ↗',b.stats_source_url||b.boxerbase_url));
  grid.appendChild(card)}root.appendChild(grid);
 }
 function profile(d){
@@ -60,7 +60,8 @@ function profile(d){
  head('Ottelutilastot',b.name);let card=mk('div','card'),stats=mk('div','stats');
  const stat=(val,label)=>{let el=mk('div');append(el,mk('b','',val===null||val===undefined?'–':val),mk('span','',label));return el};
  append(stats,stat(b.matches,'Ottelua'),stat(b.wins,'Voittoa'),stat(b.losses,'Tappiota'));
- append(card,stats,link('Avaa lähdeprofiili ↗',b.boxerbase_url));
+ append(card,stats,link('Avaa lähdeprofiili ↗',b.stats_source_url||b.boxerbase_url));
+ if(b.stats_source_note){card.appendChild(mk('p','dim','Tiedot väliaikaisesti rinnakkaisesta BoxerBase-profiilista, kunnes seuratiedot yhdistetään.'));}
  let recent=(d.matches||[]).filter(m=>m.boxer===b.name).slice(0,4);
  for(let m of recent){let r=mk('div','row');append(r,mk('div','dim',fmt(m.event_date)+' · '+m.opponent+' · '+m.result),link('Ottelu ↗',m.url));card.appendChild(r)}root.appendChild(card);
 }

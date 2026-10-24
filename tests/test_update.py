@@ -1,7 +1,7 @@
 import sys,unittest
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'scripts'))
-from update import parse_club,parse_profile,match_links,parse_match,event_urls_from_index
+from update import parse_club,parse_profile,match_links,parse_match,event_urls_from_index,prefer_alias_stats
 
 class TestPublicViews(unittest.TestCase):
     def test_club_table(self):
@@ -29,6 +29,12 @@ class TestPublicViews(unittest.TestCase):
         event={'name':'Hämeenlinna','date':'2026-10-24','url':'https://boxerbase.com/e/abc','allow_alias_club_on_bouts':True,'verified_as_duplicate_label':'RIIHIMÄEN KEHÄ-KETUT'}
         got=parse_match(html,'https://boxerbase.com/e/abc/m/xyz',[{'name':'Gleb Simanov'}],event)
         self.assertEqual(got['result'],'tappio')
+    def test_only_more_complete_temporary_alias_used(self):
+        self.assertTrue(prefer_alias_stats({"matches":0},{"matches":1}))
+        self.assertFalse(prefer_alias_stats({"matches":1},{"matches":1}))
+        self.assertFalse(prefer_alias_stats({"matches":5},{"matches":1}))
+        self.assertFalse(prefer_alias_stats({"matches":0},{"matches":None}))
+
     def test_roster_missing_fails_safe(self):
         with self.assertRaises(ValueError):parse_club('<h2>Not Found</h2>','https://boxerbase.com/o/x/boxers')
     def test_profile(self):

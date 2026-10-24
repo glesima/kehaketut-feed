@@ -98,3 +98,17 @@ Metricool-brändin (id 7632678, Facebook-sivutunniste 160875127258478) kautta.
 JSON-syöte `docs/facebook.json` vaatii erillisen säännöllisen päivityksen;
 Github Actionsin BoxerBase-haussa ei ole Metricoolin API-avainta.
 Älä käytä henkilökohtaisen tai yrityksen Facebook-tilin julkaisuja.
+
+## Instagram ja Facebook samalle tasolle
+
+Yhdistysavaimessa korvaa erilliset Instagram- ja Facebook-HTML-lohkot yhdellä
+`embed/YHDISTYSAVAIN_some_yhtena.html` -koodilla, omalla täysleveällä rivillään.
+Ulkoasun yhteinen otsake sekä sarakekortit päivittyvät jatkossa GitHubin
+`docs/social-embed.js`-tiedostosta. Instagram käyttää Juiceria ja Facebook
+Kehä-Kettujen jo yhdistetystä Metricool-brändistä päivitettyä syötettä.
+
+Josias Joseph Ndikumanan tilastoihin käytetään väliaikaisesti BoxerBasen
+rinnakkaista varmennettua profiilia vain, jos siinä on enemmän otteluita kuin
+seuran nykyisessä ensisijaisessa profiilissa. Ottelumääriä ei summata.
+Kun valmentaja yhdistää duplikaatit ja ensisijainen profiili vastaa vähintään
+rinnakkaisen lukua, ensisijainen profiili otetaan automaattisesti käyttöön.

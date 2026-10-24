@@ -120,6 +120,14 @@ def parse_profile(html):
             "losses": int(wl.group(2)) if wl else None}
 
 
+
+def prefer_alias_stats(primary, secondary):
+    """Temporary choice for a VERIFIED SAME athlete, never add provider totals."""
+    x=primary.get("matches")
+    y=secondary.get("matches")
+    return isinstance(y, int) and (not isinstance(x, int) or y>x)
+
+
 def event_urls_from_index(html, base_url, limit=8):
     soup = BeautifulSoup(html, "html.parser")
     urls = []
@@ -329,6 +337,30 @@ def update():
                 for field in ("wins", "losses", "matches"):
                     if boxer[field] is None:
                         boxer[field] = old.get(field)
+        # Temporary verified BoxerBase duplicate: keep canonical club roster,
+        # use alternate stats only while they are MORE complete.
+        # Once a coach merges the records, canonical automatically wins ties.
+        for boxer in boxers:
+            alias = CONFIG.get("verified_stat_aliases", {}).get(boxer["id"])
+            if not isinstance(alias, dict):
+                continue
+            try:
+                url = str(alias["url"])
+                body = fetch(url)
+                description = compact(BeautifulSoup(body, "html.parser").get_text(" ", strip=True))
+                if (alias["person_name"].casefold() not in description.casefold()
+                    or alias["club_label"].casefold() not in description.casefold()):
+                    raise ValueError("Alias identity/club could not be verified")
+                extra = parse_profile(body)
+                if prefer_alias_stats(boxer, extra):
+                    for key in ("matches", "wins", "losses"):
+                        if extra.get(key) is not None:
+                            boxer[key] = extra[key]
+                    boxer["stats_source_url"] = url
+                    boxer["stats_source_note"] = "Väliaikainen rinnakkaisprofiili"
+                    LOG.info("Temporary historical stats selected for %s", boxer["name"])
+            except Exception as exc:
+                LOG.warning("Temporary alias unavailable for %s: %s", boxer["name"], exc)
         out["boxers"] = boxers
         if previous.get("club_id") != CONFIG.get("club_id"):
             LOG.info("Club profile corrected: drop matches from the unverified duplicate club")

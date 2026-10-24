@@ -17,6 +17,12 @@ a{color:#a7192b!important;text-decoration:none;font-weight:750}
 .card a{font-size:12px;display:inline-block}
 .status{font-size:11px;color:#75808a;margin:12px 0 0}
 @media(max-width:700px){.grid{grid-template-columns:1fr}.top{align-items:start}.card{min-height:110px}.body{-webkit-line-clamp:3}}
+body.embed .top{display:none}
+body.embed .wrap{padding:0}
+body.embed .grid{grid-template-columns:1fr}
+body.embed .card{min-height:0;padding:13px 14px}
+body.embed .body{font-size:13px;-webkit-line-clamp:3}
+body.embed .status{font-size:10px}
 </style></head><body><main class="wrap">
 <div class="top"><div><span class="ey">Seuran kuulumiset</span><h2>Facebook</h2></div><a class="more" href="https://www.facebook.com/160875127258478/" target="_blank" rel="noopener noreferrer">Seuraa sivua ↗</a></div>
 <div id="posts" class="grid" aria-live="polite"><div class="card">Haetaan seuran julkaisuja…</div></div>
@@ -25,6 +31,8 @@ a{color:#a7192b!important;text-decoration:none;font-weight:750}
 <script>
 (function(){
 "use strict";
+if(new URLSearchParams(location.search).get("embed")==="1")
+  document.body.classList.add("embed");
 const grid=document.getElementById("posts"),status=document.getElementById("status");
 const r=(tag,cls,value)=>{const el=document.createElement(tag);if(cls)el.className=cls;if(value!=null)el.textContent=value;return el};
 const report=()=>{if(window.parent!==window)window.parent.postMessage({type:"RKK_WIDGET_HEIGHT",view:"facebook",height:Math.ceil(document.documentElement.scrollHeight)+15},"*")};

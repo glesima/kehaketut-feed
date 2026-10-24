@@ -28,5 +28,13 @@
   ],
   "max_index_events": 8,
   "expected_ig_username": "kehaketut",
-  "club_id": "1Le8shnOwPIW"
+  "club_id": "1Le8shnOwPIW",
+  "verified_stat_aliases": {
+    "rLyNGj8sCoF7": {
+      "url": "https://boxerbase.com/boxer/vfT3Q-X7B3Tf",
+      "person_name": "Josias Ndikumana",
+      "club_label": "RIIHIMÄEN KEHÄ-KETUT",
+      "status": "temporary_until_club_merge"
+    }
+  }
 }
