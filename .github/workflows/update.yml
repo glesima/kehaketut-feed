@@ -1,13 +1,18 @@
-name: Kehä-Ketut feed - manual verification
+name: Keha-Ketut live feed and Pages
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/update.yml"
+      - "scripts/**"
+      - "tests/**"
+      - "config.json"
+      - "docs/**"
+      - "embed/**"
+  schedule:
+    - cron: "17 2,8,14,20 * * *"
   workflow_dispatch:
-    inputs:
-      live_fetch:
-        description: 'Fetch BoxerBase now ONLY after permission/terms are verified'
-        type: boolean
-        required: false
-        default: false
 
 permissions:
   contents: write
@@ -19,38 +24,48 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  verify-and-deploy:
+  refresh-and-publish:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
         with:
           persist-credentials: true
-      - uses: actions/setup-python@v5
+      - name: Python
+        uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Install dependencies
+      - name: Dependencies
         run: pip install -r requirements.txt
-      - name: Offline parser tests
+      - name: Check parser
         run: python -m unittest discover -s tests -v
-      - name: Optional verified BoxerBase fetch
-        if: ${{ inputs.live_fetch == true }}
+      - name: Refresh BoxerBase public data
+        id: fetch
+        continue-on-error: true
+        env:
+          INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
         run: python scripts/update.py
-      - name: Save fetched public data
-        if: ${{ inputs.live_fetch == true }}
+      - name: Preserve last known good data when fetch fails
+        if: ${{ steps.fetch.outcome == 'failure' }}
+        run: echo "::warning::BoxerBase refresh failed or robots.txt prevented fetch. Publishing last known good data unchanged."
+      - name: Commit successful refresh
         run: |
           git config user.name "rkk-site-bot"
           git config user.email "rkk-site-bot@users.noreply.github.com"
           git add docs/data.json docs/rss.xml
           if ! git diff --cached --quiet; then
-            git commit -m "chore: update public boxerbase snapshot"
+            git commit -m "chore: refresh public RKK feed [skip ci]"
             git push
           fi
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+      - name: Upload Pages
+        uses: actions/upload-pages-artifact@v3
         with:
           path: docs
-      - id: deployment
+      - name: Deploy Pages
+        id: deployment
         uses: actions/deploy-pages@v4
