@@ -87,13 +87,14 @@ nuorten syntymävuosia.
 
 ## Käyttöönoton tilanne 25.10.2026
 
-Repo on siirretty GitHubiin prototyyppinä. Etusivun tietosyöte on **alkutilannekuva**, ei toimiva automaattinen päivitys. Aktivoi ajastus vasta sen jälkeen, kun BoxerBasen käyttöehdot ja ensimmäisen live-haun data ovat tarkistettu. Instagram-kuvavirtaan ensisijainen ratkaisu on Juicerin Yhdistysavaimeen upotettu erillinen widget.
+GitHub Actionsin ajastus julkaisee BoxerBase-profiilit, tulokset ja kolme uusinta uutista neljästi vuorokaudessa. Varmista lähteen käyttöehdot myös jatkossa; epäonnistunut päivitys säilyttää viimeisimmän kelvollisen aineiston. Instagram-kuvavirtaan ensisijainen ratkaisu on Juicerin Yhdistysavaimeen upotettu erillinen widget.
 
-## BoxRec täydentävänä lähteenä
+## Facebook-osio
 
-BoxerBase-luku ei välttämättä kata kaikkia amatööriotteluita. Käyttäjän
-antama BoxRec-profiililinkki näkyy erillisenä lähteenä. Sen vastaavuutta ei ole
-vielä tarkistettu BoxRecin kirjautumisrajoitusten vuoksi. Automaattista BoxRec-
-keräystä ei tehdä, eikä eri palveluiden ottelumääriä summata. Laajempaa
-otteluhistoriaa varten tarkistetaan ottelut tapahtuman, vastustajan ja päivän
-tasolla ja selvitetään sallittu tietojen käyttötapa.
+Facebookin oma Page Plugin -iframe ei latautunut luotettavasti Yhdistysavaimessa.
+Oma `docs/facebook.html` näyttää pelkän julkisen Facebook-julkaisun tiivistelmän
+ja linkin oikeaan julkaisuun. Ensimmäinen aineisto on haettu yhdistetyn
+Metricool-brändin (id 7632678, Facebook-sivutunniste 160875127258478) kautta.
+JSON-syöte `docs/facebook.json` vaatii erillisen säännöllisen päivityksen;
+Github Actionsin BoxerBase-haussa ei ole Metricoolin API-avainta.
+Älä käytä henkilökohtaisen tai yrityksen Facebook-tilin julkaisuja.

@@ -28,12 +28,5 @@
   ],
   "max_index_events": 8,
   "expected_ig_username": "kehaketut",
-  "club_id": "1Le8shnOwPIW",
-  "supplementary_profiles": {
-    "U2N_OOYxyFui": {
-      "boxrec_url": "https://boxrec.com/en/box-am/1374813",
-      "status": "user_provided_link_unverified",
-      "note": "Supplementary record only; never add counts from different services."
-    }
-  }
+  "club_id": "1Le8shnOwPIW"
 }

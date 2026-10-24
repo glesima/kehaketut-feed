@@ -1,15 +1,20 @@
-<!-- RKK Facebook Page: auto-updating public Page posts; no personal profile content -->
-<section id="rkk-facebook-automatic" style="max-width:1160px;margin:32px auto 22px;padding:26px 0 0;border-top:1px solid #d7dce0;font-family:system-ui,Arial,sans-serif">
-<div style="color:#a7192b;font-size:11px;letter-spacing:.13em;font-weight:850">SEURAN KUULUMISET</div>
-<h2 style="color:#171a1f;font-size:clamp(23px,3vw,30px);margin:5px 0 14px;font-weight:850">Kehä-Ketut Facebookissa</h2>
-<div style="display:inline-block;max-width:100%;background:white;border:1px solid #e2e5e9;border-radius:14px;padding:12px;overflow:hidden">
-<iframe title="Riihimäen Kehä-Kettujen julkiset Facebook-päivitykset"
-  loading="lazy" scrolling="no" frameborder="0" allowfullscreen="true"
-  allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-  width="400" height="390"
-  style="display:block;border:0;max-width:100%;background:#fff;border-radius:8px"
-  src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2F160875127258478%2F&tabs=timeline&width=400&height=390&small_header=true&adapt_container_width=true&hide_cover=true&show_facepile=false">
-</iframe>
-</div>
-<p style="margin:12px 0 0"><a href="https://www.facebook.com/160875127258478/" target="_blank" rel="noopener noreferrer" style="color:#a7192b;font-weight:800;text-decoration:none">Avaa Kehä-Kettujen Facebook-sivu ↗</a></p>
+<!-- Kehä-Ketut: paikallinen Facebook-korttivirta GitHub Pagesista -->
+<section id="rkk-facebook-feed" style="max-width:1160px;margin:26px auto;padding-top:24px;border-top:1px solid #d6dbe0">
+<iframe id="rkk-facebook-iframe"
+ title="Kehä-Kettujen Facebook-julkaisut"
+ src="https://glesima.github.io/kehaketut-feed/facebook.html"
+ loading="lazy" scrolling="no"
+ style="display:block;width:100%;height:350px;border:0;background:transparent"
+ ></iframe>
+<script>
+(function(){
+var f=document.getElementById("rkk-facebook-iframe");
+window.addEventListener("message",function(e){
+if(!f||e.origin!=="https://glesima.github.io"||e.source!==f.contentWindow)return;
+if(!e.data||e.data.type!=="RKK_WIDGET_HEIGHT"||e.data.view!=="facebook")return;
+var height=Number(e.data.height);
+if(height>100&&height<2500)f.style.height=Math.ceil(height+10)+"px";
+});
+})();
+</script>
 </section>
