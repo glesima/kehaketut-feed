@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-24T22:17:15Z",
+  "generated_at": "2026-10-24T22:21:48Z",
   "data_origin": "BoxerBase public views and optionally Instagram official API",
   "boxers": [
     {
@@ -20,7 +20,7 @@
     },
     {
       "id": "W9dy-RM88aLL",
-      "name": "Ilo GrÃ¶nroos",
+      "name": "Ilo Grönroos",
       "boxerbase_url": "https://boxerbase.com/boxer/W9dy-RM88aLL",
       "matches": 9,
       "wins": 4,
@@ -36,7 +36,7 @@
     },
     {
       "id": "jRMAAn1JtaN6",
-      "name": "Kosmo GrÃ¶nroos",
+      "name": "Kosmo Grönroos",
       "boxerbase_url": "https://boxerbase.com/boxer/jRMAAn1JtaN6",
       "matches": 12,
       "wins": 5,
@@ -52,7 +52,7 @@
     },
     {
       "id": "RyBcZO1fI2Rb",
-      "name": "Otso VÃ¤stilÃ¤",
+      "name": "Otso Västilä",
       "boxerbase_url": "https://boxerbase.com/boxer/RyBcZO1fI2Rb",
       "matches": 0,
       "wins": null,
@@ -68,7 +68,7 @@
     },
     {
       "id": "PxXnRMHDTclP",
-      "name": "Simo PÃ¶yry",
+      "name": "Simo Pöyry",
       "boxerbase_url": "https://boxerbase.com/boxer/PxXnRMHDTclP",
       "matches": 2,
       "wins": 0,
@@ -112,6 +112,6 @@
   ],
   "instagram": [],
   "errors": [],
-  "boxers_checked_at": "2026-10-24T22:17:15Z",
+  "boxers_checked_at": "2026-10-24T22:21:48Z",
   "matches_checked_at": "2026-10-25T00:00:00Z"
 }
