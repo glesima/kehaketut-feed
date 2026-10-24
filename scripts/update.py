@@ -329,6 +329,16 @@ def update():
                 for field in ("wins", "losses", "matches"):
                     if boxer[field] is None:
                         boxer[field] = old.get(field)
+        # Attach verified-host supplementary profile links; do NOT scrape BoxRec.
+        for boxer in boxers:
+            extra = CONFIG.get("supplementary_profiles", {}).get(boxer["id"], {})
+            if isinstance(extra, dict):
+                url = str(extra.get("boxrec_url", ""))
+                parsed = urlparse(url)
+                if (parsed.scheme == "https" and parsed.hostname == "boxrec.com"
+                    and re.fullmatch(r"/en/box-am/\d+", parsed.path)):
+                    boxer["boxrec_url"] = url
+                    boxer["boxrec_link_status"] = extra.get("status", "unverified")
         out["boxers"] = boxers
         if previous.get("club_id") != CONFIG.get("club_id"):
             LOG.info("Club profile corrected: drop matches from the unverified duplicate club")

@@ -29,6 +29,12 @@ class TestPublicViews(unittest.TestCase):
         event={'name':'Hämeenlinna','date':'2026-10-24','url':'https://boxerbase.com/e/abc','allow_alias_club_on_bouts':True,'verified_as_duplicate_label':'RIIHIMÄEN KEHÄ-KETUT'}
         got=parse_match(html,'https://boxerbase.com/e/abc/m/xyz',[{'name':'Gleb Simanov'}],event)
         self.assertEqual(got['result'],'tappio')
+    def test_boxrec_is_secondary_unverified_source(self):
+        from update import CONFIG
+        record=CONFIG["supplementary_profiles"]["U2N_OOYxyFui"]
+        self.assertEqual(record["boxrec_url"],"https://boxrec.com/en/box-am/1374813")
+        self.assertEqual(record["status"],"user_provided_link_unverified")
+
     def test_roster_missing_fails_safe(self):
         with self.assertRaises(ValueError):parse_club('<h2>Not Found</h2>','https://boxerbase.com/o/x/boxers')
     def test_profile(self):

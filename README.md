@@ -88,3 +88,12 @@ nuorten syntymävuosia.
 ## Käyttöönoton tilanne 25.10.2026
 
 Repo on siirretty GitHubiin prototyyppinä. Etusivun tietosyöte on **alkutilannekuva**, ei toimiva automaattinen päivitys. Aktivoi ajastus vasta sen jälkeen, kun BoxerBasen käyttöehdot ja ensimmäisen live-haun data ovat tarkistettu. Instagram-kuvavirtaan ensisijainen ratkaisu on Juicerin Yhdistysavaimeen upotettu erillinen widget.
+
+## BoxRec täydentävänä lähteenä
+
+BoxerBase-luku ei välttämättä kata kaikkia amatööriotteluita. Käyttäjän
+antama BoxRec-profiililinkki näkyy erillisenä lähteenä. Sen vastaavuutta ei ole
+vielä tarkistettu BoxRecin kirjautumisrajoitusten vuoksi. Automaattista BoxRec-
+keräystä ei tehdä, eikä eri palveluiden ottelumääriä summata. Laajempaa
+otteluhistoriaa varten tarkistetaan ottelut tapahtuman, vastustajan ja päivän
+tasolla ja selvitetään sallittu tietojen käyttötapa.
