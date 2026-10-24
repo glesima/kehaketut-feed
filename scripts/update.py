@@ -152,44 +152,50 @@ def match_links(html, base_url, known_names):
 
 
 def parse_match(html, url, boxers, event):
+    """Parse a BoxerBase bout using the match title first, then linked boxers."""
     soup = BeautifulSoup(html, "html.parser")
     text = compact(soup.get_text(" ", strip=True))
-    # Search against the TWO actual named competitors, not the whole page.
-    boxer_names = sorted([b["name"] for b in boxers], key=len, reverse=True)
-    club_fighter = next((name for name in boxer_names if name.casefold() in text.casefold()), None)
-    if not club_fighter:
-        return None
-    linked = []
-    for a in soup.select('a[href*="/boxer/"]'):
-        raw = compact(a.get_text(" ", strip=True))
-        if raw and raw not in linked:
-            linked.append(raw)
-    if len(linked) < 2:
-        return None  # avoid misidentifying the opponent/result
-    club_side = next((i for i, s in enumerate(linked[:2]) if club_fighter.casefold() in s.casefold()), None)
-    if club_side is None:
-        return None
-    opposing_side = 1 - club_side
-    opponent_raw = linked[opposing_side]
-    # Opponent link may append the other club name. Preserve full text rather
-    # than making an unreliable split; matchup title provides cleaner names.
-    head = soup.title.get_text(" ", strip=True) if soup.title else ""
-    vs = re.search(r"(.+?)\s+vs\s+(.+?)\s+results\s+at\s+", head, re.I)
+    title = compact(soup.title.get_text(" ", strip=True)) if soup.title else ""
+    names = [b["name"] for b in boxers]
+    competitors = []
+    vs = re.search(r"(.+?)\s+vs\s+(.+?)\s+results?\s+at\s+", title, re.I)
     if vs:
         competitors = [compact(vs.group(1)), compact(vs.group(2))]
-        opponent = competitors[opposing_side]
     else:
-        opponent = opponent_raw[:90]
-    wm = re.search(r"\bWinner\s+(Red|Blue)\s+.{0,100}?\b(\d+\s*[-–]\s*\d+|RSC(?:\s+R\d+)?|KO(?:\s+R\d+)?|ABD(?:\s+R\d+)?)\b", text, re.I)
-    outcome = "vahvistettu ottelu"
+        # Fallback: the first two competitors linked in the bout header.
+        for a in soup.select('a[href*="/boxer/"]'):
+            raw = compact(a.get_text(" ", strip=True))
+            if raw and raw not in competitors:
+                competitors.append(raw)
+            if len(competitors) >= 2:
+                break
+    if len(competitors) < 2:
+        LOG.warning("Could not identify competitors for %s", url)
+        return None
+    side = None
+    club = None
+    for i, competitor in enumerate(competitors[:2]):
+        for name in names:
+            if name.casefold() in competitor.casefold():
+                side, club = i, name
+                break
+        if side is not None:
+            break
+    if side is None:
+        LOG.warning("No tracked club boxer in bout %s: %s", url, competitors)
+        return None
+    opponent = competitors[1-side][:100]
+    # Only report official winners; scheduled bouts are never counted as results.
+    win = re.search(r"\bWinner\s+(Red|Blue)\b.{0,110}?\b(\d+\s*[-–]\s*\d+|RSC(?:\s+R\d+)?|KO(?:\s+R\d+)?|ABD(?:\s+R\d+)?)\b", text, re.I)
+    result = "vahvistettu ottelu"
     decision = None
-    if wm:
-        winner = wm.group(1).lower()
-        decision = compact(wm.group(2)).replace("–", "-")
-        outcome = "voitto" if (winner == "red") == (club_side == 0) else "tappio"
-    return {"id": urlparse(url).path.rsplit("/",1)[-1],
-            "boxer": club_fighter, "opponent": opponent,
-            "result": outcome, "decision": decision,
+    if win:
+        red_won = win.group(1).casefold() == "red"
+        decision = compact(win.group(2)).replace("–", "-")
+        result = "voitto" if red_won == (side == 0) else "tappio"
+    return {"id": urlparse(url).path.rsplit("/", 1)[-1],
+            "boxer": club, "opponent": opponent,
+            "result": result, "decision": decision,
             "event": event["name"], "event_date": event.get("date"),
             "event_url": event["url"], "url": url}
 
