@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-24T22:28:43Z",
+  "generated_at": "2026-10-24T22:31:04Z",
   "data_origin": "BoxerBase public views and optionally Instagram official API",
   "boxers": [
     {
@@ -145,6 +145,6 @@
   ],
   "instagram": [],
   "errors": [],
-  "boxers_checked_at": "2026-10-24T22:28:43Z",
-  "matches_checked_at": "2026-10-24T22:28:43Z"
+  "boxers_checked_at": "2026-10-24T22:31:04Z",
+  "matches_checked_at": "2026-10-24T22:31:04Z"
 }
