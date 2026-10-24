@@ -2,6 +2,12 @@ name: Kehä-Ketut feed - manual verification
 
 on:
   workflow_dispatch:
+    inputs:
+      live_fetch:
+        description: 'Fetch BoxerBase now ONLY after permission/terms are verified'
+        type: boolean
+        required: false
+        default: false
 
 permissions:
   contents: write
@@ -20,6 +26,8 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -27,7 +35,19 @@ jobs:
         run: pip install -r requirements.txt
       - name: Offline parser tests
         run: python -m unittest discover -s tests -v
-      # No scheduled remote BoxerBase fetching before checking provider permissions.
+      - name: Optional verified BoxerBase fetch
+        if: ${{ inputs.live_fetch == true }}
+        run: python scripts/update.py
+      - name: Save fetched public data
+        if: ${{ inputs.live_fetch == true }}
+        run: |
+          git config user.name "rkk-site-bot"
+          git config user.email "rkk-site-bot@users.noreply.github.com"
+          git add docs/data.json docs/rss.xml
+          if ! git diff --cached --quiet; then
+            git commit -m "chore: update public boxerbase snapshot"
+            git push
+          fi
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
