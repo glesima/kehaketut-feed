@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-24T22:21:48Z",
+  "generated_at": "2026-10-24T22:26:33Z",
   "data_origin": "BoxerBase public views and optionally Instagram official API",
   "boxers": [
     {
@@ -88,6 +88,17 @@
       "url": "https://fin.boxerbase.com/e/d6jfSSe5nRpe/m/eqMxgdF-ilSr"
     },
     {
+      "id": "b2IAmmiSwxiR",
+      "boxer": "Kosmo Grönroos",
+      "opponent": "Khaled Samkanai",
+      "result": "tappio",
+      "decision": "5-0",
+      "event": "Hämeenlinnan Kisan 110-vuotisjuhlakisat",
+      "event_date": "2026-10-24",
+      "event_url": "https://fin.boxerbase.com/e/d6jfSSe5nRpe",
+      "url": "https://fin.boxerbase.com/e/d6jfSSe5nRpe/m/b2IAmmiSwxiR"
+    },
+    {
       "id": "KUBbw2IueSRU",
       "boxer": "Simo Pöyry",
       "opponent": "Lauri Mäenpää",
@@ -108,10 +119,43 @@
       "event_date": "2026-10-24",
       "event_url": "https://fin.boxerbase.com/e/d6jfSSe5nRpe",
       "url": "https://fin.boxerbase.com/e/d6jfSSe5nRpe/matches"
+    },
+    {
+      "id": "TLympII5-8lF",
+      "boxer": "Rami Vuori",
+      "opponent": "Hans Guttorm",
+      "result": "voitto",
+      "decision": "3-0",
+      "event": "Nääsnyrkkeilyt 10.10.2026",
+      "event_date": "2026-10-10",
+      "event_url": "https://boxerbase.com/e/9rPLJ9CYCFAC",
+      "url": "https://boxerbase.com/e/9rPLJ9CYCFAC/m/TLympII5-8lF"
+    },
+    {
+      "id": "Bt8GmjMAyYyn",
+      "boxer": "Daniela Taskila",
+      "opponent": "Wilma Yliluoma",
+      "result": "tappio",
+      "decision": "3-0",
+      "event": "Nääsnyrkkeilyt 10.10.2026",
+      "event_date": "2026-10-10",
+      "event_url": "https://boxerbase.com/e/9rPLJ9CYCFAC",
+      "url": "https://boxerbase.com/e/9rPLJ9CYCFAC/m/Bt8GmjMAyYyn"
+    },
+    {
+      "id": "1533cJuKkW3n",
+      "boxer": "Maarjo Ranne",
+      "opponent": "Vitalii Filipovych",
+      "result": "tappio",
+      "decision": "3-0",
+      "event": "Nääsnyrkkeilyt 10.10.2026",
+      "event_date": "2026-10-10",
+      "event_url": "https://boxerbase.com/e/9rPLJ9CYCFAC",
+      "url": "https://boxerbase.com/e/9rPLJ9CYCFAC/m/1533cJuKkW3n"
     }
   ],
   "instagram": [],
   "errors": [],
-  "boxers_checked_at": "2026-10-24T22:21:48Z",
-  "matches_checked_at": "2026-10-25T00:00:00Z"
+  "boxers_checked_at": "2026-10-24T22:26:33Z",
+  "matches_checked_at": "2026-10-24T22:26:33Z"
 }
