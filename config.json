@@ -1,0 +1,11 @@
+{
+  "club_url": "https://boxerbase.com/o/mZjkT0LW248X/boxers",
+  "club_names": ["RIIHIMÄEN KEHÄ-KETUT", "Riihimäen Kehä-Ketut"],
+  "event_index": "https://fin.boxerbase.com/",
+  "tracked_events": [
+    {"url": "https://fin.boxerbase.com/e/d6jfSSe5nRpe", "name": "Hämeenlinnan Kisan 110-vuotisjuhlakisat", "date": "2026-10-24", "city": "Hämeenlinna"},
+    {"url": "https://boxerbase.com/e/9rPLJ9CYCFAC", "name": "Nääsnyrkkeilyt 10.10.2026", "date": "2026-10-10", "city": "Tampere"}
+  ],
+  "max_index_events": 8,
+  "expected_ig_username": "kehaketut"
+}
