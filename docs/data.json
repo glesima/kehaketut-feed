@@ -1,114 +1,81 @@
 {
-  "generated_at": "2026-10-24T22:31:04Z",
+  "generated_at": "2026-10-24T22:54:42Z",
   "data_origin": "BoxerBase public views and optionally Instagram official API",
   "boxers": [
     {
-      "id": "Pi3gCaWD-7jD",
+      "id": "KyEKnjm-NRp4",
       "name": "Daniela Taskila",
-      "boxerbase_url": "https://boxerbase.com/boxer/Pi3gCaWD-7jD",
+      "boxerbase_url": "https://boxerbase.com/boxer/KyEKnjm-NRp4",
       "matches": 6,
       "wins": 3,
       "losses": 3
     },
     {
-      "id": "h9XYEbAs3Py4",
+      "id": "U2N_OOYxyFui",
       "name": "Gleb Simanov",
-      "boxerbase_url": "https://boxerbase.com/boxer/h9XYEbAs3Py4",
+      "boxerbase_url": "https://boxerbase.com/boxer/U2N_OOYxyFui",
       "matches": 3,
       "wins": 0,
       "losses": 3
     },
     {
-      "id": "W9dy-RM88aLL",
+      "id": "0efaqUGeO1JP",
       "name": "Ilo Grönroos",
-      "boxerbase_url": "https://boxerbase.com/boxer/W9dy-RM88aLL",
+      "boxerbase_url": "https://boxerbase.com/boxer/0efaqUGeO1JP",
       "matches": 9,
       "wins": 4,
       "losses": 5
     },
     {
-      "id": "vfT3Q-X7B3Tf",
-      "name": "Josias Ndikumana",
-      "boxerbase_url": "https://boxerbase.com/boxer/vfT3Q-X7B3Tf",
-      "matches": 1,
-      "wins": 0,
-      "losses": 1
-    },
-    {
-      "id": "jRMAAn1JtaN6",
-      "name": "Kosmo Grönroos",
-      "boxerbase_url": "https://boxerbase.com/boxer/jRMAAn1JtaN6",
-      "matches": 12,
-      "wins": 5,
-      "losses": 7
-    },
-    {
-      "id": "ir_z7p9BvsZM",
-      "name": "Maarjo Ranne",
-      "boxerbase_url": "https://boxerbase.com/boxer/ir_z7p9BvsZM",
-      "matches": 7,
-      "wins": 1,
-      "losses": 6
-    },
-    {
-      "id": "RyBcZO1fI2Rb",
-      "name": "Otso Västilä",
-      "boxerbase_url": "https://boxerbase.com/boxer/RyBcZO1fI2Rb",
+      "id": "rLyNGj8sCoF7",
+      "name": "Josias Joseph",
+      "boxerbase_url": "https://boxerbase.com/boxer/rLyNGj8sCoF7",
       "matches": 0,
       "wins": null,
       "losses": null
     },
     {
-      "id": "nqzy3scM-NDs",
+      "id": "RGUkxNVIo4px",
+      "name": "Kosmo Grönroos",
+      "boxerbase_url": "https://boxerbase.com/boxer/RGUkxNVIo4px",
+      "matches": 12,
+      "wins": 5,
+      "losses": 7
+    },
+    {
+      "id": "5A-7Dh4jmTdy",
+      "name": "Maarjo Ranne",
+      "boxerbase_url": "https://boxerbase.com/boxer/5A-7Dh4jmTdy",
+      "matches": 7,
+      "wins": 1,
+      "losses": 6
+    },
+    {
+      "id": "CVjkkb7fii6a",
+      "name": "Otso Västilä",
+      "boxerbase_url": "https://boxerbase.com/boxer/CVjkkb7fii6a",
+      "matches": 0,
+      "wins": null,
+      "losses": null
+    },
+    {
+      "id": "2zTFqL5gFsqg",
       "name": "Rami Vuori",
-      "boxerbase_url": "https://boxerbase.com/boxer/nqzy3scM-NDs",
+      "boxerbase_url": "https://boxerbase.com/boxer/2zTFqL5gFsqg",
       "matches": 1,
       "wins": 1,
       "losses": 0
     },
     {
-      "id": "PxXnRMHDTclP",
+      "id": "vK0bN2sPxnbo",
       "name": "Simo Pöyry",
-      "boxerbase_url": "https://boxerbase.com/boxer/PxXnRMHDTclP",
+      "boxerbase_url": "https://boxerbase.com/boxer/vK0bN2sPxnbo",
       "matches": 2,
       "wins": 0,
       "losses": 2
     }
   ],
   "matches": [
-    {
-      "id": "eqMxgdF-ilSr",
-      "boxer": "Gleb Simanov",
-      "opponent": "Sampo Paananen",
-      "result": "tappio",
-      "decision": "5-0",
-      "event": "Hämeenlinnan Kisan 110-vuotisjuhlakisat",
-      "event_date": "2026-10-24",
-      "event_url": "https://fin.boxerbase.com/e/d6jfSSe5nRpe",
-      "url": "https://fin.boxerbase.com/e/d6jfSSe5nRpe/m/eqMxgdF-ilSr"
-    },
-    {
-      "id": "b2IAmmiSwxiR",
-      "boxer": "Kosmo Grönroos",
-      "opponent": "Khaled Samkanai",
-      "result": "tappio",
-      "decision": "5-0",
-      "event": "Hämeenlinnan Kisan 110-vuotisjuhlakisat",
-      "event_date": "2026-10-24",
-      "event_url": "https://fin.boxerbase.com/e/d6jfSSe5nRpe",
-      "url": "https://fin.boxerbase.com/e/d6jfSSe5nRpe/m/b2IAmmiSwxiR"
-    },
-    {
-      "id": "KUBbw2IueSRU",
-      "boxer": "Simo Pöyry",
-      "opponent": "Lauri Mäenpää",
-      "result": "tappio",
-      "decision": "3-2",
-      "event": "Hämeenlinnan Kisan 110-vuotisjuhlakisat",
-      "event_date": "2026-10-24",
-      "event_url": "https://fin.boxerbase.com/e/d6jfSSe5nRpe",
-      "url": "https://fin.boxerbase.com/e/d6jfSSe5nRpe/m/KUBbw2IueSRU"
-    },
     {
       "id": "TLympII5-8lF",
       "boxer": "Rami Vuori",
@@ -141,10 +108,34 @@
       "event_date": "2026-10-10",
       "event_url": "https://boxerbase.com/e/9rPLJ9CYCFAC",
       "url": "https://boxerbase.com/e/9rPLJ9CYCFAC/m/1533cJuKkW3n"
+    },
+    {
+      "id": "zFfcl2FDt9r8",
+      "boxer": "Gleb Simanov",
+      "opponent": "Eemeli Platonenko",
+      "result": "tappio",
+      "decision": "3-0",
+      "event": "Ruskiksen Skabat",
+      "event_date": "2026-09-27",
+      "event_url": "https://boxerbase.com/e/zhZYgPTxD73j",
+      "url": "https://boxerbase.com/e/zhZYgPTxD73j/m/zFfcl2FDt9r8"
+    },
+    {
+      "id": "k-E-lA49zovl",
+      "boxer": "Daniela Taskila",
+      "opponent": "Fanny Koskinen",
+      "result": "voitto",
+      "decision": "3-0",
+      "event": "Ruskiksen Skabat",
+      "event_date": "2026-09-27",
+      "event_url": "https://boxerbase.com/e/zhZYgPTxD73j",
+      "url": "https://boxerbase.com/e/zhZYgPTxD73j/m/k-E-lA49zovl"
     }
   ],
   "instagram": [],
   "errors": [],
-  "boxers_checked_at": "2026-10-24T22:31:04Z",
-  "matches_checked_at": "2026-10-24T22:31:04Z"
+  "boxers_checked_at": "2026-10-24T22:54:42Z",
+  "club_id": "1Le8shnOwPIW",
+  "club_url": "https://boxerbase.com/o/1Le8shnOwPIW/boxers",
+  "matches_checked_at": "2026-10-24T22:54:42Z"
 }
