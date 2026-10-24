@@ -9,7 +9,9 @@
       "url": "https://fin.boxerbase.com/e/d6jfSSe5nRpe",
       "name": "Hämeenlinnan Kisan 110-vuotisjuhlakisat",
       "date": "2026-10-24",
-      "city": "Hämeenlinna"
+      "city": "Hämeenlinna",
+      "allow_alias_club_on_bouts": true,
+      "verified_as_duplicate_label": "RIIHIMÄEN KEHÄ-KETUT"
     },
     {
       "url": "https://boxerbase.com/e/9rPLJ9CYCFAC",

@@ -18,6 +18,17 @@ class TestPublicViews(unittest.TestCase):
         from update import CONFIG
         self.assertEqual(CONFIG["club_id"], "1Le8shnOwPIW")
         self.assertEqual(CONFIG["club_names"], ["Riihimäen Kehä-Ketut ry"])
+    def test_multiword_first_name(self):
+        html='''<table><tr><td><a href="/boxer/rLyNGj8sCoF7">Josias Joseph</a></td><td>Ndikumana</td><td>Male</td><td>0</td></tr></table>'''
+        parsed=parse_club(html,'https://boxerbase.com/o/1Le8shnOwPIW/boxers')
+        self.assertEqual(parsed[0]['name'],'Josias Joseph Ndikumana')
+    def test_verified_alias_event_is_allowed(self):
+        html='''<html><head><title>Gleb Simanov vs Sampo Paananen results at Event</title></head>
+        <body><a href="/boxer/h9XYEbAs3Py4">Gleb Simanov RIIHIMÄEN KEHÄ-KETUT</a>
+        <a href="/boxer/xx">Sampo Paananen Oiva Boxing</a><div>Winner Blue Sampo Paananen 5-0</div></body></html>'''
+        event={'name':'Hämeenlinna','date':'2026-10-24','url':'https://boxerbase.com/e/abc','allow_alias_club_on_bouts':True,'verified_as_duplicate_label':'RIIHIMÄEN KEHÄ-KETUT'}
+        got=parse_match(html,'https://boxerbase.com/e/abc/m/xyz',[{'name':'Gleb Simanov'}],event)
+        self.assertEqual(got['result'],'tappio')
     def test_roster_missing_fails_safe(self):
         with self.assertRaises(ValueError):parse_club('<h2>Not Found</h2>','https://boxerbase.com/o/x/boxers')
     def test_profile(self):

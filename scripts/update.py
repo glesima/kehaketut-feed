@@ -90,9 +90,9 @@ def parse_club(html, root_url):
         cells = row.find_all("td")
         # Name can be in a single anchor or split across two cells.
         name = compact(link.get_text(" ", strip=True))
-        if len(cells) >= 2 and len(name.split()) == 1:
+        if len(cells) >= 2:
             neighbor = compact(cells[1].get_text(" ", strip=True))
-            if neighbor and neighbor.lower() != name.lower() and not neighbor.isdigit():
+            if neighbor and not name.casefold().endswith(neighbor.casefold()) and not neighbor.isdigit():
                 name += " " + neighbor
         name = compact(name)
         if not name or len(name) > 90:
@@ -186,7 +186,11 @@ def parse_match(html, url, boxers, event):
         return None
     # Names can be duplicated in BoxerBase. Reject bouts whose participant
     # does not carry the exact verified club label, not a similarly named club.
-    club_names = CONFIG.get("club_names", ["Riihimäen Kehä-Ketut ry"])
+    club_names = list(CONFIG.get("club_names", ["Riihimäen Kehä-Ketut ry"]))
+    # Specific historic bouts were registered under BoxerBase's duplicate club.
+    # Accept that label only for a manually verified known competition, never generally.
+    if event.get("allow_alias_club_on_bouts") and event.get("verified_as_duplicate_label"):
+        club_names.append(event["verified_as_duplicate_label"])
     player_links = [compact(a.get_text(" ", strip=True)) for a in soup.select('a[href*="/participants/"], a[href*="/boxer/"]')]
     if not any(any(n in label for n in club_names) and club.casefold() in label.casefold() for label in player_links):
         LOG.warning("Skipping bout without verified club participant: %s", url)
