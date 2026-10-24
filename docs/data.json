@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-24T22:26:33Z",
+  "generated_at": "2026-10-24T22:28:43Z",
   "data_origin": "BoxerBase public views and optionally Instagram official API",
   "boxers": [
     {
@@ -110,17 +110,6 @@
       "url": "https://fin.boxerbase.com/e/d6jfSSe5nRpe/m/KUBbw2IueSRU"
     },
     {
-      "id": "HML-KG",
-      "boxer": "Kosmo Grönroos",
-      "opponent": "Khaled Samkanai",
-      "result": "tappio",
-      "decision": "5-0",
-      "event": "Hämeenlinnan Kisan 110-vuotisjuhlakisat",
-      "event_date": "2026-10-24",
-      "event_url": "https://fin.boxerbase.com/e/d6jfSSe5nRpe",
-      "url": "https://fin.boxerbase.com/e/d6jfSSe5nRpe/matches"
-    },
-    {
       "id": "TLympII5-8lF",
       "boxer": "Rami Vuori",
       "opponent": "Hans Guttorm",
@@ -156,6 +145,6 @@
   ],
   "instagram": [],
   "errors": [],
-  "boxers_checked_at": "2026-10-24T22:26:33Z",
-  "matches_checked_at": "2026-10-24T22:26:33Z"
+  "boxers_checked_at": "2026-10-24T22:28:43Z",
+  "matches_checked_at": "2026-10-24T22:28:43Z"
 }
