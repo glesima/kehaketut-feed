@@ -357,6 +357,13 @@ def update():
                         if found:
                             if not found["event_date"]:
                                 found["event_date"] = old_matches.get(url,{}).get("event_date")
+                            # Drop identical older snapshots under another host / stale URL.
+                            for prior_url, prior in list(old_matches.items()):
+                                if (prior_url != url and
+                                    prior.get("boxer") == found["boxer"] and
+                                    prior.get("opponent") == found["opponent"] and
+                                    prior.get("event_date") == found["event_date"]):
+                                    del old_matches[prior_url]
                             old_matches[url] = found
                             found_count += 1
                     except Exception as exc:
