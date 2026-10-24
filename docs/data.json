@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-24T22:57:52Z",
+  "generated_at": "2026-10-24T23:15:05Z",
   "data_origin": "BoxerBase public views and optionally Instagram official API",
   "boxers": [
     {
@@ -16,7 +16,9 @@
       "boxerbase_url": "https://boxerbase.com/boxer/U2N_OOYxyFui",
       "matches": 3,
       "wins": 0,
-      "losses": 3
+      "losses": 3,
+      "boxrec_url": "https://boxrec.com/en/box-am/1374813",
+      "boxrec_link_status": "user_provided_link_unverified"
     },
     {
       "id": "0efaqUGeO1JP",
@@ -167,8 +169,8 @@
   ],
   "instagram": [],
   "errors": [],
-  "boxers_checked_at": "2026-10-24T22:57:52Z",
+  "boxers_checked_at": "2026-10-24T23:15:05Z",
   "club_id": "1Le8shnOwPIW",
   "club_url": "https://boxerbase.com/o/1Le8shnOwPIW/boxers",
-  "matches_checked_at": "2026-10-24T22:57:52Z"
+  "matches_checked_at": "2026-10-24T23:15:05Z"
 }
