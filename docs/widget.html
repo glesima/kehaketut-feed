@@ -75,6 +75,6 @@ function render(d,offline){root.textContent='';
 }
 function report(){let height=Math.ceil(document.body.scrollHeight)+15;parent.postMessage({type:'RKK_WIDGET_HEIGHT',view,height},'*')}
 new ResizeObserver(report).observe(document.body);
-fetch('./data.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Feed unavailable');return r.json()}).then(d=>render(d,false)).catch(()=>{root.textContent='';append(root,mk('div','err','Tietosyötettä ei voi nyt ladata.'),link('Kehä-Ketut BoxerBasessa ↗','https://boxerbase.com/o/mZjkT0LW248X/boxers'));report()});
+fetch('./data.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Feed unavailable');return r.json()}).then(d=>render(d,false)).catch(()=>{root.textContent='';append(root,mk('div','err','Tietosyötettä ei voi nyt ladata.'),link('Kehä-Ketut BoxerBasessa ↗','https://boxerbase.com/o/1Le8shnOwPIW/boxers'));report()});
 })();
 </script></body></html>

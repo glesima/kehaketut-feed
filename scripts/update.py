@@ -184,6 +184,13 @@ def parse_match(html, url, boxers, event):
     if side is None:
         LOG.warning("No tracked club boxer in bout %s: %s", url, competitors)
         return None
+    # Names can be duplicated in BoxerBase. Reject bouts whose participant
+    # does not carry the exact verified club label, not a similarly named club.
+    club_names = CONFIG.get("club_names", ["Riihimäen Kehä-Ketut ry"])
+    player_links = [compact(a.get_text(" ", strip=True)) for a in soup.select('a[href*="/participants/"], a[href*="/boxer/"]')]
+    if not any(any(n in label for n in club_names) and club.casefold() in label.casefold() for label in player_links):
+        LOG.warning("Skipping bout without verified club participant: %s", url)
+        return None
     opponent = competitors[1-side][:100]
     # Only report official winners; scheduled bouts are never counted as results.
     win = re.search(r"\bWinner\s+(Red|Blue)\b.{0,110}?\b(\d+\s*[-–]\s*\d+|RSC(?:\s+R\d+)?|KO(?:\s+R\d+)?|ABD(?:\s+R\d+)?)\b", text, re.I)
@@ -319,6 +326,12 @@ def update():
                     if boxer[field] is None:
                         boxer[field] = old.get(field)
         out["boxers"] = boxers
+        if previous.get("club_id") != CONFIG.get("club_id"):
+            LOG.info("Club profile corrected: drop matches from the unverified duplicate club")
+            out["matches"] = []
+            out.pop("matches_checked_at", None)
+        out["club_id"] = CONFIG.get("club_id")
+        out["club_url"] = CONFIG["club_url"]
         out["boxers_checked_at"] = now
     except Exception as ex:
         errors.append(f"Club roster: {ex}")
@@ -349,7 +362,9 @@ def update():
                         info["date"] = parse_event_date(eventhtml)
                 list_url = info["url"].rstrip("/") + "/matches"
                 html = fetch(list_url)
-                links = match_links(html, list_url, [b["name"] for b in boxers])
+                names = [b["name"] for b in boxers]
+                names += [n.replace("Joseph ", "") for n in names if "Joseph " in n]
+                links = match_links(html, list_url, names)
                 LOG.info("Event %s: %d candidate club matches", info["name"], len(links))
                 for url in links:
                     try:

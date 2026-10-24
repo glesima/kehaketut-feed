@@ -51,11 +51,18 @@ jobs:
       - name: Preserve last known good data when fetch fails
         if: ${{ steps.fetch.outcome == 'failure' }}
         run: echo "::warning::BoxerBase refresh failed or robots.txt prevented fetch. Publishing last known good data unchanged."
+      - name: Refresh public Yhdistysavain news
+        id: news
+        continue-on-error: true
+        run: python scripts/update_news.py
+      - name: Preserve news on public-source error
+        if: ${{ steps.news.outcome == 'failure' }}
+        run: echo "::warning::News feed refresh failed; keeping verified last-known-good news."
       - name: Commit successful refresh
         run: |
           git config user.name "rkk-site-bot"
           git config user.email "rkk-site-bot@users.noreply.github.com"
-          git add docs/data.json docs/rss.xml
+          git add docs/data.json docs/rss.xml docs/news.json docs/news-data.js
           if ! git diff --cached --quiet; then
             git commit -m "chore: refresh public RKK feed [skip ci]"
             git push

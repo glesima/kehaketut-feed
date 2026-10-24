@@ -6,13 +6,18 @@ from update import parse_club,parse_profile,match_links,parse_match,event_urls_f
 class TestPublicViews(unittest.TestCase):
     def test_club_table(self):
         html='''<table><tr><th>First Name</th><th>Last Name</th><th>Gender</th><th>Matches</th></tr>
-        <tr><td><a href="/boxer/h9XYEbAs3Py4">Gleb</a></td><td><a href="/boxer/h9XYEbAs3Py4">Simanov</a></td><td>Male</td><td>3</td></tr>
-        <tr><td><a href="/boxer/PxXnRMHDTclP">Simo</a></td><td>Pöyry</td><td>Male</td><td>2</td></tr>
+        <tr><td><a href="/boxer/U2N_OOYxyFui">Gleb</a></td><td><a href="/boxer/U2N_OOYxyFui">Simanov</a></td><td>Male</td><td>3</td></tr>
+        <tr><td><a href="/boxer/vK0bN2sPxnbo">Simo</a></td><td>Pöyry</td><td>Male</td><td>2</td></tr>
         </table>'''
-        b=parse_club(html,'https://boxerbase.com/o/mZjkT0LW248X/boxers')
+        b=parse_club(html,'https://boxerbase.com/o/1Le8shnOwPIW/boxers')
         self.assertEqual(b[0]['name'],'Gleb Simanov')
         self.assertEqual(b[0]['matches'],3)
         self.assertEqual(b[1]['name'],'Simo Pöyry')
+
+    def test_confirmed_club_not_duplicate(self):
+        from update import CONFIG
+        self.assertEqual(CONFIG["club_id"], "1Le8shnOwPIW")
+        self.assertEqual(CONFIG["club_names"], ["Riihimäen Kehä-Ketut ry"])
     def test_roster_missing_fails_safe(self):
         with self.assertRaises(ValueError):parse_club('<h2>Not Found</h2>','https://boxerbase.com/o/x/boxers')
     def test_profile(self):
@@ -24,7 +29,7 @@ class TestPublicViews(unittest.TestCase):
         self.assertEqual(rs,['https://fin.boxerbase.com/e/abc/m/one'])
     def test_parse_result_loss(self):
         html='''<html><head><title>Gleb Simanov vs Sampo Paananen results at Hämeenlinna</title></head>
-        <body><a href="/boxer/h9XYEbAs3Py4">Gleb Simanov RIIHIMÄEN KEHÄ-KETUT</a>
+        <body><a href="/boxer/U2N_OOYxyFui">Gleb Simanov Riihimäen Kehä-Ketut ry</a>
         <a href="/boxer/xx">Sampo Paananen Oiva Boxing</a><div>Winner Blue Sampo Paananen 5-0</div></body></html>'''
         boxers=[{'name':'Gleb Simanov'}]
         event={'name':'Hämeenlinnan juhlakisat','date':'2026-10-24','url':'https://fin.boxerbase.com/e/abc'}
@@ -32,6 +37,12 @@ class TestPublicViews(unittest.TestCase):
         self.assertEqual(got['result'],'tappio')
         self.assertEqual(got['decision'],'5-0')
         self.assertEqual(got['opponent'],'Sampo Paananen')
+    def test_wrong_duplicate_club_is_rejected(self):
+        html='''<html><head><title>Gleb Simanov vs Sampo Paananen results at Test</title></head><body>
+        <a href="/boxer/h9XYEbAs3Py4">Gleb Simanov RIIHIMÄEN KEHÄ-KETUT</a>
+        <a href="/boxer/xx">Sampo Paananen Other club</a><div>Winner Blue Sampo Paananen 5-0</div></body></html>'''
+        result=parse_match(html,'https://boxerbase.com/e/abc/m/xyz',[{'name':'Gleb Simanov'}],{'name':'Test','date':'2026-10-24','url':'https://boxerbase.com/e/abc'})
+        self.assertIsNone(result)
     def test_parse_result_win(self):
         html='''<html><head><title>Rami Vuori vs Hans Guttorm results at Tampere</title></head>
         <body><a href="/boxer/xx">Rami Vuori Riihimäen Kehä-Ketut ry</a>

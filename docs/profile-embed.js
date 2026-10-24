@@ -4,15 +4,15 @@
   var mount=document.getElementById("rkk-profile-slot");
   if(!mount)return;
   var idBySlug={
-    "daniela-taskila":"Pi3gCaWD-7jD",
-    "ilo-gronroos":"W9dy-RM88aLL",
-    "josias-ndikumana":"vfT3Q-X7B3Tf",
-    "kosmo-gronroos":"jRMAAn1JtaN6",
-    "maarjo-ranne":"ir_z7p9BvsZM",
-    "gleb-simanov":"h9XYEbAs3Py4",
-    "rami-vuori":"nqzy3scM-NDs",
-    "simo-poyry":"PxXnRMHDTclP",
-    "otso-vastila":"RyBcZO1fI2Rb"
+    "daniela-taskila":"KyEKnjm-NRp4",
+    "ilo-gronroos":"0efaqUGeO1JP",
+    "josias-ndikumana":"rLyNGj8sCoF7",
+    "kosmo-gronroos":"RGUkxNVIo4px",
+    "maarjo-ranne":"5A-7Dh4jmTdy",
+    "gleb-simanov":"U2N_OOYxyFui",
+    "rami-vuori":"2zTFqL5gFsqg",
+    "simo-poyry":"vK0bN2sPxnbo",
+    "otso-vastila":"CVjkkb7fii6a"
   };
   var slug=location.pathname.replace(/\/+$/,"").split("/").pop().toLowerCase();
   var id=idBySlug[slug];

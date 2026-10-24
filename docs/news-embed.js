@@ -67,10 +67,25 @@
     });
   }
   function fail(){wrap.className='';wrap.replaceChildren();var p=el('div','state','Uutisia ei saatu ladattua tähän näkymään. ');var a=el('a','', 'Avaa seuran uutiset ↗');a.href=root;p.appendChild(a);wrap.appendChild(p);}
-  fetch(root,{credentials:'same-origin',cache:'no-store'})
-    .then(function(r){if(!r.ok)throw Error('Uutissivun lataus epäonnistui');return r.text();})
-    .then(function(html){var items=parseNews(html);if(!items.length)throw Error('Uutisia ei löytynyt');render(items);})
-    .catch(fail);
+  function showFeed(){
+    var payload=window.RKK_NEWS_PAYLOAD;
+    if(!payload||!Array.isArray(payload.items)||!payload.items.length){fail();return}
+    var items=payload.items.slice(0,3).filter(function(n){
+      try{var u=new URL(n.url);return u.protocol==='https:'&&/^(www\.)?kehaketut\.fi$/.test(u.hostname)&&u.pathname.startsWith('/uutiset/')}catch(e){return false}
+    });
+    if(!items.length){fail();return}
+    render(items);
+  }
+  if(window.RKK_NEWS_PAYLOAD&&window.RKK_NEWS_PAYLOAD.items){
+    showFeed();
+  }else{
+    document.addEventListener('rkk-news-ready',showFeed,{once:true});
+    var data=document.createElement('script');
+    data.src='https://glesima.github.io/kehaketut-feed/news-data.js';
+    data.async=true;
+    data.onerror=fail;
+    document.head.appendChild(data);
+  }
 })();
 
 })();
