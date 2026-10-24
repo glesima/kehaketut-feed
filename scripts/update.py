@@ -68,7 +68,8 @@ def fetch(url):
     r.raise_for_status()
     if "text/html" not in r.headers.get("content-type", "text/html"):
         raise ValueError("Unexpected BoxerBase response type")
-    return r.text
+    # BoxerBase pages are UTF-8; requests may otherwise default to Latin-1.
+    return r.content.decode("utf-8", errors="replace")
 
 
 def compact(value):
@@ -126,7 +127,7 @@ def event_urls_from_index(html, base_url, limit=8):
         url = urljoin(base_url, a["href"]).split("?")[0].rstrip("/")
         if not allowed_url(url):
             continue
-        if not re.search(r"/e/[^/]+$", urlparse(url).path):
+        if not re.search(r"/(?:[a-z]{2}/)?e/[^/]+$", urlparse(url).path):
             continue
         if url not in urls:
             urls.append(url)
@@ -140,7 +141,7 @@ def match_links(html, base_url, known_names):
     results = []
     for a in soup.select('a[href]'):
         url = urljoin(base_url, a.get("href", ""))
-        if not allowed_url(url) or not re.search(r"/e/[^/]+/m/[^/]+$", urlparse(url).path):
+        if not allowed_url(url) or not re.search(r"/(?:[a-z]{2}/)?e/[^/]+/m/[^/]+$", urlparse(url).path):
             continue
         title = compact(a.get_text(" ", strip=True))
         # Only follow bouts that refer to a named club boxer: no crawl of others.
@@ -343,6 +344,7 @@ def update():
                 list_url = info["url"].rstrip("/") + "/matches"
                 html = fetch(list_url)
                 links = match_links(html, list_url, [b["name"] for b in boxers])
+                LOG.info("Event %s: %d candidate club matches", info["name"], len(links))
                 for url in links:
                     try:
                         found = parse_match(fetch(url), url, boxers, info)
