@@ -21,6 +21,7 @@ from urllib.parse import urljoin, urlparse
 
 import requests
 from bs4 import BeautifulSoup
+from event_discovery import discover_event_links, event_id_from_url, parse_public_registrations
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "docs" / "data.json"
@@ -375,16 +376,23 @@ def update():
 
     if boxers:
         events = CONFIG["tracked_events"][:]
-        known_events = {e["url"] for e in events}
-        try:
-            index = CONFIG["event_index"]
-            for url in event_urls_from_index(fetch(index), index, CONFIG["max_index_events"]):
-                if url not in known_events:
-                    events.append({"url":url, "name":"BoxerBase-kilpailu", "date":None})
-        except Exception as exc:
-            errors.append(f"Event discovery: {exc}")
+        known_ids = {event_id_from_url(e["url"]) for e in events}
+        index = CONFIG["event_index"]
+        # Find events from the whole public federation list, not only front page.
+        for listing in (index, index.rstrip("/") + "/events"):
+            try:
+                for url in discover_event_links(fetch(listing), listing, CONFIG["max_index_events"]):
+                    eid = event_id_from_url(url)
+                    if eid not in known_ids:
+                        known_ids.add(eid)
+                        events.append({"url":url, "name":"BoxerBase-kilpailu", "date":None})
+            except Exception as exc:
+                errors.append(f"Event discovery {listing}: {exc}")
         old_matches = {m.get("url"):m for m in out.get("matches", [])}
         found_count = 0
+        registration_observations = []
+        registration_pages_checked = 0
+        upcoming_event_metadata = []
         for event in events:
             try:
                 info = event.copy()
@@ -396,6 +404,38 @@ def update():
                         info["name"] = compact(h1.get_text(" ", strip=True))[:120]
                     if not info.get("date"):
                         info["date"] = parse_event_date(eventhtml)
+                # Only publish names actually seen on a public registration page.
+                # Paged lists can omit a club even when that club is registered.
+                event_date = info.get("date")
+                if not event_date or event_date >= datetime.now(timezone.utc).date().isoformat():
+                    try:
+                        participant_url = info["url"].rstrip("/") + "/participants"
+                        roster, coverage = parse_public_registrations(
+                            fetch(participant_url), participant_url, boxers,
+                            CONFIG["club_names"] + CONFIG.get("registration_club_aliases", [])
+                        )
+                        registration_pages_checked += 1
+                        for p in roster:
+                            registration_observations.append({
+                                **p,
+                                "event_id": event_id_from_url(info["url"]),
+                                "event": info["name"],
+                                "event_url": info["url"],
+                                "event_date": event_date,
+                                "observed_at": now,
+                                "coverage": coverage["coverage"],
+                            })
+                        if coverage["coverage"] != "complete_visible_page":
+                            LOG.info("Limited public registration page: %s, observed %d club entries",
+                                     info["name"], len(roster))
+                    except Exception as exc:
+                        errors.append(f"Registrations {info['url']}: {exc}")
+                    upcoming_event_metadata.append({
+                        "id": event_id_from_url(info["url"]),
+                        "name": info["name"],
+                        "date": event_date,
+                        "url": info["url"],
+                    })
                 list_url = info["url"].rstrip("/") + "/matches"
                 html = fetch(list_url)
                 names = [b["name"] for b in boxers]
@@ -427,6 +467,18 @@ def update():
             out["matches"] = sorted(old_matches.values(),
                                     key=lambda m: (m.get("event_date") or "", m["id"]),
                                     reverse=True)[:80]
+        if registration_pages_checked:
+            dedup = {}
+            for p in registration_observations:
+                if p["event_id"]:
+                    dedup[(p["event_id"], p["boxer_id"])] = p
+            out["registrations"] = sorted(dedup.values(),
+                                           key=lambda p: (p.get("event_date") or "", p["boxer"]))
+            out["registrations_checked_at"] = now
+            out["registration_coverage"] = "Only publicly rendered rows; participant lists can be paginated."
+        if upcoming_event_metadata:
+            out["discovered_events"] = list({v["id"]: v for v in upcoming_event_metadata if v["id"]}.values())
+            out["events_checked_at"] = now
     try:
         instagram = get_instagram()
         if instagram is not None:
