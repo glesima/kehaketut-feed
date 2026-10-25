@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-25T22:42:27Z",
+  "generated_at": "2026-10-25T23:03:53Z",
   "data_origin": "BoxerBase public views and optionally Instagram official API",
   "boxers": [
     {
@@ -233,10 +233,10 @@
   ],
   "instagram": [],
   "errors": [],
-  "boxers_checked_at": "2026-10-25T22:42:27Z",
+  "boxers_checked_at": "2026-10-25T23:03:53Z",
   "club_id": "1Le8shnOwPIW",
   "club_url": "https://boxerbase.com/o/1Le8shnOwPIW/boxers",
-  "matches_checked_at": "2026-10-25T22:42:27Z",
+  "matches_checked_at": "2026-10-25T23:03:53Z",
   "registrations": [
     {
       "boxer_id": "KyEKnjm-NRp4",
@@ -250,7 +250,7 @@
       "event_date": "2026-10-24",
       "observed_at": "2026-10-25T22:43:57Z",
       "coverage": "filtered_public_browser_ui",
-      "current_visibility": "verified_in_latest_public_search"
+      "current_visibility": "previously_observed"
     },
     {
       "boxer_id": "U2N_OOYxyFui",
@@ -264,7 +264,7 @@
       "event_date": "2026-10-24",
       "observed_at": "2026-10-25T22:43:57Z",
       "coverage": "filtered_public_browser_ui",
-      "current_visibility": "verified_in_latest_public_search"
+      "current_visibility": "previously_observed"
     },
     {
       "boxer_id": "0efaqUGeO1JP",
@@ -278,7 +278,7 @@
       "event_date": "2026-10-24",
       "observed_at": "2026-10-25T22:43:57Z",
       "coverage": "filtered_public_browser_ui",
-      "current_visibility": "verified_in_latest_public_search"
+      "current_visibility": "previously_observed"
     },
     {
       "boxer_id": "rLyNGj8sCoF7",
@@ -292,7 +292,7 @@
       "event_date": "2026-10-24",
       "observed_at": "2026-10-25T22:43:57Z",
       "coverage": "filtered_public_browser_ui",
-      "current_visibility": "verified_in_latest_public_search"
+      "current_visibility": "previously_observed"
     },
     {
       "boxer_id": "RGUkxNVIo4px",
@@ -306,7 +306,7 @@
       "event_date": "2026-10-24",
       "observed_at": "2026-10-25T22:43:57Z",
       "coverage": "filtered_public_browser_ui",
-      "current_visibility": "verified_in_latest_public_search"
+      "current_visibility": "previously_observed"
     },
     {
       "boxer_id": "5A-7Dh4jmTdy",
@@ -320,7 +320,7 @@
       "event_date": "2026-10-24",
       "observed_at": "2026-10-25T22:43:57Z",
       "coverage": "filtered_public_browser_ui",
-      "current_visibility": "verified_in_latest_public_search"
+      "current_visibility": "previously_observed"
     },
     {
       "boxer_id": "CVjkkb7fii6a",
@@ -334,7 +334,7 @@
       "event_date": "2026-10-24",
       "observed_at": "2026-10-25T22:43:57Z",
       "coverage": "filtered_public_browser_ui",
-      "current_visibility": "verified_in_latest_public_search"
+      "current_visibility": "previously_observed"
     },
     {
       "boxer_id": "2zTFqL5gFsqg",
@@ -348,7 +348,7 @@
       "event_date": "2026-10-24",
       "observed_at": "2026-10-25T22:43:57Z",
       "coverage": "filtered_public_browser_ui",
-      "current_visibility": "verified_in_latest_public_search"
+      "current_visibility": "previously_observed"
     },
     {
       "boxer_id": "vK0bN2sPxnbo",
@@ -362,7 +362,7 @@
       "event_date": "2026-10-24",
       "observed_at": "2026-10-25T22:43:57Z",
       "coverage": "filtered_public_browser_ui",
-      "current_visibility": "verified_in_latest_public_search"
+      "current_visibility": "previously_observed"
     },
     {
       "boxer_id": "0efaqUGeO1JP",
@@ -374,9 +374,9 @@
       "event": "Nuorten SM-kilpailut",
       "event_url": "https://fin.boxerbase.com/e/zdyYMbmXqIuV",
       "event_date": "2026-11-06",
-      "observed_at": "2026-10-25T22:39:05Z",
+      "observed_at": "2026-10-25T23:05:07Z",
       "coverage": "filtered_public_browser_ui",
-      "current_visibility": "previously_observed"
+      "current_visibility": "verified_in_latest_public_search"
     },
     {
       "boxer_id": "RGUkxNVIo4px",
@@ -388,12 +388,12 @@
       "event": "Nuorten SM-kilpailut",
       "event_url": "https://fin.boxerbase.com/e/zdyYMbmXqIuV",
       "event_date": "2026-11-06",
-      "observed_at": "2026-10-25T22:39:05Z",
+      "observed_at": "2026-10-25T23:05:07Z",
       "coverage": "filtered_public_browser_ui",
-      "current_visibility": "previously_observed"
+      "current_visibility": "verified_in_latest_public_search"
     }
   ],
-  "registrations_checked_at": "2026-10-25T22:43:57Z",
+  "registrations_checked_at": "2026-10-25T23:05:21Z",
   "registration_coverage": "Public browser search; organiser-hidden entries are unavailable.",
   "discovered_events": [
     {
@@ -421,6 +421,6 @@
       "url": "https://fin.boxerbase.com/e/DxgdbRx46tR-"
     }
   ],
-  "events_checked_at": "2026-10-25T22:42:27Z",
-  "registrations_first_page_checked_at": "2026-10-25T22:42:27Z"
+  "events_checked_at": "2026-10-25T23:03:53Z",
+  "registrations_first_page_checked_at": "2026-10-25T23:03:53Z"
 }
