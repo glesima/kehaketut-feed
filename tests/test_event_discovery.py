@@ -51,6 +51,20 @@ class PublicEventParsing(unittest.TestCase):
         self.assertEqual(len(found),1)
         self.assertEqual(found[0]["boxer"],"Josias Joseph Ndikumana")
 
+    def test_checkbox_column_and_event_club_link(self):
+        html='''<div>Showing 2 of 157</div><table><tr>
+        <td></td>
+        <td><a href="/e/abc/participants/one">Ilo Grönroos</a></td>
+        <td><a href="/o/1Le8shnOwPIW">Riihimäen Kehä-Ketut ry</a></td>
+        <td>2011</td></tr></table>'''
+        roster=[{'id':'0efaqUGeO1JP','name':'Ilo Grönroos'}]
+        people,details=parse_public_registrations(
+            html,'https://fin.boxerbase.com/e/abc/participants',
+            roster,['Riihimäen Kehä-Ketut ry'])
+        self.assertEqual(len(people),1)
+        self.assertEqual(people[0]['boxer_id'],'0efaqUGeO1JP')
+        self.assertEqual(details['coverage'],'limited_public_view')
+
     def test_hidden_or_partial_list_never_claimed_complete(self):
         found,meta = parse_public_registrations("<p>Names are not yet published</p>","https://boxerbase.com/e/comp/participants",ROSTER,CANONICAL)
         self.assertEqual(found,[])
