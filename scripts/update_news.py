@@ -20,6 +20,29 @@ DEST = Path(__file__).resolve().parents[1] / "docs"
 UA = "KehaketutWebsiteFeed/0.2 (+https://www.kehaketut.fi/)"
 LOG = logging.getLogger("rkk-news")
 
+GROUP_TAGS = {"general", "competitive", "juniors", "fitness", "women"}
+
+
+def load_approved_groups():
+    """Never classify article readers' interests or participants by guessing."""
+    path = DEST.parent / "config" / "news_audiences.json"
+    try:
+        entries = json.loads(path.read_text(encoding="utf-8")).get("articles", [])
+    except (OSError, ValueError):
+        return {}
+    groups = {}
+    for entry in entries:
+        url = entry.get("url", "")
+        approved = entry.get("groups", [])
+        if (url.startswith("https://www.kehaketut.fi/uutiset/")
+                and isinstance(approved, list)
+                and set(approved).issubset(GROUP_TAGS)):
+            groups[url] = list(dict.fromkeys(approved))
+    return groups
+
+
+
+
 
 def clean(text):
     return " ".join((text or "").split())
@@ -90,6 +113,9 @@ def refresh_news():
     if urlparse(response.url).hostname not in ("kehaketut.fi", "www.kehaketut.fi"):
         raise RuntimeError("Unexpected news redirect host")
     news = extract_news(response.content.decode("utf-8", errors="replace"))
+    allowed_groups = load_approved_groups()
+    for item in news:
+        item["groups"] = allowed_groups.get(item["url"], [])
     if not news:
         raise RuntimeError("No public news parsed; preserving last-known-good feed")
     doc = {

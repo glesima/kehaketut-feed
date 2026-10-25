@@ -1,99 +1,211 @@
 <!DOCTYPE html>
-<html lang="fi"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Kehä-Kettujen ajantasaiset tiedot</title>
+<html lang="fi">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kehä-Ketut – kilpailut ja tilastot</title>
 <style>
-:root{color-scheme:light;--red:#B91C2B;--ink:#171A1F;--bg:#f3f5f7;--line:#e1e5e9;--muted:#66727f}
-*{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,sans-serif;margin:0;background:transparent;color:var(--ink);line-height:1.5}
-main{max-width:1160px;margin:auto;padding:0 4px 10px}.ey{color:var(--red);letter-spacing:.12em;font-size:11px;font-weight:850;text-transform:uppercase}
-h2{font-size:clamp(22px,3.5vw,30px);line-height:1.17;letter-spacing:-.025em;margin:6px 0 18px}
-p{color:var(--muted);font-size:13px}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-.two{grid-template-columns:repeat(2,minmax(0,1fr));align-items:start}.card{background:white;border:1px solid var(--line);border-radius:14px;padding:17px;min-width:0}
-.name{font-weight:820;font-size:14px;overflow-wrap:anywhere}.dim{font-size:12px;color:var(--muted)}
-.link{color:#a7192b!important;font-weight:760;font-size:12px;text-decoration:none}.link:focus-visible,button:focus-visible{outline:3px solid #fb7185}
-.row{display:flex;justify-content:space-between;gap:8px;align-items:center;border-top:1px solid #e9edf0;padding:12px 0}
-.row:first-of-type{border-top:0}.tag{font-size:11px;color:var(--red);font-weight:750;letter-spacing:.04em}
-.pill{background:#f2f3f5;color:var(--ink);padding:5px 8px;border-radius:6px;font-size:11px;white-space:nowrap}
-.muted{color:var(--muted);font-size:11px;margin-top:14px}.stats{display:flex;gap:16px;flex-wrap:wrap;margin:10px 0 15px}
-.stats b{font-size:24px;display:block}.stats span{font-size:11px;color:var(--muted)}
-.img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:8px;background:#f3f5f7}.igcaption{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.45;max-height:3em}
-.err{padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:#fff}.note{margin-top:8px}
-@media(max-width:780px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.two{grid-template-columns:1fr}}
-@media(max-width:500px){.grid{grid-template-columns:1fr}.card{padding:14px}.stats{gap:12px}}
-</style></head><body><main id="rkk-root"><p>Haetaan Kehä-Kettujen tietoja…</p></main>
+:root{color-scheme:light;--ink:#171a1f;--red:#b91c2b;--muted:#66727e;--line:#e1e5ea;--bg:#f6f7f9;--blue:#2459ae}
+*{box-sizing:border-box}
+body{margin:0;background:transparent;color:var(--ink);font:14px/1.55 system-ui,-apple-system,"Segoe UI",Arial,sans-serif}
+main{max-width:1160px;margin:0 auto;padding:3px 4px 12px}
+.ey{color:#9f1d2b;font-size:10px;font-weight:850;letter-spacing:.17em;text-transform:uppercase}
+h2{font-size:clamp(25px,3.5vw,34px);line-height:1.13;font-weight:850;letter-spacing:-.035em;margin:5px 0 19px}
+p{color:var(--muted);font-size:13px}
+.section-h{display:flex;align-items:center;gap:14px}
+.section-h:before{content:"";display:block;width:5px;align-self:stretch;min-height:53px;border-radius:8px;background:var(--red)}
+.section-title{min-width:0}.section-title h2{margin:3px 0 20px}
+.cols{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:16px;align-items:start}
+.panel{background:#fff;border:1px solid var(--line);box-shadow:0 9px 30px rgba(20,32,47,.045);border-radius:18px;overflow:hidden;min-width:0}
+.panel--results{border-top:3px solid var(--red)}
+.panel--upcoming{border-top:3px solid #7c8794}
+.panel-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:20px 20px 15px}
+.panel-head h3{margin:0!important;color:var(--ink)!important;font-size:16px!important;font-weight:850!important;letter-spacing:-.01em}
+.kicker{font-size:10px;letter-spacing:.12em;font-weight:850;color:var(--red);text-transform:uppercase}
+.panel-body{padding:0 16px 17px}
+.bout{border:1px solid #e7eaee;background:linear-gradient(135deg,#fff 0%,#fbfcfd 100%);border-radius:12px;padding:14px;margin:0 0 10px}
+.bout:last-child{margin-bottom:0}
+.bout-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:11px}
+.event{font-size:11px;color:#64707c;line-height:1.4;overflow-wrap:anywhere}
+.result{font-size:10px;font-weight:850;letter-spacing:.055em;padding:5px 9px;border-radius:7px;white-space:nowrap;border:1px solid #e0e4e8;background:#f4f6f8;color:#273442}
+.result--win{background:#fbf0f1;border-color:#f1c9ce;color:#a51e2d}
+.result--loss{background:#f2f4f6;border-color:#e1e5ea;color:#52606e}
+.fighters{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center;margin:8px 0 11px}
+.fighter{min-width:0;border-radius:9px;padding:8px 10px;min-height:52px}
+.fighter--red{background:#fff4f5;border:1px solid #f1d4d8}
+.fighter--blue{background:#f2f6ff;border:1px solid #d7e2f7}
+.fighter .corner{display:flex;align-items:center;gap:5px;font-size:9px;letter-spacing:.08em;font-weight:800;color:#596571;text-transform:uppercase}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%}
+.dot--red{background:#b91c2b}.dot--blue{background:#2459ae}
+.fighter-name{font-size:12px;font-weight:800;line-height:1.27;margin-top:5px;overflow-wrap:anywhere;color:#222b34}
+.vs{color:#abb3bb;font-size:11px;font-weight:800}
+.plain-pair{font-size:14px;line-height:1.35;font-weight:800;overflow-wrap:anywhere;margin:6px 0 10px}
+.bout-bottom{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;border-top:1px solid #eef0f2;padding-top:10px}
+.method{color:#384651;font-size:12px;font-weight:700}
+a{color:#a7192b!important;text-decoration:none!important;font-weight:800}
+a:hover{text-decoration:underline!important}
+a:focus-visible{outline:3px solid #c72735;outline-offset:3px}
+a.source{font-size:12px;white-space:nowrap}
+.empty{font-size:12px;color:#65717e;margin:0;padding:7px 4px 14px}
+.panel-note{color:#72808c;font-size:11px;line-height:1.45;margin:12px 3px 1px}
+.participation{border-top:1px solid #eceff2;margin-top:15px;padding-top:14px}
+.participation .subhead{font-size:11px;letter-spacing:.1em;font-weight:850;color:#a51e2d;margin-bottom:9px}
+.participation .reg{padding:12px;background:#f7f8fa;border-radius:10px;margin:0 0 8px}
+.reg .name{font-size:12px;font-weight:800;overflow-wrap:anywhere}
+.reg .dim{margin-top:5px}
+.dim{font-size:11px;color:#687581;line-height:1.5}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.card{background:linear-gradient(150deg,#fff,#fafbfc);border:1px solid var(--line);border-radius:14px;padding:17px;box-shadow:0 6px 22px rgba(19,29,42,.035)}
+.card .name{font-weight:850;font-size:15px;overflow-wrap:anywhere}
+.card a{display:inline-block;margin-top:8px;font-size:12px}
+.stats{display:flex;gap:22px;flex-wrap:wrap;margin:14px 0 12px}
+.stats b{display:block;color:var(--ink);font-size:27px;line-height:1.2}
+.stats span{font-size:11px;color:#6b7783}
+.stat-caption{color:var(--muted);font-size:12px;margin:0 0 18px}
+.hint{font-size:11px;color:#7c8994;padding:15px 1px 1px}
+.history{border-top:1px solid #e9edf0;margin-top:12px}
+.history-item{display:flex;gap:12px;align-items:center;justify-content:space-between;padding:11px 0;border-bottom:1px solid #edf0f3}
+.history-item span{font-size:12px;color:#485662}
+.history-item a{white-space:nowrap;font-size:11px}
+.img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:9px;background:#f3f5f7}
+.igcaption{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;max-height:3em}
+.err{border:1px solid #e3e7eb;border-radius:12px;background:white;padding:18px}
+@media(max-width:800px){.cols{grid-template-columns:1fr}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:480px){.grid{grid-template-columns:1fr}.panel-head{padding:16px}.panel-body{padding:0 12px 14px}.bout{padding:12px}.fighter{padding:8px}.fighters{gap:5px}.fighter-name{font-size:11px}.card{padding:14px}}
+@media(prefers-reduced-motion:no-preference){.card,.bout{transition:box-shadow .18s,border-color .18s}.card:hover,.bout:hover{border-color:#d5c0c3;box-shadow:0 10px 28px rgba(25,35,50,.07)}}
+</style>
+</head>
+<body>
+<main id="rkk-root"><p>Haetaan kilpailutietoja…</p></main>
 <script>
 (function(){
-'use strict';
-const root=document.getElementById('rkk-root');
-const params=new URLSearchParams(location.search);
-const view=params.get('view')||'updates';
-const boxerId=params.get('id')||'';
-const mk=(tag,cls,txt)=>{let el=document.createElement(tag);if(cls)el.className=cls;if(txt!==undefined&&txt!==null)el.textContent=String(txt);return el};
-const append=(parent,...nodes)=>nodes.forEach(n=>parent.appendChild(n));
-const link=(label,url)=>{let a=mk('a','link',label);if(url&&/^https:\/\//.test(url)){a.href=url;a.rel='noopener noreferrer';a.target='_blank'}else{a.href='#'}return a};
-const fmt=d=>d?d.slice(8,10)+'.'+d.slice(5,7)+'.'+d.slice(0,4):'Ajankohta avoin';
-const head=(ey,title)=>{root.appendChild(mk('div','ey',ey));root.appendChild(mk('h2','',title))};
-function updates(d){
- head('Kilpailut ja tulokset','Kehä-Ketut kehässä');
- let wrap=mk('div','grid two');let past=mk('div','card'),future=mk('div','card');
- append(past,mk('div','tag','VIIMEISIMMÄT TULOKSET'));
- let results=(d.matches||[]).filter(m=>m.result==='voitto'||m.result==='tappio').sort((a,b)=>(b.event_date||'').localeCompare(a.event_date||'')).slice(0,4);
- if(!results.length)past.appendChild(mk('p','','Ei vahvistettuja tuloksia tiedossa.'));
- for(const m of results){let row=mk('div','row'),body=mk('div');append(body,mk('div','name',m.boxer+' – '+m.opponent),mk('div','dim',fmt(m.event_date)+' · '+m.event));append(row,body,link((m.result==='voitto'?'Voitto':'Tappio')+(m.decision?' '+m.decision:'' )+' ↗',m.url));past.appendChild(row)}
- append(future,mk('div','tag','SEURAAVAT VAHVISTETUT OTTELUT'));
- let today=(new Date()).toISOString().slice(0,10);
- let next=(d.matches||[]).filter(m=>m.result==='vahvistettu ottelu'&&(!m.event_date||m.event_date>=today)).sort((a,b)=>(a.event_date||'').localeCompare(b.event_date||'')).slice(0,4);
- if(!next.length){future.appendChild(mk('p','','Seuraavia vahvistettuja ottelupareja ei ole vielä löytynyt. Ilmoittautuminen ei yksin tarkoita vahvistettua ottelua.'));future.appendChild(link('Seuraa seuraa BoxerBasessa ↗','https://boxerbase.com/o/1Le8shnOwPIW/boxers'))}
- for(const m of next){let row=mk('div','row'),body=mk('div');append(body,mk('div','name',m.boxer+' – '+m.opponent),mk('div','dim',fmt(m.event_date)+' · '+m.event));append(row,body,link('Ottelulista ↗',m.url));future.appendChild(row)}
- if(next.length)future.appendChild(mk('p','dim','Ottelujen arvioidut alkamisajat muuttuvat. Tarkista ajantasainen ottelulista BoxerBasesta.'));
- let regs=(d.registrations||[]).filter(p=>p.status==='registered'&&p.event_date&&p.event_date>=today).sort((a,b)=>a.event_date.localeCompare(b.event_date));
- if(regs.length){
-  future.appendChild(mk('div','tag','JULKISESTI ILMOITTAUTUNEET'));
-  let groups=new Map();
-  for(const p of regs){
-    let key=p.event_id||p.event_url;
-    if(!groups.has(key))groups.set(key,{event:p.event,date:p.event_date,url:p.event_url,names:[]});
-    groups.get(key).names.push(p.boxer);
-  }
-  for(const event of [...groups.values()].slice(0,3)){
-    let row=mk('div','row'),inner=mk('div');
-    append(inner,mk('div','name',event.event),mk('div','dim',fmt(event.date)+' · Ilmoittautuneet: '+event.names.join(', ')));
-    append(row,inner,link('Osallistujalista ↗',event.url+'/participants'));future.appendChild(row);
-  }
-  future.appendChild(mk('p','dim','Ilmoittautuminen ei takaa ottelua. Julkinen lista voi olla osittainen, joten puuttuva nimi ei todista ilmoittautumisen puuttumista.'));
+"use strict";
+var root=document.getElementById("rkk-root");
+var params=new URLSearchParams(location.search);
+var view=params.get("view")||"updates";
+var boxerId=params.get("id")||"";
+var mk=function(tag,cls,txt){var e=document.createElement(tag);if(cls)e.className=cls;if(txt!==undefined&&txt!==null)e.textContent=String(txt);return e};
+var add=function(p){for(var i=1;i<arguments.length;i++)p.appendChild(arguments[i]);return p};
+var link=function(txt,url,cls){var e=mk("a",cls||"source",txt);if(url&&/^https:\/\//.test(url)){e.href=url;e.target="_blank";e.rel="noopener noreferrer"}else{e.href="#"}return e};
+var fmt=function(s){return /^\d{4}-\d{2}-\d{2}$/.test(s||"")?s.slice(8)+"."+s.slice(5,7)+"."+s.slice(0,4):"Päivä avoin"};
+var heading=function(k,title){var h=mk("div","section-h"),inside=mk("div","section-title");add(inside,mk("div","ey",k),mk("h2","",title));h.appendChild(inside);root.appendChild(h)};
+function methodText(m){
+ var code=(m.method||"").toUpperCase();
+ var round=Number.isInteger(m.round)?(" · "+m.round+". erä"):"";
+ if(code==="KO")return "Tyrmäys (KO)"+round;
+ if(code==="TKO")return "Tekninen tyrmäys (TKO)"+round;
+ if(code==="RSC")return "Keskeytys (RSC)"+round;
+ if(code==="RSC-I"||code==="RSC-H")return "Keskeytys ("+code+")"+round;
+ if(code==="ABD"||code==="RET")return "Keskeytys / luovutus ("+code+")"+round;
+ if(code==="WO")return "Luovutusvoitto (WO) · ottelua ei käyty";
+ if(code==="DQ"||code==="DSQ")return "Hylkäys ("+code+")"+round;
+ if(code==="PTS"||(!code&&m.decision))return (m.decision||"Pistein")+" pistein";
+ return "Virallinen tulos";
+}
+function corners(m,parent){
+ if(!m.red_boxer||!m.blue_boxer)return false;
+ var c=mk("div","fighters");
+ function fighter(name,col,label){
+  var e=mk("div","fighter fighter--"+col);
+  var head=mk("div","corner"),dot=mk("span","dot dot--"+col);
+  add(head,dot,mk("span","",label));
+  add(e,head,mk("div","fighter-name",name));return e
  }
- append(wrap,past,future);root.appendChild(wrap)
+ add(c,fighter(m.red_boxer,"red","Punainen"),mk("span","vs","VS"),fighter(m.blue_boxer,"blue","Sininen"));
+ parent.appendChild(c);return true
+}
+function singleBout(m,upcoming){
+ var e=mk("article","bout");
+ var top=mk("div","bout-top");
+ var event=mk("span","event",fmt(m.event_date)+" · "+m.event);
+ var result=mk("span","result "+(m.result==="voitto"?"result--win":m.result==="tappio"?"result--loss":""),upcoming?"Vahvistettu":m.result==="voitto"?"Voitto":m.result==="tappio"?"Tappio":"Tulos");
+ add(top,event,result);e.appendChild(top);
+ if(!corners(m,e))e.appendChild(mk("div","plain-pair",m.boxer+" – "+m.opponent));
+ var bot=mk("div","bout-bottom");
+ bot.appendChild(mk("span","method",upcoming?"Vastustaja vahvistettu":methodText(m)));
+ bot.appendChild(link(upcoming?"Ottelulista ↗":"Tarkista tulos ↗",m.url));
+ e.appendChild(bot);return e
+}
+function updates(d){
+ heading("Kilpailut ja tulokset","Kehä-Ketut kehässä");
+ var wrap=mk("div","cols"),p=mk("section","panel panel--results"),f=mk("section","panel panel--upcoming");
+ var hp=mk("div","panel-head"),hf=mk("div","panel-head");
+ add(hp,mk("h3","","Viimeisimmät tulokset"),mk("span","kicker","Kehässä"));
+ add(hf,mk("h3","","Tulevat kilpailut"),mk("span","kicker","Seurannassa"));
+ p.appendChild(hp);f.appendChild(hf);
+ var pb=mk("div","panel-body"),fb=mk("div","panel-body");
+ var played=(d.matches||[]).filter(function(m){return m.result==="voitto"||m.result==="tappio"}).sort(function(a,b){return (b.event_date||"").localeCompare(a.event_date||"")}).slice(0,4);
+ if(!played.length)pb.appendChild(mk("p","empty","Virallisia tuloksia ei ole vielä saatavilla."));
+ played.forEach(function(m){pb.appendChild(singleBout(m,false))});
+ var today=new Date().toISOString().slice(0,10);
+ var next=(d.matches||[]).filter(function(m){return m.result==="vahvistettu ottelu"&&(!m.event_date||m.event_date>=today)}).sort(function(a,b){return (a.event_date||"").localeCompare(b.event_date||"")}).slice(0,3);
+ if(!next.length)fb.appendChild(mk("p","empty","Seurannassa ei ole vielä vahvistettuja tulevia ottelupareja."));
+ next.forEach(function(m){fb.appendChild(singleBout(m,true))});
+ var regs=(d.registrations||[]).filter(function(r){return r.status==="registered"&&r.event_date&&r.event_date>=today}).sort(function(a,b){return a.event_date.localeCompare(b.event_date)});
+ if(regs.length){
+  var part=mk("div","participation"),groups=new Map();
+  part.appendChild(mk("div","subhead","JULKISET ILMOITTAUTUMISET"));
+  regs.forEach(function(r){var k=r.event_id||r.event_url;if(!groups.has(k))groups.set(k,{name:r.event,date:r.event_date,url:r.event_url,names:[]});groups.get(k).names.push(r.boxer)});
+  Array.from(groups.values()).slice(0,3).forEach(function(r){
+   var card=mk("div","reg");
+   add(card,mk("div","name",r.name),mk("div","dim",fmt(r.date)+" · "+r.names.join(", ")),link("Osallistujalista ↗",(r.url||"")+"/participants"));
+   part.appendChild(card)
+  });
+  part.appendChild(mk("p","dim","Ilmoittautuminen ei takaa ottelua. Lista voi sisältää vain julkisesti näkyvät nimet."));
+  fb.appendChild(part)
+ }
+ fb.appendChild(mk("p","panel-note","Otteluajat ovat arvioita ja voivat muuttua myös kilpailupäivänä. Tarkista tuorein tieto kilpailujärjestäjältä ja BoxerBasesta."));
+ p.appendChild(pb);f.appendChild(fb);add(wrap,p,f);root.appendChild(wrap)
 }
 function boxers(d){
- head('Nyrkkeilijät','Seuran ottelijat');root.appendChild(mk('p','','Ottelutilastot päivittyvät automaattisesti. Näkyvät luvut kattavat lähteeseen kirjatut ottelut eivätkä välttämättä koko otteluhistoriaa.'));
- let grid=mk('div','grid');
- for(const b of d.boxers||[]){let card=mk('div','card');append(card,mk('div','name',b.name),mk('p','',b.matches==null?'Ottelumäärä ei saatavilla':b.matches+(b.matches===1?' kirjattu ottelu':' kirjattua ottelua')));
- if(Number.isInteger(b.wins)&&Number.isInteger(b.losses))card.appendChild(mk('div','dim',b.wins+' voittoa · '+b.losses+' tappiota'));
- card.appendChild(link('Lähdeprofiili ↗',b.stats_source_url||b.boxerbase_url));
- grid.appendChild(card)}root.appendChild(grid);
+ heading("Seuran kilpailijat","Ottelijat");
+ root.appendChild(mk("p","stat-caption","Tilastot perustuvat saatavilla oleviin julkisiin kilpailutietoihin, eivät välttämättä koko otteluhistoriaan."));
+ var cards=mk("div","grid");
+ (d.boxers||[]).forEach(function(b){
+  var c=mk("div","card");
+  c.appendChild(mk("div","name",b.name));
+  c.appendChild(mk("p","",b.matches==null?"Ottelumäärä ei saatavilla":b.matches+" kirjattua ottelua"));
+  if(Number.isInteger(b.wins)&&Number.isInteger(b.losses))c.appendChild(mk("div","dim",b.wins+" voittoa · "+b.losses+" tappiota"));
+  c.appendChild(link("Avaa ottelijaprofiili ↗",b.stats_source_url||b.boxerbase_url));
+  cards.appendChild(c)
+ });
+ root.appendChild(cards)
 }
 function profile(d){
- let b=(d.boxers||[]).find(x=>x.id===boxerId);
- if(!b){root.appendChild(mk('div','err','Ottelijaa ei löydy tietosyötteestä.'));return}
- head('Ottelutilastot',b.name);let card=mk('div','card'),stats=mk('div','stats');
- const stat=(val,label)=>{let el=mk('div');append(el,mk('b','',val===null||val===undefined?'–':val),mk('span','',label));return el};
- append(stats,stat(b.matches,'Ottelua'),stat(b.wins,'Voittoa'),stat(b.losses,'Tappiota'));
- append(card,stats,link('Avaa lähdeprofiili ↗',b.stats_source_url||b.boxerbase_url));
- if(b.stats_source_note){card.appendChild(mk('p','dim','Tiedot väliaikaisesti rinnakkaisesta BoxerBase-profiilista, kunnes seuratiedot yhdistetään.'));}
- let recent=(d.matches||[]).filter(m=>m.boxer===b.name).slice(0,4);
- for(let m of recent){let r=mk('div','row');append(r,mk('div','dim',fmt(m.event_date)+' · '+m.opponent+' · '+m.result),link('Ottelu ↗',m.url));card.appendChild(r)}root.appendChild(card);
+ var b=(d.boxers||[]).find(function(a){return a.id===boxerId});
+ if(!b){root.appendChild(mk("div","err","Ottelijan profiilia ei löytynyt."));return}
+ heading("Kilpailijaprofiili",b.name);
+ var card=mk("div","card"),stat=mk("div","stats");
+ function metric(num,txt){var e=mk("div","");add(e,mk("b","",num==null?"–":num),mk("span","",txt));return e}
+ add(stat,metric(b.matches,"Ottelua"),metric(b.wins,"Voittoa"),metric(b.losses,"Tappiota"));
+ add(card,stat,link("Avaa lähdeprofiili ↗",b.stats_source_url||b.boxerbase_url));
+ if(b.stats_source_note)card.appendChild(mk("p","dim","Tilastoissa on huomioitu tilapäisesti rinnakkaisprofiili. Tiedot voivat vielä täydentyä."));
+ var history=mk("div","history");
+ (d.matches||[]).filter(function(m){return m.boxer===b.name}).sort(function(a,b){return(b.event_date||"").localeCompare(a.event_date||"")}).slice(0,5).forEach(function(m){
+  var row=mk("div","history-item");
+  add(row,mk("span","",fmt(m.event_date)+" · "+m.opponent+" · "+m.result+(m.decision?" ("+m.decision+")":"")),link("Ottelu ↗",m.url));
+  history.appendChild(row)
+ });
+ card.appendChild(history);root.appendChild(card);
+ root.appendChild(mk("p","hint","Ottelutietoja voidaan täydentää, kun BoxerBasen seuramerkintöjä yhtenäistetään."))
 }
 function instagram(d){
- head('Kuvia ja kuulumisia','Instagram · @kehaketut');
- let grid=mk('div','grid'),items=(d.instagram||[]).slice(0,6);
- if(!items.length){let note=mk('div','card');append(note,mk('p','','Kuvavirran automaattinen yhteys odottaa seuran Instagram API -valtuutusta.'),link('Seuraa @kehaketut ↗','https://www.instagram.com/kehaketut/'));root.appendChild(note);return}
- for(let item of items){let a=link('',item.url);a.className='card';a.style.display='block';if(item.image&&/^https:\/\//.test(item.image)){let img=mk('img','img');img.src=item.image;img.loading='lazy';img.alt=(item.caption||'Kehä-Ketut Instagram-kuva').slice(0,100);a.appendChild(img)}append(a,mk('p','igcaption',item.caption||'Instagram-julkaisu'),mk('div','dim',fmt(item.date)));grid.appendChild(a)}root.appendChild(grid)
+ heading("Sosiaalinen media","Instagram · @kehaketut");
+ var cards=mk("div","grid"),media=(d.instagram||[]).slice(0,6);
+ if(!media.length){root.appendChild(mk("div","err","Kuvavirta näkyy Kehä-Kettujen sivulla Juicerin kautta."));return}
+ media.forEach(function(i){var c=mk("div","card"),a=link("Avaa Instagramissa ↗",i.url);
+ if(i.image&&/^https:\/\//.test(i.image)){var pic=mk("img","img");pic.src=i.image;pic.alt=(i.caption||"Kehä-Ketut").slice(0,100);pic.loading="lazy";c.appendChild(pic)}
+ add(c,mk("p","igcaption",i.caption||"Instagram-julkaisu"),a);cards.appendChild(c)});
+ root.appendChild(cards)
 }
-function render(d,offline){root.textContent='';
- if(view==='boxers')boxers(d);else if(view==='profile')profile(d);else if(view==='instagram')instagram(d);else updates(d);
- let note=mk('div','muted note',(offline?'Esikatselu / varatieto · ':'')+'Tietolähde: BoxerBase'+(view==='instagram'?' ja Instagram':'')+' · Lähteen tarkistus: '+((view==='instagram'?d.instagram_checked_at:(view==='boxers'||view==='profile'?d.boxers_checked_at:d.matches_checked_at))||'ei vielä tarkistettu').slice(0,10));root.appendChild(note);report();
-}
-function report(){let height=Math.ceil(document.body.scrollHeight)+15;parent.postMessage({type:'RKK_WIDGET_HEIGHT',view,height},'*')}
-new ResizeObserver(report).observe(document.body);
-fetch('./data.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Feed unavailable');return r.json()}).then(d=>render(d,false)).catch(()=>{root.textContent='';append(root,mk('div','err','Tietosyötettä ei voi nyt ladata.'),link('Kehä-Ketut BoxerBasessa ↗','https://boxerbase.com/o/1Le8shnOwPIW/boxers'));report()});
+function report(){var height=Math.ceil(document.documentElement.scrollHeight)+16;parent.postMessage({type:"RKK_WIDGET_HEIGHT",view:view,height:height},"*")}
+new ResizeObserver(report).observe(document.documentElement);
+fetch("./data.json",{cache:"no-store"}).then(function(r){if(!r.ok)throw Error("Feed unavailable");return r.json()}).then(function(d){
+ root.replaceChildren();
+ if(view==="boxers")boxers(d);else if(view==="profile")profile(d);else if(view==="instagram")instagram(d);else updates(d);
+ var stamp=(view==="boxers"||view==="profile"?d.boxers_checked_at:d.matches_checked_at)||d.generated_at||"";
+ root.appendChild(mk("p","hint","Tietolähde: BoxerBase · Tarkistettu "+(stamp?stamp.slice(0,10):"ei tiedossa")));
+ report()
+}).catch(function(){root.replaceChildren();add(root,mk("div","err","Kilpailutietoja ei juuri nyt saada ladattua."),link("Avaa Kehä-Kettujen BoxerBase-profiili ↗","https://boxerbase.com/o/1Le8shnOwPIW/boxers"));report()})
 })();
-</script></body></html>
+</script>
+</body></html>

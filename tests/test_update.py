@@ -1,7 +1,7 @@
 import sys,unittest
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'scripts'))
-from update import parse_club,parse_profile,match_links,parse_match,event_urls_from_index,prefer_alias_stats,parse_event_date
+from update import parse_club,parse_profile,match_links,parse_match,event_urls_from_index,prefer_alias_stats,parse_event_date,parse_official_outcome
 
 class TestPublicViews(unittest.TestCase):
     def test_club_table(self):
@@ -72,6 +72,49 @@ class TestPublicViews(unittest.TestCase):
     def test_single_day_event(self):
         html='<h1>Juhlakilpailut</h1><div>Sat, October 24, 2026</div>'
         self.assertEqual(parse_event_date(html),'2026-10-24')
+    def test_result_methods_and_sides(self):
+        event={'name':'Kisapäivä','date':'2026-10-24','url':'https://boxerbase.com/e/t'}
+        for code,expected,round_num in [
+            ("RSC R2","RSC",2),("RSC-I R3","RSC-I",3),
+            ("KO R1","KO",1),("ABD R2","ABD",2),
+            ("WO","WO",None),("DQ R2","DQ",2),
+            ("RSC-H R3","RSC-H",3),("RET R1","RET",1),
+        ]:
+            with self.subTest(code=code):
+                html=f'''<html><head><title>Gleb Simanov vs Opponent results at Event</title></head>
+                <body><a href="/boxer/U2N_OOYxyFui">Gleb Simanov Riihimäen Kehä-Ketut ry</a>
+                <a href="/boxer/xx">Opponent Another Club</a>
+                <span>Winner Blue • {code}</span></body></html>'''
+                got=parse_match(html,'https://boxerbase.com/e/t/m/abc',
+                    [{'name':'Gleb Simanov'}],event)
+                self.assertEqual(got['result'],'tappio')
+                self.assertEqual(got['method'],expected)
+                self.assertEqual(got['round'],round_num)
+                self.assertEqual(got['boxer_corner'],'red')
+                self.assertEqual(got['red_boxer'],'Gleb Simanov')
+                self.assertEqual(got['blue_boxer'],'Opponent')
+                self.assertEqual(got['winner_corner'],'blue')
+                self.assertEqual(got['bout_contested'],expected!='WO')
+
+    def test_winner_blue_club_boxer_is_a_win(self):
+        h='''<html><head><title>Other Fighter vs Rami Vuori results at Cup</title></head>
+         <body><a href="/boxer/a">Other Fighter Another Club</a>
+         <a href="/boxer/b">Rami Vuori Riihimäen Kehä-Ketut ry</a>
+         Winner Blue • 3-0</body></html>'''
+        got=parse_match(h,'https://boxerbase.com/e/x/m/y',
+              [{'name':'Rami Vuori'}],{'name':'Cup','date':'2026-10-25','url':'https://boxerbase.com/e/x'})
+        self.assertEqual(got['result'],'voitto')
+        self.assertEqual(got['boxer_corner'],'blue')
+        self.assertEqual(got['winner_corner'],'blue')
+        self.assertEqual(got['method'],'PTS')
+
+    def test_without_verified_result_not_a_win(self):
+        for body in ['Coming soon','Winner Red','A boxer red']:
+            with self.subTest(body=body):
+                got=parse_official_outcome(body)
+                self.assertIsNone(got['winner_corner'])
+                self.assertIsNone(got['method'])
+
     def test_event_index(self):
         html='<a href="/e/abc">Event A</a><a href="/e/abc">Event A</a><a href="/e/def">Event B</a>'
         self.assertEqual(len(event_urls_from_index(html,'https://fin.boxerbase.com/',8)),2)
