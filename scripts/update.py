@@ -483,14 +483,17 @@ def update():
                                     key=lambda m: (m.get("event_date") or "", m["id"]),
                                     reverse=True)[:80]
         if registration_pages_checked:
-            dedup = {}
+            # This first-page-only scan is incomplete; do not erase
+            # registrations already observed in the complete public browser UI.
+            seen={(p.get("event_id"),p.get("boxer_id")):p
+                  for p in out.get("registrations",[])
+                  if p.get("event_id") and p.get("boxer_id")}
             for p in registration_observations:
-                if p["event_id"]:
-                    dedup[(p["event_id"], p["boxer_id"])] = p
-            out["registrations"] = sorted(dedup.values(),
-                                           key=lambda p: (p.get("event_date") or "", p["boxer"]))
-            out["registrations_checked_at"] = now
-            out["registration_coverage"] = "Only publicly rendered rows; participant lists can be paginated."
+                if p.get("event_id") and p.get("boxer_id"):
+                    seen[(p["event_id"],p["boxer_id"])]=p
+            out["registrations"]=list(seen.values())
+            out["registrations_first_page_checked_at"]=now
+            out["registration_coverage"]="Initial public page; browser search will verify all visible public results."
         if upcoming_event_metadata:
             out["discovered_events"] = list({v["id"]: v for v in upcoming_event_metadata if v["id"]}.values())
             out["events_checked_at"] = now
