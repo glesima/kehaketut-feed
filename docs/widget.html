@@ -227,8 +227,9 @@ function instagram(d){
  add(c,mk("p","igcaption",i.caption||"Instagram-julkaisu"),a);cards.appendChild(c)});
  root.appendChild(cards)
 }
-function report(){var height=Math.ceil(document.documentElement.scrollHeight)+16;parent.postMessage({type:"RKK_WIDGET_HEIGHT",view:view,height:height},"*")}
-new ResizeObserver(report).observe(document.documentElement);
+function report(){var height=Math.ceil(root.getBoundingClientRect().bottom)+8;if(Number.isFinite(height)&&height>100&&height<5000)parent.postMessage({type:"RKK_WIDGET_HEIGHT",view:view,height:height},"*")}
+new ResizeObserver(report).observe(root);
+window.addEventListener("load",report);
 fetch("./data.json",{cache:"no-store"}).then(function(r){if(!r.ok)throw Error("Feed unavailable");return r.json()}).then(function(d){
  root.replaceChildren();
  if(view==="boxers")boxers(d);else if(view==="profile")profile(d);else if(view==="instagram")instagram(d);else updates(d);
