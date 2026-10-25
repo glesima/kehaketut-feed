@@ -66,6 +66,21 @@ def examine_event(driver,event,boxers):
     observed,meta=parse_public_registrations(
         html,url,boxers,CONFIG["club_names"]+
         CONFIG.get("registration_club_aliases",[]))
+    if not observed:
+        # Read only public club labels, not names or birth years, to diagnose
+        # officially spelled / abbreviated organization names.
+        from bs4 import BeautifulSoup
+        soup=BeautifulSoup(html,"html.parser")
+        clubs=set()
+        for tr in soup.select("table tbody tr"):
+            cells=tr.find_all("td",recursive=False)
+            for i,cell in enumerate(cells):
+                link=cell.select_one('a[href*="/participants/"]')
+                if link and i+1 < len(cells):
+                    clubs.add(" ".join(cells[i+1].stripped_strings)[:90])
+                    break
+        LOG.info("Public event %s filtered rows=%d, visible club labels=%s",
+                 event["id"],len(soup.select("table tbody tr")),sorted(clubs)[:6])
     now=datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     rows=[]
     for p in observed:
