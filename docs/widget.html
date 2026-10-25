@@ -44,6 +44,23 @@ function updates(d){
  let next=(d.matches||[]).filter(m=>m.result==='vahvistettu ottelu'&&(!m.event_date||m.event_date>=today)).sort((a,b)=>(a.event_date||'').localeCompare(b.event_date||'')).slice(0,4);
  if(!next.length){future.appendChild(mk('p','','Seuraavia vahvistettuja ottelupareja ei ole vielä löytynyt. Ilmoittautuminen ei yksin tarkoita vahvistettua ottelua.'));future.appendChild(link('Seuraa seuraa BoxerBasessa ↗','https://boxerbase.com/o/1Le8shnOwPIW/boxers'))}
  for(const m of next){let row=mk('div','row'),body=mk('div');append(body,mk('div','name',m.boxer+' – '+m.opponent),mk('div','dim',fmt(m.event_date)+' · '+m.event));append(row,body,link('Ottelulista ↗',m.url));future.appendChild(row)}
+ if(next.length)future.appendChild(mk('p','dim','Ottelujen arvioidut alkamisajat muuttuvat. Tarkista ajantasainen ottelulista BoxerBasesta.'));
+ let regs=(d.registrations||[]).filter(p=>p.status==='registered'&&p.event_date&&p.event_date>=today).sort((a,b)=>a.event_date.localeCompare(b.event_date));
+ if(regs.length){
+  future.appendChild(mk('div','tag','JULKISESTI ILMOITTAUTUNEET'));
+  let groups=new Map();
+  for(const p of regs){
+    let key=p.event_id||p.event_url;
+    if(!groups.has(key))groups.set(key,{event:p.event,date:p.event_date,url:p.event_url,names:[]});
+    groups.get(key).names.push(p.boxer);
+  }
+  for(const event of [...groups.values()].slice(0,3)){
+    let row=mk('div','row'),inner=mk('div');
+    append(inner,mk('div','name',event.event),mk('div','dim',fmt(event.date)+' · Ilmoittautuneet: '+event.names.join(', ')));
+    append(row,inner,link('Osallistujalista ↗',event.url+'/participants'));future.appendChild(row);
+  }
+  future.appendChild(mk('p','dim','Ilmoittautuminen ei takaa ottelua. Julkinen lista voi olla osittainen, joten puuttuva nimi ei todista ilmoittautumisen puuttumista.'));
+ }
  append(wrap,past,future);root.appendChild(wrap)
 }
 function boxers(d){
