@@ -65,7 +65,17 @@ jobs:
           git add docs/data.json docs/rss.xml docs/news.json docs/news-data.js
           if ! git diff --cached --quiet; then
             git commit -m "chore: refresh public RKK feed [skip ci]"
-            git push
+            # New site edits may land while this long-running feed fetch works.
+            # Rebase fast-forward changes once and deploy even if the push races.
+            git fetch origin main
+            if git rebase origin/main; then
+              if ! git push origin HEAD:main; then
+                echo "::warning::Feed commit push raced with a newer change; deploying the fetched Pages snapshot anyway."
+              fi
+            else
+              echo "::warning::Feed update rebase had conflicts; deploy snapshot without pushing over newer repository changes."
+              git rebase --abort || true
+            fi
           fi
       - name: Configure Pages
         uses: actions/configure-pages@v5
