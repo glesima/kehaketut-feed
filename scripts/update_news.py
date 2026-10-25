@@ -14,6 +14,7 @@ from urllib.parse import urljoin, urlparse
 
 import requests
 from bs4 import BeautifulSoup
+from news_rss import build_rss
 
 BASE = "https://www.kehaketut.fi/uutiset/"
 DEST = Path(__file__).resolve().parents[1] / "docs"
@@ -130,6 +131,9 @@ def refresh_news():
         ";\ndocument.dispatchEvent(new Event('rkk-news-ready'));\n",
         encoding="utf-8"
     )
+    # Approved newsroom articles, not every BoxerBase registration/bout.
+    # Stable article URLs as GUIDs prevent the same item recurring on every run.
+    (DEST / "news-rss.xml").write_bytes(build_rss(doc))
     LOG.info("Updated news: %d posts, newest %s", len(news), news[0]["title"])
 
 
