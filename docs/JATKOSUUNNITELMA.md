@@ -43,6 +43,10 @@ Täydellinen suunnitelma: [SISALTOTUOTANTO_VIDEO_JA_UUTISAUTOMAATIO_2026-10-25.m
 - YouTube-kanava yhdistetään seuran oikeaan Metricool-brändiin; tällä hetkellä siellä vain Facebook ja @kehaketut Instagram.
 - Harjoituskuvista automaattiset brändin mukaiset kuvat ja luonnolliset suomenkieliset tekstit, julkaisu ja kotisivun Juicer-kuvavirta ilman etusivun manuaalista editointia.
 
+## P1 – kilpailutietojen ja varsinaisten uutisten työnjako
+
+Etusivun automaattinen kilpailukortti näyttää ilmoittautumiset, vahvistetut otteluparit ja lopputulokset. Erillinen uutinen tehdään vain toimituksellisesti merkittävästä tapahtumasta, yleensä korkeintaan yksi ennakko ja yksi tuloskooste. Ilon ja Kosmon Nuorten SM -ilmoittautumiset ovat esimerkki mahdollisesta yhteisestä ennakosta, mutta valmentajan tulee vahvistaa osallistuminen; automaattista julkaisemista ei tehdä. Sama kilpailu ja julkaisuvaihe deduplikoidaan tapahtuma-ID:n perusteella, eikä jo julkaistuja uutisia ehdoteta uudelleen. Katso [uutisten päätössäännöt](KILPAILU_UUTISOINTI_ILMAN_TURHAA_TOISTOA_2026-10-25.md).
+
 ## P2 – julkaisuautomaation jatko
 
 - Uusi julkaistu ottelutulos → luonnos kilpailun yhteisestä somekoosteesta; hyväksyntä ennen Metricoolin FB/IG-jakelua.

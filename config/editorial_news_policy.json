@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "description": "Ehdota uutista vain aidosti uutisarvoisista seuran tapahtumista. Normaali ilmoittautuminen tai tulos näkyy automaattisessa kilpailukortissa; tämä sääntö ei koskaan julkaise itsenäisesti.",
+  "editorial_events": {
+    "zdyYMbmXqIuV": {
+      "name": "Nuorten SM-kilpailut",
+      "noteworthy": true,
+      "preview_min_registered": 2,
+      "reason": "SM-tasoinen tapahtuma ja vähintään kaksi havaittua seuran ilmoittautunutta"
+    }
+  },
+  "covered_event_stages": [
+    {
+      "event_id": "d6jfSSe5nRpe",
+      "stage": "recap",
+      "article_url": "https://www.kehaketut.fi/uutiset/keha-ketut-kilpailivat-lokakuussa-t/"
+    },
+    {
+      "event_id": "9rPLJ9CYCFAC",
+      "stage": "recap",
+      "article_url": "https://www.kehaketut.fi/uutiset/keha-ketut-kilpailivat-lokakuussa-t/"
+    }
+  ],
+  "stages": [
+    "preview",
+    "recap"
+  ],
+  "constraints": {
+    "maximum_stories_per_significant_event": 2,
+    "routine_events_max_stories": 0,
+    "no_story_from_registration_alone": "Only a reviewable candidate for explicitly noteworthy events with verified public observations.",
+    "preview_requires_coach_confirmation": true,
+    "recap_requires_event_closed_and_results_checked": true,
+    "no_auto_publish": true,
+    "per_event_stage_idempotency": true,
+    "no_victory_claim_before_published_result": true,
+    "website_cards_always_primary": true
+  }
+}
