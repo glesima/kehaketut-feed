@@ -8,6 +8,7 @@
 - [Jatkosuunnitelma ja keskeneräiset työt](docs/JATKOSUUNNITELMA.md)
 - [Uusien ottelutulosten automaattisen julkaisun toteutusmäärittely](docs/AUTOMAATTISET_OTTELUT_2026-10-25.md)
 - [Lyhyt tekninen jatko-ohje seuraavaan keskusteluun](docs/TEKNINEN_JATKOSEURAAVAAN_KESKUSTELUUN.md)
+- [Uutis-, video-, YouTube- ja someautomaation toteutussuunnitelma](docs/SISALTOTUOTANTO_VIDEO_JA_UUTISAUTOMAATIO_2026-10-25.md)
 - [Hallituksen ohje sisällöntuotantoon](docs/HALLITUKSEN_SISALTOOHJE.md)
 
 ## Olennaiset linkit

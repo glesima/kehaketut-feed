@@ -32,6 +32,17 @@ Katso tekninen määrittely: [AUTOMAATTISET_OTTELUT_2026-10-25.md](AUTOMAATTISET
 - Terveyden seuranta (esim. viimeisin onnistunut kilpailuhaku, uutishaku, FB/IG-syötteen tila), merkittävät häiriöilmoitukset.
 - Mobiili, saavutettavuus, oikeus alaikäisten kuviin, varakuvaukset ja toimivat linkit.
 
+## P1 – sisällöntuotannon keskittäminen ja videoiden julkaisupilotti
+
+Täydellinen suunnitelma: [SISALTOTUOTANTO_VIDEO_JA_UUTISAUTOMAATIO_2026-10-25.md](SISALTOTUOTANTO_VIDEO_JA_UUTISAUTOMAATIO_2026-10-25.md)
+
+- Hallitus voi toimittaa uutisaiheet, kuvat ja linkit seuran yhteiseen sisältöpostiin; pitkät videot yksityisen Dropboxin vastaanottolinkin kautta. Automaattiset julkaisutoimet edellyttävät erillistä vahvistusta ja hyväksyntää.
+- Sähköposti -> AI-uutisluonnos -> Pepe/yhdistyksen ylläpitäjä tarkistaa -> julkaisu nykyisessä Yhdistysavaimen Uutiset-arkistossa. Suoraa natiivia sähköpostijulkaisurajapintaa ei ole vahvistettu.
+- Yhdistysavaimen RSS -> Metricoolin Autolist, jossa uudet julkaisut tulevat aluksi disabled/hyväksyttävään tilaan. Suora somepostaus vasta hyväksytyistä tiedoista.
+- Kaksi kilpailuvideota -> lyhyt kohokohtakooste 20–40 sek -> valmentajan hyväksyntä -> yksi Instagram Reel, Facebook-video ja YouTube Short. Täysi otteluvideo pysyy yksityisessä valmennusarkistossa.
+- YouTube-kanava yhdistetään seuran oikeaan Metricool-brändiin; tällä hetkellä siellä vain Facebook ja @kehaketut Instagram.
+- Harjoituskuvista automaattiset brändin mukaiset kuvat ja luonnolliset suomenkieliset tekstit, julkaisu ja kotisivun Juicer-kuvavirta ilman etusivun manuaalista editointia.
+
 ## P2 – julkaisuautomaation jatko
 
 - Uusi julkaistu ottelutulos → luonnos kilpailun yhteisestä somekoosteesta; hyväksyntä ennen Metricoolin FB/IG-jakelua.
