@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "rule": "explicit_selection_only; do not infer a participant's role or a target audience from names, pictures or source",
+  "groups": [
+    {
+      "id": "general",
+      "label": "Koko seura",
+      "description": "Hallinto, kaikille avoimet tapahtumat, jäsenasiat"
+    },
+    {
+      "id": "competitive",
+      "label": "Kilpanyrkkeily",
+      "description": "Kilpailut, ottelut, kilpailuryhmän harjoitukset"
+    },
+    {
+      "id": "juniors",
+      "label": "Juniorit",
+      "description": "Nuorten harjoitukset, leirit ja juniorikilpailut"
+    },
+    {
+      "id": "fitness",
+      "label": "Kuntonyrkkeily",
+      "description": "Kuntonyrkkeilyn harjoitusryhmät, kurssit ja yhteisö"
+    },
+    {
+      "id": "women",
+      "label": "Naisten nyrkkeily",
+      "description": "Naisten harjoitusryhmän kuulumiset"
+    }
+  ],
+  "notice": "One post may target several groups; women may also participate in competition and juniors are not automatically fitness.",
+  "publication_channel_ids": [
+    "website",
+    "facebook",
+    "instagram",
+    "youtube",
+    "tiktok",
+    "x"
+  ],
+  "policy": "everyone_can_submit; only a separately authenticated named reviewer can approve; email sender address is not proof"
+}
