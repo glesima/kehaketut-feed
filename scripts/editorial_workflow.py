@@ -25,6 +25,7 @@ class Draft:
     groups: tuple[str, ...]
     channels: tuple[str, ...]
     fingerprint: str
+    media_hashes: tuple[str, ...] = ()
     state: str = "pending_review"
     publication_allowed: bool = False
 
@@ -74,15 +75,18 @@ def prepare_draft(title: str, body: str,
         channels=normalized_channels,
         fingerprint=fingerprint(title, body, normalized_groups,
                                 normalized_channels, media_hashes),
+        media_hashes=media_hashes,
     )
 
 def revise_draft(draft: Draft, *, title: str | None = None,
-                 body: str | None = None) -> Draft:
+                 body: str | None = None,
+                 media_hashes: tuple[str, ...] | None = None) -> Draft:
     """Any change invalidates previous approval; issue a new revision/hash."""
     current_title = draft.title if title is None else title
     current_body = draft.body if body is None else body
+    attachments = draft.media_hashes if media_hashes is None else media_hashes
     replacement = prepare_draft(current_title, current_body,
-                                list(draft.groups), list(draft.channels))
+                                list(draft.groups), list(draft.channels), attachments)
     return Draft(
         id=draft.id,
         revision=draft.revision + 1,
@@ -91,6 +95,7 @@ def revise_draft(draft: Draft, *, title: str | None = None,
         groups=replacement.groups,
         channels=replacement.channels,
         fingerprint=replacement.fingerprint,
+        media_hashes=replacement.media_hashes,
     )
 
 def select_review_route(*, verified_personal_identity: bool,
