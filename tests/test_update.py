@@ -1,7 +1,7 @@
 import sys,unittest
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'scripts'))
-from update import parse_club,parse_profile,match_links,parse_match,event_urls_from_index,prefer_alias_stats
+from update import parse_club,parse_profile,match_links,parse_match,event_urls_from_index,prefer_alias_stats,parse_event_date
 
 class TestPublicViews(unittest.TestCase):
     def test_club_table(self):
@@ -66,6 +66,12 @@ class TestPublicViews(unittest.TestCase):
         <a href="/boxer/yy">Hans Guttorm Turun Weikot</a><div>Winner Red Rami Vuori 3-0</div></body></html>'''
         got=parse_match(html,'https://boxerbase.com/e/abc/m/m2',[{'name':'Rami Vuori'}],{'name':'Nääsnyrkkeilyt','date':'2026-10-10','url':'https://boxerbase.com/e/abc'})
         self.assertEqual(got['result'],'voitto')
+    def test_multiday_event_start(self):
+        html='<h1>Nuorten SM-kilpailut</h1><div>Fri, November 6 – Sun, November 8, 2026</div>'
+        self.assertEqual(parse_event_date(html),'2026-11-06')
+    def test_single_day_event(self):
+        html='<h1>Juhlakilpailut</h1><div>Sat, October 24, 2026</div>'
+        self.assertEqual(parse_event_date(html),'2026-10-24')
     def test_event_index(self):
         html='<a href="/e/abc">Event A</a><a href="/e/abc">Event A</a><a href="/e/def">Event B</a>'
         self.assertEqual(len(event_urls_from_index(html,'https://fin.boxerbase.com/',8)),2)
