@@ -38,10 +38,10 @@ const sample = {
  ],
  registrations:[
   {boxer:"Ilo Grönroos",event:"Nuorten SM-kilpailut",
-   event_id:"zdyYMbmXqIuV",event_date:"2026-11-06",status:"registered",
+   event_id:"zdyYMbmXqIuV",event_date:"2099-11-06",status:"registered",
    event_url:"https://boxerbase.com/e/zdyYMbmXqIuV"},
   {boxer:"Kosmo Grönroos",event:"Nuorten SM-kilpailut",
-   event_id:"zdyYMbmXqIuV",event_date:"2026-11-06",status:"registered",
+   event_id:"zdyYMbmXqIuV",event_date:"2099-11-06",status:"registered",
    event_url:"https://boxerbase.com/e/zdyYMbmXqIuV"}
  ],
  boxers:[{id:"1",name:"Boxer",matches:1,wins:1,losses:0,
