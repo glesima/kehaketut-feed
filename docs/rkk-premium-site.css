@@ -1,0 +1,162 @@
+/*
+ * Riihimäen Kehä-Ketut – sivuston kevyt yhteinen design system
+ * Turvallinen Yhdistysavain + GitHub Pages CSS: ei muuta kirjautumisia, 
+ * Yhdistysavaimen työkalupalkkeja eikä kolmannen osapuolen iframeja.
+ * Pääasialliset kortti-/sivuelementit käyttävät opt-in rkk-page-* -luokkia.
+ * Koodieditoriin (Plus/Premium): yksi link-tag. Start: Yhdistysavaimen
+ * Ulkoasu -> Tyylit ja HTML-osioissa oma tyylilinkki.
+ */
+:root{
+  --rkk-ink:#171a1f;
+  --rkk-red:#b91c2b;
+  --rkk-red-deep:#991b29;
+  --rkk-surface:#ffffff;
+  --rkk-bg:#f3f5f7;
+  --rkk-line:#dce2e8;
+  --rkk-muted:#677582;
+  --rkk-shadow:0 14px 42px rgba(18,29,44,.065);
+  --rkk-radius:16px;
+  --rkk-width:1160px;
+}
+/* The only global selectors target typography/keyboard focus in page content. */
+:where(main,[role="main"]) :is(h1,h2,h3){
+  letter-spacing:-.025em;
+  line-height:1.19;
+  text-wrap:balance;
+}
+:where(main,[role="main"]) :is(p,li){
+  line-height:1.65;
+}
+:where(main,[role="main"]) :is(img,video){
+  max-width:100%;
+}
+:where(main,[role="main"]) :is(a,button,input,select,textarea):focus-visible{
+  outline:3px solid var(--rkk-red);
+  outline-offset:3px;
+}
+:where(main,[role="main"]) :is(blockquote){
+  border-inline-start:4px solid var(--rkk-red);
+  margin-inline:0;
+  padding:15px 19px;
+  border-radius:0 10px 10px 0;
+  background:var(--rkk-bg);
+}
+/* Explicitly opted-in premium content blocks: no risky blanket conversion. */
+.rkk-page{
+  color:var(--rkk-ink);
+  width:100%;
+  max-width:var(--rkk-width);
+  margin:10px auto 30px;
+  font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+}
+.rkk-page *,
+.rkk-page *::before,.rkk-page *::after{box-sizing:border-box}
+.rkk-page h1,.rkk-page h2,.rkk-page h3{
+  font-family:inherit;
+  color:var(--rkk-ink);
+  letter-spacing:-.035em;
+  line-height:1.14;
+  text-wrap:balance;
+}
+.rkk-page h1{font-weight:850;font-size:clamp(30px,4vw,46px);margin:7px 0 15px}
+.rkk-page h2{font-weight:840;font-size:clamp(23px,2.8vw,31px);margin:0 0 16px}
+.rkk-page h3{font-weight:820;font-size:19px;margin:0 0 10px}
+.rkk-page p{font-size:14px;line-height:1.68;color:#5d6974;margin:0 0 16px}
+.rkk-page a{color:#a7192b;text-decoration:none;font-weight:760}
+.rkk-page a:hover{text-decoration:underline;text-underline-offset:3px}
+.rkk-page a:focus-visible{outline:3px solid var(--rkk-red);outline-offset:3px}
+.rkk-eyebrow{
+  display:block;color:var(--rkk-red-deep);
+  font-weight:850;font-size:10px;letter-spacing:.17em;
+  text-transform:uppercase;
+}
+.rkk-page-hero{
+  padding:clamp(22px,4vw,42px);
+  background:linear-gradient(135deg,#171a1f,#252931);
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,.1);
+  margin:0 0 26px;
+}
+.rkk-page-hero h1,.rkk-page-hero h2{color:white}
+.rkk-page-hero p{color:#c7cbd1;max-width:70ch;margin:0}
+.rkk-page-hero .rkk-eyebrow{color:#ff9fa9}
+.rkk-page-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.rkk-page-grid--two{grid-template-columns:repeat(2,minmax(0,1fr))}
+.rkk-page-card{
+  min-width:0;display:flex;flex-direction:column;gap:7px;
+  padding:clamp(18px,2.5vw,25px);
+  background:#fff;
+  border:1px solid var(--rkk-line);
+  border-radius:var(--rkk-radius);
+  box-shadow:var(--rkk-shadow);
+  color:var(--rkk-ink)!important;
+  text-decoration:none!important;
+}
+.rkk-page-card:hover{
+  border-color:#dbb1b9;
+  transform:translateY(-1px);
+}
+.rkk-page-card h2,.rkk-page-card h3{font-size:clamp(18px,2vw,22px)!important;margin:0!important}
+.rkk-page-card p{font-size:13px;margin:0 0 7px}
+.rkk-page-card strong{color:#a7192b;font-size:12px;margin-top:auto}
+.rkk-page-meta{
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+  font-size:11px;font-weight:800;color:var(--rkk-red-deep);
+  letter-spacing:.03em;
+}
+.rkk-page-meta::before{content:"";display:block;width:16px;height:3px;border-radius:10px;background:var(--rkk-red)}
+.rkk-page-band{
+  background:#fff;border:1px solid var(--rkk-line);
+  border-radius:14px;margin:20px 0 0;
+  padding:19px 22px;
+}
+.rkk-page-band h2,.rkk-page-band h3{font-size:19px!important;margin:0 0 8px!important}
+.rkk-page-band p{margin:0}
+.rkk-page-section{margin:28px 0 18px}
+.rkk-page-divider{
+  display:block;height:2px;width:100%;margin:31px auto 27px;
+  background:linear-gradient(90deg,transparent 0%,#d6dbe0 14%,#d6dbe0 46%,#b91c2b 46%,#b91c2b 54%,#d6dbe0 54%,#d6dbe0 86%,transparent);
+}
+.rkk-page-archive-links{
+  display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;margin:16px 0;
+}
+.rkk-page-archive-links a{
+  display:block;padding:12px 9px;border-radius:10px;
+  border:1px solid var(--rkk-line);background:white;
+  font-size:13px;font-weight:850;text-align:center;color:#a7192b;
+}
+.rkk-page-archive-links a:hover{background:#fff4f5;border-color:#deb4bb;text-decoration:none}
+.rkk-page-cta{
+  display:inline-flex;align-items:center;justify-content:center;
+  padding:12px 19px;border-radius:9px;
+  background:var(--rkk-red);color:#fff!important;
+  font-size:13px;font-weight:850;text-decoration:none!important;
+}
+.rkk-page-cta:hover{background:var(--rkk-red-deep)}
+.rkk-page-data{
+  overflow-x:auto;max-width:100%;border:1px solid var(--rkk-line);border-radius:11px;background:white;
+}
+.rkk-page-data table{border-collapse:collapse;width:100%;min-width:400px}
+.rkk-page-data th,.rkk-page-data td{
+  border-bottom:1px solid #ecf0f2;padding:11px 14px;
+  text-align:left;font-size:13px
+}
+.rkk-page-data th{background:#f5f7f9;font-weight:850;color:#313a43}
+.rkk-page-data tr:last-child td{border-bottom:0}
+@media(max-width:870px){
+  .rkk-page-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .rkk-page-archive-links{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
+@media(max-width:580px){
+  .rkk-page-grid,.rkk-page-grid--two{grid-template-columns:1fr}
+  .rkk-page-hero{border-radius:14px}
+  .rkk-page-card{padding:19px}
+  .rkk-page-archive-links{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .rkk-page{margin-top:0}
+}
+@media(prefers-reduced-motion:no-preference){
+ .rkk-page-card{transition:border-color .2s,transform .2s,box-shadow .2s}
+}
+@media(prefers-reduced-motion:reduce){
+ .rkk-page-card{transition:none;transform:none!important}
+}
