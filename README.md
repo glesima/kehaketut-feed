@@ -6,6 +6,8 @@
 
 - [Tehdyt muutokset ja nykyinen tila](docs/TOTEUTUS_JA_TILANNE_2026-10-25.md)
 - [Jatkosuunnitelma ja keskeneräiset työt](docs/JATKOSUUNNITELMA.md)
+- [Uusien ottelutulosten automaattisen julkaisun toteutusmäärittely](docs/AUTOMAATTISET_OTTELUT_2026-10-25.md)
+- [Lyhyt tekninen jatko-ohje seuraavaan keskusteluun](docs/TEKNINEN_JATKOSEURAAVAAN_KESKUSTELUUN.md)
 - [Hallituksen ohje sisällöntuotantoon](docs/HALLITUKSEN_SISALTOOHJE.md)
 
 ## Olennaiset linkit
