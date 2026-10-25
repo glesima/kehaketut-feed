@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-25T22:05:39Z",
+  "generated_at": "2026-10-25T22:32:09Z",
   "data_origin": "BoxerBase public views and optionally Instagram official API",
   "boxers": [
     {
@@ -233,11 +233,137 @@
   ],
   "instagram": [],
   "errors": [],
-  "boxers_checked_at": "2026-10-25T22:05:39Z",
+  "boxers_checked_at": "2026-10-25T22:32:09Z",
   "club_id": "1Le8shnOwPIW",
   "club_url": "https://boxerbase.com/o/1Le8shnOwPIW/boxers",
-  "matches_checked_at": "2026-10-25T22:05:39Z",
+  "matches_checked_at": "2026-10-25T22:32:09Z",
   "registrations": [
+    {
+      "boxer_id": "KyEKnjm-NRp4",
+      "boxer": "Daniela Taskila",
+      "participant_url": "https://fin.boxerbase.com/e/d6jfSSe5nRpe/participants/jBtIIHqUkmFY",
+      "registered_club": "RIIHIMÄEN KEHÄ-KETUT",
+      "status": "registered",
+      "event_id": "d6jfSSe5nRpe",
+      "event": "Hämeenlinnan Kisan 110-vuotisjuhlakisat",
+      "event_url": "https://fin.boxerbase.com/e/d6jfSSe5nRpe",
+      "event_date": "2026-10-24",
+      "observed_at": "2026-10-25T22:33:36Z",
+      "coverage": "filtered_public_browser_ui",
+      "current_visibility": "verified_in_latest_public_search"
+    },
+    {
+      "boxer_id": "U2N_OOYxyFui",
+      "boxer": "Gleb Simanov",
+      "participant_url": "https://fin.boxerbase.com/e/d6jfSSe5nRpe/participants/uNA0iKtF0pMY",
+      "registered_club": "RIIHIMÄEN KEHÄ-KETUT",
+      "status": "registered",
+      "event_id": "d6jfSSe5nRpe",
+      "event": "Hämeenlinnan Kisan 110-vuotisjuhlakisat",
+      "event_url": "https://fin.boxerbase.com/e/d6jfSSe5nRpe",
+      "event_date": "2026-10-24",
+      "observed_at": "2026-10-25T22:33:36Z",
+      "coverage": "filtered_public_browser_ui",
+      "current_visibility": "verified_in_latest_public_search"
+    },
+    {
+      "boxer_id": "0efaqUGeO1JP",
+      "boxer": "Ilo Grönroos",
+      "participant_url": "https://fin.boxerbase.com/e/d6jfSSe5nRpe/participants/wAHA777O9Pt-",
+      "registered_club": "RIIHIMÄEN KEHÄ-KETUT",
+      "status": "registered",
+      "event_id": "d6jfSSe5nRpe",
+      "event": "Hämeenlinnan Kisan 110-vuotisjuhlakisat",
+      "event_url": "https://fin.boxerbase.com/e/d6jfSSe5nRpe",
+      "event_date": "2026-10-24",
+      "observed_at": "2026-10-25T22:33:36Z",
+      "coverage": "filtered_public_browser_ui",
+      "current_visibility": "verified_in_latest_public_search"
+    },
+    {
+      "boxer_id": "rLyNGj8sCoF7",
+      "boxer": "Josias Joseph Ndikumana",
+      "participant_url": "https://fin.boxerbase.com/e/d6jfSSe5nRpe/participants/oQ6y99MZjP3S",
+      "registered_club": "RIIHIMÄEN KEHÄ-KETUT",
+      "status": "registered",
+      "event_id": "d6jfSSe5nRpe",
+      "event": "Hämeenlinnan Kisan 110-vuotisjuhlakisat",
+      "event_url": "https://fin.boxerbase.com/e/d6jfSSe5nRpe",
+      "event_date": "2026-10-24",
+      "observed_at": "2026-10-25T22:33:36Z",
+      "coverage": "filtered_public_browser_ui",
+      "current_visibility": "verified_in_latest_public_search"
+    },
+    {
+      "boxer_id": "RGUkxNVIo4px",
+      "boxer": "Kosmo Grönroos",
+      "participant_url": "https://fin.boxerbase.com/e/d6jfSSe5nRpe/participants/5i4zO4DP8PV1",
+      "registered_club": "RIIHIMÄEN KEHÄ-KETUT",
+      "status": "registered",
+      "event_id": "d6jfSSe5nRpe",
+      "event": "Hämeenlinnan Kisan 110-vuotisjuhlakisat",
+      "event_url": "https://fin.boxerbase.com/e/d6jfSSe5nRpe",
+      "event_date": "2026-10-24",
+      "observed_at": "2026-10-25T22:33:36Z",
+      "coverage": "filtered_public_browser_ui",
+      "current_visibility": "verified_in_latest_public_search"
+    },
+    {
+      "boxer_id": "5A-7Dh4jmTdy",
+      "boxer": "Maarjo Ranne",
+      "participant_url": "https://fin.boxerbase.com/e/d6jfSSe5nRpe/participants/klbij_Pt6XZD",
+      "registered_club": "RIIHIMÄEN KEHÄ-KETUT",
+      "status": "registered",
+      "event_id": "d6jfSSe5nRpe",
+      "event": "Hämeenlinnan Kisan 110-vuotisjuhlakisat",
+      "event_url": "https://fin.boxerbase.com/e/d6jfSSe5nRpe",
+      "event_date": "2026-10-24",
+      "observed_at": "2026-10-25T22:33:36Z",
+      "coverage": "filtered_public_browser_ui",
+      "current_visibility": "verified_in_latest_public_search"
+    },
+    {
+      "boxer_id": "CVjkkb7fii6a",
+      "boxer": "Otso Västilä",
+      "participant_url": "https://fin.boxerbase.com/e/d6jfSSe5nRpe/participants/VYo6n2c8tP_2",
+      "registered_club": "RIIHIMÄEN KEHÄ-KETUT",
+      "status": "registered",
+      "event_id": "d6jfSSe5nRpe",
+      "event": "Hämeenlinnan Kisan 110-vuotisjuhlakisat",
+      "event_url": "https://fin.boxerbase.com/e/d6jfSSe5nRpe",
+      "event_date": "2026-10-24",
+      "observed_at": "2026-10-25T22:33:36Z",
+      "coverage": "filtered_public_browser_ui",
+      "current_visibility": "verified_in_latest_public_search"
+    },
+    {
+      "boxer_id": "2zTFqL5gFsqg",
+      "boxer": "Rami Vuori",
+      "participant_url": "https://fin.boxerbase.com/e/d6jfSSe5nRpe/participants/DY-enw6ZsbhA",
+      "registered_club": "RIIHIMÄEN KEHÄ-KETUT",
+      "status": "registered",
+      "event_id": "d6jfSSe5nRpe",
+      "event": "Hämeenlinnan Kisan 110-vuotisjuhlakisat",
+      "event_url": "https://fin.boxerbase.com/e/d6jfSSe5nRpe",
+      "event_date": "2026-10-24",
+      "observed_at": "2026-10-25T22:33:36Z",
+      "coverage": "filtered_public_browser_ui",
+      "current_visibility": "verified_in_latest_public_search"
+    },
+    {
+      "boxer_id": "vK0bN2sPxnbo",
+      "boxer": "Simo Pöyry",
+      "participant_url": "https://fin.boxerbase.com/e/d6jfSSe5nRpe/participants/ns9IUwMvastz",
+      "registered_club": "RIIHIMÄEN KEHÄ-KETUT",
+      "status": "registered",
+      "event_id": "d6jfSSe5nRpe",
+      "event": "Hämeenlinnan Kisan 110-vuotisjuhlakisat",
+      "event_url": "https://fin.boxerbase.com/e/d6jfSSe5nRpe",
+      "event_date": "2026-10-24",
+      "observed_at": "2026-10-25T22:33:36Z",
+      "coverage": "filtered_public_browser_ui",
+      "current_visibility": "verified_in_latest_public_search"
+    },
     {
       "boxer_id": "0efaqUGeO1JP",
       "boxer": "Ilo Grönroos",
@@ -248,7 +374,7 @@
       "event": "Nuorten SM-kilpailut",
       "event_url": "https://fin.boxerbase.com/e/zdyYMbmXqIuV",
       "event_date": "2026-11-06",
-      "observed_at": "2026-10-25T22:06:57Z",
+      "observed_at": "2026-10-25T22:33:20Z",
       "coverage": "filtered_public_browser_ui",
       "current_visibility": "verified_in_latest_public_search"
     },
@@ -262,12 +388,12 @@
       "event": "Nuorten SM-kilpailut",
       "event_url": "https://fin.boxerbase.com/e/zdyYMbmXqIuV",
       "event_date": "2026-11-06",
-      "observed_at": "2026-10-25T22:06:57Z",
+      "observed_at": "2026-10-25T22:33:20Z",
       "coverage": "filtered_public_browser_ui",
       "current_visibility": "verified_in_latest_public_search"
     }
   ],
-  "registrations_checked_at": "2026-10-25T22:07:12Z",
+  "registrations_checked_at": "2026-10-25T22:33:36Z",
   "registration_coverage": "Public browser search; organiser-hidden entries are unavailable.",
   "discovered_events": [
     {
@@ -295,6 +421,6 @@
       "url": "https://fin.boxerbase.com/e/DxgdbRx46tR-"
     }
   ],
-  "events_checked_at": "2026-10-25T22:05:39Z",
-  "registrations_first_page_checked_at": "2026-10-25T22:05:39Z"
+  "events_checked_at": "2026-10-25T22:32:09Z",
+  "registrations_first_page_checked_at": "2026-10-25T22:32:09Z"
 }
