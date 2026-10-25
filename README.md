@@ -12,6 +12,9 @@
 - [Kilpailu-uutisten automaatiopolitiikka: ei turhia erillisjulkaisuja](docs/KILPAILU_UUTISOINTI_ILMAN_TURHAA_TOISTOA_2026-10-25.md)
 - [Seurauutisten RSS → Metricool, julkaisut vain tarkistettaviksi](docs/UUTISTEN_RSS_METRICOOL_HYVAKSYNTA.md)
 - [Hallituksen ohje sisällöntuotantoon](docs/HALLITUKSEN_SISALTOOHJE.md)
+- [Koko verkkosivun sisällön ja ulkoasun auditointi](docs/SIVUSTON_KOKONAISAUDITTI_2026-10-26.md)
+- [Premium-asennus ja Yhdistysavaimen ohjeet](docs/PREMIUM_SIVUSTO_ASENNUS_2026-10-26.md)
+- [Automaattisesti päivittyvä julkinen sivu-inventaario](docs/SIVUSTON_AUTOMAATTINEN_AUDITTI.md)
 
 
 - [BoxerBase-tutkimus ja toimiva julkisten ilmoittautumisten haku](docs/BOXERBASE_TUTKIMUS_JA_AUTOMAATION_TULOS_2026-10-25.md)

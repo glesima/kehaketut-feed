@@ -73,3 +73,9 @@ Ei jatkuvaa käsinkopiointia eikä uusia HTML-muutoksia jokaisen ottelun jälkee
 ## Seuraavan teknisen työskentelykerran aloitus
 
 Avaa ensin [otteluautomaation määrittely](AUTOMAATTISET_OTTELUT_2026-10-25.md) ja `scripts/update.py`. Aloita _event discovery_ -kerroksesta sekä tuloksen `result_published`-tilan validoimisesta, älä uusista ulkoasuhionnista. Tee työ erillisellä haaralla, mutta testaa hyväksytty toteutus julkaisuun ennen kuin siivoat nykyistä tuotantopolun koodia.
+
+## P1 – koko Yhdistysavain-sivuston yhteinen premium-ilme (26.10.2026)
+
+Koko julkinen valikkorakenne, ryhmäsivut, viisi ottelijaesittelyä, seuran historia/Hall of Fame, Liity-lomake, yhteystiedot sekä vuosien 2002–2019 historialliset tulokset käydään läpi. Valmiit pohjat ja design-system GitHubissa; alkuperäisiä Yhdistysavaimen sivuja ei muuteta automaattisesti. Viikoittainen robots-tietoinen sivustoauditointi listaa julkiset alasivut ja laadulliset hälytykset. Vahvista hinnat, harjoitusajat, lisenssit sekä ryhmien yhteyshenkilöt ennen julkaisumuutoksia. Puuttuva tulokset→uutiset-erotin korjataan docs/news-embed.js:ään.
+
+Katselmus: [SIVUSTON_KOKONAISAUDITTI_2026-10-26.md](SIVUSTON_KOKONAISAUDITTI_2026-10-26.md). Asennus: [PREMIUM_SIVUSTO_ASENNUS_2026-10-26.md](PREMIUM_SIVUSTO_ASENNUS_2026-10-26.md).
