@@ -87,7 +87,7 @@ async function main() {
   handlers.message({source:parent,data:{type:"RKK_REQUEST_HEIGHT"}});
   assert.equal(calls.length,count+1,"Late host resize handshake works");
   const boxer=await render("boxers");
-  assert.match(collect(boxer.root),/Seuran ottelijat/);
+  assert.match(collect(boxer.root),/Ottelijat/);
   assert.ok(boxer.calls.some(x=>x.type==="RKK_WIDGET_HEIGHT"));
   console.log("Compact results, winner identities, registrations and intrinsic widget height verified.");
 }
