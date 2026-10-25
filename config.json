@@ -26,7 +26,7 @@
       "city": "Helsinki"
     }
   ],
-  "max_index_events": 8,
+  "max_index_events": 20,
   "expected_ig_username": "kehaketut",
   "club_id": "1Le8shnOwPIW",
   "verified_stat_aliases": {
@@ -36,5 +36,8 @@
       "club_label": "RIIHIMÄEN KEHÄ-KETUT",
       "status": "temporary_until_club_merge"
     }
-  }
+  },
+  "registration_club_aliases": [
+    "RIIHIMÄEN KEHÄ-KETUT"
+  ]
 }
