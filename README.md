@@ -11,6 +11,10 @@
 - [Uutis-, video-, YouTube- ja someautomaation toteutussuunnitelma](docs/SISALTOTUOTANTO_VIDEO_JA_UUTISAUTOMAATIO_2026-10-25.md)
 - [Hallituksen ohje sisällöntuotantoon](docs/HALLITUKSEN_SISALTOOHJE.md)
 
+
+- [BoxerBase-tutkimus ja toimiva julkisten ilmoittautumisten haku](docs/BOXERBASE_TUTKIMUS_JA_AUTOMAATION_TULOS_2026-10-25.md)
+- [Erillisen uutisosoitteen ja kolmen hyväksyjän tietoturvasuunnitelma](docs/TURVALLINEN_SISALTOVASTAANOTTO_2026-10-25.md)
+
 ## Olennaiset linkit
 
 - Sivusto: https://www.kehaketut.fi/
