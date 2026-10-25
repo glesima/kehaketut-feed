@@ -10,7 +10,7 @@ Tämän työn tavoite on yhdenmukainen puna-valko-grafiitti-ilme jokaiselle julk
 | Osio | Löydös | Toimenpide |
 | --- | --- | --- |
 | Etusivu | Kilpailuista Ajankohtaista-osioon puuttunut puna-harmaa viiva | CSS-korjaus docs/news-embed.js -tiedostossa valmisteltu. Tarkista julkaisun jälkeen |
-| Etusivu, vanha teksti | Julkisessa tekstiversiossa näkyy vielä 25.8.2026 kurssi-ilmoitus ja väite, että tulokset eivät päivity automaattisesti | Poista Yhdistysavaimen vanhat staattiset osiot myös sisältönä, ei vain CSS-piilotuksena |
+| Etusivu, vanha teksti | Vanhemmassa verkkohakukopiossa esiintyi 25.8.2026 kurssi-ilmoitus, mutta 59 sivun uusin tarkistus ei enää löytänyt tätä päivää. Sen sijaan väärä väite tulosten automaattisen päivityksen puuttumisesta löytyi edelleen | Älä poista jo poistunutta kurssia uudestaan. Korjaa vanha automaatioväite alkuperäiseen Yhdistysavaimen osioon sisältötasolla, ei vain CSS-piilotuksella |
 | Yhteystiedot | Kaupungin nimi kirjoitettu "Rihimäki" | Korjaa Riihimäeksi vasta, kun postitusosoite on varmistettu |
 | Hinnastot ja lisenssit | Kolmessa harjoitusryhmässä vanhoja lisenssiohjeita, hinnastoja ja viittaus vuoteen 2018 | Varmista kauden 2026–2027 hinnat, SuomiSport-lisenssit, maksutavat, harjoitusajat Tomilta, Pepeltä ja ryhmävastaavilta |
 | Kilpailijasivut | Vain viisi henkilöesittelyä, osin vanhoja ottelumääriä; BoxerBase-profiileja yhdeksän | Tarkista aktiiviset urheilijat ja sarjat valmentajalta. Käytä live-kortteja, älä arvaa koko otteluhistoriaa |
