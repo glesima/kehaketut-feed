@@ -68,3 +68,14 @@ Tämä muistio jatkaa 24.–26.10.2026 käytyä Kehä-Kettujen sivusto- ja somek
 - https://ohjeet.yhdistysavain.fi/kotisivut/arkistointi/ (arkisto-ZIP:n rajaus)
 - https://ohjeet.yhdistysavain.fi/kotisivut/sivun-uudelleenohjaus/
 - https://help.metricool.com/how-to-link-an-rss-feed-to-an-autolist-ank6m
+
+## Metricoolin todettu jatkotilanne – 26.10.2026 klo noin 01.01 Suomen aikaa (käyttäjän kuvakaappaukset)
+
+- RSS-linkitys ja koko autolista on **tallennettu onnistuneesti**. Autolistien luettelossa on `RKK | Seurauutiset | Facebook`, kanavana Facebook, kytkin **Enabled: Yes**, sisältöä **0 postausta**, ja Next time -kenttä on tyhjä.
+- RSS-esikatselussa oli 3 aiempaa uutista. Asetukset kuvassa: `Max characters: 250`, `Prefix` ja `Suffix` tyhjinä, `Add 3 previous posts: OFF`, `Include new post disabled: ON`, `Add new posts at the beginning: OFF`; itse autolistan `Repeat: OFF`. Tyhjää jonoa **ei tulkita viaksi**, koska aiempien uutisten tuonti on estetty. `Add new posts at the beginning` on valinnainen järjestyskysymys; OFF lisää uudet jonon loppuun, ei estä RSS:ää.
+- Ajastusnäkymässä aika oli **11:10 PM (23.10)** ja viikonpäivistä ei näkynyt valittua päivää. **Varmista viikonpäivien valinta** ja siirrä ajankohta ehdotuksena tiistaille ja torstaille klo **18.00 Europe/Helsinki**. Tämä on kokeiltava lähtöaika, ei todistetusti paras. `Next time` voi olla tyhjä myös siksi, ettei jonossa ole aktiivisia postauksia; pelkästä tästä ei saa päätellä ajastusvikaa.
+- RSS-toiminto vastaanottaa vain **uudet, tämän liittämisen jälkeen ilmestyvät** artikkelit. Ne saapuvat **disabled**-tilassa ja vaativat käsin aktivoinnin ennen julkaisemista (Metricoolin dokumentaatio). Ensimmäistä uutta artikkelia käytetään testinä, ei julkaista tahattomasti vanhoja artikkeleita.
+- **Käyttäjä vahvisti nimenomaisesti 26.10.2026, että Metricoolin YouTube-kanava on oikea Kehä-Kettujen kanava.** Vanhojen dokumenttien epäily yhteyden oikeellisuudesta on tältä osin vanhentunut; julkaisujen tekninen toimivuus ja kanavakohtaiset formaatit tarkistetaan erikseen. Ei uuden kanavan perustamista. TikTok myöhemmin.
+- Facebook-linkkiesikatselu kuvassa näytti seuran logon. Metricoolin RSS-ohjeen mukaan Facebook luo linkkiesikatselun julkaisuhetkellä ja käyttää artikkelin `og:image`-tietoa, jos sellainen on. Tulevaisuudessa harkitse uutiskohtaisia luvallisia kuvia ja omaa OG-kuvaa, jotta jokainen uutinen ei ole pelkkä seuralogo. Ei automaattista kuva-/videojulkaisua ilman ihmisen hyväksyntää.
+
+Lähde: https://help.metricool.com/how-to-link-an-rss-feed-to-an-autolist-ank6m ; https://help.metricool.com/schedule-content-from-an-autolist-fxehk .
