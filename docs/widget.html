@@ -230,6 +230,7 @@ function instagram(d){
 function report(){var height=Math.ceil(root.getBoundingClientRect().bottom)+8;if(Number.isFinite(height)&&height>100&&height<5000)parent.postMessage({type:"RKK_WIDGET_HEIGHT",view:view,height:height},"*")}
 new ResizeObserver(report).observe(root);
 window.addEventListener("load",report);
+window.addEventListener("message",function(event){if(event.source===parent&&event.data&&event.data.type==="RKK_REQUEST_HEIGHT")report()});
 fetch("./data.json",{cache:"no-store"}).then(function(r){if(!r.ok)throw Error("Feed unavailable");return r.json()}).then(function(d){
  root.replaceChildren();
  if(view==="boxers")boxers(d);else if(view==="profile")profile(d);else if(view==="instagram")instagram(d);else updates(d);
