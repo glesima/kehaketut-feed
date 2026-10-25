@@ -42,6 +42,8 @@ jobs:
         run: pip install -r requirements.txt
       - name: Check parser
         run: python -m unittest discover -s tests -v
+      - name: Inspect public BoxerBase registration page controls
+        run: python scripts/diagnose_participants.py
       - name: Refresh BoxerBase public data
         id: fetch
         continue-on-error: true
