@@ -20,6 +20,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 
 from update import CONFIG, OUT, allowed_url, robots_permits
 from event_discovery import event_id_from_url,parse_public_registrations
+from registration_retention import reconcile_registrations
 
 LOG=logging.getLogger("rkk-public-registrations")
 
@@ -120,23 +121,20 @@ def main():
     if not successful:
         LOG.warning("No public event search completed; leaving data unchanged")
         return 0
-    # Replace only successfully checked event observations. Failed events
-    # retain older snapshots, and disappearance is not labelled cancellation.
-    canonical={b.get("name") for b in boxers}
-    prior={
-        (p.get("event_id"),p.get("boxer_id")):p
-        for p in data.get("registrations",[])
-        if p.get("event_id") not in successful and p.get("boxer_id")
-    }
-    for p in found:
-        if p["boxer"] not in canonical:
-            continue
-        key=(p["event_id"],p["boxer_id"])
-        existing=prior.get(key)
-        if existing is None or p["registered_club"] in CONFIG["club_names"]:
-            prior[key]=p
-    data["registrations"]=sorted(
-        prior.values(),key=lambda p:(p.get("event_date") or "",p.get("boxer") or ""))
+    # Negative results from a paginated, filtered or temporarily incomplete
+    # public list are NOT proof of a withdrawn registration. Keep the last
+    # positive observation for relevant future events and mark it as historical.
+    existing_count=len(data.get("registrations", []))
+    data["registrations"]=reconcile_registrations(
+        data.get("registrations",[]), found, boxers,
+        CONFIG["club_names"], date.today()
+    )
+    if existing_count and not found:
+        LOG.warning(
+            "Public search returned no new club rows; keeping %d previously "
+            "verified registrations rather than treating them as withdrawn",
+            len(data["registrations"])
+        )
     data["registrations_checked_at"]=datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     data["registration_coverage"]="Public browser search; organiser-hidden entries are unavailable."
     OUT.write_text(json.dumps(data,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
