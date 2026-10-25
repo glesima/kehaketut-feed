@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='utf-8'?>
+<rss version="2.0">
+  <channel>
+    <title>Riihimäen Kehä-Ketut – seurauutiset</title>
+    <link>https://www.kehaketut.fi/uutiset/</link>
+    <description>Kehä-Kettujen toimituksellisesti julkaistut uutiset, ei ottelukohtaista automaattispämmiä.</description>
+    <language>fi</language>
+    <item>
+      <title>Kehä-Ketut kilpailivat lokakuussa Tampereella ja Hämeenlinnassa</title>
+      <link>https://www.kehaketut.fi/uutiset/keha-ketut-kilpailivat-lokakuussa-t/</link>
+      <guid isPermaLink="true">https://www.kehaketut.fi/uutiset/keha-ketut-kilpailivat-lokakuussa-t/</guid>
+      <pubDate>Sun, 25 Oct 2026 12:00:00 +0000</pubDate>
+      <description>Riihimäen Kehä-Kettujen nyrkkeilijöitä nähtiin lokakuussa kahdessa kilpailutapahtumassa: Nääsnyrkkeilyissä Tampereella 10.10. ja Hämeenlinnan Kisan 110-vuotisjuhlakilpailuissa 24.10.2026.…</description>
+      <category>Kilpanyrkkeily</category>
+    </item>
+    <item>
+      <title>Kehä-Kettujen juniorit TUL:n mestaruuskilpailuihin</title>
+      <link>https://www.kehaketut.fi/uutiset/keha-kettujen-juniorit-tul-n-mestar/</link>
+      <guid isPermaLink="true">https://www.kehaketut.fi/uutiset/keha-kettujen-juniorit-tul-n-mestar/</guid>
+      <pubDate>Fri, 06 Mar 2026 12:00:00 +0000</pubDate>
+      <description>Riihimäen Kehä-Kettujen juniorinykkeilijät osallistuvat viikonloppuna TUL:n juniorien mestaruuskilpailuihin Helsingissä Ruskeasuon liikuntahallissa. Seuraa edustavat kilpailuissa: Ilo Grönroos –…</description>
+      <category>Kilpanyrkkeily</category>
+      <category>Juniorit</category>
+    </item>
+    <item>
+      <title>VUOSIKOKOUS 2026</title>
+      <link>https://www.kehaketut.fi/uutiset/vuosikokous-2026-2/</link>
+      <guid isPermaLink="true">https://www.kehaketut.fi/uutiset/vuosikokous-2026-2/</guid>
+      <pubDate>Thu, 19 Feb 2026 12:00:00 +0000</pubDate>
+      <description>Riihimäen Kehä-Kettujen sääntömääräinen vuosikokous pidetään 3.3.2026 klo 17:00 osoitteessa Länsitie 88 (Harri). Kokouksen jälkeen pidetään myös Riihimäen Kehä-Ketut Tuki ry vuosikokous. Jäsenet…</description>
+      <category>Koko seura</category>
+    </item>
+  </channel>
+</rss>
