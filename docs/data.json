@@ -237,9 +237,38 @@
   "club_id": "1Le8shnOwPIW",
   "club_url": "https://boxerbase.com/o/1Le8shnOwPIW/boxers",
   "matches_checked_at": "2026-10-25T20:01:49Z",
-  "registrations": [],
+  "registrations": [
+    {
+      "boxer_id": "0efaqUGeO1JP",
+      "boxer": "Ilo Grönroos",
+      "participant_url": "https://fin.boxerbase.com/e/zdyYMbmXqIuV/participants/qxDySYBH2bIu",
+      "registered_club": "Riihimäen Kehä-Ketut ry",
+      "status": "registered",
+      "event_id": "zdyYMbmXqIuV",
+      "event": "Nuorten SM-kilpailut",
+      "event_url": "https://fin.boxerbase.com/e/zdyYMbmXqIuV",
+      "event_date": "2026-11-06",
+      "observed_at": "2026-10-25T19:30:41Z",
+      "coverage": "filtered_public_browser_ui",
+      "current_visibility": "previously_observed"
+    },
+    {
+      "boxer_id": "RGUkxNVIo4px",
+      "boxer": "Kosmo Grönroos",
+      "participant_url": "https://fin.boxerbase.com/e/zdyYMbmXqIuV/participants/Oi-T58C4P3A5",
+      "registered_club": "Riihimäen Kehä-Ketut ry",
+      "status": "registered",
+      "event_id": "zdyYMbmXqIuV",
+      "event": "Nuorten SM-kilpailut",
+      "event_url": "https://fin.boxerbase.com/e/zdyYMbmXqIuV",
+      "event_date": "2026-11-06",
+      "observed_at": "2026-10-25T19:30:41Z",
+      "coverage": "filtered_public_browser_ui",
+      "current_visibility": "previously_observed"
+    }
+  ],
   "registrations_checked_at": "2026-10-25T20:03:12Z",
-  "registration_coverage": "Public browser search; organiser-hidden entries are unavailable.",
+  "registration_coverage": "Positive prior public observations retained; later public search may show only some participants.",
   "discovered_events": [
     {
       "id": "zdyYMbmXqIuV",
