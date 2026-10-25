@@ -1,26 +1,60 @@
-# Kehä-Ketut – jatkosuunnitelma 25.10.2026
+# Kehä-Ketut – tehtäväjärjestys ja toteutussuunnitelma (päivitetty 25.10.2026)
 
-## Ensisijaiset, käytännön toimet
+## Nykyinen toimiva lähtötilanne
 
-1. **BoxerBase-tietojen yhdistäminen (Tomi / valmennuksen yhteyshenkilö):** pyydetään poistamaan duplikaattiseura vasta sitten, kun vanhan seuran ja ottelijaprofiilien historialliset ottelut on siirretty oikeaan seuraan/profiileihin. Oikea seuraprofiili on 1Le8shnOwPIW. Erityisesti Josias Joseph Ndikumanan 0 vs 1 -ottelun ristiriita sekä muiden ottelijoiden puuttuvat tiedot. Kun yhdistäminen valmis, tarkistetaan ja poistetaan integraation väliaikaiset alias-poikkeukset.
-2. **Yhdistysavaimen loppusiivous:** varmistetaan, ettei vanhaa Uutislistaa, vanhaa staattista nyrkkeilijäluetteloa tai kahta erillistä someosiota näy uuden rinnalla. Yhtenäisen someosion asennus ja mobiilinäkymä varmistetaan. Etusivun muokkaus keskitetään ylläpitäjälle.
-3. **Julkaisuprosessin käyttöönotto hallituksessa:** Pepe ja muut sisältöä tekevät hallituksen jäsenet käyttävät vain Uutiset → Lisää uutinen. Annetaan mahdollisimman lyhyt ohje ja tarvittaessa katsotaan yhdessä.
-4. **Automaation toiminnan valvonta:** varmistetaan GitHub Actionsin neljä päivittäistä ajoa, uutissyötteen julkaisu, Facebookin erillisen päivittäisen ajastuksen toiminta sekä Juicerin Instagram-yhteyden pysyminen voimassa. Ei virheellisiä väitteitä täysin kattavasta kilpailuhistoriasta.
+- Uusittu Yhdistysavaimen etusivu ja seuran värit, logo, kuvatausta, liittymispainike.
+- GitHub Actions / Pages päivitys neljästi vuorokaudessa: rajatut BoxerBase-tulokset ja tilastot sekä kolme uusinta Yhdistysavaimen uutista.
+- Instagram @kehaketut → Juicer-kuvavirta; Facebookin korttivirta → Kehä-Kettujen Metricool-brändi + erillinen ajastettu päivitys. Ei automaattista somessa julkaisemista.
+- Oikea BoxerBase-seura `1Le8shnOwPIW`; historiassa on duplikaatteja, joita ei saa summata tai poistaa ennen yhdistämistä.
 
-## Seuraavat kehitykset
+## P0 – ensimmäinen seuraava toteutus (automaattisesti päivittyvät uudet ottelut)
 
-5. **Uusien kilpailujen kattavampi löydettävyys:** tutki BoxerBasen sallittua rajapintaa/keruuta tapahtumien, ilmoittautumisten ja vahvistettujen ottelulistojen erottamiseen. Ilmoittautuminen ei saa näkyä vahvistettuna otteluparina.
-6. **Nyrkkeilijäsivujen yhdenmukaistaminen:** viiden olemassa olevan henkilöesittelyn käsin kirjoitetut ottelumäärät voivat erota automaattisista luvuista. Poista tai selkeytä vanhojen lukujen päivämäärät, lisää mahdollisten uusien urheilijoiden seuran omat sivut sovitusti.
-7. **Somejulkaisuluonnokset tuloksista:** uusista vahvistetuista tuloksista luonnos Facebookiin ja Instagramiin Metricoolin kautta. Ensimmäisessä vaiheessa julkaisuihin aina ihmisen hyväksyntä. Sävy asiallinen, hyväntuulinen ja luonnollinen, ei ylitsevuotava. Useita otteluita samasta kisasta mielellään yksi yhteinen kooste.
-8. **Kuvallinen sisältö ja viestintä:** seuran omat kilpailu- ja harjoituskuvat, henkilötiedot ja alaikäisten kuvien käyttöoikeudet; harkitaan yhtenäisiä julkaisu-/uutiskuvapohjia. Instagram-kuvavirta päivittää sivua automaattisesti, mutta itse kuvia pitää edelleen julkaista lähdetiliin.
-9. **Yhdistysavaimen rajoitukset:** tarvittaessa siirretään lisää HTML/CSS/JS-logiikkaa GitHub Pagesiin, jotta merkkirajat ja sisällönhallinta pysyvät hallinnassa. Oman sivuston alustan vaihtoa ei tarvita nyt.
-10. **Ylläpito-ohje ja palautekierros:** hallitukselta kehitysideat; parannukset toteutetaan priorisoidusti. Myöhemmin voidaan rakentaa julkinen automaation tilasivu ja häiriöilmoitukset.
+Katso tekninen määrittely: [AUTOMAATTISET_OTTELUT_2026-10-25.md](AUTOMAATTISET_OTTELUT_2026-10-25.md)
 
-## Valmistumisen määritelmä
+1. Julkisten BoxerBase-tapahtumien automaattinen haku ja sivutus, ei vain `tracked_events` ja kalenterin ensimmäiset tapahtumat.
+2. Tapahtuman/ottelijan tunnistepohjainen yhdistäminen ja tuloksen virallisen julkaisustatuksen varmistaminen; ilmoittautuminen ≠ vahvistettu ottelu ≠ julkaistu tulos.
+3. Tulosten `event_id + bout_id` -deduplikointi, korjaushistoria ja säilyminen lähdekatkoissa.
+4. Kilpailupäivän tiheämpi tarkistus vain relevanteissa seuratuissa tapahtumissa, mikäli BoxerBasen ehdot sallivat. GitHub Pagesin automaattinen julkaisu. Tavoite noin 1 h lähteen julkaisemisesta, ei taattua reaaliaikaa.
+5. Tulokset etusivulla ja urheilijan omalla sivulla ilman HTML-muokkausta. Kaksi historiallista tapahtumaa ja yksi uusi tapahtuma hyväksymistestiksi.
 
-- Seuran uutisen voi kirjoittaa Yhdistysavaimeen ilman etusivun muokkausta ja se ilmestyy etusivun kolmeen uusimpaan uutiskorttiin.
-- Tulokset ja ottelijatilastot päivittyvät ilman manuaalista kopiointia tunnetuista kilpailuista ja profiileista.
-- Instagram- ja Facebook-sisällöt näkyvät siististi samalla rivillä eri laitteissa ja pysyvät kytkettyinä vain seuran tileihin.
-- Hallitus tietää, mikä on automaattista ja mikä edelleen manuaalista.
-- Korjattu BoxerBase-yhdistäminen tekee seuran tulostilastoista nykyistä kattavammat.
-- Sosiaalisen median automaattinen varsinainen julkaiseminen tehdään vasta hyväksyntäprosessin kanssa.
+## P0 – lähdedatan puhdistus
+
+- Tomi ja tarvittaessa BoxerBase-tuki yhdistävät duplikaattiseuran ja urheilijaprofiilit (säilytä historiat ennen poistoa), täydentävät puuttuvat ottelut.
+- Kun oikean seuran Josias-tilastot ovat kattavat, poista tilapäinen rinnakkaisprofiilin poikkeus.
+- BoxRec ei kuulu suunnitelmaan eikä sivuille.
+
+## P1 – sivujen laatu ja luotettavuus
+
+- Seuran viidellä nykyisellä ottelijasivulla vanhojen käsin kirjoitettujen ottelumäärien ristiriidat pois; historia ja päivämäärät säilyvät.
+- Tarkista yhdistetyn Instagram/Facebook-osion mobiilitasaukset, kuvien lataus ja oikeiden tilien identiteetti; jatketaan vain yhtä someosiota.
+- Poista vanhat piilotettujen HTML-uutislistojen päällekkäisyydet; `Uutiset → Lisää uutinen` → kolme uusinta korttia.
+- Tuloslistan "tulevat" -osio tiiviinä, ei turhan suurta tyhjää korttia; selkeä lähteen tarkistusaika ja lähdekatkon varatieto.
+- Terveyden seuranta (esim. viimeisin onnistunut kilpailuhaku, uutishaku, FB/IG-syötteen tila), merkittävät häiriöilmoitukset.
+- Mobiili, saavutettavuus, oikeus alaikäisten kuviin, varakuvaukset ja toimivat linkit.
+
+## P2 – julkaisuautomaation jatko
+
+- Uusi julkaistu ottelutulos → luonnos kilpailun yhteisestä somekoosteesta; hyväksyntä ennen Metricoolin FB/IG-jakelua.
+- Myöhemmin mahdollisuus tehdä ehdotettu Yhdistysavain-uutisluonnos, mutta **ei** esitetä automaattisesti kirjoittavana uutisintegraationa ennen toimivaa teknistä polkua.
+- Uutisten ja harjoituskuvien luonteva laatu; Yhdistysavaimen uutiset tehdään edelleen toimituksellisesti yhdestä paikasta.
+
+## P3 – ylläpito ja pitkän ajan kehitys
+
+- Sivuston dokumentaatio, hallitukselle uutisohje, GitHub-koodin siistiminen ja vähäiset HTML-lohkot.
+- Tietosyötteen historianäkymä, kilpailukohtaiset sivut ja parannettu urheilijaprofiili.
+- BoxRec-integraatiota ei tehdä; lähdelukujen puutteet kerrotaan rehellisesti.
+- Ei Yhdistysavaimesta poismuuttoa tässä vaiheessa.
+
+## Toteutusperiaate
+
+**Yhdistysavain = jäsenet + toimitukselliset uutiset.**
+**GitHub Actions = julkiset kilpailu-/ottelutiedot ja uutisnostojen päivitys.**
+**GitHub Pages = etusivun HTML/JSON-komponentit.**
+**Juicer = Instagram-kuvavirta.**
+**Metricool/FB-syöte = Facebook-sisällön verkkosivunosto; varsinaiset somejulkaisut vasta hyväksyttyinä.**
+
+Ei jatkuvaa käsinkopiointia eikä uusia HTML-muutoksia jokaisen ottelun jälkeen.
+
+## Seuraavan teknisen työskentelykerran aloitus
+
+Avaa ensin [otteluautomaation määrittely](AUTOMAATTISET_OTTELUT_2026-10-25.md) ja `scripts/update.py`. Aloita _event discovery_ -kerroksesta sekä tuloksen `result_published`-tilan validoimisesta, älä uusista ulkoasuhionnista. Tee työ erillisellä haaralla, mutta testaa hyväksytty toteutus julkaisuun ennen kuin siivoat nykyistä tuotantopolun koodia.
