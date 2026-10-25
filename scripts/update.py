@@ -255,8 +255,23 @@ def get_instagram():
 
 
 def parse_event_date(html):
-    """Best-effort date from the event landing page (English BoxerBase display)."""
+    """Return the start date for a multi-day BoxerBase event."""
     soup = BeautifulSoup(html, "html.parser")
+    text = compact(soup.get_text(" ", strip=True))
+    # Example: Fri, November 6 – Sun, November 8, 2026.
+    dr = re.search(
+        r"\b(?:Mon|Tue|Wed|Thu|Fri|Sat|Sun),?\s+"
+        r"([A-Z][a-z]+)\s+(\d{1,2})\s*[–-]\s*"
+        r"(?:Mon|Tue|Wed|Thu|Fri|Sat|Sun),?\s+"
+        r"([A-Z][a-z]+)\s+(\d{1,2}),?\s+(20\d{2})", text)
+    if dr:
+        try:
+            return datetime.strptime(
+                f"{dr.group(1)} {dr.group(2)} {dr.group(5)}",
+                "%B %d %Y"
+            ).date().isoformat()
+        except ValueError:
+            pass
     for tag in soup.select('time[datetime]'):
         val = tag.get("datetime", "")
         if re.match(r"^20\d{2}-\d{2}-\d{2}", val):
