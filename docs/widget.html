@@ -144,7 +144,7 @@ function updates(d){
  if(regs.length){
   var part=mk("div","participation"),groups=new Map();
   part.appendChild(mk("div","subhead","JULKISET ILMOITTAUTUMISET"));
-  regs.forEach(function(r){var k=r.event_id||r.event_url;if(!groups.has(k))groups.set(k,{name:r.event,date:r.event_date,url:r.event_url,names:[]});groups.get(k).names.push(r.boxer)});
+  regs.forEach(function(r){var k=r.event_id||r.event_url;if(!groups.has(k))groups.set(k,{name:r.event,date:r.event_date,url:r.event_url,names:[]});groups.get(k).names.push(r.boxer+(r.current_visibility==='previously_observed'?' (aiemmin havaittu)':''))});
   Array.from(groups.values()).slice(0,3).forEach(function(r){
    var card=mk("div","reg");
    add(card,mk("div","name",r.name),mk("div","dim",fmt(r.date)+" · "+r.names.join(", ")),link("Osallistujalista ↗",(r.url||"")+"/participants"));
