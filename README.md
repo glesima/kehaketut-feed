@@ -10,6 +10,7 @@
 - [Lyhyt tekninen jatko-ohje seuraavaan keskusteluun](docs/TEKNINEN_JATKOSEURAAVAAN_KESKUSTELUUN.md)
 - [Uutis-, video-, YouTube- ja someautomaation toteutussuunnitelma](docs/SISALTOTUOTANTO_VIDEO_JA_UUTISAUTOMAATIO_2026-10-25.md)
 - [Kilpailu-uutisten automaatiopolitiikka: ei turhia erillisjulkaisuja](docs/KILPAILU_UUTISOINTI_ILMAN_TURHAA_TOISTOA_2026-10-25.md)
+- [Seurauutisten RSS → Metricool, julkaisut vain tarkistettaviksi](docs/UUTISTEN_RSS_METRICOOL_HYVAKSYNTA.md)
 - [Hallituksen ohje sisällöntuotantoon](docs/HALLITUKSEN_SISALTOOHJE.md)
 
 
@@ -24,6 +25,7 @@
 - Tulosnäkymä: https://glesima.github.io/kehaketut-feed/widget.html?view=updates
 - Ottelijakortit: https://glesima.github.io/kehaketut-feed/widget.html?view=boxers
 - Facebook-korttivirta: https://glesima.github.io/kehaketut-feed/facebook.html
+- Julkaistujen seurauutisten RSS: https://glesima.github.io/kehaketut-feed/news-rss.xml (eri syöte kuin kilpailutuloksille)
 
 ## Ajastukset ja tekninen rakenne
 
