@@ -44,6 +44,10 @@ jobs:
         run: python -m unittest discover -s tests -v
       - name: Inspect public BoxerBase registration page controls
         run: python scripts/diagnose_participants.py
+      - name: Diagnose public browser search (temporary one-run check)
+        run: |
+          python -m pip install selenium==4.36.0
+          python scripts/diagnose_browser_ui.py
       - name: Refresh BoxerBase public data
         id: fetch
         continue-on-error: true
