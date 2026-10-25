@@ -2,7 +2,7 @@
 
 ## Pääperiaate: vastaanotto ei koskaan tarkoita julkaisua
 
-**ÄLÄ käytä yhdistyksen virallista seurasähköpostia** sisältöautomaation saapuvana laatikkona. Siellä voi olla henkilökohtaisia, hallinnollisia ja luottamuksellisia viestejä. Käytetään vain uutta, tarkoitukseen luotua postilaatikkoa. Osoitetta ei ole vielä luotu eikä yhdistetty; tätä dokumenttia ei pidä tulkita toimivaksi automaatioksi.
+**ÄLÄ käytä yhdistyksen virallista seurasähköpostia** sisältöautomaation saapuvana laatikkona. Siellä voi olla henkilökohtaisia, hallinnollisia ja luottamuksellisia viestejä. Käytetään vain uutta, tarkoitukseen luotua postilaatikkoa. Sisältöosoite **kehaketut.aineisto@gmail.com** on luotu ja sen Gmail-yhteys on 25.10.2026 vahvistettu. Gmailiin on perustettu käsittelytunnisteet. Luonnoksen automaattinen teko, vahva hyväksyntä ja julkaisuputki eivät ole vielä käytössä.
 
 ### Vaihe 1 – vastaanotto
 
@@ -50,14 +50,14 @@ Kaikille julkaisuversioille kirjataan ID, sisältötiiviste, hyväksyjä, aikale
 
 ### Käyttöönottoon tarvitaan yksi henkilökohtainen käyttäjätoimi
 
-Uuden erillisen sähköpostitilin luominen / yhteyden valtuuttaminen, nimetty hyväksyjä sekä tarvittaessa Dropboxin yksityisen lähetyskansion vahvistus. Näitä ei ole tehty.
+Erillinen sisältö-Gmail ja sen yhteys on vahvistettu. Kolmen hyväksyjän yksilöllinen kirjautuminen sekä yksityinen backend ja tarvittaessa videokansion vahvistus ovat vielä tekemättä.
 
 
 ## Tarkennettu toteutusmalli 25.10.2026
 
 ### Uuden postilaatikon nimi
 
-**Ensisijainen ehdotus:** `kehaketut.sisalto@gmail.com` (saatavuus tarkistettava perustettaessa). **Varanimi:** `kehaketut.aineisto@gmail.com`. Jos seuran `kehaketut.fi`-domainin sähköpostit voi järjestää turvallisesti, oma osoite kuten `sisalto@kehaketut.fi` olisi myöhemmin luonteva, mutta senkin tulee käyttää **erillistä** vastaanottolaatikkoa. Yhdistyksen viralliseen postiin ei aseteta automaattista edelleensiirtoa.
+**Käyttöön otettu erillinen vastaanottoposti:** `kehaketut.aineisto@gmail.com`. Jos seuran `kehaketut.fi`-domainin sähköpostit voi järjestää turvallisesti, oma osoite kuten `sisalto@kehaketut.fi` olisi myöhemmin luonteva, mutta senkin tulee käyttää **erillistä** vastaanottolaatikkoa. Yhdistyksen viralliseen postiin ei aseteta automaattista edelleensiirtoa.
 
 ### Roolit, reititys ja kolme hyväksyjää
 
@@ -65,9 +65,9 @@ Uuden erillisen sähköpostitilin luominen / yhteyden valtuuttaminen, nimetty hy
 | --- | --- | --- | --- |
 | Ulkopuolinen | Kyllä | Vastaanottokuittaus (vain turvalliseksi todetuille viesteille) | Ei |
 | Hallituksen jäsen ilman hyväksyntäoikeutta | Kyllä | Oma luonnos näkyvissä, myös hyväksyjäkolmikko saa tarkastuspyynnön | Ei |
-| Gleb, Pepe tai Erika (kukin omalla valtuutetulla Google-tilillä) | Kyllä | Omalta lähetykseltä oma luonnos; ulkopuolisen aineistosta kaikki kolme | **Yksi kolmesta riittää** |
+| Gleb, Pepe tai Erika (kukin erikseen todennetulla käyttäjätunnuksella / passkeyllä) | Kyllä | Omasta lähetyksestä lähettäjälle; ulkopuolisista ehdotuksista ilmoitus Glebille ja yhteiseen seurapostilaatikkoon | **Yksi kolmesta riittää** |
 
-Henkilökohtaisia sähköpostiosoitteita ei ole vielä vahvistettu. Hyväksyntäroolia ei anneta automaattisesti hallituksen sähköpostidomainin tai pelkän From-osoitteen perusteella. Jos tunnettu lähettäjä ei reagoi, sovittu muistutus/escalointi muihin hyväksyjiin. Sisällön hyväksyminen tai hylkääminen tehdään palvelimella atomisesti; kaksi samanaikaista napsautusta ei saa aiheuttaa kahta julkaisua.
+Pepe ja Erika käyttävät samaa seuran virallista postilaatikkoa `riihimaenkehaketut@gmail.com`; se soveltuu yhteiseksi ilmoitusosoitteeksi mutta ei erota hyväksyjien henkilöllisyyksiä. Hyväksyntäroolia ei anneta automaattisesti pelkän From-osoitteen tai yhteisen postilaatikon perusteella. Jos tunnettu lähettäjä ei reagoi, sovittu muistutus/escalointi muihin hyväksyjiin. Sisällön hyväksyminen tai hylkääminen tehdään palvelimella atomisesti; kaksi samanaikaista napsautusta ei saa aiheuttaa kahta julkaisua.
 
 ### Sähköpostihuijaukset ja vahva hyväksyntä
 
@@ -81,11 +81,11 @@ Henkilökohtaisia sähköpostiosoitteita ei ole vielä vahvistettu. Hyväksyntä
 
 ### Hyväksyjäkohtaiset näkyvyydet
 
-**Tunnettu hyväksyjä lähettää** -> luonnos palautuu hänelle -> hän kirjautuu omalla Google-tilillään/passkeyllä -> hyväksyy yhden nimenomaisen version -> vasta silloin julkaisu etenee.
+**Tunnettu hyväksyjä lähettää** -> luonnos palautuu lähetysosoitteeseen -> hyväksyminen tapahtuu omalla erillisellä tilillä/passkeyllä (ei yhteisen seurapostin tunnuksella) -> yksi nimenomainen luonnosversio etenee.
 
-**Tavallinen hallituksen jäsen lähettää** -> luonnos palautuu hänelle esikatseluna, mutta hyväksyntäpyyntö toimitetaan Glebille, Pepelle ja Erikalle.
+**Tavallinen hallituksen jäsen lähettää** -> luonnos palautuu hänelle esikatseluna, mutta hyväksyntäilmoitus lähtee Glebille ja seuran yhteiseen viralliseen postilaatikkoon, jota Pepe ja Erika seuraavat.
 
-**Ulkopuolinen lähettää** -> ilmoitus ja skannattu turvallinen luonnosesikatselu toimitetaan kolmelle hyväksyjälle; lähettäjä ei saa hyväksyntälinkkiä eikä henkilötietoja. Vain yhden kolmesta tarvitsee hyväksyä. Spam → hylkää, karanteeni ja tarpeen mukaan sovellustason esto.
+**Ulkopuolinen lähettää** -> turvallinen luonnosesikatselu ilmoitetaan Glebille ja yhteiseen seurapostilaatikkoon; lähettäjä ei saa hyväksyntälinkkiä eikä henkilökohtaisia tietoja. Vain yhden kolmesta tarvitsee hyväksyä. Spam → hylkää, karanteeni ja tarpeen mukaan sovellustason esto.
 
 ### Julkaisemisen raja
 
@@ -93,11 +93,22 @@ Natiivin Yhdistysavain `Uutiset → Lisää uutinen`-rajapinnan kirjoitustukea e
 
 ### Asennuksen päätökset odottavat
 
-- Käyttäjä perustaa erillisen postilaatikon ja antaa sille tarvittavat Gmail-integraation oikeudet.
-- Gleb, Pepe, Erika: vahvistetaan kunkin todellinen Google-tili ja otetaan passkey käyttöön.
+- **Tehty:** kehaketut.aineisto@gmail.com luotu ja yhdistetty Gmail-integraatioon; kuusi käsittelytunnistetta luotu.
+- **Kesken:** Glebille, Pepelle ja Erikalle rekisteröidään yksilölliset hyväksyjäidentiteetit joko henkilökohtaisilla Google-tileillä tai erillisinä käyttäjätunnuksina ja passkey-todentimina. Yhteisen seurapostin kirjautuminen ei yksilöi hyväksyjää.
 - Valitaan yksityinen backend, medialähetykset ja varastointipaikka; kustannukset ja EU-tietosuojavaatimukset tarkistetaan.
-- Näitä ei ole vielä perustettu eikä ensimmäistäkään hyväksyntää suoritettu.
+- Julkaisun automaatiobackendiä tai varsinaista hyväksyntätoimintoa ei ole vielä otettu käyttöön; yhtäkään sisältöä ei ole julkaistu tämän prosessin kautta.
 
 Taustalähteet:
 - https://support.google.com/mail/answer/81126 (Google SPF/DKIM/DMARC)
 - https://pages.nist.gov/800-63-4/sp800-63b/authenticators/ (NIST phishing-resistant authentication/WebAuthn)
+
+## Tarkennus: yhteinen seuraposti ja kaksi erillistä hyväksyjää (25.10.2026)
+
+- **Aineiston sisääntulo**: `kehaketut.aineisto@gmail.com` (erillinen yhdistetty Gmail-tili).
+- **Yhteinen ilmoitusosoite Pepelle ja Erikalle**: `riihimaenkehaketut@gmail.com` (verkkosivun julkinen seuraposti). Tästä laatikosta EI lueta kaikkia seuran viestejä sisältöautomaatiolle, eikä sen saapuvaa postia oteta syötteeksi.
+- **Glebin ilmoitusosoite**: hänen oma todennettu Gmail-tilinsä. Ilmoituksia lähetetään tarvittaessa kahteen postilaatikkoon, mutta `approval_actor_id` on aina yksilöllinen Gleb/Pepe/Erika.
+- Jos Pepe tai Erika lähettää materiaalia seuran yhteisestä laatikosta, luonnosvastauksen saa kyseinen yhteinen laatikko. Järjestelmä **ei** saa päätellä, kumpi lähetti sen; hyväksyjä kirjautuu erikseen omalla käyttäjätunnuksellaan.
+- **Suositeltu toteutus**: pieni suojattu hyväksyntäsivu. Jokaiselle hyväksyjälle oma identiteetti. Yksinkertaisin on henkilökohtainen Google OAuth -tili + passkey/MFA. Jos Pepe tai Erika ei halua käyttää henkilökohtaista Google-osoitetta, voidaan tehdä erillinen sovelluksen käyttäjätunnus ja rekisteröidä yksilöllinen WebAuthn-passkey henkilökohtaiselle laitteelle. Pelkkä yhteisen Gmail-tilin OAuth-kirjautuminen ei riitä.
+- Sähköpostin linkki avaa vain esikatselun. Palvelin vaatii kirjautuneen hyväksyjän, oikean roolin ja tarkalleen saman `draft_id + version + content_digest`-sisällön, ennen kuin hyväksyntä tallennetaan. Muutokset edellyttävät uutta hyväksyntää.
+- Kolmen hyväksyjän oikeudet ovat samat, **yhden hyväksyntä riittää**, hylkääminen siirtää karanteeniin, estoa ei tehdä pelkän helposti väärennettävän `From`-osoitteen perusteella. Muut jo tehdyt hyväksynnät mitätöityvät jos julkaisun sisältö muuttuu.
+- Luonnoksen palautus lähettäjälle on vain toimitus- ja tarkistusprosessi; sillä ei anneta julkaisuvaltuutta. Yksilöllinen audit-loki säilyttää tiedon siitä kuka hyväksyi ja milloin.
