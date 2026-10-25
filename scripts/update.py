@@ -160,6 +160,41 @@ def match_links(html, base_url, known_names):
     return results
 
 
+# Official result codes shown on BoxerBase. Do not treat an announced bout
+# as a finished bout without an actual published winner and decision.
+DECISION_RE = re.compile(
+    r"\b(?:(?P<score>[0-5]\s*[-–]\s*[0-5])|"
+    r"(?P<method>RSC-I|RSC-H|RSC|TKO|KO|ABD|WO|DQ|DSQ|RET|PTS|NC)"
+    r"(?:\s+R(?P<round>[1-9]))?)\b", re.I
+)
+
+def parse_official_outcome(text):
+    """Structured, conservative BoxerBase result: score OR stoppage.
+
+    Returns null outcome if a named red/blue winner or decision is missing.
+    A walkover has an official winner but no contested bout.
+    """
+    winner = re.search(r"\bWinner\s+(Red|Blue)\b", text, re.I)
+    if not winner:
+        return {"winner_corner": None, "decision": None, "method": None, "round": None,
+                "bout_contested": None}
+    snippet = text[winner.end():winner.end()+140]
+    found = DECISION_RE.search(snippet)
+    if not found:
+        return {"winner_corner": None, "decision": None, "method": None, "round": None,
+                "bout_contested": None}
+    code = (found.group("method") or "PTS").upper()
+    round_num = int(found.group("round")) if found.group("round") else None
+    decision = compact(found.group()).replace("–", "-").upper()
+    return {
+        "winner_corner": winner.group(1).lower(),
+        "decision": decision,
+        "method": code,
+        "round": round_num,
+        "bout_contested": code != "WO",
+    }
+
+
 def parse_match(html, url, boxers, event):
     """Parse a BoxerBase bout using the match title first, then linked boxers."""
     soup = BeautifulSoup(html, "html.parser")
@@ -205,19 +240,34 @@ def parse_match(html, url, boxers, event):
         LOG.warning("Skipping bout without verified club participant: %s", url)
         return None
     opponent = competitors[1-side][:100]
-    # Only report official winners; scheduled bouts are never counted as results.
-    win = re.search(r"\bWinner\s+(Red|Blue)\b.{0,110}?\b(\d+\s*[-–]\s*\d+|RSC(?:\s+R\d+)?|KO(?:\s+R\d+)?|ABD(?:\s+R\d+)?)\b", text, re.I)
+    official = parse_official_outcome(text)
+    red_won = official["winner_corner"] == "red"
     result = "vahvistettu ottelu"
-    decision = None
-    if win:
-        red_won = win.group(1).casefold() == "red"
-        decision = compact(win.group(2)).replace("–", "-")
+    if official["winner_corner"] is not None:
         result = "voitto" if red_won == (side == 0) else "tappio"
-    return {"id": urlparse(url).path.rsplit("/", 1)[-1],
-            "boxer": club, "opponent": opponent,
-            "result": result, "decision": decision,
-            "event": event["name"], "event_date": event.get("date"),
-            "event_url": event["url"], "url": url}
+    # The event's primary bout title uses red boxer vs blue boxer. Never
+    # infer corners from a bare unverified roster/profile link.
+    names_verified = bool(vs) and len(competitors) >= 2
+    details = {
+        "id": urlparse(url).path.rsplit("/", 1)[-1],
+        "boxer": club,
+        "opponent": opponent,
+        "result": result,
+        "decision": official["decision"],
+        "method": official["method"],
+        "round": official["round"],
+        "winner_corner": official["winner_corner"],
+        "bout_contested": official["bout_contested"],
+        "red_boxer": competitors[0][:100] if names_verified else None,
+        "blue_boxer": competitors[1][:100] if names_verified else None,
+        "boxer_corner": ("red" if side == 0 else "blue") if names_verified else None,
+        "opponent_corner": ("blue" if side == 0 else "red") if names_verified else None,
+        "event": event["name"],
+        "event_date": event.get("date"),
+        "event_url": event["url"],
+        "url": url,
+    }
+    return details
 
 
 def get_instagram():
