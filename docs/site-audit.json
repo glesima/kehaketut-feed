@@ -1,0 +1,709 @@
+{
+  "generated_at": "2026-10-25T22:38:32+00:00",
+  "base_url": "https://www.kehaketut.fi",
+  "source": "public pages only",
+  "max_pages": 90,
+  "scanned": 59,
+  "complete_bounded_scan": true,
+  "pending_queued": 0,
+  "counts_by_kind": {
+    "etusivu": 1,
+    "harjoittelu": 10,
+    "historialliset_tulokset": 19,
+    "kilpailijat": 6,
+    "liity": 1,
+    "seura_ja_historia": 11,
+    "uutiset": 10,
+    "yhteystiedot": 1
+  },
+  "warnings_total": 24,
+  "pages": [
+    {
+      "url": "https://www.kehaketut.fi/",
+      "path": "/",
+      "kind": "etusivu",
+      "http_status": 200,
+      "title": "Riihimäen Kehä-Ketut RY",
+      "h1": "",
+      "h1_count": 0,
+      "images_without_alt": 0,
+      "warnings": [
+        "missing_h1",
+        "meta_description_review",
+        "outdated_automation_claim_on_home"
+      ]
+    },
+    {
+      "url": "https://www.kehaketut.fi/harjoittelu/",
+      "path": "/harjoittelu/",
+      "kind": "harjoittelu",
+      "http_status": 200,
+      "title": "Harjoittelu - Riihimäen Kehä-Ketut RY",
+      "h1": "Harjoitusryhmät",
+      "h1_count": 1,
+      "images_without_alt": 0,
+      "warnings": []
+    },
+    {
+      "url": "https://www.kehaketut.fi/harjoittelu/kilpailija-harrastajaryhma/",
+      "path": "/harjoittelu/kilpailija-harrastajaryhma/",
+      "kind": "harjoittelu",
+      "http_status": 200,
+      "title": "Kilpailija-/Harrastajaryhmä - Riihimäen Kehä-Ketut RY",
+      "h1": "Kilpailija-/Harrastajaryhmä",
+      "h1_count": 1,
+      "images_without_alt": 0,
+      "warnings": []
+    },
+    {
+      "url": "https://www.kehaketut.fi/harjoittelu/kilpailija-harrastajaryhma/harjoitusajat/",
+      "path": "/harjoittelu/kilpailija-harrastajaryhma/harjoitusajat/",
+      "kind": "harjoittelu",
+      "http_status": 200,
+      "title": "Harjoitusajat - Riihimäen Kehä-Ketut RY",
+      "h1": "",
+      "h1_count": 0,
+      "images_without_alt": 0,
+      "warnings": [
+        "missing_h1",
+        "manual_review_training_schedule"
+      ]
+    },
+    {
+      "url": "https://www.kehaketut.fi/harjoittelu/kilpailija-harrastajaryhma/hinnat-ja-lisenssit/",
+      "path": "/harjoittelu/kilpailija-harrastajaryhma/hinnat-ja-lisenssit/",
+      "kind": "harjoittelu",
+      "http_status": 200,
+      "title": "Hinnat ja lisenssit - Riihimäen Kehä-Ketut RY",
+      "h1": "",
+      "h1_count": 0,
+      "images_without_alt": 0,
+      "warnings": [
+        "missing_h1",
+        "manual_review_current_prices_and_licences",
+        "old_2018_licence_explanation"
+      ]
+    },
+    {
+      "url": "https://www.kehaketut.fi/harjoittelu/kilpailija-harrastajaryhma/tuloksia/",
+      "path": "/harjoittelu/kilpailija-harrastajaryhma/tuloksia/",
+      "kind": "historialliset_tulokset",
+      "http_status": 200,
+      "title": "Tuloksia - Riihimäen Kehä-Ketut RY",
+      "h1": "",
+      "h1_count": 0,
+      "images_without_alt": 0,
+      "warnings": [
+        "missing_h1"
+      ]
+    },
+    {
+      "url": "https://www.kehaketut.fi/harjoittelu/kilpailija-harrastajaryhma/tuloksia/2002/",
+      "path": "/harjoittelu/kilpailija-harrastajaryhma/tuloksia/2002/",
+      "kind": "historialliset_tulokset",
+      "http_status": 200,
+      "title": "2002 - Riihimäen Kehä-Ketut RY",
+      "h1": "2002",
+      "h1_count": 1,
+      "images_without_alt": 0,
+      "warnings": []
+    },
+    {
+      "url": "https://www.kehaketut.fi/harjoittelu/kilpailija-harrastajaryhma/tuloksia/2003/",
+      "path": "/harjoittelu/kilpailija-harrastajaryhma/tuloksia/2003/",
+      "kind": "historialliset_tulokset",
+      "http_status": 200,
+      "title": "2003 - Riihimäen Kehä-Ketut RY",
+      "h1": "2003",
+      "h1_count": 1,
+      "images_without_alt": 0,
+      "warnings": []
+    },
+    {
+      "url": "https://www.kehaketut.fi/harjoittelu/kilpailija-harrastajaryhma/tuloksia/2004/",
+      "path": "/harjoittelu/kilpailija-harrastajaryhma/tuloksia/2004/",
+      "kind": "historialliset_tulokset",
+      "http_status": 200,
+      "title": "2004 - Riihimäen Kehä-Ketut RY",
+      "h1": "2004",
+      "h1_count": 1,
+      "images_without_alt": 0,
+      "warnings": []
+    },
+    {
+      "url": "https://www.kehaketut.fi/harjoittelu/kilpailija-harrastajaryhma/tuloksia/2005/",
+      "path": "/harjoittelu/kilpailija-harrastajaryhma/tuloksia/2005/",
+      "kind": "historialliset_tulokset",
+      "http_status": 200,
+      "title": "2005 - Riihimäen Kehä-Ketut RY",
+      "h1": "2005",
+      "h1_count": 1,
+      "images_without_alt": 0,
+      "warnings": []
+    },
+    {
+      "url": "https://www.kehaketut.fi/harjoittelu/kilpailija-harrastajaryhma/tuloksia/2006/",
+      "path": "/harjoittelu/kilpailija-harrastajaryhma/tuloksia/2006/",
+      "kind": "historialliset_tulokset",
+      "http_status": 200,
+      "title": "2006 - Riihimäen Kehä-Ketut RY",
+      "h1": "2006",
+      "h1_count": 1,
+      "images_without_alt": 0,
+      "warnings": []
+    },
+    {
+      "url": "https://www.kehaketut.fi/harjoittelu/kilpailija-harrastajaryhma/tuloksia/2007/",
+      "path": "/harjoittelu/kilpailija-harrastajaryhma/tuloksia/2007/",
+      "kind": "historialliset_tulokset",
+      "http_status": 200,
+      "title": "2007 - Riihimäen Kehä-Ketut RY",
+      "h1": "2007",
+      "h1_count": 1,
+      "images_without_alt": 0,
+      "warnings": []
+    },
+    {
+      "url": "https://www.kehaketut.fi/harjoittelu/kilpailija-harrastajaryhma/tuloksia/2008/",
+      "path": "/harjoittelu/kilpailija-harrastajaryhma/tuloksia/2008/",
+      "kind": "historialliset_tulokset",
+      "http_status": 200,
+      "title": "2008 - Riihimäen Kehä-Ketut RY",
+      "h1": "2008",
+      "h1_count": 1,
+      "images_without_alt": 0,
+      "warnings": []
+    },
+    {
+      "url": "https://www.kehaketut.fi/harjoittelu/kilpailija-harrastajaryhma/tuloksia/2009/",
+      "path": "/harjoittelu/kilpailija-harrastajaryhma/tuloksia/2009/",
+      "kind": "historialliset_tulokset",
+      "http_status": 200,
+      "title": "2009 - Riihimäen Kehä-Ketut RY",
+      "h1": "2009",
+      "h1_count": 1,
+      "images_without_alt": 0,
+      "warnings": []
+    },
+    {
+      "url": "https://www.kehaketut.fi/harjoittelu/kilpailija-harrastajaryhma/tuloksia/2010/",
+      "path": "/harjoittelu/kilpailija-harrastajaryhma/tuloksia/2010/",
+      "kind": "historialliset_tulokset",
+      "http_status": 200,
+      "title": "2010 - Riihimäen Kehä-Ketut RY",
+      "h1": "2010",
+      "h1_count": 1,
+      "images_without_alt": 0,
+      "warnings": []
+    },
+    {
+      "url": "https://www.kehaketut.fi/harjoittelu/kilpailija-harrastajaryhma/tuloksia/2011/",
+      "path": "/harjoittelu/kilpailija-harrastajaryhma/tuloksia/2011/",
+      "kind": "historialliset_tulokset",
+      "http_status": 200,
+      "title": "2011 - Riihimäen Kehä-Ketut RY",
+      "h1": "2011",
+      "h1_count": 1,
+      "images_without_alt": 0,
+      "warnings": []
+    },
+    {
+      "url": "https://www.kehaketut.fi/harjoittelu/kilpailija-harrastajaryhma/tuloksia/2012/",
+      "path": "/harjoittelu/kilpailija-harrastajaryhma/tuloksia/2012/",
+      "kind": "historialliset_tulokset",
+      "http_status": 200,
+      "title": "2012 - Riihimäen Kehä-Ketut RY",
+      "h1": "2012",
+      "h1_count": 1,
+      "images_without_alt": 0,
+      "warnings": []
+    },
+    {
+      "url": "https://www.kehaketut.fi/harjoittelu/kilpailija-harrastajaryhma/tuloksia/2013/",
+      "path": "/harjoittelu/kilpailija-harrastajaryhma/tuloksia/2013/",
+      "kind": "historialliset_tulokset",
+      "http_status": 200,
+      "title": "2013 - Riihimäen Kehä-Ketut RY",
+      "h1": "2013",
+      "h1_count": 1,
+      "images_without_alt": 0,
+      "warnings": []
+    },
+    {
+      "url": "https://www.kehaketut.fi/harjoittelu/kilpailija-harrastajaryhma/tuloksia/2014/",
+      "path": "/harjoittelu/kilpailija-harrastajaryhma/tuloksia/2014/",
+      "kind": "historialliset_tulokset",
+      "http_status": 200,
+      "title": "2014 - Riihimäen Kehä-Ketut RY",
+      "h1": "2014",
+      "h1_count": 1,
+      "images_without_alt": 0,
+      "warnings": []
+    },
+    {
+      "url": "https://www.kehaketut.fi/harjoittelu/kilpailija-harrastajaryhma/tuloksia/2015/",
+      "path": "/harjoittelu/kilpailija-harrastajaryhma/tuloksia/2015/",
+      "kind": "historialliset_tulokset",
+      "http_status": 200,
+      "title": "2015 - Riihimäen Kehä-Ketut RY",
+      "h1": "2015",
+      "h1_count": 1,
+      "images_without_alt": 0,
+      "warnings": []
+    },
+    {
+      "url": "https://www.kehaketut.fi/harjoittelu/kilpailija-harrastajaryhma/tuloksia/2016/",
+      "path": "/harjoittelu/kilpailija-harrastajaryhma/tuloksia/2016/",
+      "kind": "historialliset_tulokset",
+      "http_status": 200,
+      "title": "2016 - Riihimäen Kehä-Ketut RY",
+      "h1": "2016",
+      "h1_count": 1,
+      "images_without_alt": 0,
+      "warnings": []
+    },
+    {
+      "url": "https://www.kehaketut.fi/harjoittelu/kilpailija-harrastajaryhma/tuloksia/2017/",
+      "path": "/harjoittelu/kilpailija-harrastajaryhma/tuloksia/2017/",
+      "kind": "historialliset_tulokset",
+      "http_status": 200,
+      "title": "2017 - Riihimäen Kehä-Ketut RY",
+      "h1": "2017",
+      "h1_count": 1,
+      "images_without_alt": 0,
+      "warnings": [
+        "meta_description_review"
+      ]
+    },
+    {
+      "url": "https://www.kehaketut.fi/harjoittelu/kilpailija-harrastajaryhma/tuloksia/2018/",
+      "path": "/harjoittelu/kilpailija-harrastajaryhma/tuloksia/2018/",
+      "kind": "historialliset_tulokset",
+      "http_status": 200,
+      "title": "2018 - Riihimäen Kehä-Ketut RY",
+      "h1": "2018",
+      "h1_count": 1,
+      "images_without_alt": 0,
+      "warnings": []
+    },
+    {
+      "url": "https://www.kehaketut.fi/harjoittelu/kilpailija-harrastajaryhma/tuloksia/2019/",
+      "path": "/harjoittelu/kilpailija-harrastajaryhma/tuloksia/2019/",
+      "kind": "historialliset_tulokset",
+      "http_status": 200,
+      "title": "2019 - Riihimäen Kehä-Ketut RY",
+      "h1": "2019",
+      "h1_count": 1,
+      "images_without_alt": 0,
+      "warnings": []
+    },
+    {
+      "url": "https://www.kehaketut.fi/harjoittelu/miesten-kuntonyrkkeily/",
+      "path": "/harjoittelu/miesten-kuntonyrkkeily/",
+      "kind": "harjoittelu",
+      "http_status": 200,
+      "title": "Miesten kuntonyrkkeily - Riihimäen Kehä-Ketut RY",
+      "h1": "Miesten kuntonyrkkeily",
+      "h1_count": 1,
+      "images_without_alt": 0,
+      "warnings": []
+    },
+    {
+      "url": "https://www.kehaketut.fi/harjoittelu/miesten-kuntonyrkkeily/harjoitusajat/",
+      "path": "/harjoittelu/miesten-kuntonyrkkeily/harjoitusajat/",
+      "kind": "harjoittelu",
+      "http_status": 200,
+      "title": "Harjoitusajat - Riihimäen Kehä-Ketut RY",
+      "h1": "",
+      "h1_count": 0,
+      "images_without_alt": 0,
+      "warnings": [
+        "missing_h1",
+        "manual_review_training_schedule"
+      ]
+    },
+    {
+      "url": "https://www.kehaketut.fi/harjoittelu/miesten-kuntonyrkkeily/hinnat-ja-lisenssit/",
+      "path": "/harjoittelu/miesten-kuntonyrkkeily/hinnat-ja-lisenssit/",
+      "kind": "harjoittelu",
+      "http_status": 200,
+      "title": "Hinnat ja lisenssit - Riihimäen Kehä-Ketut RY",
+      "h1": "",
+      "h1_count": 0,
+      "images_without_alt": 0,
+      "warnings": [
+        "missing_h1",
+        "manual_review_current_prices_and_licences",
+        "old_2018_licence_explanation"
+      ]
+    },
+    {
+      "url": "https://www.kehaketut.fi/harjoittelu/naisten-kuntonyrkkeily/",
+      "path": "/harjoittelu/naisten-kuntonyrkkeily/",
+      "kind": "harjoittelu",
+      "http_status": 200,
+      "title": "Naisten kuntonyrkkeily - Riihimäen Kehä-Ketut RY",
+      "h1": "Naisten kuntonyrkkeily",
+      "h1_count": 1,
+      "images_without_alt": 0,
+      "warnings": []
+    },
+    {
+      "url": "https://www.kehaketut.fi/harjoittelu/naisten-kuntonyrkkeily/harjoitusajat/",
+      "path": "/harjoittelu/naisten-kuntonyrkkeily/harjoitusajat/",
+      "kind": "harjoittelu",
+      "http_status": 200,
+      "title": "Harjoitusajat - Riihimäen Kehä-Ketut RY",
+      "h1": "",
+      "h1_count": 0,
+      "images_without_alt": 0,
+      "warnings": [
+        "missing_h1",
+        "manual_review_training_schedule"
+      ]
+    },
+    {
+      "url": "https://www.kehaketut.fi/harjoittelu/naisten-kuntonyrkkeily/hinnat-ja-lisenssit/",
+      "path": "/harjoittelu/naisten-kuntonyrkkeily/hinnat-ja-lisenssit/",
+      "kind": "harjoittelu",
+      "http_status": 200,
+      "title": "Hinnat ja lisenssit - Riihimäen Kehä-Ketut RY",
+      "h1": "",
+      "h1_count": 0,
+      "images_without_alt": 0,
+      "warnings": [
+        "missing_h1",
+        "manual_review_current_prices_and_licences",
+        "old_2018_licence_explanation"
+      ]
+    },
+    {
+      "url": "https://www.kehaketut.fi/kilpailijat/",
+      "path": "/kilpailijat/",
+      "kind": "kilpailijat",
+      "http_status": 200,
+      "title": "Kilpailijat - Riihimäen Kehä-Ketut RY",
+      "h1": "Kilpailijat",
+      "h1_count": 1,
+      "images_without_alt": 0,
+      "warnings": []
+    },
+    {
+      "url": "https://www.kehaketut.fi/kilpailijat/daniela-taskila/",
+      "path": "/kilpailijat/daniela-taskila/",
+      "kind": "kilpailijat",
+      "http_status": 200,
+      "title": "Daniela Taskila - Riihimäen Kehä-Ketut RY",
+      "h1": "Daniela Taskila",
+      "h1_count": 1,
+      "images_without_alt": 0,
+      "warnings": []
+    },
+    {
+      "url": "https://www.kehaketut.fi/kilpailijat/ilo-gronroos/",
+      "path": "/kilpailijat/ilo-gronroos/",
+      "kind": "kilpailijat",
+      "http_status": 200,
+      "title": "Ilo Grönroos - Riihimäen Kehä-Ketut RY",
+      "h1": "Ilo Grönroos",
+      "h1_count": 1,
+      "images_without_alt": 0,
+      "warnings": []
+    },
+    {
+      "url": "https://www.kehaketut.fi/kilpailijat/josias-ndikumana/",
+      "path": "/kilpailijat/josias-ndikumana/",
+      "kind": "kilpailijat",
+      "http_status": 200,
+      "title": "Josias Ndikumana - Riihimäen Kehä-Ketut RY",
+      "h1": "Josias Ndikumana",
+      "h1_count": 1,
+      "images_without_alt": 0,
+      "warnings": []
+    },
+    {
+      "url": "https://www.kehaketut.fi/kilpailijat/kosmo-gronroos/",
+      "path": "/kilpailijat/kosmo-gronroos/",
+      "kind": "kilpailijat",
+      "http_status": 200,
+      "title": "Kosmo Grönroos - Riihimäen Kehä-Ketut RY",
+      "h1": "Kosmo Grönroos",
+      "h1_count": 1,
+      "images_without_alt": 0,
+      "warnings": []
+    },
+    {
+      "url": "https://www.kehaketut.fi/kilpailijat/maarjo-ranne/",
+      "path": "/kilpailijat/maarjo-ranne/",
+      "kind": "kilpailijat",
+      "http_status": 200,
+      "title": "Maarjo Ranne - Riihimäen Kehä-Ketut RY",
+      "h1": "Maarjo Ranne",
+      "h1_count": 1,
+      "images_without_alt": 0,
+      "warnings": []
+    },
+    {
+      "url": "https://www.kehaketut.fi/liity/",
+      "path": "/liity/",
+      "kind": "liity",
+      "http_status": 200,
+      "title": "Liity mukaan - Riihimäen Kehä-Ketut RY",
+      "h1": "Liity Riihimäen Kehä-Kettujen jäseneksi",
+      "h1_count": 1,
+      "images_without_alt": 0,
+      "warnings": [
+        "check_membership_form_in_browser"
+      ]
+    },
+    {
+      "url": "https://www.kehaketut.fi/seura/",
+      "path": "/seura/",
+      "kind": "seura_ja_historia",
+      "http_status": 200,
+      "title": "Seura - Riihimäen Kehä-Ketut RY",
+      "h1": "Seura",
+      "h1_count": 1,
+      "images_without_alt": 0,
+      "warnings": []
+    },
+    {
+      "url": "https://www.kehaketut.fi/seura/hall-of-fame/",
+      "path": "/seura/hall-of-fame/",
+      "kind": "seura_ja_historia",
+      "http_status": 200,
+      "title": "Hall Of Fame - Riihimäen Kehä-Ketut RY",
+      "h1": "Hall Of Fame",
+      "h1_count": 1,
+      "images_without_alt": 0,
+      "warnings": []
+    },
+    {
+      "url": "https://www.kehaketut.fi/seura/hall-of-fame/kalevi-tervalahti/",
+      "path": "/seura/hall-of-fame/kalevi-tervalahti/",
+      "kind": "seura_ja_historia",
+      "http_status": 200,
+      "title": "Kalevi Tervalahti - Riihimäen Kehä-Ketut RY",
+      "h1": "Kalevi Tervalahti",
+      "h1_count": 1,
+      "images_without_alt": 0,
+      "warnings": []
+    },
+    {
+      "url": "https://www.kehaketut.fi/seura/hall-of-fame/markku-sarasto/",
+      "path": "/seura/hall-of-fame/markku-sarasto/",
+      "kind": "seura_ja_historia",
+      "http_status": 200,
+      "title": "Markku Sarasto - Riihimäen Kehä-Ketut RY",
+      "h1": "Markku Sarasto",
+      "h1_count": 1,
+      "images_without_alt": 0,
+      "warnings": []
+    },
+    {
+      "url": "https://www.kehaketut.fi/seura/hall-of-fame/niko-bitter/",
+      "path": "/seura/hall-of-fame/niko-bitter/",
+      "kind": "seura_ja_historia",
+      "http_status": 200,
+      "title": "Niko Bitter - Riihimäen Kehä-Ketut RY",
+      "h1": "Niko Bitter",
+      "h1_count": 1,
+      "images_without_alt": 0,
+      "warnings": []
+    },
+    {
+      "url": "https://www.kehaketut.fi/seura/hall-of-fame/pasi-silvennoinen/",
+      "path": "/seura/hall-of-fame/pasi-silvennoinen/",
+      "kind": "seura_ja_historia",
+      "http_status": 200,
+      "title": "Pasi Silvennoinen - Riihimäen Kehä-Ketut RY",
+      "h1": "Pasi Silvennoinen",
+      "h1_count": 1,
+      "images_without_alt": 0,
+      "warnings": []
+    },
+    {
+      "url": "https://www.kehaketut.fi/seura/hall-of-fame/risto-gronroos/",
+      "path": "/seura/hall-of-fame/risto-gronroos/",
+      "kind": "seura_ja_historia",
+      "http_status": 200,
+      "title": "Risto Grönroos - Riihimäen Kehä-Ketut RY",
+      "h1": "Risto Grönroos",
+      "h1_count": 1,
+      "images_without_alt": 0,
+      "warnings": []
+    },
+    {
+      "url": "https://www.kehaketut.fi/seura/martti-markuksen-muistolle/",
+      "path": "/seura/martti-markuksen-muistolle/",
+      "kind": "seura_ja_historia",
+      "http_status": 200,
+      "title": "Martti Markuksen muistolle - Riihimäen Kehä-Ketut RY",
+      "h1": "Martti Markuksen muistolle",
+      "h1_count": 1,
+      "images_without_alt": 0,
+      "warnings": [
+        "meta_description_review"
+      ]
+    },
+    {
+      "url": "https://www.kehaketut.fi/seura/seuran-historia/",
+      "path": "/seura/seuran-historia/",
+      "kind": "seura_ja_historia",
+      "http_status": 200,
+      "title": "Seuran historia - Riihimäen Kehä-Ketut RY",
+      "h1": "Seuran historia",
+      "h1_count": 1,
+      "images_without_alt": 0,
+      "warnings": []
+    },
+    {
+      "url": "https://www.kehaketut.fi/seura/seuran-sm-mitalistit-ja-tul-mestari/",
+      "path": "/seura/seuran-sm-mitalistit-ja-tul-mestari/",
+      "kind": "seura_ja_historia",
+      "http_status": 200,
+      "title": "Seuran SM-mitalistit ja TUL-mestarit - Riihimäen Kehä-Ketut RY",
+      "h1": "Seuran SM-mitalistit ja TUL-mestarit",
+      "h1_count": 1,
+      "images_without_alt": 0,
+      "warnings": []
+    },
+    {
+      "url": "https://www.kehaketut.fi/seura/seuravaatteet/",
+      "path": "/seura/seuravaatteet/",
+      "kind": "seura_ja_historia",
+      "http_status": 200,
+      "title": "Seuravaatteet - Riihimäen Kehä-Ketut RY",
+      "h1": "Seuran vaatteet",
+      "h1_count": 1,
+      "images_without_alt": 0,
+      "warnings": []
+    },
+    {
+      "url": "https://www.kehaketut.fi/uutiset/",
+      "path": "/uutiset/",
+      "kind": "uutiset",
+      "http_status": 200,
+      "title": "Uutiset - Riihimäen Kehä-Ketut RY",
+      "h1": "Uutiset",
+      "h1_count": 1,
+      "images_without_alt": 0,
+      "warnings": [
+        "meta_description_review"
+      ]
+    },
+    {
+      "url": "https://www.kehaketut.fi/uutiset/keha-kettujen-juniorit-tul-n-mestar/",
+      "path": "/uutiset/keha-kettujen-juniorit-tul-n-mestar/",
+      "kind": "uutiset",
+      "http_status": 200,
+      "title": "Kehä-Kettujen juniorit TUL:n mestaruuskilpailuihin - Riihimäen Kehä-Ketut RY",
+      "h1": "Kehä-Kettujen juniorit TUL:n mestaruuskilpailuihin",
+      "h1_count": 1,
+      "images_without_alt": 0,
+      "warnings": []
+    },
+    {
+      "url": "https://www.kehaketut.fi/uutiset/keha-ketut-kilpailivat-lokakuussa-t/",
+      "path": "/uutiset/keha-ketut-kilpailivat-lokakuussa-t/",
+      "kind": "uutiset",
+      "http_status": 200,
+      "title": "Kehä-Ketut kilpailivat lokakuussa Tampereella ja Hämeenlinnassa - Riihimäen Kehä-Ketut RY",
+      "h1": "Kehä-Ketut kilpailivat lokakuussa Tampereella ja Hämeenlinnassa",
+      "h1_count": 1,
+      "images_without_alt": 0,
+      "warnings": []
+    },
+    {
+      "url": "https://www.kehaketut.fi/uutiset/kettujen-uudet-asusteet/",
+      "path": "/uutiset/kettujen-uudet-asusteet/",
+      "kind": "uutiset",
+      "http_status": 200,
+      "title": "KETTUJEN UUDET ASUSTEET - Riihimäen Kehä-Ketut RY",
+      "h1": "KETTUJEN UUDET ASUSTEET",
+      "h1_count": 1,
+      "images_without_alt": 0,
+      "warnings": []
+    },
+    {
+      "url": "https://www.kehaketut.fi/uutiset/kuntonyrkkeilyn-syyskausi-2025-kayn/",
+      "path": "/uutiset/kuntonyrkkeilyn-syyskausi-2025-kayn/",
+      "kind": "uutiset",
+      "http_status": 200,
+      "title": "KUNTONYRKKEILYN SYYSKAUSI 2025 KÄYNTIIN - Riihimäen Kehä-Ketut RY",
+      "h1": "KUNTONYRKKEILYN SYYSKAUSI 2025 KÄYNTIIN",
+      "h1_count": 1,
+      "images_without_alt": 0,
+      "warnings": []
+    },
+    {
+      "url": "https://www.kehaketut.fi/uutiset/nuorten-nyrkkeilykoulu-ja-aikuisten/",
+      "path": "/uutiset/nuorten-nyrkkeilykoulu-ja-aikuisten/",
+      "kind": "uutiset",
+      "http_status": 200,
+      "title": "NUORTEN NYRKKEILYKOULU JA AIKUISTEN KUNTONYRKKEILYN PERUSKURSSI ALOITETAAN TIISTAINA 14.1.2025 KLO 17:00-18:00 - Riihimäen Kehä-Ketut RY",
+      "h1": "NUORTEN NYRKKEILYKOULU JA AIKUISTEN KUNTONYRKKEILYN PERUSKURSSI ALOITETAAN TIISTAINA 14.1.2025 KLO 17:00-18:00",
+      "h1_count": 1,
+      "images_without_alt": 0,
+      "warnings": []
+    },
+    {
+      "url": "https://www.kehaketut.fi/uutiset/nyrkkeilykoulu-nuorille-ja-kuntonyr/",
+      "path": "/uutiset/nyrkkeilykoulu-nuorille-ja-kuntonyr/",
+      "kind": "uutiset",
+      "http_status": 200,
+      "title": "NYRKKEILYKOULU NUORILLE JA KUNTONYRKKEILYN PERUSKURSSI AIKUISILLE ALKAA TIISTAINA 13.1.2026 KLO 17 - Riihimäen Kehä-Ketut RY",
+      "h1": "NYRKKEILYKOULU NUORILLE JA KUNTONYRKKEILYN PERUSKURSSI AIKUISILLE ALKAA TIISTAINA 13.1.2026 KLO 17",
+      "h1_count": 1,
+      "images_without_alt": 0,
+      "warnings": []
+    },
+    {
+      "url": "https://www.kehaketut.fi/uutiset/riihimaen-keha-ketut-ry-vuosikokous/",
+      "path": "/uutiset/riihimaen-keha-ketut-ry-vuosikokous/",
+      "kind": "uutiset",
+      "http_status": 200,
+      "title": "RIIHIMÄEN KEHÄ-KETUT ry VUOSIKOKOUS 11.3.2025 - Riihimäen Kehä-Ketut RY",
+      "h1": "RIIHIMÄEN KEHÄ-KETUT ry VUOSIKOKOUS 11.3.2025",
+      "h1_count": 1,
+      "images_without_alt": 0,
+      "warnings": []
+    },
+    {
+      "url": "https://www.kehaketut.fi/uutiset/syksy-25-nyrkkeilykoulu-nuorille-ja/",
+      "path": "/uutiset/syksy-25-nyrkkeilykoulu-nuorille-ja/",
+      "kind": "uutiset",
+      "http_status": 200,
+      "title": "SYKSY- 25 NYRKKEILYKOULU NUORILLE JA KUNTONYRKKEILYN PERUSKURSSI AIKUISILLE ALKAA TIISTAINA 26.8 KLO 17 - Riihimäen Kehä-Ketut RY",
+      "h1": "SYKSY- 25 NYRKKEILYKOULU NUORILLE JA KUNTONYRKKEILYN PERUSKURSSI AIKUISILLE ALKAA TIISTAINA 26.8 KLO 17",
+      "h1_count": 1,
+      "images_without_alt": 0,
+      "warnings": []
+    },
+    {
+      "url": "https://www.kehaketut.fi/uutiset/vuosikokous-2026-2/",
+      "path": "/uutiset/vuosikokous-2026-2/",
+      "kind": "uutiset",
+      "http_status": 200,
+      "title": "VUOSIKOKOUS 2026 - Riihimäen Kehä-Ketut RY",
+      "h1": "VUOSIKOKOUS 2026",
+      "h1_count": 1,
+      "images_without_alt": 0,
+      "warnings": []
+    },
+    {
+      "url": "https://www.kehaketut.fi/yhteystiedot/",
+      "path": "/yhteystiedot/",
+      "kind": "yhteystiedot",
+      "http_status": 200,
+      "title": "Yhteystiedot - Riihimäen Kehä-Ketut RY",
+      "h1": "Yhteystiedot",
+      "h1_count": 1,
+      "images_without_alt": 0,
+      "warnings": [
+        "address_city_typo"
+      ]
+    }
+  ],
+  "fetch_errors": []
+}
