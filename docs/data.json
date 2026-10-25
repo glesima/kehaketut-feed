@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-25T13:13:06Z",
+  "generated_at": "2026-10-25T13:15:46Z",
   "data_origin": "BoxerBase public views and optionally Instagram official API",
   "boxers": [
     {
@@ -169,8 +169,38 @@
   ],
   "instagram": [],
   "errors": [],
-  "boxers_checked_at": "2026-10-25T13:13:06Z",
+  "boxers_checked_at": "2026-10-25T13:15:46Z",
   "club_id": "1Le8shnOwPIW",
   "club_url": "https://boxerbase.com/o/1Le8shnOwPIW/boxers",
-  "matches_checked_at": "2026-10-25T13:13:06Z"
+  "matches_checked_at": "2026-10-25T13:15:46Z",
+  "registrations": [],
+  "registrations_checked_at": "2026-10-25T13:15:46Z",
+  "registration_coverage": "Only publicly rendered rows; participant lists can be paginated.",
+  "discovered_events": [
+    {
+      "id": "zdyYMbmXqIuV",
+      "name": "Nuorten SM-kilpailut",
+      "date": "2026-11-08",
+      "url": "https://fin.boxerbase.com/e/zdyYMbmXqIuV"
+    },
+    {
+      "id": "fSrjel9qLJeu",
+      "name": "SM2026 karsintakilpailu",
+      "date": "2026-11-15",
+      "url": "https://fin.boxerbase.com/e/fSrjel9qLJeu"
+    },
+    {
+      "id": "MrW9GfmW-MyF",
+      "name": "Kajaaniturnaus",
+      "date": "2026-11-21",
+      "url": "https://fin.boxerbase.com/e/MrW9GfmW-MyF"
+    },
+    {
+      "id": "DxgdbRx46tR-",
+      "name": "NYRKKEILYN SM 2026",
+      "date": "2026-12-06",
+      "url": "https://fin.boxerbase.com/e/DxgdbRx46tR-"
+    }
+  ],
+  "events_checked_at": "2026-10-25T13:15:46Z"
 }
