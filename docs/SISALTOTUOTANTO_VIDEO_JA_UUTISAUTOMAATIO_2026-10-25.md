@@ -1,3 +1,5 @@
+> **26.10.2026 AJANTASAISUUSTARKENNUS:** Käyttäjä on vahvistanut, että oikea Kehä-Kettujen YouTube-kanava näkyy ja on yhdistetty Metricool-brändiin. Alla 25.10. tehdyn toteutussuunnitelman aiemmat maininnat 'YouTube ei yhdistetty' ovat vanhentuneita tilannekuvia. Facebookin uutis-RSS-autolista on tallennettu ti/to klo 18 (Europe/Helsinki), mutta erillistä videon raakaleikkausputkea ei vielä ole. Uusi täsmällinen pilottiohje: [VIDEOTUOTANTO_RAAKAVIDEOSTA_JULKAISUUN_2026-10-26.md](VIDEOTUOTANTO_RAAKAVIDEOSTA_JULKAISUUN_2026-10-26.md) ja [issue #13](https://github.com/glesima/kehaketut-feed/issues/13). TikTok myöhemmin.
+
 # Kehä-Ketut: uutisten, otteluvideoiden ja somejulkaisujen automaatio
 **Toteutussuunnitelma 25.10.2026. Tämä ei tarkoita, että alla luetellut uudet integraatiot olisivat jo käytössä.**
 
