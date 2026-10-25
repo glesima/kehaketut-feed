@@ -42,6 +42,17 @@ class EditorialWorkflowTests(unittest.TestCase):
         self.assertNotEqual(one.fingerprint, two.fingerprint)
         self.assertFalse(two.publication_allowed)
 
+    def test_media_revision_preserves_image_approval_fingerprint(self):
+        media_a = ("a"*64,)
+        media_b = ("b"*64,)
+        draft = prepare_draft("Treenikuvat", "Kuvakooste", ["fitness"],
+                              ["instagram"], media_a)
+        unchanged_media = revise_draft(draft, body="Korjattu kuvateksti")
+        changed_media = revise_draft(draft, media_hashes=media_b)
+        self.assertEqual(unchanged_media.media_hashes, media_a)
+        self.assertNotEqual(changed_media.fingerprint, draft.fingerprint)
+        self.assertNotEqual(unchanged_media.fingerprint, draft.fingerprint)
+
     def test_unauthenticated_mail_sender_has_no_approval_route(self):
         self.assertEqual(
             select_review_route(verified_personal_identity=False,
