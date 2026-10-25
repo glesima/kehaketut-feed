@@ -28,3 +28,24 @@ print("DIAG buttons:",[{"type":x.get("type","button"),"aria_label":(x.get("aria-
 print("DIAG custom component tags:",sorted({x.name for x in soup.find_all() if "-" in x.name})[:25])
 print("DIAG data attr keys:",sorted({key for x in soup.find_all() for key in x.attrs if key.startswith("data-")})[:40])
 # Note: No source code is extracted from proprietary scripts and no undocumented endpoint is called.
+
+
+import shutil
+print("DIAG chrome paths:", {x: shutil.which(x) for x in ("google-chrome","chromedriver","chromium","chromium-browser","firefox","geckodriver")})
+print("DIAG public app endpoints:", sorted({
+   urlparse(urljoin(URL, str(x.attrs[k]))).path[:150]
+   for x in soup.select("[data-api], [data-url]")
+   for k in ("data-api", "data-url")
+   if x.has_attr(k) and not str(x.attrs[k]).startswith("javascript:")
+})[:25])
+print("DIAG inline scripts:", [
+ {"type":x.get("type","text/javascript"),
+  "length":len(x.get_text()),
+  "contains_157":('"157"' in x.get_text()),
+  "contains_total_keys":("totalCount" in x.get_text() or "total:" in x.get_text()),
+  "contains_roster":any(name in x.get_text() for name in ("Riihimäen Kehä-Ketut","RIIHIMÄEN KEHÄ-KETUT","Gleb Simanov"))}
+ for x in soup.find_all("script") if not x.get("src")
+][:12])
+print("DIAG modulepreloads:", [urlparse(urljoin(URL,x.get("href",""))).path[:130] for x in soup.select('link[rel="modulepreload"]')][:18])
+print("DIAG page number buttons:", [x.get("aria-label") for x in soup.select("button[aria-label^='Page ']")][:20])
+print("DIAG safe user-interface only; no hidden/private requests executed")
