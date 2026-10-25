@@ -1,12 +1,21 @@
-<!-- Replace USERNAME and REPOSITORY with real GitHub Pages address. -->
-<iframe id="rkk-auto-updates" title="Kehä-Kettujen kilpailut ja tulokset" loading="lazy"
-  src="https://glesima.github.io/kehaketut-feed/widget.html?view=updates"
-  style="display:block;width:100%;height:500px;border:0;background:transparent"></iframe>
+<!-- Kehä-Ketut: kilpailutulokset, vahvistetut ottelut ja ilmoittautuneet. -->
+<style>
+#rkk-auto-updates{display:block;width:100%;height:480px;border:0;background:transparent}
+@media(max-width:800px){#rkk-auto-updates{height:850px}}
+@media(max-width:480px){#rkk-auto-updates{height:960px}}
+</style>
+<iframe id="rkk-auto-updates" title="Kehä-Kettujen kilpailut ja tulokset"
+  loading="lazy"
+  src="https://glesima.github.io/kehaketut-feed/widget.html?view=updates"></iframe>
 <script>
-window.addEventListener('message', function(event) {
-  if (event.origin !== 'https://glesima.github.io') return;
-  if (!event.data || event.data.type !== 'RKK_WIDGET_HEIGHT' || event.data.view !== 'updates') return;
-  var frame = document.getElementById('rkk-auto-updates');
-  if (frame) frame.style.height = Math.max(260,Math.min(2000,Number(event.data.height)||500))+'px';
-});
+(function(){
+ var frame=document.getElementById("rkk-auto-updates");
+ if(!frame)return;
+ window.addEventListener("message",function(e){
+  if(e.origin!=="https://glesima.github.io"||e.source!==frame.contentWindow||
+     !e.data||e.data.type!=="RKK_WIDGET_HEIGHT"||e.data.view!=="updates")return;
+  var h=Number(e.data.height);
+  if(Number.isFinite(h)&&h>180&&h<5000)frame.style.height=Math.ceil(h)+"px";
+ });
+})();
 </script>
