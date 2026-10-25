@@ -69,14 +69,26 @@ def parse_public_registrations(html, page_url, roster, clubs):
         cells = tr.find_all("td", recursive=False)
         if len(cells) < 2:
             continue
-        anchor = cells[0].find("a", href=True)
+        # BoxerBase tables may have a leading blank status column.
+        # Find the participant hyperlink and the actual club instead of
+        # assuming fixed td positions.
+        anchor = None
+        boxer_cell_index = None
+        for index, cell in enumerate(cells):
+            for link in cell.select("a[href]"):
+                path = urlparse(urljoin(page_url, link.get("href",""))).path
+                if re.search(r"/participants/[A-Za-z0-9_-]+$", path):
+                    anchor, boxer_cell_index = link, index
+                    break
+            if anchor:
+                break
         if not anchor:
             continue
-        path = urlparse(urljoin(page_url, anchor.get("href", ""))).path
-        if not re.search(r"/participants/[A-Za-z0-9_-]+$", path):
-            continue
         visible_rows += 1
-        club_name = " ".join(cells[1].stripped_strings)
+        club_link = tr.select_one('a[href*="/o/"]')
+        club_name = " ".join(club_link.stripped_strings) if club_link else ""
+        if not club_name and boxer_cell_index is not None and boxer_cell_index+1<len(cells):
+            club_name = " ".join(cells[boxer_cell_index+1].stripped_strings)
         if norm(club_name) not in canonical_club:
             continue
         boxer = match_public_boxer(anchor.get_text(" ", strip=True), roster)
