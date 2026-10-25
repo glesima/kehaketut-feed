@@ -79,3 +79,9 @@ Tämä muistio jatkaa 24.–26.10.2026 käytyä Kehä-Kettujen sivusto- ja somek
 - Facebook-linkkiesikatselu kuvassa näytti seuran logon. Metricoolin RSS-ohjeen mukaan Facebook luo linkkiesikatselun julkaisuhetkellä ja käyttää artikkelin `og:image`-tietoa, jos sellainen on. Tulevaisuudessa harkitse uutiskohtaisia luvallisia kuvia ja omaa OG-kuvaa, jotta jokainen uutinen ei ole pelkkä seuralogo. Ei automaattista kuva-/videojulkaisua ilman ihmisen hyväksyntää.
 
 Lähde: https://help.metricool.com/how-to-link-an-rss-feed-to-an-autolist-ank6m ; https://help.metricool.com/schedule-content-from-an-autolist-fxehk .
+
+## Päätös 26.10.2026: RSS-ajoajat vahvistettu
+
+Käyttäjä ilmoitti vaihtaneensa Facebookin uutis-RSS-autolistan päiviksi **tiistain ja torstain klo 18.00 (Europe/Helsinki)** ja vahvisti asetukset valmiiksi. Älä pyydä tästä uusia kuvakaappauksia tai saman asetuksen toistamista. Seuraava RSS-tehtävä on vain **ensimmäisen uuden uutisen disabled-saapumistesti** (ei tarpeetonta vanhojen artikkeleiden uudelleenjulkaisua).
+
+Videoille avattiin oma työ: [VIDEOTUOTANTO_RAAKAVIDEOSTA_JULKAISUUN_2026-10-26.md](VIDEOTUOTANTO_RAAKAVIDEOSTA_JULKAISUUN_2026-10-26.md), [issue #13](https://github.com/glesima/kehaketut-feed/issues/13). Siinä erotetaan raakaleikkaus-/tekstintuotanto erilliseksi omaksi pilotiksi ja valmis hyväksytty materiaali Metricoolin someajastuksesta. YouTube on oikeaksi vahvistettu. TikTok myöhemmin.
