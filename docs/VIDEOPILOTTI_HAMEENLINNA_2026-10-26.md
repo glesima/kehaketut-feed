@@ -102,3 +102,10 @@ Käyttäjä katsoi v2-version ja totesi sen hyväksi. Hän ehdotti, että videon
 - [ ] Tämän jälkeen jatkokehitys: hyväksymispalvelin ja yksityinen aineistovastaanotto. Ei uusia maksullisia tilauksia päätetty.
 
 V3:n käyttäjälle näkyvä julkaisu on keskustelun latauslinkissä, eikä GitHub-dokumentti tarjoa julkisia mediakopioita.
+
+### Media-automaation PR #14 yhdistetty päähaaraan
+
+- [PR #14](https://github.com/glesima/kehaketut-feed/pull/14) **yhdistetty** onnistuneiden GitHub Actions -tarkistusten jälkeen. Squash-commit `cc45b175ea26e89396c454be7aa8319617fdead5`.
+- Lähdekoodi: [scripts/media/build_reel.py](https://github.com/glesima/kehaketut-feed/blob/main/scripts/media/build_reel.py) ja [ohje](https://github.com/glesima/kehaketut-feed/blob/main/scripts/media/README.md).
+- GitHub Actions PR-validointi onnistui (Python unit tests, compile, JS/tekniset tarkistukset). Paikalliset media-yksikkötestit suoritettiin erikseen 6/6, ja koko 32 sekunnin kaksivaiheinen MP4-koe renderöity/dekoodattu. Median riippuvuus Pillow on työkalukohtainen; CI:n vihreä tila ei yksin todista tuotantojulkaisuputken olevan valmis.
+- GitHub ei sisällä raakavideota, logoa tai valmiin videon yksityistä mediapakettia. **V3 ei ole julkaistu seuran sosiaaliseen mediaan.**
