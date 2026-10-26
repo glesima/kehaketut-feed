@@ -1,0 +1,24 @@
+{
+  "event_id": "d6jfSSe5nRpe",
+  "source_url": "https://www.boxerbase.com/e/d6jfSSe5nRpe/matches",
+  "bouts": {
+    "16": {
+      "red": "Lauri Mäenpää",
+      "blue": "Simo Pöyry",
+      "result": "Lauri Mäenpää voitti 3–2",
+      "source_state": "published"
+    },
+    "19": {
+      "red": "Gleb Simanov",
+      "blue": "Sampo Paananen",
+      "result": "Sampo Paananen voitti 5–0",
+      "source_state": "published"
+    },
+    "33": {
+      "red": "Kosmo Grönroos",
+      "blue": "Khaled Samkanai",
+      "result": "Khaled Samkanai voitti 5–0",
+      "source_state": "published"
+    }
+  }
+}
