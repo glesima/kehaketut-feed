@@ -164,7 +164,11 @@ def cover_frame(source:Path,output:Path,t:float,cropw:int,height:int,x:int) -> I
     return im.crop((x,0,x+cropw,height)).resize((W,PANEL_H),Image.Resampling.LANCZOS)
 
 
-def make_assets(m:dict,media:dict,clips:list[Clip],source:Path,logo:Path,outdir:Path)->dict:
+def make_assets(m:dict,media:dict,clips:list[Clip],source:Path,logo:Path,outdir:Path,style:str='standard')->dict:
+    if style=='broadcast':
+        from broadcast_style import render_assets
+        return render_assets(m,media,clips,source,logo,outdir)
+    if style!='standard':raise ValueError('Unknown style')
     outdir.mkdir(parents=True,exist_ok=True)
     bg=draw_background(m,logo);bg.convert('RGB').save(outdir/'background.png')
     result=draw_result(m);result.save(outdir/'result.png')
@@ -284,6 +288,7 @@ def main(argv=None)->int:
     p.add_argument('--logo',type=Path,required=True,help='User-authorized official transparent PNG logo')
     p.add_argument('--manifest',type=Path,required=True,help='JSON with checked names, result and clip timings')
     p.add_argument('--output-dir',type=Path,required=True)
+    p.add_argument('--style',choices=['standard','broadcast'],default='standard')
     p.add_argument('--dry-run',action='store_true',help='Validate and create stills/filter graph, do not render MP4')
     a=p.parse_args(argv)
     for x in [a.source,a.logo,a.manifest]:
@@ -291,10 +296,10 @@ def main(argv=None)->int:
     if shutil.which('ffmpeg') is None or shutil.which('ffprobe') is None:
         raise SystemExit('ffmpeg and ffprobe required')
     m=json.loads(a.manifest.read_text(encoding='utf-8'));media=probe(a.source); clips=validate(m,media)
-    desc=make_assets(m,media,clips,a.source,a.logo,a.output_dir)
+    desc=make_assets(m,media,clips,a.source,a.logo,a.output_dir,style=a.style)
     create_caption_drafts(m,a.output_dir)
     filters=build_filters(desc['seconds']);(a.output_dir/'filter_complex.txt').write_text(filters,encoding='utf-8')
-    (a.output_dir/'render_metadata.json').write_text(json.dumps({'format':'RKK_REEL_DRAFT_V1','status':'REVIEW_ONLY_NO_PUBLICATION','source_properties':media,'render':desc,'clips': [c.__dict__ for c in clips], 'claim_source':m.get('source_url',''), 'manifest':m},ensure_ascii=False,indent=2),encoding='utf-8')
+    (a.output_dir/'render_metadata.json').write_text(json.dumps({'format':'RKK_REEL_DRAFT_V1','style':a.style,'status':'REVIEW_ONLY_NO_PUBLICATION','source_properties':media,'render':desc,'clips': [c.__dict__ for c in clips], 'claim_source':m.get('source_url',''), 'manifest':m},ensure_ascii=False,indent=2),encoding='utf-8')
     if a.dry_run:
         print('DRY RUN OK: no video created and nothing was published'); return 0
     outfile=a.output_dir/(re.sub(r'[^a-zA-Z0-9_-]+','_',m.get('slug','rkk-ottelukooste'))+'_draft.mp4')

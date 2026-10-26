@@ -80,3 +80,27 @@ python3 scripts/media/suggest_clips.py \
 - Rajaus `--roi x,y,w,h` säädetään tarvittaessa, jos kehä sijaitsee eri osassa ruutua. Tuki enintään 60 minuutin videotiedostolle per ajo, jotta resurssit pysyvät rajattuina.
 
 **Tuleva kehitys:** 1) leike-ehdotusten ihmisarvioinnin käyttöliittymä, 2) ottelijoiden seuranta rajausta varten, 3) hyväksyttävän julkaisupaketin automaattinen luonti ja 4) Metricoolin hyväksyttyyn julkaisuun siirto. Kunkin vaiheen testit ja ihmisen hyväksyntä ennen automaation laajentamista.
+
+
+## Valinnainen TV-tyylinen visuaalinen pohja (`--style broadcast`)
+
+Hämeenlinnan 24.10.2026 **V5 Broadcast Style** oli aiemmin erillinen kertaluontoinen vertailuvideo. Nyt samanlaisen laadukkaan visuaalisen pohjan voi tuottaa **muistakin omista luvallisista otteluvideoista** ilman käsin kovakoodattuja ottelijan nimiä ja ilman ulkoista videoeditointipalvelua:
+
+```bash
+python3 scripts/media/build_reel.py \
+  --source "/yksityinen/ottelu.mp4" \
+  --logo "/yksityinen/Keha-Ketut-logo-header-HD.png" \
+  --manifest "/yksityinen/ottelun_hyvaksytyt_klipit.json" \
+  --output-dir "/yksityinen/broadcast_kooste/" \
+  --style broadcast
+```
+
+- **Oletus on edelleen `--style standard`**, joten vanha toimiva työnkulku ei muutu päivityksessä.
+- Tyylipohja käyttää oikeaa seuramerkkiä, aitoa videon ruutua kevyesti sumennettuna taustana, tapahtuman paikkakuntaa ja päivää, molempien ottelijoiden nimiä, punaisen/sinisen kulman tunnusväriä, todennettu tulos -palkkia ja lopputunnusta.
+- YouTuben/Instagramin käyttöliittymälle jätetään videon alaosaan turvallinen tila, eikä tärkeää tekstiä aseteta sinne.
+- Lopputekstit ja kilpailutiedot otetaan **vain ihmisen tarkistamasta manifestista**; ennen julkaisua tarkistetaan myös, että ottelijoiden nimet mahtuvat grafiikkaan ja kuvan pystyrajaus toimii.
+- Grafiikat eivät lisää tekoälyllä keksittyä ottelutilannetta, uutta musiikkia tai voittoa; alkuperäinen kehä-ääni säilyy.
+- `--dry-run --style broadcast` luo grafiikat ja kannen ilman varsinaista MP4-renderöintiä.
+- 26.10.2026: paikallinen 6 s MP4-koerenderöinti läpäisi teknisen dekoodauksen; graafisten assettien unit-testi testaa 1080×1920-koon sekä tulos- ja lopputunnuksen sijoittelun. Pitkien videoiden laatu riippuu edelleen lähdemateriaalista.
+
+Tämä on **ulkoasutyyli**, ei lupa julkaista. Lopullisen videon sekä Facebook/Instagram/YouTube-julkaisujen hyväksyntä on yhä erillinen ihmisen tehtävä.
