@@ -1,0 +1,17 @@
+# EXAMPLE ONLY - replace paths after verifying that Dropbox media sync works.
+# install to ~/.config/systemd/user/rkk-media-intake.service
+[Unit]
+Description=RKK private incoming-video inventory worker
+After=default.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 %h/projects/kehaketut-feed/scripts/media/intake_service.py --folder %h/.local/share/rkk/incoming --db %h/.local/state/rkk/inbox.sqlite --outbox %h/.local/share/rkk/handoff --interval-seconds 30 --stable-seconds 90
+Restart=on-failure
+RestartSec=15
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=default.target
