@@ -81,3 +81,24 @@ https://www.kehaketut.fi/
 Alkuperäinen raakavideo ja käyttäjän mediakuvat eivät kuulu julkiseen GitHub-repositorioon. Tämä asiakirja tallentaa vain tuotantosuunnitelman, lähteen ja hyväksyttävän tekstin.
 
 [Laajempi automaatiomäärittely](VIDEOTUOTANTO_RAAKAVIDEOSTA_JULKAISUUN_2026-10-26.md) ja [issue #13](https://github.com/glesima/kehaketut-feed/issues/13).
+
+
+## V3: oikea klubilogo ja toistettava videoeditointi (26.10.2026)
+
+Käyttäjä katsoi v2-version ja totesi sen hyväksi. Hän ehdotti, että videon **alussa ja lopussa näkyisi alkuperäinen seuralogo**, eikä halunnut maksullisia uusia palveluita. Video **ei ole saanut lopullista julkaisulupaa**; käyttäjä meni nukkumaan ja valtuutti tekemään kehitystyötä eteenpäin.
+
+- Oikea, aiemmin ChatGPT:ssä tehty läpinäkyvä **Keha-Ketut-logo-header-HD.png**, 2600 × 660 px, löytyi käyttäjän tiedostokirjastosta. Logossa on nyrkkeilevä kettu ja RKK-nimiosa. Tätä käytetään korvaamaan v2:n väliaikainen RKK-kirjainmerkki.
+- Valmiiksi renderöity **v3-logo**: 32,000 s, **1080 × 1920**, 25 fps, H.264/AAC, alkuperäinen kehä-ääni, uusi brändätty yläosa ja viimeisillä sekunneilla videon päällä erillinen logo/KEHAKETUT.FI-kortti. Virallinen 5–0-tulosteksti säilyi; v2:n kahdeksaa leikkauskohtaa ja alkuperäistä videota ei muutettu.
+- Uusi pystysuuntainen kansikuva, jossa on oikea logo, oikea ottelukuva ja molemmat ottelijat.
+- **Videon koko 22 144 014 tavua**, SHA256 `9985f4b66d5b23ae2f8e5775dd4a76bb61f11db4cd7c28bc5061589468f5a75d`. MP4:tä tarkistettiin `ffprobe`:lla ja `ffmpeg -f null` -dekoodauksella.
+- Käyttäjälle toimitettava ZIP `RKK_Hameenlinna_somepaketti_v3_logo.zip` sisältää v3-videon, kansikuvan, oikean läpinäkyvän logon, aiemmin valmistellut kanavakohtaiset julkaisutekstit, leikkausmetatiedot sekä tarkistushuomiot. ZIP:n eheystesti läpäistiin. **Yksityistä mediaa ei ole laitettu julkiseen GitHubiin.**
+- Samalla kehitettiin yleisempi **paikallinen videoeditointityökalu**; GitHub [PR #14](https://github.com/glesima/kehaketut-feed/pull/14) (`scripts/media/build_reel.py`, manifesti, README ja 6 yksikkötestiä). Se poimii ihmisen etukäteen valitsemat aikaleimat raakavideosta, rakentaa 9:16-video- ja kansikuvaluonnoksen, säilyttää alkuperäisen äänen ja generoi turvalliset tekstiluonnokset tarkistetusta manifestista. Testi paikallisesti: 6/6 yksikkötestiä, 6s smoke ja erillinen täysi 32s testi onnistui. Videoiden yksityiset väliklipit jäävät vain paikalliseen hakemistoon, eivät julkiseen repoosi. **Työkalu ei julkaisua tai ajastusta tee.**
+
+### Julkaisun jäljellä olevat ehdot
+
+- [ ] Käyttäjän/valtuutetun seuran edustajan loppukatselmus uudelle v3-videolle sekä kanavakohtaisille teksteille.
+- [ ] Seuran kuvaus- ja julkaisuoikeudet, tarvittaessa kilpailujärjestäjän ja vastustajan oikeudet, vahvistettava ennen oikeaa julkaisua.
+- [ ] Ajastus erikseen oikeaan Metricool RKK-brändiin Facebook Reels, Instagram Reels ja YouTube Shorts. **Mitään ei julkaistu** tämän työvaiheen aikana.
+- [ ] Tämän jälkeen jatkokehitys: hyväksymispalvelin ja yksityinen aineistovastaanotto. Ei uusia maksullisia tilauksia päätetty.
+
+V3:n käyttäjälle näkyvä julkaisu on keskustelun latauslinkissä, eikä GitHub-dokumentti tarjoa julkisia mediakopioita.
