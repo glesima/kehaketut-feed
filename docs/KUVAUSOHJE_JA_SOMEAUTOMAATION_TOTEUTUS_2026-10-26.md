@@ -82,3 +82,14 @@
 - Metricool MCP/tilausrajat: https://help.metricool.com/mcp-limits-and-plan-requirements-h72jg
 - YouTube Shorts: https://support.google.com/youtube/answer/15424877
 - NSPCC Child Protection in Sport Unit kuvausohje: https://sport.nspcc.org.uk/help-advice/topics/photography/
+
+## Viestintälinjauksen tarkennus 26.10.2026 – vähemmän käsityötä kuvaajille
+
+- Käyttäjä on Riihimäen Kehä-Kettujen **tiedotus-/mediavastaava**, ei automaattisesti kaikkien ottelujen kamerakuvaaja. Ottelijoiden ja huoltajien itse kuvaamat videot ovat ensisijainen raakamateriaali; viestintävastaava hoitaa editoinnin/julkaisujen koordinoinnin. Älä edellytä kahta kameraa tai erillistä kuvaajaa joka kisaan. **Yksi hyvä kokonainen ottelu vaakaan** riittää; lyhyet pystysuuntaiset tunnelma- ja vapaaehtoiset haastattelupätkät ovat arvokasta lisämateriaalia.
+- Hallitukselle ja kilparyhmälle annetaan **lyhyet, neutraalit WhatsApp-viestit**, ei ylivirittyneitä juhlapuheita eikä koristeellisia AI-symboleja.
+- **Älä jaa Dropboxin tavallista muokattavaa /RKK-kansiota kaikille kuvaajille.** Perusta sen sijaan erilliseen sovittuun tulokansioon **Dropbox File Request**, jolla kuka tahansa linkin saanut voi ladata alkuperäisiä tiedostoja ilman Dropbox-kirjautumista mutta ei näe muiden tiedostoja tai arkistoa. Esimerkkikohde `/RKK/Uudet_videot`, **ei vielä luotu eikä tiedostopyyntölinkkiä ole olemassa**; Dropbox-kansion ja tiedostopyynnön perustaminen vaatii erillisen käyttäjän hyväksynnän. Tilin tallennustila ja latausrajat varmistetaan; Dropbox Basic/Plus/Family file request max 2GB/tiedosto, ylemmissä paketeissa 250GB.
+- Varavaihtoehto on **WhatsAppiin lähettäminen asiakirjana/tiedostona**, ei media-/galleriavideona. WhatsAppin tavalliset HD-videotkaan eivät takaa alkuperäistä laatua. WhatsAppin tiedostoraja 2 GB. Oletuksena ensisijainen File Request helpottaa automaatiota.
+- Kuvaajalle riittää **kilpailu, ottelijat, päivämäärä, materiaalityyppi**, ja kuvaus/julkaisulupien mukainen toiminta. Puhelimen alkuperäinen tiedostonimi hyväksytään, jos mukana lähetetään tekstimuotoinen selite. Tapahtuman ja ottelun tarkka `bout_id` voidaan täydentää luotetusta virallisesta lähteestä; älä vaadi kuvaajaa tuntemaan BoxerBasea.
+- Seuraavassa viestissä ryhmään annetaan vasta **oikea ja tarkistettu Dropbox-upload-URL**, ei epävirallista tavallisen kansiojaon linkkiä.
+
+Lähteet: https://help.dropbox.com/share/create-file-request ; https://help.dropbox.com/share/received-file-request ; https://faq.whatsapp.com/453914586839706/ .
