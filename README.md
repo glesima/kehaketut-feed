@@ -1,57 +1,52 @@
-# Riihimäen Kehä-Ketut – verkkosivun automaatio
+# Riihimäen Kehä-Ketut – verkkosivun integraatiot
 
-**Tilanne 25.10.2026:** käytössä oleva GitHub Pages -integraatio, jossa GitHub Actions hakee julkisia BoxerBase-ottelu- ja urheilijatietoja sekä Yhdistysavaimen uutisia. Seuran Instagram-kuvavirta tulee Juicerista, ja Facebookin erillinen korttinäkymä perustuu yhdistetyn Metricool-brändin tietoihin. GitHub Pages ja Yhdistysavaimen HTML-lohkot muodostavat julkisen etusivun automaattiset osat.
+Tämä julkinen repositorio sisältää seuran verkkosivun näyttökomponentit, julkisista lähteistä muodostetut tietosyötteet sekä niiden testit. Se ei ole yksityisten videoiden, käyttöoikeustodisteiden tai tuotantotunnusten säilytyspaikka.
 
-## Lue nämä ensin
+## Ajantasainen tilanne
 
-- [Tehdyt muutokset ja nykyinen tila](docs/TOTEUTUS_JA_TILANNE_2026-10-25.md)
-- [Jatkosuunnitelma ja keskeneräiset työt](docs/JATKOSUUNNITELMA.md)
-- [Uusien ottelutulosten automaattisen julkaisun toteutusmäärittely](docs/AUTOMAATTISET_OTTELUT_2026-10-25.md)
-- [Lyhyt tekninen jatko-ohje seuraavaan keskusteluun](docs/TEKNINEN_JATKOSEURAAVAAN_KESKUSTELUUN.md)
-- [Uutis-, video-, YouTube- ja someautomaation toteutussuunnitelma](docs/SISALTOTUOTANTO_VIDEO_JA_UUTISAUTOMAATIO_2026-10-25.md)
-- [Ensimmäinen oikealla seuramerkillä tehty 32 s videopilotti (ei julkaistu)](docs/VIDEOPILOTTI_HAMEENLINNA_2026-10-26.md)
-- [Paikallinen, hyväksynnän vaativa Reels/Shorts-koostetyökalu](scripts/media/README.md)
-- [Kilpailu-uutisten automaatiopolitiikka: ei turhia erillisjulkaisuja](docs/KILPAILU_UUTISOINTI_ILMAN_TURHAA_TOISTOA_2026-10-25.md)
-- [Seurauutisten RSS → Metricool, julkaisut vain tarkistettaviksi](docs/UUTISTEN_RSS_METRICOOL_HYVAKSYNTA.md)
-- [Hallituksen ohje sisällöntuotantoon](docs/HALLITUKSEN_SISALTOOHJE.md)
-- [Koko verkkosivun sisällön ja ulkoasun auditointi](docs/SIVUSTON_KOKONAISAUDITTI_2026-10-26.md)
-- [Premium-asennus ja Yhdistysavaimen ohjeet](docs/PREMIUM_SIVUSTO_ASENNUS_2026-10-26.md)
-- [Automaattisesti päivittyvä julkinen sivu-inventaario](docs/SIVUSTON_AUTOMAATTINEN_AUDITTI.md)
+Ensisijainen tilannekuva: [CURRENT_STATUS.md](CURRENT_STATUS.md). Päivätyt dokumentit `docs/`-hakemistossa kuvaavat myös aiempia työvaiheita ja suunnitelmia; niitä ei tule tulkita automaattisesti tämänhetkiseksi käyttöönottotilaksi.
 
+- Verkkosivun julkiset BoxerBase-tiedot, uutisten varasyöte ja GitHub Pages päivittyvät GitHub Actions -ajoilla.
+- Etusivun uutisnäkymä hakee ensisijaisesti julkaistut uutiset suoraan Yhdistysavaimen `/uutiset/`-sivulta. Varasyöte on erikseen ajastettu. Uutista ei tarvitse julkaista uudelleen etusivulle.
+- Uutisupotuksen lataajan vaihto on ylläpitäjän mukaan tehty. Käyttöönoton selaintesti on erotettava koodin yksikkötesteistä.
+- Kaksi kilpailuvideopilottia on julkaistu seuran Facebookissa, Instagramissa ja YouTubessa. Tämä ei tarkoita, että jatkuva Dropboxista somekanaviin toimiva automaatio olisi käytössä.
+- `scripts/media/` sisältää paikallisia prototyyppejä. Vastaanotto-ohjelma ei yksin tunnista tapahtumia, käynnistä editointia tai julkaise videoita.
+- Kiireellisten tiedotteiden automaattinen Facebook-jakelu on erillinen avoin integraatio. Nykyinen ajastettu RSS-autolista ei ole välittömän tiedottamisen kanava.
 
-- [BoxerBase-tutkimus ja toimiva julkisten ilmoittautumisten haku](docs/BOXERBASE_TUTKIMUS_JA_AUTOMAATION_TULOS_2026-10-25.md)
-- [Erillisen uutisosoitteen ja kolmen hyväksyjän tietoturvasuunnitelma](docs/TURVALLINEN_SISALTOVASTAANOTTO_2026-10-25.md)
+## Rakenne
 
-## Olennaiset linkit
+- `docs/`: GitHub Pagesiin julkaistavat tiedostot. **Kaikki tämän hakemiston sisältö on julkista.**
+- `embed/`: Yhdistysavaimen HTML-osioihin liitettävät katkelmat.
+- `scripts/`: julkisten syötteiden muodostus ja paikalliset apuohjelmat.
+- `tests/`: automaattiset tarkistukset.
+- `deploy/`: asennusesimerkkejä; olemassa oleva esimerkkitiedosto ei todista palvelun olevan asennettuna.
 
-- Sivusto: https://www.kehaketut.fi/
-- Oikea BoxerBase-seura: https://boxerbase.com/o/1Le8shnOwPIW/boxers
-- GitHub Pages: https://glesima.github.io/kehaketut-feed/
-- Tulosnäkymä: https://glesima.github.io/kehaketut-feed/widget.html?view=updates
-- Ottelijakortit: https://glesima.github.io/kehaketut-feed/widget.html?view=boxers
-- Facebook-korttivirta: https://glesima.github.io/kehaketut-feed/facebook.html
-- Julkaistujen seurauutisten RSS: https://glesima.github.io/kehaketut-feed/news-rss.xml (eri syöte kuin kilpailutuloksille)
+## Keskeiset ohjeet
 
-## Ajastukset ja tekninen rakenne
+- [Nykytila ja tunnetut rajat](CURRENT_STATUS.md)
+- [Julkisen sisällön rajaus](PUBLIC_SCOPE.md)
+- [Uutisten lataus ja pikaviestinnän toimintamalli](docs/PIKATIEDOTTEET_ILMAN_CHATGPT_TA_2026-10-26.md)
+- [Sivuston ulkoasun asennusohje](docs/PREMIUM_SIVUSTO_ASENNUS_2026-10-26.md)
+- [Paikallisen videovastaanoton ohje](scripts/media/README_intake_service.md)
+- [Sivuston tekninen inventaario](docs/SIVUSTON_AUTOMAATTINEN_AUDITTI.md)
 
-- GitHub Actions: .github/workflows/update.yml – neljä ajoa vuorokaudessa, työjonon ja ajastuspalvelun toteutumisesta riippuen.
-- scripts/update.py: oikean BoxerBase-seuran profiilit, tunnetut kilpailut ja ottelut.
-- scripts/update_news.py: kolme uusinta uutista Kehä-Kettujen Yhdistysavaimen Uutiset-sivulta.
-- docs/: GitHub Pagesin julkinen rajattu JSON/RSS-data sekä näyttökomponentit.
-- embed/: Yhdistysavaimen HTML-koodiosioihin liitettävät katkelmat.
-- tests/: paikallisesti ajettavat testit komennolla python -m unittest discover -s tests -v.
-- Facebook-syöte: ChatGPT:ssä erikseen ajastettu päivittäinen Metricool-tietojen tuonti tiedostoon docs/facebook.json; ajastuksen ensimmäisen ajon onnistuminen tulee varmistaa.
+## Testit
 
-## Turva- ja toimintaperiaatteet
+```sh
+python -m unittest discover -s tests -v
+python -m compileall -q scripts
+node tests/test_widget_render.js
+node tests/test_news_live.js
+```
 
-1. Julkiseen GitHub-repositorioon ei lisätä salasanoja, API-avaimia, maksutietoja tai muita salaisuuksia.
-2. Käytetään vain yhdistyksen valtuuttamia somekanavia ja julkiseen näyttämiseen sopivaa tietoa.
-3. BoxRec-lähde on poistettu pyynnöstä; ottelumääriä ei summata palvelujen välillä.
-4. Tuloskortin BoxerBaseen kirjatut ottelumäärät eivät välttämättä kata koko otteluhistoriaa. Josiaksen duplikaattiprofiilille on dokumentoitu tilapäinen käsittely.
-5. Ilmoittautumista kilpailuun ei näytetä vahvistettuna otteluna.
-6. BoxerBase-tietojen koneellisen keruun käyttöehdot ja kestävän rajapinnan saatavuus on tarkistettava palveluntarjoajalta.
-7. **Automaattista Facebook- tai Instagram-julkaisujen lähettämistä** ei ole vielä toteutettu: julkaisut valmistellaan tulevassa vaiheessa hyväksyttäviksi.
+Testien onnistuminen ei yksin osoita jatkuvan palvelun asennusta, julkaisulupien olemassaoloa tai onnistunutta somejulkaisua.
 
-## Sisällöntuotannon ohje
+## Julkiset palvelut
 
-Uutinen lisätään **Yhdistysavain → Uutiset → Lisää uutinen**. Etusivua ei muokata tavallista uutista varten. Etusivulla näkyy ajastuksen jälkeen kolme uusinta uutista; täydellinen arkisto säilyy Uutiset-sivulla.
+- Seuran kotisivut: https://www.kehaketut.fi/
+- Tietosyöte: https://glesima.github.io/kehaketut-feed/
+- Julkaistujen seurauutisten RSS: https://glesima.github.io/kehaketut-feed/news-rss.xml
+
+## Säilyttäminen ja tietoturva
+
+Alkuperäinen sivuhistoria, kilpailutulokset ja lähdelinkit säilytetään. Ilmoittautumista ei esitetä vahvistettuna otteluna. Julkisessa repositoriossa ei säilytetä raakavideoita, vastaanottajien henkilötietoja, suostumusrekistereitä, salasanoja tai API-avaimia. Älä sijoita näitä myöskään issueihin, PR-kuvauksiin, testilokeihin tai GitHub Pagesin tiedostoihin.
