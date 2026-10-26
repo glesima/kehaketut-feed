@@ -1,0 +1,54 @@
+{
+  "slug": "RKK_Hameenlinna_20261024_Gleb_vs_Sampo",
+  "event": "Hämeenlinnan Kisan 110-vuotisjuhlakisat",
+  "date": "24.10.2026",
+  "place": "Hämeenlinna",
+  "red": "Gleb Simanov",
+  "blue": "Sampo Paananen",
+  "division": "Miesten eliitti · +90 kg",
+  "result": "Paananen voitti 5–0",
+  "website": "KEHAKETUT.FI",
+  "source_url": "https://www.boxerbase.com/e/d6jfSSe5nRpe/matches",
+  "clips": [
+    {
+      "start": 38.8,
+      "duration": 4,
+      "crop_x": 115
+    },
+    {
+      "start": 99.3,
+      "duration": 4,
+      "crop_x": 0
+    },
+    {
+      "start": 140.6,
+      "duration": 4,
+      "crop_x": 0
+    },
+    {
+      "start": 202.6,
+      "duration": 4,
+      "crop_x": 110
+    },
+    {
+      "start": 223.5,
+      "duration": 4,
+      "crop_x": 35
+    },
+    {
+      "start": 263.9,
+      "duration": 4,
+      "crop_x": 135
+    },
+    {
+      "start": 309.6,
+      "duration": 4,
+      "crop_x": 100
+    },
+    {
+      "start": 337,
+      "duration": 4,
+      "crop_x": 65
+    }
+  ]
+}
