@@ -133,8 +133,13 @@
       var raw=clean(a.textContent);
       if(raw.length<9)return;
       var node=a.closest('article,li,[class*="news-item"],[class*="newsItem"]')||a;
-      var record=parseItem(raw,a);
-      if(!record&&node!==a)record=parseItem(clean(node.textContent),node);
+      // Some Yhdistysavain themes put the publication date OUTSIDE the
+      // headline link. Prefer the bounded article container if available.
+      var surrounding=clean(node.textContent),record=null;
+      if(node!==a&&surrounding.length>raw.length&&surrounding.length<900){
+        record=parseItem(surrounding,node);
+      }
+      if(!record)record=parseItem(raw,a);
       if(!record)return;
       seen.add(url);
       out.push({url:url,title:record.title,date:record.date,excerpt:record.excerpt});
