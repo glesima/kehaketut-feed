@@ -60,3 +60,23 @@ Korjattu V4-videopohja:
 Koska Instagramin, Facebookin ja YouTuben päälle piirtämät käyttöliittymät vaihtuvat laitteen, sovellusversion ja katsojan mukaan, tämä parantaa näkyvyyttä muttei takaa, etteikö jokin reunakohdan koriste peittyisi. Testaa esikatselu eri kanavissa myös puhelimella.
 
 **YouTube-asetuksista** vain otsikko ja `Made for kids / not made for kids` -luokitus ovat tämän työnkulun varsinaisia pakollisia syötteitä; teksti-, tyyppi- ja näkyvyysasetukset arvioidaan tilanteen mukaan. Soittolista, tunnisteet ja Sports-kategoria eivät ole pakollisia. Testiin `Private` ja Metricoolissa `Save as draft`, **ei Schedule/Publish** ilman erillistä hyväksyntää. Tavallinen leikkaaminen/rajaukset/tekstigrafiikat eivät yksinään tarkoita YouTuben vaatimusten mukaista realistisesti AI:lla generoituja tai merkittävästi muokattuja tapahtumia.
+
+
+## Automaattiset liikemäärän perusteella ehdotetut leikkeet (26.10.2026)
+
+`scripts/media/suggest_clips.py` on **erillinen, paikallinen esivalintatyökalu**. Se käy raakavideon läpi käyttäen ffmpegillä tuotettuja pieniä harmaasävyruutuja, mittaa liikkeen määrää rajatulla kuva-alueella ja tekee toimituksellisen ehdokaslistan. Mitään ei ladata verkkoon eikä julkaista.
+
+```bash
+python3 scripts/media/suggest_clips.py \
+  --source "/yksityinen/ottelu.mp4" \
+  --output "/yksityinen/ehdotetut_leikkeet.json" \
+  --count 10 --clip-seconds 4 --min-gap 12
+```
+
+- Ehdotukset ovat aikaleimoja ja numeerisia **aktiivisuuspisteitä**, eivät vahvistettuja lyöntejä tai voittoja. Samanlaisia pisteitä voi saada tuomarin liike, kameran heiluminen tai nopeat askeleet.
+- Tulosteessa `crop_x` on tarkoituksella `null`: valmentaja/editori rajaa ottelijat ja tarkistaa kohdat ennen niiden siirtämistä `build_reel.py`-manifestiin.
+- Ehdotusjärjestelmä **ei kirjoita valmista manifestia**, muuta hyväksyttyä videota eikä tee julkaisuja. Valmentaja hyväksyy sekä relevanttiuden että käyttöoikeudet.
+- 26.10.2026 paikallinen koe yhdellä 6:06 minuuttia kestävällä aidolla ottelutallenteella: 10 neljän sekunnin ehdokasta muodostui; kahdeksan yksikkötestiä meni läpi. Kyse on kevyestä liikkeen mittauksesta **ei tekoälyn semanttisesta videoymmärryksestä**.
+- Rajaus `--roi x,y,w,h` säädetään tarvittaessa, jos kehä sijaitsee eri osassa ruutua. Tuki enintään 60 minuutin videotiedostolle per ajo, jotta resurssit pysyvät rajattuina.
+
+**Tuleva kehitys:** 1) leike-ehdotusten ihmisarvioinnin käyttöliittymä, 2) ottelijoiden seuranta rajausta varten, 3) hyväksyttävän julkaisupaketin automaattinen luonti ja 4) Metricoolin hyväksyttyyn julkaisuun siirto. Kunkin vaiheen testit ja ihmisen hyväksyntä ennen automaation laajentamista.
