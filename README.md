@@ -9,6 +9,8 @@
 - [Uusien ottelutulosten automaattisen julkaisun toteutusmäärittely](docs/AUTOMAATTISET_OTTELUT_2026-10-25.md)
 - [Lyhyt tekninen jatko-ohje seuraavaan keskusteluun](docs/TEKNINEN_JATKOSEURAAVAAN_KESKUSTELUUN.md)
 - [Uutis-, video-, YouTube- ja someautomaation toteutussuunnitelma](docs/SISALTOTUOTANTO_VIDEO_JA_UUTISAUTOMAATIO_2026-10-25.md)
+- [Ensimmäinen oikealla seuramerkillä tehty 32 s videopilotti (ei julkaistu)](docs/VIDEOPILOTTI_HAMEENLINNA_2026-10-26.md)
+- [Paikallinen, hyväksynnän vaativa Reels/Shorts-koostetyökalu](scripts/media/README.md)
 - [Kilpailu-uutisten automaatiopolitiikka: ei turhia erillisjulkaisuja](docs/KILPAILU_UUTISOINTI_ILMAN_TURHAA_TOISTOA_2026-10-25.md)
 - [Seurauutisten RSS → Metricool, julkaisut vain tarkistettaviksi](docs/UUTISTEN_RSS_METRICOOL_HYVAKSYNTA.md)
 - [Hallituksen ohje sisällöntuotantoon](docs/HALLITUKSEN_SISALTOOHJE.md)
