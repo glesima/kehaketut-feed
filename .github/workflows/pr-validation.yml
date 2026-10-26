@@ -29,6 +29,8 @@ jobs:
         run: python -m compileall -q scripts
       - name: Verify compact results, winners and auto-sized widget
         run: node tests/test_widget_render.js
+      - name: Verify live news headline dates and refresh/fallback
+        run: node tests/test_news_live.js
       - name: Inline website JavaScript syntax
         run: |
           node -e "const fs=require('fs');const h=fs.readFileSync('docs/widget.html','utf8');const a=h.match(/<script>([\s\S]*?)<\/script>/);if(!a)throw Error('Missing widget script');new Function(a[1]);new Function(fs.readFileSync('docs/news-embed.js','utf8'));console.log('Inline widget and news JS valid')"
