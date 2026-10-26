@@ -1,0 +1,37 @@
+{
+  "schema": "RKK_EVENT_RECAP_V1",
+  "event_id": "d6jfSSe5nRpe",
+  "event": "Hämeenlinnan Kisan 110-vuotisjuhlakisat",
+  "date": "24.10.2026",
+  "place": "Hämeenlinna",
+  "channels": ["facebook", "instagram", "youtube"],
+  "bouts": [
+    {
+      "bout_id": "16",
+      "source": "simo_poyry_vs_lauri_maenpaa.mp4",
+      "red": "Lauri Mäenpää",
+      "blue": "Simo Pöyry",
+      "featured_boxer": "Simo Pöyry",
+      "division": "Miesten eliitti 85 kg",
+      "age_group": "adult"
+    },
+    {
+      "bout_id": "19",
+      "source": "gleb_simanov_vs_sampo_paananen.mp4",
+      "red": "Gleb Simanov",
+      "blue": "Sampo Paananen",
+      "featured_boxer": "Gleb Simanov",
+      "division": "Miesten eliitti 90+ kg",
+      "age_group": "adult"
+    },
+    {
+      "bout_id": "33",
+      "source": "kosmo_gronroos_vs_khaled_samkanai.mp4",
+      "red": "Kosmo Grönroos",
+      "blue": "Khaled Samkanai",
+      "featured_boxer": "Kosmo Grönroos",
+      "division": "Pojat B-juniorit 70 kg",
+      "age_group": "minor"
+    }
+  ]
+}
