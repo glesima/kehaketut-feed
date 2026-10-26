@@ -1,3 +1,5 @@
+> **PÄIVITYS 26.10.2026:** Ensimmäinen Hämeenlinna-video on nyt julkaistu Facebookissa, Instagramissa ja YouTubessa; vanhempaa mainintaa kolmesta odottavasta Draftista ei enää tule pitää nykytilana. Käyttäjän uusi suunta on **yhden kilpailun usean ottelun yhteiskooste ja automaattinen julkaisu ilman joka videon tarkistusklikkausta silloin, kun oikeudet ja varmistetut faktat sallivat**. Tekninen offline-prototyyppi [PR #18](https://github.com/glesima/kehaketut-feed/pull/18) toteuttaa usean MP4:n koonnin, mutta yksityinen 24/7-julkaisukanava on vielä avoimessa [issue #19](https://github.com/glesima/kehaketut-feed/issues/19). 
+
 # Kehä-Ketut – videot, jotka kiinnostavat myös katsojia
 
 **26.10.2026 · kolme julkaisulinjaa ja maltillinen kokeilusuunnitelma.**
