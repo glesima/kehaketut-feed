@@ -12,6 +12,7 @@ import argparse
 import hashlib
 import json
 import os
+import subprocess
 import sqlite3
 import time
 from pathlib import Path
@@ -135,7 +136,7 @@ def scan_once(folder: Path, db: sqlite3.Connection, outbox: Path,
                 after = path.stat()
                 if after.st_size != stat.st_size or after.st_mtime_ns != stat.st_mtime_ns:
                     reasons.append("FILE_CHANGED_DURING_SCAN")
-            except (OSError, ValueError, TimeoutError):
+            except (OSError, ValueError, TimeoutError, subprocess.TimeoutExpired):
                 reasons.append("INVALID_OR_INCOMPLETE_MP4")
 
         assignment, assignment_warnings = assignment_for(name, assignments)
@@ -162,7 +163,7 @@ def scan_once(folder: Path, db: sqlite3.Connection, outbox: Path,
             "notes": "Private handoff only; no media upload, AI decision, or publication."
         }
         if digest:
-            write_private_json(outbox / (digest + ".json"), result)
+            write_private_json(outbox / (digest + "-" + hashlib.sha256(name.encode()).hexdigest()[:12] + ".json"), result)
         with db:
             db.execute(
                 "UPDATE files SET last_seen=?,metadata_key=?,state=?,sha256=?,info_json=? "
