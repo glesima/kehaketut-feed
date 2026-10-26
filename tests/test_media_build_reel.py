@@ -65,6 +65,16 @@ class TestRKKMedia(unittest.TestCase):
             self.assertIn('24.10.2026', (root / 'instagram_luonnos.txt').read_text())
             self.assertIn('Sininen voitti 5–0', (root / 'facebook_luonnos.txt').read_text())
 
+    def test_shorts_safe_space_keeps_names_and_result_above_ui(self):
+        with TemporaryDirectory() as tmp:
+            path_logo=Path(tmp) / 'logo.png'
+            Image.new('RGBA',(500,150),(255,0,0,255)).save(path_logo)
+            background=mod.draw_background(self.m,path_logo)
+            lower=background.crop((0,1390,1080,1920)).convert('RGB')
+            self.assertLess(max(high for _,high in lower.getextrema()),70)
+            result=mod.draw_result(self.m)
+            self.assertLessEqual(result.getchannel('A').getbbox()[3],640)
+
     def test_no_publish_API_in_builder(self):
         src = path.read_text(encoding='utf-8')
         self.assertNotIn('requests.post(', src)

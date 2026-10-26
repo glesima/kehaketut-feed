@@ -103,9 +103,14 @@ def resize_logo(path:Path,maxw:int,maxh:int) -> Image.Image:
 
 
 def draw_background(m:dict, logo:Path) -> Image.Image:
+    """Shorts/Reels safe-space layout: all essential facts above platform UI.
+
+    Video platforms overlay title, username, captions and buttons in the
+    lower portion of the portrait frame. No names, result or link are written
+    to the bottom 28 percent of the frame.
+    """
     im=Image.new('RGB',(W,H)); dr=ImageDraw.Draw(im)
     for y in range(H):
-        # subtle vertical tonal gradient with unbranded photo panel at y432..1362
         f=y/H
         dr.line([(0,y),(W,y)],fill=(int(14+f*6),int(19+f*6),int(25+f*8)))
     for x in range(-450,1600,118):
@@ -113,33 +118,28 @@ def draw_background(m:dict, logo:Path) -> Image.Image:
     dr.rectangle((0,0,W,14),fill=RED)
     dr.rectangle((0,426,W,432),fill=RED)
     dr.rectangle((0,1362,W,1366),fill=RED)
-    # Site's real logo, no placeholder typographic badge.
     rgb=im.convert('RGBA')
-    brand=resize_logo(logo,910,218)
-    rgb.alpha_composite(brand,((W-brand.width)//2,30))
+    brand=resize_logo(logo,850,205)
+    rgb.alpha_composite(brand,((W-brand.width)//2,23))
     dr=ImageDraw.Draw(rgb)
-    dr.text((56,267),'OTTELUKOOSTE',font=get_font(76),fill=WHITE)
-    dr.rectangle((58,365,113,369),fill=RED)
-    dr.text((129,353),m['place'].upper()+' / '+m['date'],font=text_fit(dr,m['place'].upper()+' / '+m['date'],880,30,20),fill=MUTED)
-    # Consistent bottom factual record and website; a visible result panel arrives in the last 7 s.
-    dr.rounded_rectangle((62,1390,298,1442),radius=16,fill=(112,23,39))
-    dr.text((85,1401),'PUNAINEN',font=get_font(25),fill=(255,220,223))
-    dr.text((63,1455),m['red'].upper(),font=text_fit(dr,m['red'].upper(),940,52,28),fill=WHITE)
-    dr.rounded_rectangle((62,1534,294,1586),radius=16,fill=BLUE)
-    dr.text((85,1545),'SININEN',font=get_font(25),fill=(224,233,254))
-    dr.text((63,1594),m['blue'].upper(),font=text_fit(dr,m['blue'].upper(),940,52,28),fill=WHITE)
-    dr.text((67,1721),m['division'].upper(),font=text_fit(dr,m['division'].upper(),930,30,20),fill=MUTED)
-    dr.rounded_rectangle((61,1800,72,1888),radius=4,fill=RED)
-    website=m.get('website','KEHAKETUT.FI')
-    dr.text((90,1817),website.upper(),font=text_fit(dr,website.upper(),820,40,22),fill=WHITE)
+    dr.text((59,236),'OTTELUKOOSTE',font=get_font(65),fill=WHITE)
+    dr.rectangle((60,321,121,327),fill=RED)
+    fighters=f'{m["red"].upper()}  VS  {m["blue"].upper()}'
+    dr.text((58,333),fighters,font=text_fit(dr,fighters,960,40,25),fill=WHITE)
+    dr.text((59,383),m['place'].upper()+' / '+m['date'],
+            font=text_fit(dr,m['place'].upper()+' / '+m['date'],910,28,21),fill=MUTED)
+    # Do not put any essential content at y>=1366.
     return rgb
 
 
 def draw_result(m:dict) -> Image.Image:
+    """Late result card lives above the Shorts/Reels interface area."""
     im=Image.new('RGBA',(W,H)); d=ImageDraw.Draw(im)
-    d.rounded_rectangle((56,1664,1024,1788),radius=20,fill=(22,29,39,245),outline=(188,59,69,255),width=3)
-    d.text((86,1677),'OTTELUN TULOS',font=get_font(24),fill=(255,181,188))
-    d.text((85,1716),m['result'].upper(),font=text_fit(d,m['result'].upper(),905,40,25),fill=WHITE)
+    d.rounded_rectangle((58,461,1018,574),radius=17,
+        fill=(17,24,32,236),outline=(188,59,69,255),width=3)
+    d.text((90,472),'OTTELUN TULOS',font=get_font(23),fill=(255,181,188))
+    result=m['result'].upper()
+    d.text((89,507),result,font=text_fit(d,result,885,38,24),fill=WHITE)
     return im
 
 
