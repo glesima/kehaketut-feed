@@ -1,3 +1,5 @@
+> **YHTEINEN UUSI SUUNTA 26.10.2026:** Käyttäjä nimenomaisesti haluaa **poistaa jokaisen yksittäisen videon ennakkotarkistuksen normaalilta julkaisupolulta**, jolloin etukäteen valtuutettujen videoiden julkaiseminen etenee automaattisesti. Alkuperäinen alla kuvattu manuaalinen hyväksyntä säilyy vain tarvittaessa poikkeuspolkuna (puuttuvat kuva-/musiikkioikeudet, alaikäisen lupa, ristiriitaiset tulokset, huono tekninen laatu). Tekniset perustat [PR #18](https://github.com/glesima/kehaketut-feed/pull/18) ja jatko [issue #19](https://github.com/glesima/kehaketut-feed/issues/19). Automaattisen livejulkaisun jatkuva yksityinen palvelin ei ole vielä käytössä; ei saa väittää että pelkkä PR laukaisisi postauksia. 
+
 # Kehä-Ketut – raakavideosta julkaisuvalmiiksi Reels/Shorts-videoksi
 
 **26.10.2026.** Käyttäjän 26.10. kysymykseen "miten raakavideosta tulee hieno käsitelty video ja järkevä postaus". Tämä dokumentti on toteutusmäärittely ja pilotin ohje, **ei väite, että automaattinen tuotantoputki olisi jo käytössä**.
