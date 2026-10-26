@@ -47,3 +47,16 @@ Tulevat vaiheet: yksityinen lähetyskansio, aikaleimoja ehdottava analyysimoduul
 Työkalun manifestin hyväksyntätestit 6/6 läpi sekä koko kuuden minuutin raakavideosta renderöity 32 s esimerkkikooste omassa yksityisessä testiympäristössä (myös MP4-dekoodaus tarkistettu). Työkalun renderöinti on kaksivaiheinen: ensin lähdemateriaalin aikaleimalliset leikkeet yksitellen nopeasti rajattuna, sitten valmis 9:16-kuva, tulos- ja logoelementit. Tämä vähentää pitkän videon moninkertaista dekoodausta.
 
 Alkuperäinen henkilökohtainen video tai logo eivät ole tämän repositoryn mukana. Käytä niitä vain luvallisissa paikallisissa kansioissa.
+## Shorts- ja Reels-käyttöliittymän peittämät alueet (26.10.2026)
+
+Ensimmäisessä Hämeenlinna-videopilotissa huomattiin Metricoolin YouTube Shorts -esikatselussa, että **YouTuben oma videon otsikko sekä painikkeet peittävät videon alalaidan nimet ja muun grafiikan**. Tämä ei ole videon tekninen virhe eikä johdu YouTube-otsikkokentän täyttämisestä väärin. Videon omat tekstit ja alustojen päälle piirtämä käyttöliittymä tulee suunnitella erikseen.
+
+Korjattu V4-videopohja:
+- sijoittaa seuran oikean logon, kilpailun otsikon, molempien ottelijoiden nimet ja päivämäärän **yläosaan** ennen varsinaista ottelumateriaalia;
+- näyttää todennetun ottelun tuloksen **vasta viimeisen seitsemän sekunnin aikana** kuvan yläreunalla, ei sosiaalisen median otsikon alla;
+- jättää **alimmat noin 28 % koko pystykuvasta ilman tärkeää tekstiä**. Alustojen oma otsikko, nimi, seuraamispainikkeet ja kommentti-/tykkäystoiminnot saavat peittää tätä koristetaustaa;
+- pitää viimeisten sekuntien lopputunnuksen keskialueella.
+
+Koska Instagramin, Facebookin ja YouTuben päälle piirtämät käyttöliittymät vaihtuvat laitteen, sovellusversion ja katsojan mukaan, tämä parantaa näkyvyyttä muttei takaa, etteikö jokin reunakohdan koriste peittyisi. Testaa esikatselu eri kanavissa myös puhelimella.
+
+**YouTube-asetuksista** vain otsikko ja `Made for kids / not made for kids` -luokitus ovat tämän työnkulun varsinaisia pakollisia syötteitä; teksti-, tyyppi- ja näkyvyysasetukset arvioidaan tilanteen mukaan. Soittolista, tunnisteet ja Sports-kategoria eivät ole pakollisia. Testiin `Private` ja Metricoolissa `Save as draft`, **ei Schedule/Publish** ilman erillistä hyväksyntää. Tavallinen leikkaaminen/rajaukset/tekstigrafiikat eivät yksinään tarkoita YouTuben vaatimusten mukaista realistisesti AI:lla generoituja tai merkittävästi muokattuja tapahtumia.
