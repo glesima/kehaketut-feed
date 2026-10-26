@@ -16,6 +16,8 @@ except ImportError:
  Image=None
 
 ROOT=Path(__file__).resolve().parent
+if not (ROOT / 'event_recap.py').exists():
+ ROOT=ROOT.parent / 'scripts' / 'media'
 sys.path.insert(0,str(ROOT))
 modpath=ROOT/'event_recap.py'
 spec=importlib.util.spec_from_file_location('rkk_event_recap',modpath)
