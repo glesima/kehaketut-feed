@@ -93,3 +93,13 @@
 - Seuraavassa viestissä ryhmään annetaan vasta **oikea ja tarkistettu Dropbox-upload-URL**, ei epävirallista tavallisen kansiojaon linkkiä.
 
 Lähteet: https://help.dropbox.com/share/create-file-request ; https://help.dropbox.com/share/received-file-request ; https://faq.whatsapp.com/453914586839706/ .
+
+## KÄYTÖSSÄ 26.10.2026 – kuvaajien Dropbox-lähetyslinkki
+
+- Dropbox-tulokansio on luotu: `/RKK/Uudet_videot`.
+- Dropbox File Request luotu ja **avoin**: https://www.dropbox.com/request/vjppmba9qlotgd9arodn
+- Otsikko: `Kehä-Ketut – kilpailu- ja harjoitusvideot`.
+- **Ei määräpäivää**; käyttäjä voi tarvittaessa sulkea linkin Dropboxin Tiedostopyynnöt-kohdasta.
+- Linkin saanut voi **lähettää** videoita ja kuvia näkemättä kansion sisältöä tai muita tiedostoja, eikä tarvitse omaa Dropbox-tiliä. Pyydetään alkuperäinen tiedosto täydellä laadulla, kilpailu/päivämäärä/ottelijat sekä lupatieto. Lataus ei ole lupa julkaista.
+- Varsinainen automaattinen Dropbox-seuranta ja Metricool-julkaisu ovat edelleen tekemättä.
+- **Korvaa aiempien ohjeiden 'linkki tulee myöhemmin' -merkinnät tällä URL:lla.**
