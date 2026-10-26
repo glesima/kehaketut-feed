@@ -49,6 +49,61 @@ def clean(text):
     return " ".join((text or "").split())
 
 
+
+NEWS_DATE_RE = re.compile(r"(?<!\d)([0-3]?\d\.[01]?\d\.20\d{2})(?!\d)")
+TITLE_DATE_CUES = ("alkaa", "peruttu", "perutaan", "klo", "järjestetään", "pidetään")
+
+
+def split_news_record(raw, anchor, *, today=None):
+    """Separate headline, Yhdistysavain publication date and article excerpt.
+
+    A date inside a headline, e.g. 'Peruttu 27.–29.10.2026', is not the
+    publication date. Prefer a real HTML time/date marker when available.
+    """
+    candidates = []
+    for m in NEWS_DATE_RE.finditer(raw):
+        try:
+            parsed = datetime.strptime(m.group(1), "%d.%m.%Y").date()
+            candidates.append((m, parsed))
+        except ValueError:
+            continue
+    if not candidates:
+        return None
+    picked = None
+    for node in anchor.select("time, [itemprop='datePublished'], [class*='date'], [class*='Date']"):
+        val = (node.get("datetime") or node.get("content") or clean(node.get_text(" ", strip=True)))
+        try:
+            if re.fullmatch(r"20\d{2}-\d{2}-\d{2}(?:T.*)?", val):
+                dt = datetime.strptime(val[:10], "%Y-%m-%d").date()
+            elif re.fullmatch(r"[0-3]?\d\.[01]?\d\.20\d{2}", val):
+                dt = datetime.strptime(val, "%d.%m.%Y").date()
+            else:
+                continue
+        except ValueError:
+            continue
+        matches = [m for m, d in candidates if d == dt]
+        if matches:
+            picked = matches[-1]  # same date can appear earlier in the headline
+            break
+    if picked is None:
+        picked = candidates[0][0]
+        if len(candidates) > 1:
+            first, date1 = candidates[0]
+            second, date2 = candidates[1]
+            near = second.start() - first.end() <= 110
+            prefix = raw[:first.start()].casefold()
+            title_date = (any(cue in prefix for cue in TITLE_DATE_CUES)
+                          or prefix.rstrip().endswith(("–", "-", "—")))
+            reference = today or datetime.now(timezone.utc).date()
+            if near and date2 <= reference and (
+                title_date or date1 > reference
+                or (date2 > date1 and second.start() - first.end() <= 30)
+            ):
+                picked = second
+    return (clean(raw[:picked.start()].strip(" -|")),
+            picked.group(1), clean(raw[picked.end():]))
+
+
 def extract_news(html):
     soup = BeautifulSoup(html, "html.parser")
     articles = []
@@ -65,27 +120,15 @@ def extract_news(html):
         raw = clean(anchor.get_text(" ", strip=True))
         if len(raw) < 12:
             continue
-        # The Yhdistysavain listing includes date between title and excerpt.
-        found = list(re.finditer(r"(?<!\d)([0-3]?\d\.[01]?\d\.20\d{2})(?!\d)", raw))
-        if not found:
+        record = split_news_record(raw, anchor)
+        if not record:
             parent = anchor.parent
             around = clean(parent.get_text(" ", strip=True)) if parent else raw
-            found = list(re.finditer(r"(?<!\d)([0-3]?\d\.[01]?\d\.20\d{2})(?!\d)", around))
-            if not found:
+            record = split_news_record(around, parent or anchor)
+            if not record:
                 continue
-            raw = around
-        # Prefer a date after the main headline if the title itself contains a date.
-        date_match = found[0]
-        if len(found) > 1 and date_match.start() > 30 and "alkaa" in raw[:date_match.start()].casefold():
-            date_match = found[1]
-        title = clean(raw[:date_match.start()].strip(" -|"))
-        excerpt = clean(raw[date_match.end():])
+        title, date, excerpt = record
         if len(title) < 8:
-            continue
-        date = date_match.group(1)
-        try:
-            parsed = datetime.strptime(date, "%d.%m.%Y")
-        except ValueError:
             continue
         seen.add(url)
         articles.append({

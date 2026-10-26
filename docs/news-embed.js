@@ -85,11 +85,44 @@
         u.pathname.slice(pfx.length).replace(/\/$/,'').length>2 ? u.href:null;
     }catch(e){return null;}
   }
-  function getDate(txt,el){
-    var t=el.querySelector('time[datetime]');
-    if(t){var d=(t.getAttribute('datetime')||'').slice(0,10);if(/^20\d{2}-\d\d-\d\d$/.test(d))return d.split('-').reverse().join('.');}
-    var m=txt.match(/\b(\d{1,2}\.\d{1,2}\.20\d{2})\b/g);
-    return m?m[0]:'';
+  // Headline dates ("peruttu 27.–29.10.2026") must not become the publish date.
+  function dateValue(s){
+    var m=/^(\d{1,2})\.(\d{1,2})\.(20\d{2})$/.exec(s||'');
+    if(!m)return null;
+    var v=new Date(+m[3],+m[2]-1,+m[1]);
+    return v.getDate()===+m[1]&&v.getMonth()===+m[2]-1?v:null;
+  }
+  function parseItem(raw,element){
+    var re=/(\d{1,2}\.\d{1,2}\.20\d{2})/g;
+    var dates=[],m;
+    while((m=re.exec(raw))!==null){
+      var value=dateValue(m[1]);
+      if(value)dates.push({date:m[1],index:m.index,end:re.lastIndex,value:value});
+    }
+    if(!dates.length)return null;
+    var selected=dates[0];
+    var metadata=element.querySelector('time,[itemprop="datePublished"],[class*="date"],[class*="Date"]');
+    if(metadata){
+      var val=metadata.getAttribute('datetime')||metadata.getAttribute('content')||clean(metadata.textContent);
+      var im=/^(20\d{2})-(\d{2})-(\d{2})/.exec(val);
+      if(im)val=(+im[3])+'.'+(+im[2])+'.'+im[1];
+      var matching=dates.filter(function(d){var a=dateValue(val);return a&&a.getTime()===d.value.getTime()});
+      if(matching.length)selected=matching[matching.length-1];
+    }else if(dates.length>1){
+      var d1=dates[0],d2=dates[1],near=d2.index-d1.end<=110;
+      var prefix=raw.slice(0,d1.index).toLowerCase();
+      var headlineDate=/(alkaa|peruttu|perutaan|klo|järjestetään|pidetään)/.test(prefix)||/[–—-]\s*$/.test(prefix);
+      var today=new Date();today.setHours(23,59,59,999);
+      if(near&&d2.value<=today&&(headlineDate||d1.value>today||(d2.value>d1.value&&d2.index-d1.end<=30))){
+        selected=d2;
+      }
+    }
+    var title=clean(raw.slice(0,selected.index));
+    var excerpt=clean(raw.slice(selected.end));
+    if(title.length<8)return null;
+    if(title.length>130)title=title.slice(0,127).replace(/\s+\S*$/,'')+'…';
+    if(excerpt.length>220)excerpt=excerpt.slice(0,217).replace(/\s+\S*$/,'')+'…';
+    return {title:title,date:selected.date,excerpt:excerpt};
   }
   function parseNews(html){
     var dom=new DOMParser().parseFromString(html,'text/html');
@@ -100,18 +133,16 @@
       var raw=clean(a.textContent);
       if(raw.length<9)return;
       var node=a.closest('article,li,[class*="news-item"],[class*="newsItem"]')||a;
-      var date=getDate(raw,a)||getDate(clean(node.textContent),node);
-      var cut=date?raw.indexOf(date):-1;
-      var title=cut>4?clean(raw.slice(0,cut)):clean(raw.split(/ [\.!?] /)[0]);
-      var excerpt=cut>0?clean(raw.slice(cut+date.length)):'';
-      if(title.length>130){title=title.slice(0,127).replace(/\s+\S*$/,'')+'…';}
-      if(!excerpt){
-        var surrounding=clean(node.textContent);
-        if(surrounding.length>raw.length&&surrounding.length<600)excerpt=clean(surrounding.slice(raw.length));
+      // Some Yhdistysavain themes put the publication date OUTSIDE the
+      // headline link. Prefer the bounded article container if available.
+      var surrounding=clean(node.textContent),record=null;
+      if(node!==a&&surrounding.length>raw.length&&surrounding.length<900){
+        record=parseItem(surrounding,node);
       }
-      if(excerpt.length>220)excerpt=excerpt.slice(0,217).replace(/\s+\S*$/,'')+'…';
-      if(!title||title.toLowerCase()==='uutiset')return;
-      seen.add(url);out.push({url:url,title:title,date:date,excerpt:excerpt});
+      if(!record)record=parseItem(raw,a);
+      if(!record)return;
+      seen.add(url);
+      out.push({url:url,title:record.title,date:record.date,excerpt:record.excerpt});
     });
     return out.slice(0,3);
   }
@@ -138,16 +169,34 @@
     if(!items.length){fail();return}
     render(items);
   }
-  if(window.RKK_NEWS_PAYLOAD&&window.RKK_NEWS_PAYLOAD.items){
-    showFeed();
-  }else{
+  function cachedFeed(){
+    // GitHub Pages remains a fallback, never the first choice for same-site news.
+    if(window.RKK_NEWS_PAYLOAD&&window.RKK_NEWS_PAYLOAD.items){
+      showFeed();return;
+    }
     document.addEventListener('rkk-news-ready',showFeed,{once:true});
     var data=document.createElement('script');
-    data.src='https://glesima.github.io/kehaketut-feed/news-data.js';
+    data.src='https://glesima.github.io/kehaketut-feed/news-data.js?minute='+Math.floor(Date.now()/60000);
     data.async=true;
     data.onerror=fail;
     document.head.appendChild(data);
   }
+  // The homepage and /uutiset/ are same-origin. This avoids the old
+  // four-times-per-day GitHub feed delay and stale script cache on new posts.
+  var liveUrl=new URL('/uutiset/',window.location.origin);
+  liveUrl.searchParams.set('rkk_live_news',String(Math.floor(Date.now()/60000)));
+  fetch(liveUrl.href,{cache:'no-store',credentials:'same-origin',redirect:'follow'})
+    .then(function(response){
+      if(!response.ok||new URL(response.url).origin!==window.location.origin)
+        throw new Error('News source not available from same origin');
+      return response.text();
+    })
+    .then(function(html){
+      var current=parseNews(html);
+      if(!current.length)throw new Error('No trusted news entries found');
+      render(current);
+    })
+    .catch(cachedFeed);
 })();
 
 })();
