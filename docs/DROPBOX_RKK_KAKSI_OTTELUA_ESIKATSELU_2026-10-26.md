@@ -1,3 +1,22 @@
+## Päivitys 26.10.2026 – videot tunnistettu käyttäjän vahvistuksella
+
+Aiempi yllä kuvattu HOLD *videon ja ottelun vastaavuuden* osalta on nyt ratkaistu. **Älä enää pyydä käyttäjää nimeämään näitä kahta tiedostoa uudelleen.**
+
+| Vahvistettu käyttäjän tiedosto | Seuran ottelija | BoxerBase | Kulma | Virallinen tulos |
+|---|---|---|---|---|
+| `VID-20261026-WA0004.mp4` (6:14) | **Simo Pöyry** | ottelu #16, miehet 85 kg | sininen | Lauri Mäenpää (punainen) voitti 3–2 |
+| `VID-20261024-WA0006.mp4` (8:05) | **Kosmo Grönroos** | ottelu #33, B-juniorit 70 kg | punainen | Khaled Samkanai (sininen) voitti 5–0 |
+
+Kilpailun virallinen otteluluettelo: https://www.boxerbase.com/e/d6jfSSe5nRpe/matches .
+
+**Uusi nimetty esikatselu tuotettu:** 39,302 s H.264/AAC MP4 1080×1920, alkuperäinen RKK-logo, Simo ensin ja Kosmo toisena kilpailun kronologian mukaisesti, molemmista neljä todellista 4 sekunnin videoleikettä, ottelijat/vastustajat/luokat/oikeat tulokset ja yksityisen tarkistuksen merkinnät. MP4-dekoodaus onnistui ja käyttäjän yksityinen julkaisupaketti ZIP testattu. 3 valmista eri kanavien tekstiluonnosta. **Glebin jo julkaistua henkilökohtaista otteluvideota EI käytetty.** MP4/kuvat/lähteet eivät ole tässä julkisessa GitHub-repositoriossa.
+
+**Muut jäljellä olevat estot:** kuvaajan ja kilpailunjärjestäjän julkaisuehdot sekä Kosmon juniorimateriaalin asianmukainen julkaisu-/huoltajalupa. Videon identiteettiä ei ole tunnistettu kasvoista; lähde on käyttäjän nimenomainen tiedostovastaavuus.
+
+### Instagram-poikkeama erikseen
+
+26.10. noin tunti ensimmäisen julkaisun jälkeen käyttäjän oma Instagram-profiilin kuvakaappaus osoitti vain yhden aiemman julkaisun, ei uutta Reeliä. Metricool-merkintä `Published` klo 12.30 (post ID `406452136`) jäi ilman `publicUrl`-arvoa, ja Reels-analytiikan haku oli vielä tyhjä. **Älä väitä tätä näytöllä näkyväksi onnistuneeksi Instagram-julkaisuksi äläkä tee uutta kopiojulkaisua ilman tarkistusta.** Metricoolin ohje: https://help.metricool.com/why-a-post-appears-as-published-but-is-not-visible-on-the-social-network-cnxh3 . Tarkista seuran Instagramin Reels, Arkisto/Äskettäin poistetut, tilin tila, sekä Metricoolin tuen saama Meta-vastaus. YouTube- ja Facebook-julkaisut löytyvät omista julkisista osoitteistaan.
+
 # Kehä-Ketut / Dropboxin kaksi otteluvideota – 26.10.2026
 
 ## Päätös
