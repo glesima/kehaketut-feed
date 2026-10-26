@@ -68,3 +68,13 @@ assert(file.includes("overflow-wrap:anywhere"));
 assert(file.includes("data.src='https://glesima.github.io/kehaketut-feed/news-data.js?fresh='+Date.now()"));
 assert(file.includes("var backup=window.RKK_NEWS_PAYLOAD"));
 console.log("Responsive headline fit and fresh fallback checks: OK");
+
+
+// Permanent one-time Yhdistysavain embed switch should load fresh code
+// without copying a whole new HTML widget on every future release.
+const loader=fs.readFileSync("docs/news-loader.js","utf8");
+new Function(loader); // valid JS
+assert(loader.includes("document.getElementById('rkk-news-slot')"));
+assert(loader.includes("news-embed.js?v='+Math.floor(Date.now()/60000)"));
+assert(loader.includes("__RKK_NEWS_LOADER_RUNNING"));
+console.log("Stable news bootstrap versioning checks: OK");
