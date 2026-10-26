@@ -1,3 +1,9 @@
+> **TARKENNUS 26.10.2026 – Instagramin puuttuneen julkaisun syy tunnistettu:** Käyttäjä vahvisti, että Instagram Reel -julkaisun **Auto publish oli OFF**. Metricoolin virallisen ohjeen mukaan tämä käynnistää manuaalisen julkaisun ilmoituksella; tila `Sent` tarkoittaa vain ilmoituksen lähettämistä, ei Instagramissa julkaistua videota. Käyttäjä ei tehnyt erillistä mobiilijulkaisua, joten Reeliä ei näy profiilissa. Aiempi `PUBLISHED`-merkintä Metricool-liitännässä ei tässä tapauksessa ollut luotettava todiste Instagramissa näkyvästä postauksesta. **Älä diagnosoi tätä Meta-poistoksi tai tee tukeen eskalointia oletuksena.**
+>
+> **Korjauspolku:** Metricool Calendar → alkuperäinen Instagram-postaus → **Duplicate** → jätä kanavaksi **vain Instagram** (FB ja YouTube julkaistu jo) → **Auto publish ON** → tuleva aika → ajoita/julkaise. Jos alkuperäinen notifikaatio on käytettävissä, vaihtoehto on suorittaa julkaisu puhelimella. Kun manuaalinen notifikaatio on jo lähetetty, Metricoolin ohjeen mukaan alkuperäistä postausta ei enää voi vaihtaa automaattiseksi: tarvitaan duplikaatti. Aina julkaisun jälkeen varmista oikea Instagram Reel -URL/näkyvyys ennen kuin kirjataan `PUBLIC_VERIFIED` tai yritetään retry. Tulevien automaatioiden on pakotettava IG Reel `autoPublish=true` ja tarkistettava erikseen alkuperäisen kanavan näkyvyys.
+>
+> Lähde: https://help.metricool.com/why-does-my-post-appear-as-sent-in-metricool-and-not-auto-published-467xf ja https://help.metricool.com/why-cant-i-enable-auto-publishing-66gg0 .
+
 ## Päivitys 26.10.2026 – videot tunnistettu käyttäjän vahvistuksella
 
 Aiempi yllä kuvattu HOLD *videon ja ottelun vastaavuuden* osalta on nyt ratkaistu. **Älä enää pyydä käyttäjää nimeämään näitä kahta tiedostoa uudelleen.**
