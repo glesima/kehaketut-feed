@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-27T14:28:56Z",
+  "generated_at": "2026-10-27T23:46:37Z",
   "data_origin": "BoxerBase public views and optionally Instagram official API",
   "boxers": [
     {
@@ -233,10 +233,10 @@
   ],
   "instagram": [],
   "errors": [],
-  "boxers_checked_at": "2026-10-27T14:28:56Z",
+  "boxers_checked_at": "2026-10-27T23:46:37Z",
   "club_id": "1Le8shnOwPIW",
   "club_url": "https://boxerbase.com/o/1Le8shnOwPIW/boxers",
-  "matches_checked_at": "2026-10-27T14:28:56Z",
+  "matches_checked_at": "2026-10-27T23:46:37Z",
   "registrations": [
     {
       "boxer_id": "0efaqUGeO1JP",
@@ -267,7 +267,7 @@
       "current_visibility": "previously_observed"
     }
   ],
-  "registrations_checked_at": "2026-10-27T14:30:19Z",
+  "registrations_checked_at": "2026-10-27T23:48:20Z",
   "registration_coverage": "Public browser search; organiser-hidden entries are unavailable.",
   "discovered_events": [
     {
@@ -289,12 +289,18 @@
       "url": "https://fin.boxerbase.com/e/MrW9GfmW-MyF"
     },
     {
+      "id": "sLxr0jrZoH9X",
+      "name": "Espoon Skabat",
+      "date": "2026-11-29",
+      "url": "https://fin.boxerbase.com/e/sLxr0jrZoH9X"
+    },
+    {
       "id": "DxgdbRx46tR-",
       "name": "NYRKKEILYN SM 2026",
       "date": "2026-12-04",
       "url": "https://fin.boxerbase.com/e/DxgdbRx46tR-"
     }
   ],
-  "events_checked_at": "2026-10-27T14:28:56Z",
-  "registrations_first_page_checked_at": "2026-10-27T14:28:56Z"
+  "events_checked_at": "2026-10-27T23:46:37Z",
+  "registrations_first_page_checked_at": "2026-10-27T23:46:37Z"
 }
