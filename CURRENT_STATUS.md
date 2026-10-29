@@ -1,6 +1,17 @@
 # Nykytila ja tunnetut rajat
 
-Päivitetty 28.10.2026. Tämä tiedosto on nykytilan aloituspiste. Päivätyt suunnitelmat kuvaavat myös aiempia työvaiheita, eivät automaattisesti tämänhetkistä käyttöönottoa.
+Päivitetty 30.10.2026. Tämä tiedosto on nykytilan aloituspiste. Päivätyt suunnitelmat kuvaavat myös aiempia työvaiheita, eivät automaattisesti tämänhetkistä käyttöönottoa.
+
+## Harjoitukset jatkuvat 30.10.2026
+
+Seuran vahvistuksen perusteella Kamppailukeskuksen harjoitukset jatkuvat perjantaina 30.10.2026 klo 17.00 alkaen normaalin harjoitusaikataulun mukaisesti. Peruutus 27.–29.10. on päättynyt. Korjausten valmistumisesta tai sisäilman mittaustuloksista ei esitetä erillisiä väitteitä.
+
+- Facebook-tiedote julkaistu 30.10.2026 klo 01.40 Europe/Helsinki. Metricoolin jälkitarkistus palautti PUBLISHED-tilan, alustan postitunnisteen ja julkisen osoitteen: https://facebook.com/1570416605115618/posts/1575746574582621 . Ei uusintajulkaisua.
+- Julkinen tiedotesivu: `docs/tiedotteet/harjoitukset-jatkuvat-2026-10-30.html`.
+- Etusivun nykyinen `news-loader.js` lisää erillisen jatkumisilmoituksen uutisosion yläpuolelle 30.10.–5.11.2026; ilmoitus poistuu ajan perusteella 6.11. klo 00.00 Suomen aikaa. Uutisten suora Yhdistysavain-haku säilyy ennallaan. Paikallisen JavaScript-tarkistuksen yhdeksän skenaariota läpäisivät aikarajojen, duplikaattisuojan, puuttuvan kohde-elementin, DOM-valmiuden ja virhevaran testit.
+- Aiempi GitHub Pagesin peruutustiedote säilyy kokonaisena ja sen alkuun lisättiin päivätty päivitys sekä linkki jatkotiedotteeseen. Vanha määräaikainen peruutusbanneri on jo vanhentunut 30.10. klo 00.00.
+- Sisältöcommit `5ecf465e4a892f998ae9ae4282de5c2bd0c3b6e6`; Pages-ajon `40975026700` Deploy Pages -vaihe palautti success. Tämä ei ole riippumaton selaimen näyttötesti Yhdistysavaimen etusivusta.
+- Yhdistysavaimen omaan `/uutiset/`-arkistoon ei tällä työvaiheella luotu tai muokattu artikkelia. Etusivun tiedotenosto ja erillinen julkinen tiedotesivu ovat eri julkaisupinta kuin uutisarkisto.
 
 ## Vahvistettu ja lähteen laatu
 
@@ -30,4 +41,4 @@ Lähettäjän ilmoitus kuvausluvasta on aineiston lähdetieto, ei oikeus myönt�
 
 Katso [CONTEXT_HANDOFF.md](CONTEXT_HANDOFF.md) ja [PUBLIC_SCOPE.md](PUBLIC_SCOPE.md). Tämän julkisen repositorion tulee kuvata seuran näkyvät palvelut ja neutraali käyttöönottotila. Yksityinen mediajärjestelmän koodi, ylläpitotiedot, kuvaajien tiedot, valtuutukset ja projektikeskustelun sisäiset päätökset säilytetään erikseen. Historiatiedostojen julkisuustarkastus on edelleen erillinen tehtävä; historiaa tai toimivia vastaanottolinkkejä ei poisteta automaattisesti.
 
-Tämä päivitys ei asenna uutta palvelua, muuta vastaanotinta tai someasetuksia, käynnistä julkaisuja eikä lupaa täydellistä virheettömyyttä. Vanhojen käsittelyraporttien mitätöinti, tilapäisten virheiden palautuminen ja uudet koko ketjun testit ovat yhä tuotantokäyttöönoton tarkistuskohtia.
+Tämän tilannekirjauksen lisäksi tehdyt julkaisutoimet on eroteltu yllä. Vastaanotinta tai someasetuksia ei muutettu eikä uutta itsenäistä automaatiota otettu käyttöön. Vanhojen käsittelyraporttien mitätöinti, tilapäisten virheiden palautuminen ja uudet koko ketjun testit ovat yhä tuotantokäyttöönoton tarkistuskohtia.
