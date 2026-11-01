@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-01T18:54:47Z",
+  "generated_at": "2026-11-01T23:34:14Z",
   "data_origin": "BoxerBase public views and optionally Instagram official API",
   "boxers": [
     {
@@ -233,10 +233,10 @@
   ],
   "instagram": [],
   "errors": [],
-  "boxers_checked_at": "2026-11-01T18:54:47Z",
+  "boxers_checked_at": "2026-11-01T23:34:14Z",
   "club_id": "1Le8shnOwPIW",
   "club_url": "https://boxerbase.com/o/1Le8shnOwPIW/boxers",
-  "matches_checked_at": "2026-11-01T18:54:47Z",
+  "matches_checked_at": "2026-11-01T23:34:14Z",
   "registrations": [
     {
       "boxer_id": "0efaqUGeO1JP",
@@ -248,7 +248,7 @@
       "event": "Nuorten SM-kilpailut",
       "event_url": "https://fin.boxerbase.com/e/zdyYMbmXqIuV",
       "event_date": "2026-11-06",
-      "observed_at": "2026-11-01T18:56:05Z",
+      "observed_at": "2026-11-01T23:35:43Z",
       "coverage": "filtered_public_browser_ui",
       "current_visibility": "verified_in_latest_public_search"
     },
@@ -262,12 +262,12 @@
       "event": "Nuorten SM-kilpailut",
       "event_url": "https://fin.boxerbase.com/e/zdyYMbmXqIuV",
       "event_date": "2026-11-06",
-      "observed_at": "2026-11-01T18:56:05Z",
+      "observed_at": "2026-11-01T23:35:43Z",
       "coverage": "filtered_public_browser_ui",
       "current_visibility": "verified_in_latest_public_search"
     }
   ],
-  "registrations_checked_at": "2026-11-01T18:56:22Z",
+  "registrations_checked_at": "2026-11-01T23:36:01Z",
   "registration_coverage": "Public browser search; organiser-hidden entries are unavailable.",
   "discovered_events": [
     {
@@ -307,6 +307,6 @@
       "url": "https://fin.boxerbase.com/e/DxgdbRx46tR-"
     }
   ],
-  "events_checked_at": "2026-11-01T18:54:47Z",
-  "registrations_first_page_checked_at": "2026-11-01T18:54:47Z"
+  "events_checked_at": "2026-11-01T23:34:14Z",
+  "registrations_first_page_checked_at": "2026-11-01T23:34:14Z"
 }
