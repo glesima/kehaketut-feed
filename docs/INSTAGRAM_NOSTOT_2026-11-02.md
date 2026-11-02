@@ -1,18 +1,26 @@
-# Tiiviit Instagram-nostot ilman Juiceria
+# Tiiviit Instagram- ja Facebook-nostot ilman Juiceria
 
 ## Toteutus
 
-`social-embed.js` v3 korvaa aiemman Juicer-upotuksen. Sama Yhdistysavaimen `rkk-social-unified`-elementti ja script-osoite säilyvät. Enintään kolme uusinta yksilöllistä julkaisukorttia: pieni kuva, päivämäärä, lyhyt otsikko/ote ja linkki alkuperäiseen Instagram-julkaisuun. Ei automaattista videolatausta, sisäistä vieritysikkunaa tai loputonta syötettä. Facebook-kehys säilyy rinnalla; puhelinleveydellä palstat ovat allekkain. Instagram-julkaisuja ei poisteta eikä tilejä muuteta.
+`social-embed.js` v4 näyttää molempien kanavien kortit samassa DOM:ssa. Sama Yhdistysavaimen `rkk-social-unified`-elementti ja script-osoite säilyvät. Enintään kolme uusinta yksilöllistä julkaisukorttia per kanava. Instagramissa pieni kuva, julkaisupäivä, lyhyt otsikko/ote ja linkki alkuperäiseen julkaisuun. Facebookissa päivämäärä, julkisen tekstin ensimmäinen kappale otsikkona, tiivis tekstikatkelma ja julkaisulinkki. Ei uutta sisällöntuotantoa tai muutoksia alkuperäisiin somejulkaisuihin.
 
-`docs/instagram.json` sisältää vain jo julkista @kehaketut-sisältöä. Brändi 7632678 ja käyttäjätunnus tarkistetaan sekä päivityksessä että selaimessa. Julkaisupäivä ei ole tekstissä mainittu kilpailupäivä. Selaimessa tekstisisältö lisätään textContentilla, ei HTML:nä. Linkit rajataan Instagramin p/reel/tv-osoitteisiin.
+## Tasakorkuiset palstat — v4-korjaus
+
+V3 käytti Facebookille 530 px:n iframe-kehystä. Lapsikehys mittasi documentElement.scrollHeightin ja lisäsi 15 px; emoelementti lisäsi vielä 12 px. Mitta riippui kehysikkunan korkeudesta, ei vain varsinaisista korteista, joten alareunaan jäi tyhjää tilaa. Pelkkä molempien palstojen venyttäminen tähän korkeuteen ei korjaisi syytä.
+
+V4 poistaa Facebook-kehyksen ja korkeuden postMessage-kuuntelijan tästä yhteisestä someosiosta. Molemmat tietolähteet haetaan suoraan samoista julkisista JSON-tiedostoista. Desktopissa ulkoruudukko venyttää palstat yhtä korkeiksi; molemmissa sama otsikko/lista/alalinkki-rakenne ja listan kolme tasakorkuista korttiriviä. Ei kiinteää palsta- tai iframe-korkeutta. Alle 701 px:n näytöillä palstat ovat allekkain ja korkeus seuraa omaa sisältöä. Molemmissa on Katso lisää -linkki ja samanmuotoinen lähde/päivitysrivi.
+
+Vanha `facebook.html` säilyy erillisenä yhteensopivuussivuna, mutta etusivun uusi someosio ei lataa sitä. Muut iframe-upotukset (esimerkiksi BoxerBase) eivät muutu. Historiallista sisältöä tai syötetiedostoja ei poisteta. Facebook- ja Instagram-ylläpitotehtävät sekä niiden tietosopimukset säilyvät.
+
+`docs/instagram.json` sisältää vain jo julkista @kehaketut-sisältöä; `docs/facebook.json` vain jo julkisen sivun sisältöä. Brändi 7632678, Instagram-käyttäjä kehaketut ja Facebook-sivu 160875127258478 tarkistetaan selaimessa. Julkaisupäivä on syötteen päivä, ei tekstissä mainittu kilpailupäivä. Tekstit lisätään textContentilla. Linkit rajataan HTTPS Instagram-/Facebook-osoitteisiin ilman userinfoa tai erikoisporttia. Kanavat latautuvat riippumatta toisistaan: toisen häiriö ei peitä toista. Ei Juicer-scriptiä, automaattista videolatausta, sisäistä vieritystä tai loputonta syötettä.
 
 ## Esikatselukuvat
 
-`cache_instagram_thumbnails.py` noutaa korkeintaan kuusi jo julkista JPEG-esikatselua Metricoolin palauttamista Meta-CDN-osoitteista. Sallitut CDN:t, HTTPS, kokoraja, JPEG-tunnisteet, uudelleenohjausten tarkistus ja atominen tallennus. Tämä on rajattu siirtotarkistus, ei täydellinen kuvatiedostodekoodaus. Aiempi onnistunut kuva säilyy lataushäiriössä. Selaimen kuva tulee vain omasta `assets/instagram/<julkaisukoodi>.jpg`-polusta. Jos kuva puuttuu, kortti näyttää neutraalin Reel/kuva-tunnisteen ja toimivan julkaisulinkin, ei rikkinäistä kuvasymbolia.
+`cache_instagram_thumbnails.py` noutaa korkeintaan kuusi jo julkista JPEG-esikatselua Metricoolin palauttamista Meta-CDN-osoitteista. Sallitut CDN:t, HTTPS, kokoraja, JPEG-tunnisteet, uudelleenohjausten tarkistus ja atominen tallennus. Tämä on rajattu siirtotarkistus, ei täydellinen kuvatiedostodekoodaus. Aiempi onnistunut kuva säilyy lataushäiriössä. Selaimen kuva tulee vain omasta `assets/instagram/<julkaisukoodi>.jpg`-polusta. Jos kuva puuttuu, kortti näyttää neutraalin Reel/kuva-tunnisteen ja toimivan julkaisulinkin, ei rikkinäistä kuvasymbolia. V4-asettelukorjaus ei korvaa tai muuta lähdekuvia.
 
 Pages-työnkulku tekee kuvahaun ennen julkaisua ja säilyttää kuvat versionhallinnassa. Julkaisulista päivitetään erillisellä Metricool-yhteyttä käyttävällä ajastetulla ylläpitotehtävällä. Pelkkä Pages-cron ei löydä uusia Instagram-julkaisuja: se päivittää jo listattujen julkaisujen kuvat ja julkaisee tiedostot. Uuden listan päivittyminen riippuu Metricool-datan saatavuudesta ja ajastetun tehtävän onnistumisesta.
 
-## Päivityssopimus
+## Instagram-päivityssopimus (ennallaan)
 
 Kirjoita vain `docs/instagram.json` nykyisen SHA:n suojauksella. Lue oikean brändin Instagram reels- ja posts-analytiikka; älä käytä luonnoksia, tarinoita tai toisen tilin aineistoa. Yhdistä, poista duplikaatit, järjestä uusin ensin ja säilytä enintään kuusi. Näkymä näyttää enintään kolme. `title` ja `excerpt` ovat lyhyitä uskollisia otteita julkisesta kuvatekstistä, eivät uusia tulosväitteitä. `image_source` on palvelun julkinen kuvalinkki, ei API/OAuth-tunnus. Ei henkilökohtaisia tilitietoja tai analytiikkalukuja julkiseen syötteeseen.
 
@@ -20,6 +28,8 @@ Jos haku epäonnistuu tai ei anna luotettavaa aineistoa, pidä viimeinen hyvä s
 
 ## Testauksen rajaus
 
-Paikallisesti 12 kuvavälimuistin yksikkötestiä läpäistiin. Chromium-testit 1200, 768, 390 ja 320 px: kolme korttia, ei vaakaylivuotoa tai duplikaatteja, ei videosoitinta tai Juicer-pyyntöjä. Lisäksi syötteen virhe, väärä brändi, rikkoutunut kuva, turvaton linkki ja HTML-tekstin turvallinen näyttö testattu. Layout-testi käytti synteettisiä esikatselukuvia ja Facebookin staattista testisisältöä: tämä ei yksin ole oikean Yhdistysavain-sivun live-selaintesti. Pages-ajon ja oikeiden kuvien tulos varmennetaan julkaisun jälkeen.
+V4: `node --check docs/social-embed.js` ja 24 paikallista Chromium-skenaariota läpäisty. Leveydet 1600/1200/900/768/701/700/390/320 px; desktopissa panelien, korttirivien ja alalinkkien korkeus/sijainti mitattu, alareunan tyhjä tila rajattu normaaliksi paddingiksi. Toistuvat leveysmuutokset eivät kasvata osiota. Lisäksi riippumattomat syötevirheet, väärä brändi kummallakin kanavalla, turvattomat linkit/duplikaatit/HTML-teksti, rikkinäinen kuva, puuttuva mount, uudelleenalustus, eri julkaisumäärät ja suurempi tekstikoko testattu. Testi käyttää synteettistä sisältöä ja pikkukuvaa; se ei ole live-Yhdistysavain-selaintesti. Ajettava testi: `qa/check_social_layout.py` (Playwright/Chromium, erillinen vapaaehtoinen kehitystesti, ei uusia tuotantoriippuvuuksia).
+
+V3:n historialliset testit: 12 kuvavälimuistin yksikkötestiä ja selaintestit 1200/768/390/320 px. Facebook oli siinä vain staattinen testisisältö, joten oikean iframe-korkeusvirheen toistuminen jäi tuolloin havaitsematta. Tämä rajaus korjataan v4:ssä poistamalla kehysriippuvuus.
 
 Juicer-tilausta ei ostettu tai peruttu. Seuran vanha sisältö, Facebook-automaatio, uutiset ja media-vastaanotin säilyvät ennallaan.
