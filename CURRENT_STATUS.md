@@ -2,13 +2,27 @@
 
 Päivitetty 2.11.2026. Tämä tiedosto on nykytilan aloituspiste. Päivätyt suunnitelmat kuvaavat myös aiempia työvaiheita, eivät automaattisesti tämänhetkistä käyttöönottoa.
 
+## Instagram: Juicer korvattu omalla tiiviillä nostolla 2.11.2026
+
+Ylläpitäjän hyväksynnällä `docs/social-embed.js` v3 korvaa Juicer-syötteen kolmella pienellä Instagram-kortilla. Kortissa on kuva, julkaisupäivä, lyhyt otsikko/ote ja linkki alkuperäiseen julkaisuun. Ei Juicer-scriptiä, mainosta, automaattisesti ladattavaa videosoitinta, loputonta syötettä tai sisäistä vieritystä. Facebook-kehys ja sen nykyinen päivitystehtävä säilyvät. Mobiilissa palstat ovat allekkain.
+
+- Koodicommit `577727772aeb01f09dd8f5a24cf0f5e587c5e4f6`. Pages-ajo `41527594857` valmistui success-tilaan; testit, kuvavälimuisti ja Deploy Pages onnistuivat.
+- Ensimmäinen syöte haettiin live-Metricool-yhteydestä oikean brändin 7632678 / @kehaketut tarkistuksen jälkeen. Reels-haku palautti kolme julkaistua videota; saman aikavälin tavallisten postausten haku oli tyhjä. Ei luonnoksia tai uusia somejulkaisuja.
+- `docs/instagram.json` on erillinen some-nostojen tietolähde. Vanhat `docs/data.json`-Instagram-kentät tai Juicer eivät ohjaa tätä näkymää.
+- GitHub Actions tallensi kaikki kolme oikeaa JPEG-esikatselua polkuun `docs/assets/instagram/`: DfCDNnGgVUU.jpg (2721 tavua), De9SHpJCSff.jpg (40466 tavua), De9QLdAkr_o.jpg (52979 tavua). Repon jälkiluku vahvisti tiedostot. Selaimet eivät ole riippuvaisia Instagramin väliaikaisten kuvalinkkien voimassaolosta.
+- Ajastettu Instagram-ylläpito on luotu ja käytössä: neljä tarkistusta päivässä, vain tämän brändin jo julkiset Reels- ja Feed-julkaisut, kirjoituskohde vain `docs/instagram.json`. Tämä on ChatGPT:n ajastettua Metricool/GitHub-ylläpitoa, ei käyttäjän Kubuntun itsenäinen somepalvelu. Ensimmäinen listan täyttö tehtiin tässä työvaiheessa; tulevan ajastetun kierroksen suorittamista ei vielä väitetä testatuksi. Uuden julkaisun näkyminen riippuu Metricoolin tiedon saatavuudesta, tarkistuskierroksesta ja Pages-julkaisusta, ei reaaliaikaisesta push-ilmoituksesta.
+- Erillinen `cache_instagram_thumbnails.py` kopioi sallituilta Meta-CDN-isänniltä enintään 3 MiB JPEG-kuvat atomisesti. Vanhat onnistuneet kuvat säilyvät virheessä; selain näyttää neutraalin linkkikortin puuttuvalle kuvalle. Korttilinkit/tekstit toimivat ilman kuvaa.
+- Paikallisesti 12 uutta yksikkötestiä ja 10 Chromium-skenaariota läpäisty: 1200/768/390/320 px, ei vaakaylivuotoa, duplikaattisuoja, rikkoutuva kuva/syöte, väärä brändi, turvattoman URL:n hylkäys ja tekstin turvallinen näyttö. Testatun JS:n Git-blob SHA täsmää julkaistuun lähteeseen.
+- Layout-testi käytti synteettisiä pikkukuvia ja Facebookin staattista testisisältöä. Se ei ole riippumaton lopullisen kehaketut.fi/Yhdistysavain-näkymän live-selaintarkistus. Julkisen sivun tuore renderöity näkymä ei ollut tässä työympäristössä saatavilla.
+- Ohje ja ylläpitosopimus: `docs/INSTAGRAM_NOSTOT_2026-11-02.md`. Juicer-tilausta ei ostettu tai peruttu. Historiallisia tiedotteita, somejulkaisuja, Facebook-syötettä, vastaanotinta tai media-automaatiota ei muutettu.
+
 ## Etusivun ylimääräinen tiedotenosto poistettu 2.11.2026
 
 Ylläpitäjän pyynnöstä `docs/news-loader.js`:stä poistettiin harjoitusten jatkumista koskevan erillisen etusivuilmoituksen luontifunktio ja sen kutsu. Uutisten lataus, virhetilanteen uutisarkistolinkki ja duplikaattisuoja säilyvät. Tiedotesivuja, uutisarkistoa ja Facebook-julkaisua ei poistettu tai muokattu.
 
 - Koodimuutos: `e245788abf10ee812a58fbef62b8d45337799ce2`.
 - JavaScriptin syntaksitarkistus ja kahdeksan paikallista simuloidun DOM:n testiä läpäisty. Testit eivät ole oikean selaimen näyttötesti.
-- Muutos käynnisti Pages-ajon `41520292153`; sen julkaisutila tarkistetaan erikseen. Tämä tilannekirjaus ei yksin ole todiste julkaisun valmistumisesta.
+- Muutos käynnisti Pages-ajon `41520292153`; myöhempi työkalutarkistus vahvisti sen success-tilan. Tämä ei yksin ole selaimen näyttötesti.
 - Alun perin 6.11. päättyväksi tarkoitettu lisänosto on poistettu koodista ennen määräaikaa. Alla oleva 30.10. julkaisutieto säilyy historiatietona.
 
 ## Harjoitukset jatkuvat 30.10.2026
@@ -50,4 +64,4 @@ Lähettäjän ilmoitus kuvausluvasta on aineiston lähdetieto, ei oikeus myönt�
 
 Katso [CONTEXT_HANDOFF.md](CONTEXT_HANDOFF.md) ja [PUBLIC_SCOPE.md](PUBLIC_SCOPE.md). Tämän julkisen repositorion tulee kuvata seuran näkyvät palvelut ja neutraali käyttöönottotila. Yksityinen mediajärjestelmän koodi, ylläpitotiedot, kuvaajien tiedot, valtuutukset ja projektikeskustelun sisäiset päätökset säilytetään erikseen. Historiatiedostojen julkisuustarkastus on edelleen erillinen tehtävä; historiaa tai toimivia vastaanottolinkkejä ei poisteta automaattisesti.
 
-Tämän tilannekirjauksen lisäksi tehdyt julkaisutoimet on eroteltu yllä. Vastaanotinta tai someasetuksia ei muutettu eikä uutta itsenäistä automaatiota otettu käyttöön. Vanhojen käsittelyraporttien mitätöinti, tilapäisten virheiden palautuminen ja uudet koko ketjun testit ovat yhä tuotantokäyttöönoton tarkistuskohtia.
+Sivuston some-nostojen ylläpito on erotettu yllä videoiden tuotanto- ja julkaisuketjusta. Vastaanotinta tai somekanavien asetuksia ei muutettu. Vanhojen käsittelyraporttien mitätöinti, tilapäisten virheiden palautuminen ja uudet koko mediaketjun testit ovat yhä tuotantokäyttöönoton tarkistuskohtia.
