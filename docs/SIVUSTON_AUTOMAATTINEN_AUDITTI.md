@@ -1,10 +1,10 @@
 # Kehä-Ketut: julkisen sivuston automaattinen inventaario
 
-Tarkistettu (UTC): 2026-10-26T10:19:39+00:00
+Tarkistettu (UTC): 2026-11-02T12:39:48+00:00
 
 **Tämä on tekninen sisällön inventaario, ei todistus kaikkien sivujen ajantasaisuudesta tai kuva- ja käyttöoikeuksista.** Vanhat kilpailutulokset ovat arvokasta historiaa, eikä niitä poisteta.
 
-Sivuja tarkistettu: **59** / sallittu enimmäismäärä 90. 
+Sivuja tarkistettu: **60** / sallittu enimmäismäärä 90. 
 Jonoon jääneitä: 0. Latausvirheitä: 0.
 
 | Osio | Sivuja |
@@ -15,7 +15,7 @@ Jonoon jääneitä: 0. Latausvirheitä: 0.
 | kilpailijat | 6 |
 | liity | 1 |
 | seura_ja_historia | 11 |
-| uutiset | 10 |
+| uutiset | 11 |
 | yhteystiedot | 1 |
 
 ## Sivukohtaiset havainnot
@@ -71,6 +71,7 @@ Jonoon jääneitä: 0. Latausvirheitä: 0.
 | [/seura/seuran-sm-mitalistit-ja-tul-mestari/](https://www.kehaketut.fi/seura/seuran-sm-mitalistit-ja-tul-mestari/) | Seuran SM-mitalistit ja TUL-mestarit | Ei automaattista huomautusta |
 | [/seura/seuravaatteet/](https://www.kehaketut.fi/seura/seuravaatteet/) | Seuran vaatteet | Ei automaattista huomautusta |
 | [/uutiset/](https://www.kehaketut.fi/uutiset/) | Uutiset | meta_description_review |
+| [/uutiset/harjoitukset-peruttu-27-29-10-2026/](https://www.kehaketut.fi/uutiset/harjoitukset-peruttu-27-29-10-2026/) | Harjoitukset peruttu 27.–29.10.2026 | Ei automaattista huomautusta |
 | [/uutiset/keha-kettujen-juniorit-tul-n-mestar/](https://www.kehaketut.fi/uutiset/keha-kettujen-juniorit-tul-n-mestar/) | Kehä-Kettujen juniorit TUL:n mestaruuskilpailuihin | Ei automaattista huomautusta |
 | [/uutiset/keha-ketut-kilpailivat-lokakuussa-t/](https://www.kehaketut.fi/uutiset/keha-ketut-kilpailivat-lokakuussa-t/) | Kehä-Ketut kilpailivat lokakuussa Tampereella ja Hämeenlinnassa | Ei automaattista huomautusta |
 | [/uutiset/kettujen-uudet-asusteet/](https://www.kehaketut.fi/uutiset/kettujen-uudet-asusteet/) | KETTUJEN UUDET ASUSTEET | Ei automaattista huomautusta |
