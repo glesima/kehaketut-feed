@@ -2,18 +2,30 @@
 
 Päivitetty 2.11.2026. Tämä tiedosto on nykytilan aloituspiste. Päivätyt suunnitelmat kuvaavat myös aiempia työvaiheita, eivät automaattisesti tämänhetkistä käyttöönottoa.
 
+## Somepalstojen korkeudet korjattu — social v4, 2.11.2026
+
+Ylläpitäjä vahvisti Juicerin korvaavan näkymän näkyvän, mutta kuvakaappauksessa Facebook-palsta jäi Instagramia pidemmäksi ja sen alaosassa oli ylimääräistä tyhjää. V4 korjaa rakenteen, ei vain venytä Instagramia saman tyhjän tilan mittaiseksi.
+
+- Etusivun `docs/social-embed.js` lukee nyt myös Facebookin suoraan nykyisestä `facebook.json`-syötteestä. Erillinen Facebook-iframe, sen 530 px:n oletuskorkeus ja korkeuden viestikuuntelija poistettiin vain tästä someosiosta. Vanha `facebook.html` säilyy erillisenä yhteensopivuussivuna.
+- Molemmissa sama otsikko–kolmen kortin lista–alalinkki/lähdetieto-rakenne. Desktopissa palstat ja vastaavat korttirivit asettuvat yhtä korkeiksi sisällön mukaan. Mobiilissa palstat ovat allekkain ilman pakotettua yhtäläistä korkeutta. Myös Facebookissa on Katso lisää -linkki.
+- Nykyiset somejulkaisut, syötteiden tiedot, kuva-assetit ja ajastettujen ylläpitotehtävien asetukset säilyvät. Ei uusia somejulkaisuja, maksuja, Juicer-riippuvuutta tai muutoksia uutisiin/BoxerBase-upotuksiin/media-vastaanottimeen.
+- `node --check` sekä 24 paikallista Chromium-skenaariota läpäisty. Leveydet 1600/1200/900/768/701/700/390/320 px. Mitatut tasakorkuiset desktop-palstat ja korttirivit, sama alalinkkien taso, normaali alareunapadding, ei kasvua toistuvissa leveysmuutoksissa. Testattu myös molempien kanavien erilliset virheet, turvattomat URL:t, duplikaatit, HTML-tekstin turvallinen näyttö, rikkoutunut kuva, eri julkaisumäärät ja suurempi teksti.
+- Testit käyttävät synteettisiä tietoja ja pikkukuvia. Tämä ei ole riippumaton live-Yhdistysavain-selaintesti. Ajettava testi on `qa/check_social_layout.py`, erillinen vapaaehtoinen kehitystesti (Playwright/Chromium), ei uusi tuotantoriippuvuus.
+- Koodicommit `057099de4d5ec95c5f4020d0e2cd01abca13b35e`. Testatun ja GitHubista takaisin luetun JS:n Git-blob SHA sama: `737d8dcfa514cb6eb0a3f34a1097991655d18bd3`. Pages-ajon tunniste `41531038511`; ajon lopullinen tila tarkistetaan GitHubista erikseen.
+- Ajantasainen rakenne ja muuttumaton tietosopimus: `docs/INSTAGRAM_NOSTOT_2026-11-02.md`.
+
 ## Instagram: Juicer korvattu omalla tiiviillä nostolla 2.11.2026
 
-Ylläpitäjän hyväksynnällä `docs/social-embed.js` v3 korvaa Juicer-syötteen kolmella pienellä Instagram-kortilla. Kortissa on kuva, julkaisupäivä, lyhyt otsikko/ote ja linkki alkuperäiseen julkaisuun. Ei Juicer-scriptiä, mainosta, automaattisesti ladattavaa videosoitinta, loputonta syötettä tai sisäistä vieritystä. Facebook-kehys ja sen nykyinen päivitystehtävä säilyvät. Mobiilissa palstat ovat allekkain.
+Ensimmäisessä toteutuksessa `docs/social-embed.js` v3 korvasi Juicer-syötteen kolmella pienellä Instagram-kortilla. Kortissa on kuva, julkaisupäivä, lyhyt otsikko/ote ja linkki alkuperäiseen julkaisuun. Ei Juicer-scriptiä, mainosta, automaattisesti ladattavaa videosoitinta, loputonta syötettä tai sisäistä vieritystä. V3:n Facebook-kehys korvattiin yllä kuvatussa v4:ssä suorilla korteilla; Facebookin nykyinen päivitystehtävä säilyy. Mobiilissa palstat ovat allekkain.
 
-- Koodicommit `577727772aeb01f09dd8f5a24cf0f5e587c5e4f6`. Pages-ajo `41527594857` valmistui success-tilaan; testit, kuvavälimuisti ja Deploy Pages onnistuivat.
+- Alkuperäinen koodicommit `577727772aeb01f09dd8f5a24cf0f5e587c5e4f6`. Pages-ajo `41527594857` valmistui success-tilaan; testit, kuvavälimuisti ja Deploy Pages onnistuivat.
 - Ensimmäinen syöte haettiin live-Metricool-yhteydestä oikean brändin 7632678 / @kehaketut tarkistuksen jälkeen. Reels-haku palautti kolme julkaistua videota; saman aikavälin tavallisten postausten haku oli tyhjä. Ei luonnoksia tai uusia somejulkaisuja.
 - `docs/instagram.json` on erillinen some-nostojen tietolähde. Vanhat `docs/data.json`-Instagram-kentät tai Juicer eivät ohjaa tätä näkymää.
 - GitHub Actions tallensi kaikki kolme oikeaa JPEG-esikatselua polkuun `docs/assets/instagram/`: DfCDNnGgVUU.jpg (2721 tavua), De9SHpJCSff.jpg (40466 tavua), De9QLdAkr_o.jpg (52979 tavua). Repon jälkiluku vahvisti tiedostot. Selaimet eivät ole riippuvaisia Instagramin väliaikaisten kuvalinkkien voimassaolosta.
 - Ajastettu Instagram-ylläpito on luotu ja käytössä: neljä tarkistusta päivässä, vain tämän brändin jo julkiset Reels- ja Feed-julkaisut, kirjoituskohde vain `docs/instagram.json`. Tämä on ChatGPT:n ajastettua Metricool/GitHub-ylläpitoa, ei käyttäjän Kubuntun itsenäinen somepalvelu. Ensimmäinen listan täyttö tehtiin tässä työvaiheessa; tulevan ajastetun kierroksen suorittamista ei vielä väitetä testatuksi. Uuden julkaisun näkyminen riippuu Metricoolin tiedon saatavuudesta, tarkistuskierroksesta ja Pages-julkaisusta, ei reaaliaikaisesta push-ilmoituksesta.
 - Erillinen `cache_instagram_thumbnails.py` kopioi sallituilta Meta-CDN-isänniltä enintään 3 MiB JPEG-kuvat atomisesti. Vanhat onnistuneet kuvat säilyvät virheessä; selain näyttää neutraalin linkkikortin puuttuvalle kuvalle. Korttilinkit/tekstit toimivat ilman kuvaa.
-- Paikallisesti 12 uutta yksikkötestiä ja 10 Chromium-skenaariota läpäisty: 1200/768/390/320 px, ei vaakaylivuotoa, duplikaattisuoja, rikkoutuva kuva/syöte, väärä brändi, turvattoman URL:n hylkäys ja tekstin turvallinen näyttö. Testatun JS:n Git-blob SHA täsmää julkaistuun lähteeseen.
-- Layout-testi käytti synteettisiä pikkukuvia ja Facebookin staattista testisisältöä. Se ei ole riippumaton lopullisen kehaketut.fi/Yhdistysavain-näkymän live-selaintarkistus. Julkisen sivun tuore renderöity näkymä ei ollut tässä työympäristössä saatavilla.
+- V3:ssa paikallisesti 12 uutta yksikkötestiä ja 10 Chromium-skenaariota läpäisty: 1200/768/390/320 px, ei vaakaylivuotoa, duplikaattisuoja, rikkoutuva kuva/syöte, väärä brändi, turvattoman URL:n hylkäys ja tekstin turvallinen näyttö. Testatun JS:n Git-blob SHA täsmäsi julkaistuun lähteeseen.
+- V3-layout-testi käytti synteettisiä pikkukuvia ja Facebookin staattista testisisältöä. Se ei ollut riippumaton lopullisen kehaketut.fi/Yhdistysavain-näkymän live-selaintarkistus. Julkisen sivun tuore renderöity näkymä ei ollut työympäristössä saatavilla. V4 poistaa tämän palstan iframe-riippuvuuden kokonaan.
 - Ohje ja ylläpitosopimus: `docs/INSTAGRAM_NOSTOT_2026-11-02.md`. Juicer-tilausta ei ostettu tai peruttu. Historiallisia tiedotteita, somejulkaisuja, Facebook-syötettä, vastaanotinta tai media-automaatiota ei muutettu.
 
 ## Etusivun ylimääräinen tiedotenosto poistettu 2.11.2026
