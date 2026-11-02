@@ -1,6 +1,15 @@
 # Nykytila ja tunnetut rajat
 
-Päivitetty 30.10.2026. Tämä tiedosto on nykytilan aloituspiste. Päivätyt suunnitelmat kuvaavat myös aiempia työvaiheita, eivät automaattisesti tämänhetkistä käyttöönottoa.
+Päivitetty 2.11.2026. Tämä tiedosto on nykytilan aloituspiste. Päivätyt suunnitelmat kuvaavat myös aiempia työvaiheita, eivät automaattisesti tämänhetkistä käyttöönottoa.
+
+## Etusivun ylimääräinen tiedotenosto poistettu 2.11.2026
+
+Ylläpitäjän pyynnöstä `docs/news-loader.js`:stä poistettiin harjoitusten jatkumista koskevan erillisen etusivuilmoituksen luontifunktio ja sen kutsu. Uutisten lataus, virhetilanteen uutisarkistolinkki ja duplikaattisuoja säilyvät. Tiedotesivuja, uutisarkistoa ja Facebook-julkaisua ei poistettu tai muokattu.
+
+- Koodimuutos: `e245788abf10ee812a58fbef62b8d45337799ce2`.
+- JavaScriptin syntaksitarkistus ja kahdeksan paikallista simuloidun DOM:n testiä läpäisty. Testit eivät ole oikean selaimen näyttötesti.
+- Muutos käynnisti Pages-ajon `41520292153`; sen julkaisutila tarkistetaan erikseen. Tämä tilannekirjaus ei yksin ole todiste julkaisun valmistumisesta.
+- Alun perin 6.11. päättyväksi tarkoitettu lisänosto on poistettu koodista ennen määräaikaa. Alla oleva 30.10. julkaisutieto säilyy historiatietona.
 
 ## Harjoitukset jatkuvat 30.10.2026
 
@@ -8,7 +17,7 @@ Seuran vahvistuksen perusteella Kamppailukeskuksen harjoitukset jatkuvat perjant
 
 - Facebook-tiedote julkaistu 30.10.2026 klo 01.40 Europe/Helsinki. Metricoolin jälkitarkistus palautti PUBLISHED-tilan, alustan postitunnisteen ja julkisen osoitteen: https://facebook.com/1570416605115618/posts/1575746574582621 . Ei uusintajulkaisua.
 - Julkinen tiedotesivu: `docs/tiedotteet/harjoitukset-jatkuvat-2026-10-30.html`.
-- Etusivun nykyinen `news-loader.js` lisää erillisen jatkumisilmoituksen uutisosion yläpuolelle 30.10.–5.11.2026; ilmoitus poistuu ajan perusteella 6.11. klo 00.00 Suomen aikaa. Uutisten suora Yhdistysavain-haku säilyy ennallaan. Paikallisen JavaScript-tarkistuksen yhdeksän skenaariota läpäisivät aikarajojen, duplikaattisuojan, puuttuvan kohde-elementin, DOM-valmiuden ja virhevaran testit.
+- Etusivun `news-loader.js` lisäsi alun perin erillisen jatkumisilmoituksen uutisosion yläpuolelle 30.10.–5.11.2026. Nosto poistettiin yllä kuvatusti 2.11.2026. Uutisten suora Yhdistysavain-haku säilyy ennallaan. Alkuperäisen julkaisun paikallisen JavaScript-tarkistuksen yhdeksän skenaariota läpäisivät aikarajojen, duplikaattisuojan, puuttuvan kohde-elementin, DOM-valmiuden ja virhevaran testit.
 - Aiempi GitHub Pagesin peruutustiedote säilyy kokonaisena ja sen alkuun lisättiin päivätty päivitys sekä linkki jatkotiedotteeseen. Vanha määräaikainen peruutusbanneri on jo vanhentunut 30.10. klo 00.00.
 - Sisältöcommit `5ecf465e4a892f998ae9ae4282de5c2bd0c3b6e6`; Pages-ajon `40975026700` Deploy Pages -vaihe palautti success. Tämä ei ole riippumaton selaimen näyttötesti Yhdistysavaimen etusivusta.
 - Yhdistysavaimen omaan `/uutiset/`-arkistoon ei tällä työvaiheella luotu tai muokattu artikkelia. Etusivun tiedotenosto ja erillinen julkinen tiedotesivu ovat eri julkaisupinta kuin uutisarkisto.
