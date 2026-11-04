@@ -1,66 +1,63 @@
-name: BoxerBase merge audit
+name: Validate BoxerBase merge candidate
 on:
   push:
     branches: [fix/boxerbase-merged-club-20261104]
 permissions:
-  contents: read
+  contents: write
 jobs:
-  inspect:
+  validate:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
         with:
-          persist-credentials: false
+          persist-credentials: true
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
       - run: pip install -r requirements.txt
-      - name: Read public merged roster and collect code snapshot
+      - name: Apply reviewed candidate only on the isolated branch
         run: |
-          python - <<'PY'
-          import sys,json,hashlib,subprocess,shutil
-          from pathlib import Path
-          from bs4 import BeautifulSoup
-          sys.path.insert(0,'scripts')
-          import update as u
-          root=Path('audit-bundle');root.mkdir()
-          for raw in subprocess.check_output(['git','ls-files','-z']).decode().split('\0'):
-              if not raw: continue
-              p=Path(raw)
-              if p.is_file() and p.suffix in {'.py','.json','.js','.html','.md','.txt','.yml','.yaml'}:
-                  dst=root/'source'/p;dst.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(p,dst)
-          report={'target_club_id':'mZjkT0LW248X','source_url':'https://boxerbase.com/o/mZjkT0LW248X/boxers','boxers':[],'site_links':[]}
-          try:
-              body=u.fetch(report['source_url']);soup=BeautifulSoup(body,'html.parser')
-              report['page_title']=soup.title.get_text(' ',strip=True) if soup.title else ''
-              report['roster_html_sha256']=hashlib.sha256(body.encode()).hexdigest()
-              for b in u.parse_club(body,report['source_url']):
-                  try:
-                      profile=u.fetch(b['boxerbase_url']);ps=BeautifulSoup(profile,'html.parser')
-                      b.update(u.parse_profile(profile))
-                      b['profile_title']=ps.title.get_text(' ',strip=True) if ps.title else ''
-                      b['club_links']=sorted(set(a['href'] for a in ps.select('a[href]') if '/o/' in a['href']))
-                      text=' '.join(ps.stripped_strings)
-                      if 'Gender:' in text:
-                          b['public_stat_heading']=text.split('Gender:')[0][-1000:]
-                      b['public_match_links']=sorted(set(a['href'] for a in ps.select('a[href]') if '/m/' in a['href']))
-                  except Exception as e:b['error']=str(e)
-                  report['boxers'].append(b)
-          except Exception as e:report['error']=str(e)
-          try:
-              home=u.SESSION.get('https://www.kehaketut.fi/',timeout=25);home.raise_for_status()
-              soup=BeautifulSoup(home.content.decode('utf-8'),'html.parser')
-              report['site_links']=[{'tag':a.name,'href':a.get('href') or a.get('src'),'text':a.get_text(' ',strip=True)[:100]} for a in soup.select('a[href],iframe[src],script[src]') if any(x in (a.get('href') or a.get('src') or '') for x in ['boxerbase','kehaketut-feed','kilpailijat'])]
-              report['site_old_club_present']='1Le8shnOwPIW' in home.text
-          except Exception as e:report['site_error']=str(e)
-          (root/'evidence.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
-          print(json.dumps(report,ensure_ascii=False,indent=2))
-          PY
-      - name: Store sanitized audit and public source snapshot
+          test "$GITHUB_REF" = refs/heads/fix/boxerbase-merged-club-20261104
+          cp docs/data.json "$RUNNER_TEMP/before.json"
+          python qa/apply_boxerbase_migration.py
+      - name: Unit and DOM regression tests
+        run: |
+          python -m unittest discover -s tests -v
+          python -m compileall -q scripts
+          node tests/test_widget_render.js
+          node tests/test_news_live.js
+          node tests/test_club_identity.js
+          node --check docs/profile-embed.js
+          node --check docs/news-loader.js
+          node --check docs/boxerbase-links.js
+      - name: Fetch public canonical source and verify retained history
+        run: |
+          python scripts/update.py
+          python qa/verify_boxerbase_migration.py "$RUNNER_TEMP/before.json" > "$RUNNER_TEMP/merge-verification.json"
+          cat "$RUNNER_TEMP/merge-verification.json"
+      - name: Refresh public registrations and recheck
+        run: |
+          pip install --quiet selenium==4.36.0
+          python scripts/update_registrations_browser.py
+          python qa/verify_boxerbase_migration.py "$RUNNER_TEMP/before.json" > "$RUNNER_TEMP/merge-verification.json"
+          cat "$RUNNER_TEMP/merge-verification.json"
+      - name: Preserve verification artifact
         uses: actions/upload-artifact@v4
         with:
-          name: boxerbase-merge-audit
-          path: audit-bundle/
+          name: boxerbase-merge-verification
+          path: |
+            ${{ runner.temp }}/merge-verification.json
+            docs/data.json
+            docs/rss.xml
           retention-days: 7
-          include-hidden-files: true
+      - name: Commit validated candidate on the isolated branch only
+        run: |
+          test "$GITHUB_REF" = refs/heads/fix/boxerbase-merged-club-20261104
+          git rm qa/apply_boxerbase_migration.py .github/workflows/boxerbase-merge-audit.yml
+          git add config.json scripts/update.py scripts/club_identity.py docs/widget.html docs/profile-embed.js docs/news-loader.js docs/boxerbase-links.js docs/BOXERBASE_MERGE_2026-11-04.md docs/data.json docs/rss.xml tests/test_update.py tests/test_club_identity.py tests/test_club_identity.js qa/verify_boxerbase_migration.py .github/workflows/pr-validation.yml CURRENT_STATUS.md CONTEXT_HANDOFF.md
+          git diff --cached --check
+          git config user.name rkk-site-bot
+          git config user.email rkk-site-bot@users.noreply.github.com
+          git commit -m 'Migrate to verified merged BoxerBase club and athlete profiles without losing history'
+          git push origin HEAD:fix/boxerbase-merged-club-20261104
