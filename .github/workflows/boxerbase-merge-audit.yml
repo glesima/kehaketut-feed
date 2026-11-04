@@ -1,0 +1,63 @@
+name: BoxerBase merge audit
+on:
+  push:
+    branches: [fix/boxerbase-merged-club-20261104]
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements.txt
+      - name: Read public merged roster and collect code snapshot
+        run: |
+          python - <<'PY'
+          import sys,json,hashlib,subprocess,shutil,unicodedata
+          from pathlib import Path
+          from bs4 import BeautifulSoup
+          sys.path.insert(0,'scripts')
+          import update as u
+          root=Path('audit-bundle');root.mkdir()
+          for raw in subprocess.check_output(['git','ls-files','-z']).decode().split('\0'):
+              if not raw: continue
+              p=Path(raw)
+              if p.is_file() and p.suffix in {'.py','.json','.js','.html','.md','.txt','.yml','.yaml'}:
+                  dst=root/'source'/p;dst.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(p,dst)
+          report={'target_club_id':'mZjkT0LW248X','source_url':'https://boxerbase.com/o/mZjkT0LW248X/boxers','boxers':[],'site_links':[]}
+          try:
+              body=u.fetch(report['source_url'])
+              soup=BeautifulSoup(body,'html.parser')
+              report['page_title']=soup.title.get_text(' ',strip=True) if soup.title else ''
+              report['roster_html_sha256']=hashlib.sha256(body.encode()).hexdigest()
+              for b in u.parse_club(body,report['source_url']):
+                  try:
+                      profile=u.fetch(b['boxerbase_url']);ps=BeautifulSoup(profile,'html.parser')
+                      b.update(u.parse_profile(profile))
+                      b['profile_title']=ps.title.get_text(' ',strip=True) if ps.title else ''
+                      b['club_links']=sorted(set(a['href'] for a in ps.select('a[href]') if '/o/' in a['href']))
+                  except Exception as e:b['error']=str(e)
+                  report['boxers'].append(b)
+          except Exception as e:report['error']=str(e)
+          try:
+              home=u.SESSION.get('https://www.kehaketut.fi/',timeout=25);home.raise_for_status()
+              soup=BeautifulSoup(home.content.decode('utf-8'),'html.parser')
+              report['site_links']=[{'tag':a.name,'href':a.get('href') or a.get('src'),'text':a.get_text(' ',strip=True)[:100]} for a in soup.select('a[href],iframe[src],script[src]') if any(x in (a.get('href') or a.get('src') or '') for x in ['boxerbase','kehaketut-feed','kilpailijat'])]
+              report['site_old_club_present']='1Le8shnOwPIW' in home.text
+          except Exception as e:report['site_error']=str(e)
+          (root/'evidence.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
+          print(json.dumps(report,ensure_ascii=False,indent=2))
+          PY
+      - name: Store sanitized audit and public source snapshot
+        uses: actions/upload-artifact@v4
+        with:
+          name: boxerbase-merge-audit
+          path: audit-bundle/
+          retention-days: 7
+          include-hidden-files: true
