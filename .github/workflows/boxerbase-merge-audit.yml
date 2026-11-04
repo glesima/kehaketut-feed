@@ -19,7 +19,7 @@ jobs:
       - name: Read public merged roster and collect code snapshot
         run: |
           python - <<'PY'
-          import sys,json,hashlib,subprocess,shutil,unicodedata
+          import sys,json,hashlib,subprocess,shutil
           from pathlib import Path
           from bs4 import BeautifulSoup
           sys.path.insert(0,'scripts')
@@ -32,8 +32,7 @@ jobs:
                   dst=root/'source'/p;dst.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(p,dst)
           report={'target_club_id':'mZjkT0LW248X','source_url':'https://boxerbase.com/o/mZjkT0LW248X/boxers','boxers':[],'site_links':[]}
           try:
-              body=u.fetch(report['source_url'])
-              soup=BeautifulSoup(body,'html.parser')
+              body=u.fetch(report['source_url']);soup=BeautifulSoup(body,'html.parser')
               report['page_title']=soup.title.get_text(' ',strip=True) if soup.title else ''
               report['roster_html_sha256']=hashlib.sha256(body.encode()).hexdigest()
               for b in u.parse_club(body,report['source_url']):
@@ -42,6 +41,10 @@ jobs:
                       b.update(u.parse_profile(profile))
                       b['profile_title']=ps.title.get_text(' ',strip=True) if ps.title else ''
                       b['club_links']=sorted(set(a['href'] for a in ps.select('a[href]') if '/o/' in a['href']))
+                      text=' '.join(ps.stripped_strings)
+                      if 'Gender:' in text:
+                          b['public_stat_heading']=text.split('Gender:')[0][-1000:]
+                      b['public_match_links']=sorted(set(a['href'] for a in ps.select('a[href]') if '/m/' in a['href']))
                   except Exception as e:b['error']=str(e)
                   report['boxers'].append(b)
           except Exception as e:report['error']=str(e)
