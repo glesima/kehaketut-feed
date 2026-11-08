@@ -1,7 +1,7 @@
 import sys,unittest
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'scripts'))
-from update import parse_club,parse_profile,match_links,parse_match,event_urls_from_index,prefer_alias_stats,parse_event_date,parse_official_outcome
+from update import parse_club,parse_profile,match_links,parse_match,event_urls_from_index,prefer_alias_stats,parse_event_date,parse_official_outcome,suppress_conflicting_totals
 
 class TestPublicViews(unittest.TestCase):
     def test_club_table(self):
@@ -37,6 +37,18 @@ class TestPublicViews(unittest.TestCase):
 
     def test_roster_missing_fails_safe(self):
         with self.assertRaises(ValueError):parse_club('<h2>Not Found</h2>','https://boxerbase.com/o/x/boxers')
+    def test_profile_totals_conflict_hidden(self):
+        b=suppress_conflicting_totals({"matches":4,"wins":0,"losses":5})
+        self.assertIsNone(b["wins"])
+        self.assertIsNone(b["losses"])
+        self.assertEqual(b["matches"],4)
+        self.assertEqual(b["stats_quality"],"provider_counts_conflict")
+
+    def test_profile_totals_consistent_kept(self):
+        b=suppress_conflicting_totals({"matches":11,"wins":6,"losses":5})
+        self.assertEqual((b["matches"],b["wins"],b["losses"]),(11,6,5))
+        self.assertNotIn("stats_quality",b)
+
     def test_profile(self):
         r=parse_profile('<div>Gleb Simanov 3 Matches 0 Wins 3 Losses</div>')
         self.assertEqual(r,{'matches':3,'wins':0,'losses':3})

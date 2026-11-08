@@ -7,16 +7,18 @@
       "name": "Daniela Taskila",
       "boxerbase_url": "https://boxerbase.com/boxer/Pi3gCaWD-7jD",
       "matches": 6,
-      "wins": 4,
-      "losses": 4
+      "wins": null,
+      "losses": null,
+      "stats_quality": "provider_counts_conflict"
     },
     {
       "id": "h9XYEbAs3Py4",
       "name": "Gleb Simanov",
       "boxerbase_url": "https://boxerbase.com/boxer/h9XYEbAs3Py4",
       "matches": 4,
-      "wins": 0,
-      "losses": 5
+      "wins": null,
+      "losses": null,
+      "stats_quality": "provider_counts_conflict"
     },
     {
       "id": "W9dy-RM88aLL",
@@ -39,16 +41,18 @@
       "name": "Kosmo Grönroos",
       "boxerbase_url": "https://boxerbase.com/boxer/jRMAAn1JtaN6",
       "matches": 14,
-      "wins": 5,
-      "losses": 10
+      "wins": null,
+      "losses": null,
+      "stats_quality": "provider_counts_conflict"
     },
     {
       "id": "ir_z7p9BvsZM",
       "name": "Maarjo Ranne",
       "boxerbase_url": "https://boxerbase.com/boxer/ir_z7p9BvsZM",
       "matches": 7,
-      "wins": 1,
-      "losses": 7
+      "wins": null,
+      "losses": null,
+      "stats_quality": "provider_counts_conflict"
     },
     {
       "id": "RyBcZO1fI2Rb",
