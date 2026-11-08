@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-08T21:22:59Z",
+  "generated_at": "2026-11-08T21:29:36Z",
   "data_origin": "BoxerBase public views and optionally Instagram official API",
   "boxers": [
     {
@@ -254,10 +254,10 @@
   ],
   "instagram": [],
   "errors": [],
-  "boxers_checked_at": "2026-11-08T21:22:59Z",
+  "boxers_checked_at": "2026-11-08T21:29:36Z",
   "club_id": "mZjkT0LW248X",
   "club_url": "https://boxerbase.com/o/mZjkT0LW248X/boxers",
-  "matches_checked_at": "2026-11-08T21:22:59Z",
+  "matches_checked_at": "2026-11-08T21:29:36Z",
   "registrations": [
     {
       "boxer_id": "W9dy-RM88aLL",
@@ -288,7 +288,7 @@
       "current_visibility": "previously_observed"
     }
   ],
-  "registrations_checked_at": "2026-11-08T21:24:42Z",
+  "registrations_checked_at": "2026-11-08T21:31:32Z",
   "registration_coverage": "Public browser search; organiser-hidden entries are unavailable.",
   "discovered_events": [
     {
@@ -328,8 +328,8 @@
       "url": "https://fin.boxerbase.com/e/DxgdbRx46tR-"
     }
   ],
-  "events_checked_at": "2026-11-08T21:22:59Z",
-  "registrations_first_page_checked_at": "2026-11-08T21:22:59Z",
+  "events_checked_at": "2026-11-08T21:29:36Z",
+  "registrations_first_page_checked_at": "2026-11-08T21:29:36Z",
   "boxer_id_aliases": {
     "KyEKnjm-NRp4": "Pi3gCaWD-7jD",
     "U2N_OOYxyFui": "h9XYEbAs3Py4",
