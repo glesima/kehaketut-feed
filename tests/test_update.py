@@ -16,8 +16,8 @@ class TestPublicViews(unittest.TestCase):
 
     def test_confirmed_club_not_duplicate(self):
         from update import CONFIG
-        self.assertEqual(CONFIG["club_id"], "1Le8shnOwPIW")
-        self.assertEqual(CONFIG["club_names"], ["Riihimäen Kehä-Ketut ry"])
+        self.assertEqual(CONFIG["club_id"], "mZjkT0LW248X")
+        self.assertEqual(CONFIG["club_names"], ["RIIHIMÄEN KEHÄ-KETUT", "Riihimäen Kehä-Ketut ry"])
     def test_multiword_first_name(self):
         html='''<table><tr><td><a href="/boxer/rLyNGj8sCoF7">Josias Joseph</a></td><td>Ndikumana</td><td>Male</td><td>0</td></tr></table>'''
         parsed=parse_club(html,'https://boxerbase.com/o/1Le8shnOwPIW/boxers')
@@ -54,12 +54,12 @@ class TestPublicViews(unittest.TestCase):
         self.assertEqual(got['result'],'tappio')
         self.assertEqual(got['decision'],'5-0')
         self.assertEqual(got['opponent'],'Sampo Paananen')
-    def test_wrong_duplicate_club_is_rejected(self):
+    def test_merged_legacy_club_label_is_accepted(self):
         html='''<html><head><title>Gleb Simanov vs Sampo Paananen results at Test</title></head><body>
         <a href="/boxer/h9XYEbAs3Py4">Gleb Simanov RIIHIMÄEN KEHÄ-KETUT</a>
         <a href="/boxer/xx">Sampo Paananen Other club</a><div>Winner Blue Sampo Paananen 5-0</div></body></html>'''
         result=parse_match(html,'https://boxerbase.com/e/abc/m/xyz',[{'name':'Gleb Simanov'}],{'name':'Test','date':'2026-10-24','url':'https://boxerbase.com/e/abc'})
-        self.assertIsNone(result)
+        self.assertIsNotNone(result)
     def test_parse_result_win(self):
         html='''<html><head><title>Rami Vuori vs Hans Guttorm results at Tampere</title></head>
         <body><a href="/boxer/xx">Rami Vuori Riihimäen Kehä-Ketut ry</a>

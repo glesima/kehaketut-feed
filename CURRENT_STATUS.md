@@ -1,3 +1,6 @@
+## BoxerBase-lähdemuutos 8.11.2026
+Virallisen yhdistetyn seuran tunniste on mZjkT0LW248X. Lähdemigraation koodi vaihtaa rosterin, säilyttää vanhat viralliset ottelut ja liittää aiemmat profiilit uuteen listaan vain täsmällisesti varmennetuilla nimillä. Se ei laske vanhojen duplikaattien ottelutilastoja yhteen. Lähdehaun ja Pages-käyttöönoton tulos tarkistetaan erikseen. Katso docs/BOXERBASE_MERGE_2026-11-08.md.
+
 # Nykytila ja tunnetut rajat
 
 Päivitetty 2.11.2026. Tämä tiedosto on nykytilan aloituspiste. Päivätyt suunnitelmat kuvaavat myös aiempia työvaiheita, eivät automaattisesti tämänhetkistä käyttöönottoa.

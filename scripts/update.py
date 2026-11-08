@@ -22,6 +22,7 @@ from urllib.parse import urljoin, urlparse
 import requests
 from bs4 import BeautifulSoup
 from event_discovery import discover_event_links, event_id_from_url, parse_public_registrations
+from club_identity import prepare_identity, same_person_name, participant_matches
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "docs" / "data.json"
@@ -220,7 +221,7 @@ def parse_match(html, url, boxers, event):
     club = None
     for i, competitor in enumerate(competitors[:2]):
         for name in names:
-            if name.casefold() in competitor.casefold():
+            if same_person_name(competitor, name, CONFIG):
                 side, club = i, name
                 break
         if side is not None:
@@ -236,7 +237,7 @@ def parse_match(html, url, boxers, event):
     if event.get("allow_alias_club_on_bouts") and event.get("verified_as_duplicate_label"):
         club_names.append(event["verified_as_duplicate_label"])
     player_links = [compact(a.get_text(" ", strip=True)) for a in soup.select('a[href*="/participants/"], a[href*="/boxer/"]')]
-    if not any(any(n in label for n in club_names) and club.casefold() in label.casefold() for label in player_links):
+    if not any(participant_matches(label, club, club_names, CONFIG) for label in player_links):
         LOG.warning("Skipping bout without verified club participant: %s", url)
         return None
     opponent = competitors[1-side][:100]
@@ -427,11 +428,11 @@ def update():
                     LOG.info("Temporary historical stats selected for %s", boxer["name"])
             except Exception as exc:
                 LOG.warning("Temporary alias unavailable for %s: %s", boxer["name"], exc)
+        identities = prepare_identity(previous, boxers, CONFIG)
         out["boxers"] = boxers
+        out.update(identities)
         if previous.get("club_id") != CONFIG.get("club_id"):
-            LOG.info("Club profile corrected: drop matches from the unverified duplicate club")
-            out["matches"] = []
-            out.pop("matches_checked_at", None)
+            LOG.info("Provider-confirmed club merge: preserve historical bouts")
         out["club_id"] = CONFIG.get("club_id")
         out["club_url"] = CONFIG["club_url"]
         out["boxers_checked_at"] = now
@@ -439,6 +440,8 @@ def update():
         errors.append(f"Club roster: {ex}")
         boxers = out.get("boxers", [])
 
+    if previous.get("club_id") != CONFIG.get("club_id") and out.get("club_id") != CONFIG.get("club_id"):
+        raise RuntimeError("New canonical club roster not verified; preserve previous data")
     if boxers:
         events = CONFIG["tracked_events"][:]
         known_ids = {event_id_from_url(e["url"]) for e in events}
@@ -516,9 +519,9 @@ def update():
                             # Drop identical older snapshots under another host / stale URL.
                             for prior_url, prior in list(old_matches.items()):
                                 if (prior_url != url and
-                                    prior.get("boxer") == found["boxer"] and
-                                    prior.get("opponent") == found["opponent"] and
-                                    prior.get("event_date") == found["event_date"]):
+                                    prior.get("id") == found["id"] and
+                                    event_id_from_url(prior.get("event_url") or prior_url) ==
+                                    event_id_from_url(found.get("event_url") or url)):
                                     del old_matches[prior_url]
                             old_matches[url] = found
                             found_count += 1

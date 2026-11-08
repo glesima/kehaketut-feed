@@ -201,7 +201,13 @@ function boxers(d){
  root.appendChild(cards)
 }
 function profile(d){
- var b=(d.boxers||[]).find(function(a){return a.id===boxerId});
+ var slug=params.get("slug")||"", ids=d.boxer_id_aliases||{}, profiles=d.profile_ids_by_slug||{};
+ var targetId=Object.prototype.hasOwnProperty.call(profiles,slug)?profiles[slug]:(Object.prototype.hasOwnProperty.call(ids,boxerId)?ids[boxerId]:boxerId);
+ var b=(d.boxers||[]).find(function(a){return a.id===targetId});
+ if(!b&&slug&&params.get("name")){
+   var found=(d.boxers||[]).filter(function(a){return a.name===params.get("name")});
+   if(found.length===1)b=found[0];
+ }
  if(!b){root.appendChild(mk("div","err","Ottelijan profiilia ei löytynyt."));return}
  heading("Kilpailijaprofiili",b.name);
  var card=mk("div","card"),stat=mk("div","stats");
@@ -216,12 +222,12 @@ function profile(d){
   history.appendChild(row)
  });
  card.appendChild(history);root.appendChild(card);
- root.appendChild(mk("p","hint","Ottelutietoja voidaan täydentää, kun BoxerBasen seuramerkintöjä yhtenäistetään."))
+ root.appendChild(mk("p","hint","Tilastot perustuvat yhdistettyyn BoxerBase-profiiliin. Otteluhistoria on julkisten lähteiden perusteella varmennettu."))
 }
 function instagram(d){
  heading("Sosiaalinen media","Instagram · @kehaketut");
  var cards=mk("div","grid"),media=(d.instagram||[]).slice(0,6);
- if(!media.length){root.appendChild(mk("div","err","Kuvavirta näkyy Kehä-Kettujen sivulla Juicerin kautta."));return}
+ if(!media.length){root.appendChild(mk("div","err","Instagram-julkaisut löytyvät seuran omasta some-nostosta."));return}
  media.forEach(function(i){var c=mk("div","card"),a=link("Avaa Instagramissa ↗",i.url);
  if(i.image&&/^https:\/\//.test(i.image)){var pic=mk("img","img");pic.src=i.image;pic.alt=(i.caption||"Kehä-Ketut").slice(0,100);pic.loading="lazy";c.appendChild(pic)}
  add(c,mk("p","igcaption",i.caption||"Instagram-julkaisu"),a);cards.appendChild(c)});
@@ -237,7 +243,7 @@ fetch("./data.json",{cache:"no-store"}).then(function(r){if(!r.ok)throw Error("F
  var stamp=(view==="boxers"||view==="profile"?d.boxers_checked_at:d.matches_checked_at)||d.generated_at||"";
  root.appendChild(mk("p","hint","Tietolähde: BoxerBase · Tarkistettu "+(stamp?stamp.slice(0,10):"ei tiedossa")));
  report()
-}).catch(function(){root.replaceChildren();add(root,mk("div","err","Kilpailutietoja ei juuri nyt saada ladattua."),link("Avaa Kehä-Kettujen BoxerBase-profiili ↗","https://boxerbase.com/o/1Le8shnOwPIW/boxers"));report()})
+}).catch(function(){root.replaceChildren();add(root,mk("div","err","Kilpailutietoja ei juuri nyt saada ladattua."),link("Avaa Kehä-Kettujen BoxerBase-profiili ↗","https://boxerbase.com/o/mZjkT0LW248X/boxers"));report()})
 })();
 </script>
 </body></html>

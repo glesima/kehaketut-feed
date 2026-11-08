@@ -1,0 +1,5 @@
+# BoxerBase club merge / 8.11.2026
+The surviving federation-created organisation is RIIHIMÄEN KEHÄ-KETUT, ID `mZjkT0LW248X`. Club `1Le8shnOwPIW` was merged by BoxerBase. The latter is not a separate statistical source.
+The integration reads the new canonical roster and preserves existing official bouts keyed by provider event and match IDs. Old boxer IDs are mapped by exact known names only; Josias has an explicit approved name alias. Registration observations are rekeyed. Counts are NOT added across duplicate profiles. Historical event cards may continue to show the original club spelling. If the merged roster is incomplete, do not replace the last-known-good data.
+The user's existing CMS pages and historic contents are kept; the lightweight loader rewrites exact outdated club/profile links only. New athlete views use stable slugs and map to canonical IDs from the current roster.
+This public document contains no personal correspondence, private records or access secrets. GitHub code alone is not evidence of a successful live roster refresh or deployment.
