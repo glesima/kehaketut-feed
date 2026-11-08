@@ -1,3 +1,8 @@
+## BoxerBase-korjaus vahvistettu 8.11.2026
+Virallinen lähdeseura on `RIIHIMÄEN KEHÄ-KETUT` (`mZjkT0LW248X`), entinen `1Le8shnOwPIW` on palveluntarjoajan yhdistämä. PR #27 yhdistetty commitilla `b9c992ab3725af3fa8ca4a96e638f0fb048fd534`, kaikki tarkistukset läpäisty ja Pages-ajo `42524909199` onnistui. Julkaistavasta `docs/data.json`-syötteestä luettiin vahvistetusti 9 uutta BoxerBase-ottelijatunnistetta, 9 historiallista ottelumerkintää ja vanhat profiilitunnisteet uuteen rosteriin yhdistävä vastaavuustaulukko. Lähdettä ei enää lueta poistetulta seuratunnisteelta.
+
+PR #28 suojasi neljän profiilin ristiriitaisia voitto-/tappioerittelyjä. Lähteessä nämä ylittivät ilmoitetun ottelumäärän, joten erittely piilotetaan eikä lukua korjata arvauksella. Uusi tietohaku `2026-11-08T21:29:36Z` vahvisti kaikki 9 ottelijaa ja 9 ottelumerkintää; Pages-ajo `42525447525` onnistui. Verkkosivun Yhdistysavain-ympäristön erillistä selaintarkistusta ei tässä yhteydessä onnistuttu suorittamaan. Kotisivun ylimääräistä sisältöä tai historiallisia uutisia ei muutettu.
+
 ## Lisätarkistus 8.11.2026 — BoxerBasen ristiriitaiset tilastot
 Yhdistetyn seuran yhdeksän ottelijan uudet ID:t ja vanhojen profiilien vastaavuudet on luettu vahvistetusta julkaisuajosta. Neljässä profiilissa lähteen ilmoittamat voitot+tappiot ylittävät kokonaisottelumäärän. Näissä tapauksissa voitto-/tappioerittelyä ei näytetä arvauksena, mutta itse ottelija, hänen uusi tunnisteensa, ottelumääränsä ja vahvistetut tuloskortit jäävät näkyviin. Lähteen erittelyn tarkistusta ei ole merkitty ratkaistuksi.
 
