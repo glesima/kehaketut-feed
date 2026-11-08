@@ -45,7 +45,8 @@ const sample = {
    event_url:"https://boxerbase.com/e/zdyYMbmXqIuV"}
  ],
  boxers:[{id:"1",name:"Boxer",matches:1,wins:1,losses:0,
-          boxerbase_url:"https://boxerbase.com/boxer/1"}],
+          boxerbase_url:"https://boxerbase.com/boxer/1"},
+         {id:"i",name:"Ilo Grönroos"}, {id:"k",name:"Kosmo Grönroos"}],
  matches_checked_at:"2026-10-25T21:32:56Z"
 };
 async function render(view, data=sample, query) {
@@ -125,35 +126,52 @@ async function main() {
   assert.match(collect(josias),/1 ottelu/);
   const otsoProfile=await render("profile",live,"?view=profile&slug=otso-vastila");
   assert.match(collect(otsoProfile.root),/Näytetyt nollat koskevat saatavilla olevia tilastoja/);
-  // General events must not be presented as Kehä-Ketut registrations.
-  const calendarSample={...sample,registrations:[],discovered_events:[
+  // General calendar alone is never displayed; club participation is required.
+  const eventList=[
     {id:"future1",name:"Tuleva salikisa",date:"2099-11-14",url:"https://fin.boxerbase.com/e/future1"},
-    {id:"future1",name:"Duplikaatti",date:"2099-11-14",url:"https://fin.boxerbase.com/e/future1"},
     {id:"future2",name:"Tuleva SM",date:"2099-12-04",url:"https://boxerbase.com/e/future2"},
-    {id:"past",name:"Mennyt",date:"2000-01-01",url:"https://boxerbase.com/e/past"},
-    {id:"unsafe",name:"Virheellinen lähde",date:"2099-11-21",url:"https://attacker.example/e/bad"}
-  ]};
-  const upcoming=await render("updates",calendarSample);
-  const calendarCards=findAll(upcoming.root,"public-event");
-  assert.equal(calendarCards.length,2,"Only distinct, future, trusted event links");
-  const upcomingText=collect(upcoming.root);
-  assert.match(upcomingText,/Tuleva salikisa/);
-  assert.match(upcomingText,/Tuleva SM/);
-  assert.doesNotMatch(upcomingText,/Duplikaatti|Mennyt|Virheellinen lähde/);
-  assert.match(upcomingText,/Kehä-Kettujen osallistumista ei ole vahvistettu/);
-  assert.ok(!upcomingText.includes("JULKISET ILMOITTAUTUMISET"),"Do not invent club entries");
-  const verifiedEntry=await render("updates",{
-    ...calendarSample,registrations:[{
-      boxer:"Gleb Simanov",event:"Tuleva salikisa",event_id:"future1",
-      event_url:"https://fin.boxerbase.com/e/future1",
-      event_date:"2099-11-14",status:"registered"
-    }]
-  });
-  assert.match(collect(verifiedEntry.root),/Ilmoittautuneet: Gleb Simanov/);
-  assert.match(collect(verifiedEntry.root),/Kilpailukalenteri/i);
-  assert.doesNotMatch(collect(verifiedEntry.root),/BoxerBase-ottelua/);
-  const noPublicEvents=await render("updates",{...sample,registrations:[],discovered_events:[]});
-  assert.equal(findAll(noPublicEvents.root,"public-event").length,0);
-  console.log("All nine merged boxer links, Otso zero display and public calendar evidence separation verified.");
+    {id:"future3",name:"Muut kisat",date:"2099-12-05",url:"https://boxerbase.com/e/future3"}
+  ];
+  const base={...sample,matches:[],registrations:[],discovered_events:eventList};
+  const unknown=await render("updates",base);
+  assert.equal(findAll(unknown.root,"public-event").length,0,"Do not list unrelated future competitions");
+  assert.match(collect(unknown.root),/ei ole vielä julkaistua vahvistusta/);
+  assert.doesNotMatch(collect(unknown.root),/Tuleva salikisa|Tuleva SM/);
+  const known={boxer:"Ilo Grönroos",boxer_id:"i",event:"Tuleva salikisa",
+    event_id:"future1",event_url:"https://fin.boxerbase.com/e/future1",
+    event_date:"2099-11-14",status:"registered"};
+  const confirmed=await render("updates",{...base,registrations:[known]});
+  assert.equal(findAll(confirmed.root,"public-event").length,1);
+  assert.match(collect(confirmed.root),/Ilmoittautuneet: Ilo Grönroos/);
+  assert.doesNotMatch(collect(confirmed.root),/Tuleva SM|Muut kisat/);
+  // An old public observation is not a current verified registration.
+  const stale=await render("updates",{...base,registrations:[{...known,current_visibility:"previously_observed"}]});
+  assert.equal(findAll(stale.root,"public-event").length,0);
+  const forged=await render("updates",{...base,registrations:[
+    {...known,event_url:"https://attacker.example/e/future1"},
+    {...known,boxer:"Tuntematon nyrkkeilijä"},
+    {...known,boxer_id:"wrong"}
+  ]});
+  assert.equal(findAll(forged.root,"public-event").length,0);
+  // Even a large real registry yields a maximum of three relevant items.
+  const entries=Array.from({length:6},(_,i)=>({
+    ...known,event_id:"event"+i,event_url:"https://fin.boxerbase.com/e/event"+i,
+    event:"Kilpailu "+i,event_date:"2099-12-"+String(10+i)
+  }));
+  const capped=await render("updates",{...base,registrations:entries});
+  assert.equal(findAll(capped.root,"public-event").length,3);
+  assert.doesNotMatch(collect(capped.root),/Kilpailu 3|Kilpailu 4|Kilpailu 5/);
+  // Published bouts remain visible and share the three-item allowance.
+  const bout={...sample.matches[0],result:"vahvistettu ottelu",event_date:"2099-12-01",
+    event_url:"https://fin.boxerbase.com/e/bout1",url:"https://fin.boxerbase.com/e/bout1/m/m1"};
+  const withBout=await render("updates",{...base,matches:[bout],registrations:entries});
+  assert.equal(findAll(withBout.root,"bout").length,1);
+  assert.equal(findAll(withBout.root,"public-event").length,2);
+  // Duplicate registrations in one event produce one compact card and unique names.
+  const duplicates=await render("updates",{...base,registrations:[known,known,{...known,
+    boxer:"Kosmo Grönroos",boxer_id:"k"}]});
+  assert.equal(findAll(duplicates.root,"public-event").length,1);
+  assert.match(collect(duplicates.root),/Ilmoittautuneet: Ilo Grönroos, Kosmo Grönroos/);
+  console.log("All nine boxer links, compact club-only upcoming events and registration safeguards verified.");
 }
 main().catch(err=>{console.error(err);process.exitCode=1});
