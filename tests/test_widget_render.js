@@ -48,7 +48,7 @@ const sample = {
           boxerbase_url:"https://boxerbase.com/boxer/1"}],
  matches_checked_at:"2026-10-25T21:32:56Z"
 };
-async function render(view) {
+async function render(view, data=sample, query) {
   const root = new Element("main");
   const handlers = {};
   const calls = [];
@@ -58,10 +58,10 @@ async function render(view) {
              createElement(tag){return new Element(tag)},
              documentElement:{scrollHeight:1800}},
    parent,window:{addEventListener(name,cb){handlers[name]=cb}},
-   location:{search:"?view="+view},
+   location:{search:query||"?view="+view},
    URLSearchParams,
    ResizeObserver:class{observe(){}},
-   fetch(){return Promise.resolve({ok:true,json(){return Promise.resolve(sample)}})}
+   fetch(){return Promise.resolve({ok:true,json(){return Promise.resolve(data)}})}
   };
   vm.runInNewContext(script,context);
   await new Promise(resolve=>setImmediate(resolve));
@@ -89,6 +89,36 @@ async function main() {
   const boxer=await render("boxers");
   assert.match(collect(boxer.root),/Ottelijat/);
   assert.ok(boxer.calls.some(x=>x.type==="RKK_WIDGET_HEIGHT"));
-  console.log("Compact results, winner identities, registrations and intrinsic widget height verified.");
+  // Regression: every canonical boxer ID must resolve from the merged public club feed.
+  const live = JSON.parse(fs.readFileSync("docs/data.json","utf8"));
+  assert.equal(live.club_id,"mZjkT0LW248X");
+  assert.equal(live.boxers.length,9,"All nine merged RKK boxer records present");
+  const ids=new Set(live.boxers.map(x=>x.id));
+  for(const athlete of live.boxers){
+    assert.match(athlete.boxerbase_url,/^https:\/\/boxerbase\.com\/boxer\/[A-Za-z0-9_-]+$/);
+    assert.equal(athlete.boxerbase_url.split("/").pop(),athlete.id);
+    assert.equal(ids.has(athlete.id),true);
+    assert.equal(live.profile_ids_by_slug[Object.keys(live.profile_ids_by_slug).find(
+      slug=>live.profile_ids_by_slug[slug]===athlete.id)],athlete.id);
+  }
+  for(const [oldId,newId] of Object.entries(live.boxer_id_aliases||{})){
+    assert.equal(ids.has(newId),true,"Legacy profile maps to real current ID: "+oldId);
+  }
+  const realCards=await render("boxers",live);
+  const cards=findAll(realCards.root,"card");
+  assert.equal(cards.length,9);
+  for(const athlete of live.boxers){
+    const card=cards.find(c=>collect(c).includes(athlete.name));
+    assert.ok(card,"Card exists for "+athlete.name);
+    const external=card.children.find(c=>c.tag==="a");
+    assert.equal(external.href,athlete.boxerbase_url,"Correct canonical link for "+athlete.name);
+  }
+  const otso=cards.find(c=>collect(c).includes("Otso Västilä"));
+  assert.match(collect(otso),/0 voittoa · 0 tappiota/);
+  const josias=cards.find(c=>collect(c).includes("Josias Joseph Ndikumana"));
+  assert.match(collect(josias),/BoxerBase-ottelua/);
+  const otsoProfile=await render("profile",live,"?view=profile&slug=otso-vastila");
+  assert.match(collect(otsoProfile.root),/Nollat koskevat vain tämän tietolähteen tilastoja/);
+  console.log("All nine merged boxer links, legacy aliases, Otso zero display and public-source limitations verified.");
 }
 main().catch(err=>{console.error(err);process.exitCode=1});
