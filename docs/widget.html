@@ -51,6 +51,7 @@ a.source{font-size:11px;white-space:nowrap}
 .panel-note{color:#72808c;font-size:11px;line-height:1.45;margin:9px 3px 1px}
 .participation{border-top:1px solid #eceff2;margin-top:15px;padding-top:14px}
 .participation .subhead{font-size:11px;letter-spacing:.1em;font-weight:850;color:#a51e2d;margin-bottom:9px}
+.entry-label{font-size:11px;font-weight:750;color:#3d4b58;margin-top:6px;line-height:1.5}
 .participation .reg{padding:12px;background:#f7f8fa;border-radius:10px;margin:0 0 8px}
 .reg .name{font-size:12px;font-weight:800;overflow-wrap:anywhere}
 .reg .dim{margin-top:5px}
@@ -90,6 +91,7 @@ var add=function(p){for(var i=1;i<arguments.length;i++)p.appendChild(arguments[i
 var link=function(txt,url,cls){var e=mk("a",cls||"source",txt);if(url&&/^https:\/\//.test(url)){e.href=url;e.target="_blank";e.rel="noopener noreferrer"}else{e.href="#"}return e};
 var fmt=function(s){return /^\d{4}-\d{2}-\d{2}$/.test(s||"")?s.slice(8)+"."+s.slice(5,7)+"."+s.slice(0,4):"Päivä avoin"};
 var heading=function(k,title){var h=mk("div","section-h"),inside=mk("div","section-title");add(inside,mk("div","ey",k),mk("h2","",title));h.appendChild(inside);root.appendChild(h)};
+var countText=function(n,singular,plural){return n+" "+(n===1?singular:plural)};
 function methodText(m){
  var code=(m.method||"").toUpperCase();
  var round=Number.isInteger(m.round)?(" · "+m.round+". erä"):"";
@@ -168,12 +170,12 @@ function updates(d){
  played.forEach(function(m){pb.appendChild(singleBout(m,false))});
  var today=new Date().toISOString().slice(0,10);
  var next=(d.matches||[]).filter(function(m){return m.result==="vahvistettu ottelu"&&(!m.event_date||m.event_date>=today)}).sort(function(a,b){return (a.event_date||"").localeCompare(b.event_date||"")}).slice(0,3);
- if(!next.length)fb.appendChild(mk("p","empty","Seurannassa ei ole vielä vahvistettuja tulevia ottelupareja."));
+ if(!next.length)fb.appendChild(mk("p","empty","Tulevia ottelupareja ei ole vielä julkaistu."));
  next.forEach(function(m){fb.appendChild(singleBout(m,true))});
  var regs=(d.registrations||[]).filter(function(r){return r.status==="registered"&&r.event_date&&r.event_date>=today}).sort(function(a,b){return a.event_date.localeCompare(b.event_date)});
  if(regs.length){
   var part=mk("div","participation"),groups=new Map();
-  part.appendChild(mk("div","subhead","JULKISET ILMOITTAUTUMISET"));
+  part.appendChild(mk("div","subhead","ILMOITTAUTUNEET"));
   regs.forEach(function(r){var k=r.event_id||r.event_url;if(!groups.has(k))groups.set(k,{name:r.event,date:r.event_date,url:r.event_url,names:[]});groups.get(k).names.push(r.boxer+(r.current_visibility==='previously_observed'?' (aiemmin havaittu)':''))});
   Array.from(groups.values()).slice(0,3).forEach(function(r){
    var card=mk("div","reg");
@@ -183,7 +185,34 @@ function updates(d){
   part.appendChild(mk("p","dim","Ilmoittautuminen ei takaa ottelua. Lista voi sisältää vain julkisesti näkyvät nimet."));
   fb.appendChild(part)
  }
- fb.appendChild(mk("p","panel-note","Otteluajat ovat arvioita ja voivat muuttua myös kilpailupäivänä. Tarkista tuorein tieto kilpailujärjestäjältä ja BoxerBasesta."));
+ // A public event is NOT evidence that a Kehä-Ketut athlete has entered.
+ // Signed-in boxer views can show additional information not available here.
+ var seenEvents=new Set();
+ var calendar=(d.discovered_events||[]).filter(function(e){
+  if(!e||typeof e.date!=="string"||!/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(e.date)||e.date<today)return false;
+  if(!new RegExp("^https://(fin[.])?boxerbase[.]com/e/[A-Za-z0-9_-]+/?$").test(e.url||""))return false;
+  if(seenEvents.has(e.url))return false;
+  seenEvents.add(e.url);return true;
+ }).sort(function(a,b){return a.date.localeCompare(b.date)||String(a.name||"").localeCompare(String(b.name||""))}).slice(0,6);
+ if(calendar.length){
+  var cal=mk("div","participation");
+  cal.appendChild(mk("div","subhead","KILPAILUKALENTERI"));
+  calendar.forEach(function(e){
+   var item=mk("div","reg public-event");
+   add(item,mk("div","name",e.name||"Kilpailu"),mk("div","dim",fmt(e.date)));
+   var registered=regs.filter(function(p){return (p.event_id||"")===(e.id||"")||p.event_url===e.url});
+   if(registered.length){
+    item.appendChild(mk("div","entry-label","Ilmoittautuneet: "+registered.map(function(p){return p.boxer}).join(", ")));
+   }else{
+    item.appendChild(mk("div","dim","Osallistumistiedot täydentyvät."));
+   }
+   item.appendChild(link("Kilpailun tiedot ↗",e.url));
+   cal.appendChild(item)
+  });
+  cal.appendChild(mk("p","dim","Kalenterissa näkyvät julkiset kilpailut. Ilmoittautumiset ja otteluparit vahvistetaan erikseen."));
+  fb.appendChild(cal)
+ }
+ fb.appendChild(mk("p","panel-note","Otteluajat ja osallistumistiedot voivat muuttua myös kilpailupäivänä. Tarkista lopulliset tiedot kilpailunjärjestäjältä."));
  p.appendChild(pb);f.appendChild(fb);add(wrap,p,f);root.appendChild(wrap)
 }
 function boxers(d){
@@ -193,17 +222,17 @@ function boxers(d){
  (d.boxers||[]).forEach(function(b){
   var c=mk("div","card");
   c.appendChild(mk("div","name",b.name));
-  c.appendChild(mk("p","",b.matches==null?"Ottelumäärä ei saatavilla":b.matches+" BoxerBase-ottelua"));
+  c.appendChild(mk("p","",b.matches==null?"Ottelumäärä ei saatavilla":countText(b.matches,"ottelu","ottelua")));
   // With zero recorded bouts the public BoxerBase subset has zero recorded wins and losses.
   // This display-only convention must not overwrite unknown provider statistics.
   if(b.matches===0&&b.wins==null&&b.losses==null){
     c.appendChild(mk("div","dim","0 voittoa · 0 tappiota"));
   }else if(Number.isInteger(b.wins)&&Number.isInteger(b.losses)){
-    c.appendChild(mk("div","dim",b.wins+" voittoa · "+b.losses+" tappiota"));
+    c.appendChild(mk("div","dim",countText(b.wins,"voitto","voittoa")+" · "+countText(b.losses,"tappio","tappiota")));
   }else if(b.stats_quality==="provider_counts_conflict"){
-    c.appendChild(mk("div","dim","Voitto-/tappioerittely tarkistettavana"));
+    c.appendChild(mk("div","dim","Voitot ja tappiot tarkistettavana"));
   }else{
-    c.appendChild(mk("div","dim","Voitto-/tappiotiedot eivät saatavilla"));
+    c.appendChild(mk("div","dim","Voitto- ja tappiotiedot puuttuvat"));
   }
   c.appendChild(link("Avaa ottelijaprofiili ↗",b.stats_source_url||b.boxerbase_url));
   cards.appendChild(c)
@@ -223,10 +252,10 @@ function profile(d){
  var card=mk("div","card"),stat=mk("div","stats");
  function metric(num,txt){var e=mk("div","");add(e,mk("b","",num==null?"–":num),mk("span","",txt));return e}
  var zeroRecorded=b.matches===0&&b.wins==null&&b.losses==null;
- add(stat,metric(b.matches,"BoxerBase-ottelua"),metric(zeroRecorded?0:b.wins,"Voittoa"),metric(zeroRecorded?0:b.losses,"Tappiota"));
+ add(stat,metric(b.matches,"Ottelut"),metric(zeroRecorded?0:b.wins,"Voitot"),metric(zeroRecorded?0:b.losses,"Tappiot"));
  add(card,stat,link("Avaa lähdeprofiili ↗",b.stats_source_url||b.boxerbase_url));
- if(b.stats_quality==="provider_counts_conflict")card.appendChild(mk("p","dim","BoxerBasen ottelu- ja tulosmäärät ovat ristiriidassa. Erittely jätetty näkyvistä, kunnes lähde tarkentuu."));
- if(zeroRecorded)card.appendChild(mk("p","dim","BoxerBasessa ei ole kirjattuja otteluita. Nollat koskevat vain tämän tietolähteen tilastoja."));
+ if(b.stats_quality==="provider_counts_conflict")card.appendChild(mk("p","dim","Ottelu- ja tulostiedoissa on ristiriita. Erittelyä tarkistetaan."));
+ if(zeroRecorded)card.appendChild(mk("p","dim","Otteluhistoriaa ei ole vielä kirjattu. Näytetyt nollat koskevat saatavilla olevia tilastoja."));
  if(b.stats_source_note)card.appendChild(mk("p","dim","Tilastoissa on huomioitu tilapäisesti rinnakkaisprofiili. Tiedot voivat vielä täydentyä."));
  var history=mk("div","history");
  (d.matches||[]).filter(function(m){return m.boxer===b.name}).sort(function(a,b){return(b.event_date||"").localeCompare(a.event_date||"")}).slice(0,5).forEach(function(m){
@@ -235,7 +264,7 @@ function profile(d){
   history.appendChild(row)
  });
  card.appendChild(history);root.appendChild(card);
- root.appendChild(mk("p","hint","Tilastot perustuvat yhdistettyyn BoxerBase-profiiliin. Otteluhistoria on julkisten lähteiden perusteella varmennettu."))
+ root.appendChild(mk("p","hint","Tilastot perustuvat saatavilla oleviin kilpailutietoihin. Otteluhistoria voi täydentyä."))
 }
 function instagram(d){
  heading("Sosiaalinen media","Instagram · @kehaketut");
@@ -254,7 +283,7 @@ fetch("./data.json",{cache:"no-store"}).then(function(r){if(!r.ok)throw Error("F
  root.replaceChildren();
  if(view==="boxers")boxers(d);else if(view==="profile")profile(d);else if(view==="instagram")instagram(d);else updates(d);
  var stamp=(view==="boxers"||view==="profile"?d.boxers_checked_at:d.matches_checked_at)||d.generated_at||"";
- root.appendChild(mk("p","hint","Tietolähde: BoxerBase · Tarkistettu "+(stamp?stamp.slice(0,10):"ei tiedossa")));
+ root.appendChild(mk("p","hint","Päivitetty "+(stamp?stamp.slice(0,10):"ei tiedossa")+" · Lähde: BoxerBase"));
  report()
 }).catch(function(){root.replaceChildren();add(root,mk("div","err","Kilpailutietoja ei juuri nyt saada ladattua."),link("Avaa Kehä-Kettujen BoxerBase-profiili ↗","https://boxerbase.com/o/mZjkT0LW248X/boxers"));report()})
 })();

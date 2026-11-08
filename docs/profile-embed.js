@@ -6,9 +6,9 @@ if(!mount||mount.dataset.mergedProfile==="1")return;
 mount.dataset.mergedProfile="1";
 var names={"daniela-taskila":"Daniela Taskila","ilo-gronroos":"Ilo Grönroos","josias-ndikumana":"Josias Joseph Ndikumana","josias-joseph-ndikumana":"Josias Joseph Ndikumana","kosmo-gronroos":"Kosmo Grönroos","maarjo-ranne":"Maarjo Ranne","gleb-simanov":"Gleb Simanov","rami-vuori":"Rami Vuori","simo-poyry":"Simo Pöyry","otso-vastila":"Otso Västilä"};
 var slug=location.pathname.replace(/\/+$/,"").split("/").pop().toLowerCase();
-if(!Object.prototype.hasOwnProperty.call(names,slug)){mount.textContent="BoxerBase-profiilia ei löytynyt tälle sivulle.";return;}
+if(!Object.prototype.hasOwnProperty.call(names,slug)){mount.textContent="Nyrkkeilijän ottelutietoja ei löytynyt.";return;}
 var f=document.createElement("iframe");
-f.id="rkk-live-profile-"+slug;f.title="Nyrkkeilijän ajantasaiset BoxerBase-tilastot";
+f.id="rkk-live-profile-"+slug;f.title="Nyrkkeilijän ottelutilastot";
 f.loading="lazy";f.style.cssText="display:block;width:100%;height:280px;border:0;background:transparent;";
 f.src="https://glesima.github.io/kehaketut-feed/widget.html?view=profile&slug="+encodeURIComponent(slug)+"&name="+encodeURIComponent(names[slug]);
 mount.appendChild(f);
