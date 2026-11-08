@@ -1,80 +1,78 @@
 {
-  "generated_at": "2026-11-08T18:49:13Z",
+  "generated_at": "2026-11-08T21:22:59Z",
   "data_origin": "BoxerBase public views and optionally Instagram official API",
   "boxers": [
     {
-      "id": "KyEKnjm-NRp4",
+      "id": "Pi3gCaWD-7jD",
       "name": "Daniela Taskila",
-      "boxerbase_url": "https://boxerbase.com/boxer/KyEKnjm-NRp4",
+      "boxerbase_url": "https://boxerbase.com/boxer/Pi3gCaWD-7jD",
       "matches": 6,
-      "wins": 3,
-      "losses": 3
-    },
-    {
-      "id": "U2N_OOYxyFui",
-      "name": "Gleb Simanov",
-      "boxerbase_url": "https://boxerbase.com/boxer/U2N_OOYxyFui",
-      "matches": 3,
-      "wins": 0,
-      "losses": 3
-    },
-    {
-      "id": "0efaqUGeO1JP",
-      "name": "Ilo Grönroos",
-      "boxerbase_url": "https://boxerbase.com/boxer/0efaqUGeO1JP",
-      "matches": 9,
       "wins": 4,
+      "losses": 4
+    },
+    {
+      "id": "h9XYEbAs3Py4",
+      "name": "Gleb Simanov",
+      "boxerbase_url": "https://boxerbase.com/boxer/h9XYEbAs3Py4",
+      "matches": 4,
+      "wins": 0,
       "losses": 5
     },
     {
-      "id": "rLyNGj8sCoF7",
-      "name": "Josias Joseph Ndikumana",
-      "boxerbase_url": "https://boxerbase.com/boxer/rLyNGj8sCoF7",
-      "matches": 1,
-      "wins": 0,
-      "losses": 1,
-      "stats_source_url": "https://boxerbase.com/boxer/vfT3Q-X7B3Tf",
-      "stats_source_note": "Väliaikainen rinnakkaisprofiili"
+      "id": "W9dy-RM88aLL",
+      "name": "Ilo Grönroos",
+      "boxerbase_url": "https://boxerbase.com/boxer/W9dy-RM88aLL",
+      "matches": 11,
+      "wins": 6,
+      "losses": 5
     },
     {
-      "id": "RGUkxNVIo4px",
+      "id": "vfT3Q-X7B3Tf",
+      "name": "Josias Joseph Ndikumana",
+      "boxerbase_url": "https://boxerbase.com/boxer/vfT3Q-X7B3Tf",
+      "matches": 1,
+      "wins": 0,
+      "losses": 1
+    },
+    {
+      "id": "jRMAAn1JtaN6",
       "name": "Kosmo Grönroos",
-      "boxerbase_url": "https://boxerbase.com/boxer/RGUkxNVIo4px",
-      "matches": 12,
+      "boxerbase_url": "https://boxerbase.com/boxer/jRMAAn1JtaN6",
+      "matches": 14,
       "wins": 5,
+      "losses": 10
+    },
+    {
+      "id": "ir_z7p9BvsZM",
+      "name": "Maarjo Ranne",
+      "boxerbase_url": "https://boxerbase.com/boxer/ir_z7p9BvsZM",
+      "matches": 7,
+      "wins": 1,
       "losses": 7
     },
     {
-      "id": "5A-7Dh4jmTdy",
-      "name": "Maarjo Ranne",
-      "boxerbase_url": "https://boxerbase.com/boxer/5A-7Dh4jmTdy",
-      "matches": 7,
-      "wins": 1,
-      "losses": 6
-    },
-    {
-      "id": "CVjkkb7fii6a",
+      "id": "RyBcZO1fI2Rb",
       "name": "Otso Västilä",
-      "boxerbase_url": "https://boxerbase.com/boxer/CVjkkb7fii6a",
+      "boxerbase_url": "https://boxerbase.com/boxer/RyBcZO1fI2Rb",
       "matches": 0,
       "wins": null,
       "losses": null
     },
     {
-      "id": "2zTFqL5gFsqg",
+      "id": "nqzy3scM-NDs",
       "name": "Rami Vuori",
-      "boxerbase_url": "https://boxerbase.com/boxer/2zTFqL5gFsqg",
+      "boxerbase_url": "https://boxerbase.com/boxer/nqzy3scM-NDs",
       "matches": 1,
       "wins": 1,
       "losses": 0
     },
     {
-      "id": "vK0bN2sPxnbo",
+      "id": "PxXnRMHDTclP",
       "name": "Simo Pöyry",
-      "boxerbase_url": "https://boxerbase.com/boxer/vK0bN2sPxnbo",
-      "matches": 2,
+      "boxerbase_url": "https://boxerbase.com/boxer/PxXnRMHDTclP",
+      "matches": 3,
       "wins": 0,
-      "losses": 2
+      "losses": 3
     }
   ],
   "matches": [
@@ -252,13 +250,13 @@
   ],
   "instagram": [],
   "errors": [],
-  "boxers_checked_at": "2026-11-03T09:29:44Z",
-  "club_id": "1Le8shnOwPIW",
-  "club_url": "https://boxerbase.com/o/1Le8shnOwPIW/boxers",
-  "matches_checked_at": "2026-11-08T18:49:13Z",
+  "boxers_checked_at": "2026-11-08T21:22:59Z",
+  "club_id": "mZjkT0LW248X",
+  "club_url": "https://boxerbase.com/o/mZjkT0LW248X/boxers",
+  "matches_checked_at": "2026-11-08T21:22:59Z",
   "registrations": [
     {
-      "boxer_id": "0efaqUGeO1JP",
+      "boxer_id": "W9dy-RM88aLL",
       "boxer": "Ilo Grönroos",
       "participant_url": "https://fin.boxerbase.com/e/zdyYMbmXqIuV/participants/qxDySYBH2bIu",
       "registered_club": "Riihimäen Kehä-Ketut ry",
@@ -272,7 +270,7 @@
       "current_visibility": "previously_observed"
     },
     {
-      "boxer_id": "RGUkxNVIo4px",
+      "boxer_id": "jRMAAn1JtaN6",
       "boxer": "Kosmo Grönroos",
       "participant_url": "https://fin.boxerbase.com/e/zdyYMbmXqIuV/participants/Oi-T58C4P3A5",
       "registered_club": "Riihimäen Kehä-Ketut ry",
@@ -286,7 +284,7 @@
       "current_visibility": "previously_observed"
     }
   ],
-  "registrations_checked_at": "2026-11-08T18:50:57Z",
+  "registrations_checked_at": "2026-11-08T21:24:42Z",
   "registration_coverage": "Public browser search; organiser-hidden entries are unavailable.",
   "discovered_events": [
     {
@@ -326,6 +324,29 @@
       "url": "https://fin.boxerbase.com/e/DxgdbRx46tR-"
     }
   ],
-  "events_checked_at": "2026-11-08T18:49:13Z",
-  "registrations_first_page_checked_at": "2026-11-08T18:49:13Z"
+  "events_checked_at": "2026-11-08T21:22:59Z",
+  "registrations_first_page_checked_at": "2026-11-08T21:22:59Z",
+  "boxer_id_aliases": {
+    "KyEKnjm-NRp4": "Pi3gCaWD-7jD",
+    "U2N_OOYxyFui": "h9XYEbAs3Py4",
+    "0efaqUGeO1JP": "W9dy-RM88aLL",
+    "rLyNGj8sCoF7": "vfT3Q-X7B3Tf",
+    "RGUkxNVIo4px": "jRMAAn1JtaN6",
+    "5A-7Dh4jmTdy": "ir_z7p9BvsZM",
+    "CVjkkb7fii6a": "RyBcZO1fI2Rb",
+    "2zTFqL5gFsqg": "nqzy3scM-NDs",
+    "vK0bN2sPxnbo": "PxXnRMHDTclP"
+  },
+  "profile_ids_by_slug": {
+    "daniela-taskila": "Pi3gCaWD-7jD",
+    "ilo-gronroos": "W9dy-RM88aLL",
+    "josias-ndikumana": "vfT3Q-X7B3Tf",
+    "josias-joseph-ndikumana": "vfT3Q-X7B3Tf",
+    "kosmo-gronroos": "jRMAAn1JtaN6",
+    "maarjo-ranne": "ir_z7p9BvsZM",
+    "gleb-simanov": "h9XYEbAs3Py4",
+    "rami-vuori": "nqzy3scM-NDs",
+    "simo-poyry": "PxXnRMHDTclP",
+    "otso-vastila": "RyBcZO1fI2Rb"
+  }
 }
