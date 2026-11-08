@@ -115,10 +115,12 @@ async function main() {
   }
   const otso=cards.find(c=>collect(c).includes("Otso Västilä"));
   assert.match(collect(otso),/0 voittoa · 0 tappiota/);
+  assert.doesNotMatch(collect(otso),/BoxerBase-ottelua/);
+  assert.match(collect(otso),/0 ottelua/);
   const josias=cards.find(c=>collect(c).includes("Josias Joseph Ndikumana"));
   assert.match(collect(josias),/BoxerBase-ottelua/);
   const otsoProfile=await render("profile",live,"?view=profile&slug=otso-vastila");
-  assert.match(collect(otsoProfile.root),/Nollat koskevat vain tämän tietolähteen tilastoja/);
+  assert.match(collect(otsoProfile.root),/Näytetyt nollat koskevat saatavilla olevia tilastoja/);
   // General events must not be presented as Kehä-Ketut registrations.
   const calendarSample={...sample,registrations:[],discovered_events:[
     {id:"future1",name:"Tuleva salikisa",date:"2099-11-14",url:"https://fin.boxerbase.com/e/future1"},
@@ -136,6 +138,16 @@ async function main() {
   assert.doesNotMatch(upcomingText,/Duplikaatti|Mennyt|Virheellinen lähde/);
   assert.match(upcomingText,/Kehä-Kettujen osallistumista ei ole vahvistettu/);
   assert.ok(!upcomingText.includes("JULKISET ILMOITTAUTUMISET"),"Do not invent club entries");
+  const verifiedEntry=await render("updates",{
+    ...calendarSample,registrations:[{
+      boxer:"Gleb Simanov",event:"Tuleva salikisa",event_id:"future1",
+      event_url:"https://fin.boxerbase.com/e/future1",
+      event_date:"2099-11-14",status:"registered"
+    }]
+  });
+  assert.match(collect(verifiedEntry.root),/Ilmoittautuneet: Gleb Simanov/);
+  assert.match(collect(verifiedEntry.root),/Kilpailukalenteri/i);
+  assert.doesNotMatch(collect(verifiedEntry.root),/BoxerBase-ottelua/);
   const noPublicEvents=await render("updates",{...sample,registrations:[],discovered_events:[]});
   assert.equal(findAll(noPublicEvents.root,"public-event").length,0);
   console.log("All nine merged boxer links, Otso zero display and public calendar evidence separation verified.");
