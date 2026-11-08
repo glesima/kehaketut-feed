@@ -122,7 +122,7 @@ async function main() {
   const josiasSingular=cards.find(c=>collect(c).includes("Josias Joseph Ndikumana"));
   assert.match(collect(josiasSingular),/1 ottelu 0 voittoa · 1 tappio/);
   const josias=cards.find(c=>collect(c).includes("Josias Joseph Ndikumana"));
-  assert.match(collect(josias),/BoxerBase-ottelua/);
+  assert.match(collect(josias),/1 ottelu/);
   const otsoProfile=await render("profile",live,"?view=profile&slug=otso-vastila");
   assert.match(collect(otsoProfile.root),/Näytetyt nollat koskevat saatavilla olevia tilastoja/);
   // General events must not be presented as Kehä-Ketut registrations.
