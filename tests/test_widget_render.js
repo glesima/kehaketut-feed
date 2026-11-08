@@ -119,6 +119,25 @@ async function main() {
   assert.match(collect(josias),/BoxerBase-ottelua/);
   const otsoProfile=await render("profile",live,"?view=profile&slug=otso-vastila");
   assert.match(collect(otsoProfile.root),/Nollat koskevat vain tämän tietolähteen tilastoja/);
-  console.log("All nine merged boxer links, legacy aliases, Otso zero display and public-source limitations verified.");
+  // General events must not be presented as Kehä-Ketut registrations.
+  const calendarSample={...sample,registrations:[],discovered_events:[
+    {id:"future1",name:"Tuleva salikisa",date:"2099-11-14",url:"https://fin.boxerbase.com/e/future1"},
+    {id:"future1",name:"Duplikaatti",date:"2099-11-14",url:"https://fin.boxerbase.com/e/future1"},
+    {id:"future2",name:"Tuleva SM",date:"2099-12-04",url:"https://boxerbase.com/e/future2"},
+    {id:"past",name:"Mennyt",date:"2000-01-01",url:"https://boxerbase.com/e/past"},
+    {id:"unsafe",name:"Virheellinen lähde",date:"2099-11-21",url:"https://attacker.example/e/bad"}
+  ]};
+  const upcoming=await render("updates",calendarSample);
+  const calendarCards=findAll(upcoming.root,"public-event");
+  assert.equal(calendarCards.length,2,"Only distinct, future, trusted event links");
+  const upcomingText=collect(upcoming.root);
+  assert.match(upcomingText,/Tuleva salikisa/);
+  assert.match(upcomingText,/Tuleva SM/);
+  assert.doesNotMatch(upcomingText,/Duplikaatti|Mennyt|Virheellinen lähde/);
+  assert.match(upcomingText,/Kehä-Kettujen osallistumista ei ole vahvistettu/);
+  assert.ok(!upcomingText.includes("JULKISET ILMOITTAUTUMISET"),"Do not invent club entries");
+  const noPublicEvents=await render("updates",{...sample,registrations:[],discovered_events:[]});
+  assert.equal(findAll(noPublicEvents.root,"public-event").length,0);
+  console.log("All nine merged boxer links, Otso zero display and public calendar evidence separation verified.");
 }
 main().catch(err=>{console.error(err);process.exitCode=1});
