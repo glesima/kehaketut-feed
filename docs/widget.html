@@ -169,50 +169,52 @@ function updates(d){
  if(!played.length)pb.appendChild(mk("p","empty","Virallisia tuloksia ei ole vielä saatavilla."));
  played.forEach(function(m){pb.appendChild(singleBout(m,false))});
  var today=new Date().toISOString().slice(0,10);
- var next=(d.matches||[]).filter(function(m){return m.result==="vahvistettu ottelu"&&(!m.event_date||m.event_date>=today)}).sort(function(a,b){return (a.event_date||"").localeCompare(b.event_date||"")}).slice(0,3);
- if(!next.length)fb.appendChild(mk("p","empty","Tulevia ottelupareja ei ole vielä julkaistu."));
+ // Show at most three club-relevant future items, not the general event calendar.
+ // A published bout counts as evidence of participation even without a registration.
+ var next=(d.matches||[]).filter(function(m){
+  return m.result==="vahvistettu ottelu"&&(!m.event_date||m.event_date>=today);
+ }).sort(function(a,b){return (a.event_date||"").localeCompare(b.event_date||"")}).slice(0,3);
  next.forEach(function(m){fb.appendChild(singleBout(m,true))});
- var regs=(d.registrations||[]).filter(function(r){return r.status==="registered"&&r.event_date&&r.event_date>=today}).sort(function(a,b){return a.event_date.localeCompare(b.event_date)});
- if(regs.length){
-  var part=mk("div","participation"),groups=new Map();
+ // Registration must be public, current and mapped to a known club boxer.
+ // Previously observed (no longer visible) entries cannot be shown as current.
+ var roster=d.boxers||[];
+ var regs=(d.registrations||[]).filter(function(r){
+  if(!r||r.status!=="registered"||r.current_visibility==="previously_observed"||
+     !/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(r.event_date||"")||r.event_date<today)return false;
+  var m=String(r.event_url||"").match(/^https:\/\/(?:fin\.)?boxerbase\.com\/e\/([A-Za-z0-9_-]+)\/?$/);
+  if(!m||(r.event_id&&r.event_id!==m[1]))return false;
+  return roster.some(function(b){return b.name===r.boxer&&(!r.boxer_id||b.id===r.boxer_id)});
+ }).sort(function(a,b){return a.event_date.localeCompare(b.event_date)});
+ var events=new Map();
+ regs.forEach(function(r){
+  var id=r.event_id||r.event_url.match(/\/e\/([A-Za-z0-9_-]+)/)[1];
+  if(!events.has(id))events.set(id,{id:id,name:r.event||"Kilpailu",date:r.event_date,url:r.event_url,names:new Set()});
+  events.get(id).names.add(r.boxer);
+ });
+ // A confirmed bout already represents that event in the column.
+ var scheduled=new Set(next.map(function(m){
+  var src=m.event_url||m.url||"";
+  var found=src.match(/\/e\/([A-Za-z0-9_-]+)/);return found&&found[1];
+ }).filter(Boolean));
+ var registeredEvents=Array.from(events.values()).filter(function(e){return !scheduled.has(e.id)})
+  .sort(function(a,b){return a.date.localeCompare(b.date)||a.name.localeCompare(b.name)})
+  .slice(0,Math.max(0,3-next.length));
+ if(registeredEvents.length){
+  var part=mk("div","participation");
   part.appendChild(mk("div","subhead","ILMOITTAUTUNEET"));
-  regs.forEach(function(r){var k=r.event_id||r.event_url;if(!groups.has(k))groups.set(k,{name:r.event,date:r.event_date,url:r.event_url,names:[]});groups.get(k).names.push(r.boxer+(r.current_visibility==='previously_observed'?' (aiemmin havaittu)':''))});
-  Array.from(groups.values()).slice(0,3).forEach(function(r){
-   var card=mk("div","reg");
-   add(card,mk("div","name",r.name),mk("div","dim",fmt(r.date)+" · "+r.names.join(", ")),link("Osallistujalista ↗",(r.url||"")+"/participants"));
-   part.appendChild(card)
-  });
-  part.appendChild(mk("p","dim","Ilmoittautuminen ei takaa ottelua. Lista voi sisältää vain julkisesti näkyvät nimet."));
-  fb.appendChild(part)
- }
- // A public event is NOT evidence that a Kehä-Ketut athlete has entered.
- // Signed-in boxer views can show additional information not available here.
- var seenEvents=new Set();
- var calendar=(d.discovered_events||[]).filter(function(e){
-  if(!e||typeof e.date!=="string"||!/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(e.date)||e.date<today)return false;
-  if(!new RegExp("^https://(fin[.])?boxerbase[.]com/e/[A-Za-z0-9_-]+/?$").test(e.url||""))return false;
-  if(seenEvents.has(e.url))return false;
-  seenEvents.add(e.url);return true;
- }).sort(function(a,b){return a.date.localeCompare(b.date)||String(a.name||"").localeCompare(String(b.name||""))}).slice(0,6);
- if(calendar.length){
-  var cal=mk("div","participation");
-  cal.appendChild(mk("div","subhead","KILPAILUKALENTERI"));
-  calendar.forEach(function(e){
+  registeredEvents.forEach(function(e){
    var item=mk("div","reg public-event");
-   add(item,mk("div","name",e.name||"Kilpailu"),mk("div","dim",fmt(e.date)));
-   var registered=regs.filter(function(p){return (p.event_id||"")===(e.id||"")||p.event_url===e.url});
-   if(registered.length){
-    item.appendChild(mk("div","entry-label","Ilmoittautuneet: "+registered.map(function(p){return p.boxer}).join(", ")));
-   }else{
-    item.appendChild(mk("div","dim","Osallistumistiedot täydentyvät."));
-   }
-   item.appendChild(link("Kilpailun tiedot ↗",e.url));
-   cal.appendChild(item)
+   add(item,mk("div","name",e.name),mk("div","dim",fmt(e.date)),
+    mk("div","entry-label","Ilmoittautuneet: "+Array.from(e.names).join(", ")),
+    link("Kilpailun tiedot ↗",e.url));
+   part.appendChild(item);
   });
-  cal.appendChild(mk("p","dim","Kalenterissa näkyvät julkiset kilpailut. Ilmoittautumiset ja otteluparit vahvistetaan erikseen."));
-  fb.appendChild(cal)
+  part.appendChild(mk("p","dim","Ilmoittautuminen ei vielä tarkoita vahvistettua otteluparia."));
+  fb.appendChild(part);
  }
- fb.appendChild(mk("p","panel-note","Otteluajat ja osallistumistiedot voivat muuttua myös kilpailupäivänä. Tarkista lopulliset tiedot kilpailunjärjestäjältä."));
+ if(!next.length&&!registeredEvents.length)
+  fb.appendChild(mk("p","empty","Seuran tulevista kilpailuosallistumisista ei ole vielä julkaistua vahvistusta."));
+ fb.appendChild(mk("p","panel-note","Ottelu- ja osallistumistiedot voivat muuttua. Tarkista tarvittaessa tuoreimmat tiedot kilpailunjärjestäjältä."));
  p.appendChild(pb);f.appendChild(fb);add(wrap,p,f);root.appendChild(wrap)
 }
 function boxers(d){
