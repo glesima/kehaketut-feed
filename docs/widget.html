@@ -183,6 +183,26 @@ function updates(d){
   part.appendChild(mk("p","dim","Ilmoittautuminen ei takaa ottelua. Lista voi sisältää vain julkisesti näkyvät nimet."));
   fb.appendChild(part)
  }
+ // A public event is NOT evidence that a Kehä-Ketut athlete has entered.
+ // Signed-in boxer views can show additional information not available here.
+ var seenEvents=new Set();
+ var calendar=(d.discovered_events||[]).filter(function(e){
+  if(!e||typeof e.date!=="string"||!/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(e.date)||e.date<today)return false;
+  if(!new RegExp("^https://(fin[.])?boxerbase[.]com/e/[A-Za-z0-9_-]+/?$").test(e.url||""))return false;
+  if(seenEvents.has(e.url))return false;
+  seenEvents.add(e.url);return true;
+ }).sort(function(a,b){return a.date.localeCompare(b.date)||String(a.name||"").localeCompare(String(b.name||""))}).slice(0,6);
+ if(calendar.length){
+  var cal=mk("div","participation");
+  cal.appendChild(mk("div","subhead","BOXERBASEN JULKISET TULEVAT KILPAILUT"));
+  calendar.forEach(function(e){
+   var item=mk("div","reg public-event");
+   add(item,mk("div","name",e.name||"BoxerBase-kilpailu"),mk("div","dim",fmt(e.date)),link("Kilpailun tiedot ↗",e.url));
+   cal.appendChild(item)
+  });
+  cal.appendChild(mk("p","dim","Tämä on yleinen kilpailukalenteri. Kehä-Kettujen osallistumista ei ole vahvistettu näihin tapahtumiin pelkän kalenterimerkinnän perusteella."));
+  fb.appendChild(cal)
+ }
  fb.appendChild(mk("p","panel-note","Otteluajat ovat arvioita ja voivat muuttua myös kilpailupäivänä. Tarkista tuorein tieto kilpailujärjestäjältä ja BoxerBasesta."));
  p.appendChild(pb);f.appendChild(fb);add(wrap,p,f);root.appendChild(wrap)
 }
