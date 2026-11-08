@@ -1,3 +1,10 @@
+## Tulevat kilpailut ilman ylläpitäjän kirjautumista — 8.11.2026
+BoxerBasen tapahtumahaku palauttaa julkisten tapahtumien listan `discovered_events`, mutta aiempi kilpailu-widget näytti tulevaisuuden osalta vain varmistetut otteluparit ja julkisilta osallistujasivuilta havainnoidut seurailmoittautumiset. Jos kumpaakaan ei ollut, yleinen kilpailukalenteri jäi kokonaan näyttämättä.
+
+Widget näyttää nyt erikseen enintään kuusi tulevaa julkista BoxerBase-tapahtumaa, merkittynä **yleiseksi kilpailukalenteriksi**. Niitä ei esitetä Kehä-Kettujen otteluina tai ilmoittautumisina, ellei erillistä julkista näyttöä ole. Vain BoxerBase-domainin suorat tapahtuma-URL:t hyväksytään, vanhentuneet ja päällekkäiset tapahtumat suodatetaan. Kirjautuneen ylläpitäjän BoxerBase-näkymät voivat sisältää tietoa, jota julkinen lähde ei anna; ne eivät ole sama asia kuin julkisesti todennettu ilmoittautuminen.
+
+Muutos koskee vain GitHub Pagesin `widget.html`-näkymää ja sen testejä, ei Yhdistysavaimen CMS:n staattisia tekstejä. Jälkimmäisen live-selaintodennus ja mahdolliset sisältömuutokset ovat erillisiä työvaiheita.
+
 ## Kilpailijakorttien tarkistus 8.11.2026
 Ylläpitäjän kuvakaappaus oli otettu **ennen** BoxerBase-siirron voimaantuloa. Sitä ei saa käyttää uuden julkaisun virhetodisteena. Uusi julkinen tietosyöte sisältää 9 säilyneen seuran profiilia, uudet tunnisteet ja aiempien profiili-ID:iden vastaavuudet.
 
