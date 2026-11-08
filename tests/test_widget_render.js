@@ -117,6 +117,10 @@ async function main() {
   assert.match(collect(otso),/0 voittoa · 0 tappiota/);
   assert.doesNotMatch(collect(otso),/BoxerBase-ottelua/);
   assert.match(collect(otso),/0 ottelua/);
+  const rami=cards.find(c=>collect(c).includes("Rami Vuori"));
+  assert.match(collect(rami),/1 ottelu 1 voitto · 0 tappiota/);
+  const josiasSingular=cards.find(c=>collect(c).includes("Josias Joseph Ndikumana"));
+  assert.match(collect(josiasSingular),/1 ottelu 0 voittoa · 1 tappio/);
   const josias=cards.find(c=>collect(c).includes("Josias Joseph Ndikumana"));
   assert.match(collect(josias),/BoxerBase-ottelua/);
   const otsoProfile=await render("profile",live,"?view=profile&slug=otso-vastila");
