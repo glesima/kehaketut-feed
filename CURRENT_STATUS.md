@@ -1,3 +1,8 @@
+## Kilpailijakorttien tarkistus 8.11.2026
+Ylläpitäjän kuvakaappaus oli otettu **ennen** BoxerBase-siirron voimaantuloa. Sitä ei saa käyttää uuden julkaisun virhetodisteena. Uusi julkinen tietosyöte sisältää 9 säilyneen seuran profiilia, uudet tunnisteet ja aiempien profiili-ID:iden vastaavuudet.
+
+Ottelijakorteissa kerrotaan täsmällisesti BoxerBaseen kirjattu ottelumäärä (ei väitetä uran täydelliseksi ottelumääräksi). Kun profiilissa on 0 kirjattua ottelua eikä erillistä voitto-/tappioerittelyä, näytetään kortin yhtenäisyyden vuoksi 0 voittoa ja 0 tappiota **vain julkisen BoxerBase-tietolähteen osalta**, muuttamatta varsinaista lähdedataa. Ristiriitaisia tilastoja ei muuteta nolliksi eikä vanhojen profiilien eri lukuja summata. Julkisen lähteen mahdollista puutteellista urahistoriaa ei täytetä arvioilla.
+
 ## BoxerBase-korjaus vahvistettu 8.11.2026
 Virallinen lähdeseura on `RIIHIMÄEN KEHÄ-KETUT` (`mZjkT0LW248X`), entinen `1Le8shnOwPIW` on palveluntarjoajan yhdistämä. PR #27 yhdistetty commitilla `b9c992ab3725af3fa8ca4a96e638f0fb048fd534`, kaikki tarkistukset läpäisty ja Pages-ajo `42524909199` onnistui. Julkaistavasta `docs/data.json`-syötteestä luettiin vahvistetusti 9 uutta BoxerBase-ottelijatunnistetta, 9 historiallista ottelumerkintää ja vanhat profiilitunnisteet uuteen rosteriin yhdistävä vastaavuustaulukko. Lähdettä ei enää lueta poistetulta seuratunnisteelta.
 
