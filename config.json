@@ -1,6 +1,7 @@
 {
-  "club_url": "https://boxerbase.com/o/1Le8shnOwPIW/boxers",
+  "club_url": "https://boxerbase.com/o/mZjkT0LW248X/boxers",
   "club_names": [
+    "RIIHIMÄEN KEHÄ-KETUT",
     "Riihimäen Kehä-Ketut ry"
   ],
   "event_index": "https://fin.boxerbase.com/",
@@ -9,9 +10,7 @@
       "url": "https://fin.boxerbase.com/e/d6jfSSe5nRpe",
       "name": "Hämeenlinnan Kisan 110-vuotisjuhlakisat",
       "date": "2026-10-24",
-      "city": "Hämeenlinna",
-      "allow_alias_club_on_bouts": true,
-      "verified_as_duplicate_label": "RIIHIMÄEN KEHÄ-KETUT"
+      "city": "Hämeenlinna"
     },
     {
       "url": "https://boxerbase.com/e/9rPLJ9CYCFAC",
@@ -28,16 +27,25 @@
   ],
   "max_index_events": 20,
   "expected_ig_username": "kehaketut",
-  "club_id": "1Le8shnOwPIW",
-  "verified_stat_aliases": {
-    "rLyNGj8sCoF7": {
-      "url": "https://boxerbase.com/boxer/vfT3Q-X7B3Tf",
-      "person_name": "Josias Ndikumana",
-      "club_label": "RIIHIMÄEN KEHÄ-KETUT",
-      "status": "temporary_until_club_merge"
-    }
+  "club_id": "mZjkT0LW248X",
+  "verified_stat_aliases": {},
+  "registration_club_aliases": [],
+  "merged_from_club_ids": [
+    "1Le8shnOwPIW"
+  ],
+  "boxer_name_aliases": {
+    "Josias Ndikumana": "Josias Joseph Ndikumana"
   },
-  "registration_club_aliases": [
-    "RIIHIMÄEN KEHÄ-KETUT"
-  ]
+  "profile_names_by_slug": {
+    "daniela-taskila": "Daniela Taskila",
+    "ilo-gronroos": "Ilo Grönroos",
+    "josias-ndikumana": "Josias Joseph Ndikumana",
+    "josias-joseph-ndikumana": "Josias Joseph Ndikumana",
+    "kosmo-gronroos": "Kosmo Grönroos",
+    "maarjo-ranne": "Maarjo Ranne",
+    "gleb-simanov": "Gleb Simanov",
+    "rami-vuori": "Rami Vuori",
+    "simo-poyry": "Simo Pöyry",
+    "otso-vastila": "Otso Västilä"
+  }
 }

@@ -4,6 +4,11 @@
   if(window.__RKK_NEWS_LOADER_RUNNING)return;
   window.__RKK_NEWS_LOADER_RUNNING=true;
   function boot(){
+    if(!document.getElementById('rkk-boxerbase-link-fix')){
+      var fix=document.createElement('script');fix.id='rkk-boxerbase-link-fix';
+      fix.src='https://glesima.github.io/kehaketut-feed/boxerbase-links.js?v=20261108';
+      fix.async=true;document.head.appendChild(fix);
+    }
     var slot=document.getElementById('rkk-news-slot');
     if(!slot)return;
     if(window.__RKK_NEWS_MODULE_INITIALIZED)return;
