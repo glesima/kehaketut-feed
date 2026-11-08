@@ -1,3 +1,8 @@
+## Tulevien kilpailujen tiivistys — 9.11.2026
+Ylläpitäjän toive: seuran etusivu ei saa näyttää kuuden yleisen tulevan kilpailun pitkää listaa ilman yhtään Kehä-Kettujen osallistujaa. Kilpailusivu näyttää nyt yhteensä **enintään kolme** seurakohtaista tulevaa tapahtumaa: julkisesti vahvistettuja tulevia ottelupareja tai seuran nykyisiä, tunnistettuihin ottelijoihin sidottuja julkisia ilmoittautumisia. Pelkässä yleisessä BoxerBase-tapahtumakalenterissa olevia kilpailuja ei nosteta sivulle. Samassa tapahtumassa olevat ilmoittautumiset yhdistetään yhdeksi kortiksi. Otteluparin tapahtumaa ei näytetä toistamiseen ilmoittautumiskorttina.
+
+Vanhoja 'previously_observed'-havaintoja ei väitetä ajantasaisiksi ilmoittautumisiksi. Lähdeprofiilien ja kilpailujen taustahaku säilyy muuttumattomana; tietojen puuttuminen julkisesta syötteestä ei tarkoita ilmoittautumisen perumista. Jos seuraosallistumisista ei ole julkaistua vahvistusta, tuleva osio sisältää vain lyhyen neutraalin tekstin. Tämä on näkyvyysmuutos, ei ottelija-/tulostietojen muokkaus.
+
 ## Julkisen sivun selkokieli ja ilmoittautumisten näkyvyys — 8.11.2026
 Ylläpitäjän palaute: BoxerBase on vain tietolähde, ei seuran oman kilpailusivun pääviesti. Näytetään siksi esimerkiksi ”6 ottelua”, ”2 voittoa” ja ”Tulevat kilpailut”. Lähde mainitaan korkeintaan pienenä tarkistusviitteenä. Aiempi ”BoxerBase-ottelua” poistettiin otsikkokorteista ja profiilitilastoista. Mahdollisesti puutteelliseen otteluhistoriaan ei lisätä keksittyjä voittoja tai tappioita.
 
