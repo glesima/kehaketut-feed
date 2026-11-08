@@ -1,3 +1,10 @@
+## Julkisen sivun selkokieli ja ilmoittautumisten näkyvyys — 8.11.2026
+Ylläpitäjän palaute: BoxerBase on vain tietolähde, ei seuran oman kilpailusivun pääviesti. Näytetään siksi esimerkiksi ”6 ottelua”, ”2 voittoa” ja ”Tulevat kilpailut”. Lähde mainitaan korkeintaan pienenä tarkistusviitteenä. Aiempi ”BoxerBase-ottelua” poistettiin otsikkokorteista ja profiilitilastoista. Mahdollisesti puutteelliseen otteluhistoriaan ei lisätä keksittyjä voittoja tai tappioita.
+
+Yleiseen kilpailukalenteriin lisättiin kunkin tapahtuman alle **vain jo erikseen julkisesti varmennetut** Kehä-Kettujen ilmoittautuneet, jos niitä on. Tapahtuman olemassaolo ei todista seuran osallistumista; ilman varmennusta teksti on ”Osallistumistiedot täydentyvät.” Tämä ei korvaa erillistä seuran vahvistamiin ilmoittautumisiin perustuvaa tietolähdettä. BoxerBasen kirjautunut ylläpitäjä voi nähdä tulevia kilpailuja, joiden osallistujat eivät ole vielä tavallisen kävijän julkisessa tietonäkymässä. Niiden henkilökohtaisia ilmoittautumistietoja ei haeta yksityisiä näkymiä kiertämällä eikä keksitä; ensin tarvitaan seuran tarkka nimikohtainen varmennus ja julkaisemisen peruste.
+
+Muutoksia ei tehty muualle kuin GitHub Pages -näkymiin, niiden regressiotesteihin ja tähän tilannekirjaukseen. Yhdistysavaimen live-renderöinnin riippumaton toteaminen on vielä erillinen työ.
+
 ## Tulevat kilpailut ilman ylläpitäjän kirjautumista — 8.11.2026
 BoxerBasen tapahtumahaku palauttaa julkisten tapahtumien listan `discovered_events`, mutta aiempi kilpailu-widget näytti tulevaisuuden osalta vain varmistetut otteluparit ja julkisilta osallistujasivuilta havainnoidut seurailmoittautumiset. Jos kumpaakaan ei ollut, yleinen kilpailukalenteri jäi kokonaan näyttämättä.
 
