@@ -130,6 +130,21 @@ def prefer_alias_stats(primary, secondary):
     return isinstance(y, int) and (not isinstance(x, int) or y>x)
 
 
+def suppress_conflicting_totals(boxer):
+    """Keep provider match count but never publish impossible win/loss breakdowns.
+
+    BoxerBase can expose a joined record whose wins+losses exceed its displayed
+    match count. Do NOT add totals across merged profiles or guess corrections.
+    """
+    played, wins, losses = (boxer.get(k) for k in ("matches", "wins", "losses"))
+    if all(isinstance(v, int) and not isinstance(v, bool) for v in (played, wins, losses)):
+        if played < 0 or wins < 0 or losses < 0 or wins + losses > played:
+            boxer["wins"] = None
+            boxer["losses"] = None
+            boxer["stats_quality"] = "provider_counts_conflict"
+    return boxer
+
+
 def event_urls_from_index(html, base_url, limit=8):
     soup = BeautifulSoup(html, "html.parser")
     urls = []
@@ -429,6 +444,7 @@ def update():
             except Exception as exc:
                 LOG.warning("Temporary alias unavailable for %s: %s", boxer["name"], exc)
         identities = prepare_identity(previous, boxers, CONFIG)
+        boxers = [suppress_conflicting_totals(b) for b in boxers]
         out["boxers"] = boxers
         out.update(identities)
         if previous.get("club_id") != CONFIG.get("club_id"):

@@ -1,3 +1,6 @@
+## Lisätarkistus 8.11.2026 — BoxerBasen ristiriitaiset tilastot
+Yhdistetyn seuran yhdeksän ottelijan uudet ID:t ja vanhojen profiilien vastaavuudet on luettu vahvistetusta julkaisuajosta. Neljässä profiilissa lähteen ilmoittamat voitot+tappiot ylittävät kokonaisottelumäärän. Näissä tapauksissa voitto-/tappioerittelyä ei näytetä arvauksena, mutta itse ottelija, hänen uusi tunnisteensa, ottelumääränsä ja vahvistetut tuloskortit jäävät näkyviin. Lähteen erittelyn tarkistusta ei ole merkitty ratkaistuksi.
+
 ## BoxerBase-lähdemuutos 8.11.2026
 Virallisen yhdistetyn seuran tunniste on mZjkT0LW248X. Lähdemigraation koodi vaihtaa rosterin, säilyttää vanhat viralliset ottelut ja liittää aiemmat profiilit uuteen listaan vain täsmällisesti varmennetuilla nimillä. Se ei laske vanhojen duplikaattien ottelutilastoja yhteen. Lähdehaun ja Pages-käyttöönoton tulos tarkistetaan erikseen. Katso docs/BOXERBASE_MERGE_2026-11-08.md.
 

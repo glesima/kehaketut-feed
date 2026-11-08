@@ -195,6 +195,7 @@ function boxers(d){
   c.appendChild(mk("div","name",b.name));
   c.appendChild(mk("p","",b.matches==null?"Ottelumäärä ei saatavilla":b.matches+" kirjattua ottelua"));
   if(Number.isInteger(b.wins)&&Number.isInteger(b.losses))c.appendChild(mk("div","dim",b.wins+" voittoa · "+b.losses+" tappiota"));
+  else if(b.stats_quality==="provider_counts_conflict")c.appendChild(mk("div","dim","Voitto-/tappioerittely tarkistettavana"));
   c.appendChild(link("Avaa ottelijaprofiili ↗",b.stats_source_url||b.boxerbase_url));
   cards.appendChild(c)
  });
@@ -214,6 +215,7 @@ function profile(d){
  function metric(num,txt){var e=mk("div","");add(e,mk("b","",num==null?"–":num),mk("span","",txt));return e}
  add(stat,metric(b.matches,"Ottelua"),metric(b.wins,"Voittoa"),metric(b.losses,"Tappiota"));
  add(card,stat,link("Avaa lähdeprofiili ↗",b.stats_source_url||b.boxerbase_url));
+ if(b.stats_quality==="provider_counts_conflict")card.appendChild(mk("p","dim","BoxerBasen ottelu- ja tulosmäärät ovat ristiriidassa. Erittely jätetty näkyvistä, kunnes lähde tarkentuu."));
  if(b.stats_source_note)card.appendChild(mk("p","dim","Tilastoissa on huomioitu tilapäisesti rinnakkaisprofiili. Tiedot voivat vielä täydentyä."));
  var history=mk("div","history");
  (d.matches||[]).filter(function(m){return m.boxer===b.name}).sort(function(a,b){return(b.event_date||"").localeCompare(a.event_date||"")}).slice(0,5).forEach(function(m){
