@@ -1,3 +1,10 @@
+## Ilon SM-kultauutinen — 9.11.2026
+Seuran vastuuhenkilö vahvisti 9.11.2026 Ilon kuvien ja SM-kultauutisen julkaisuluvat. Kaksi yksityisestä Dropboxista Metricooliin jo hyväksytysti kopioitua JPEG-kuvaa liitettiin Facebookin ja Instagramin luonnoksiin; molemmat siirrettiin automaattiseen julkaisuun 9.11.2026 klo 17.00 Europe/Helsinki (kanavan lopullinen PUBLISHED-tila tarkistetaan erikseen).
+
+Yhdistysavaimen natiiviin uutisarkistoon ei ole tässä yhteydessä kirjoitusyhteyttä. Julkinen kuvallinen SM-uutinen on siksi toteutettu GitHub Pages -sivulle `docs/tiedotteet/ilo-gronroos-suomen-mestariksi-2026-11-09.html`; nykyisen etusivun uutisupotuksen ensimmäinen kortti nostaa jutun näkyviin 30.11.2026 saakka. Native CMS -uutisen ilmestyessä nosto korvautuu sillä (ei duplikaattia), eikä alkuperäistä CMS-arkistoa, news.jsonia tai sen syöttöä muuteta. Kolmen uutiskortin katto säilyy eikä erillistä banneria luoda.
+
+Kuvat ladattiin julkaisuun Metricoolin media-osoitteista, ei Dropboxin yksityisistä linkeistä. Oman pysyvän kuva-assetin käyttöönotto jää jatkoasiaksi, mikäli CDN-linkki ei ole pysyvästi käytettävissä.
+
 ## Kempeleen Nuorten SM 2026 -otteluhistorian täydennys — 9.11.2026
 
 Julkisista virallisista BoxerBase-tuloksista varmennettu lauantain 7.11.2026 puuttunut otteluhistoria: Ilo Grönroos voitti B-juniorien 80+ kg finaalissa Kevin-Kristjan Veskuksen 5–0 (ottelu `nrAXlpdEXsze`) ja voitti siten Suomen mestaruuden. Kosmo Grönroos hävisi B-juniorien 70 kg välierässä Otto Elias Mieloselle 0–5 (ottelu `T8SUpZo9ejpR`). Ilon aiempi perjantain 6.11. välierävoitto Oscar Lindemanista 4–1 säilytettiin ennallaan.
