@@ -232,11 +232,18 @@ def parse_match(html, url, boxers, event):
     if len(competitors) < 2:
         LOG.warning("Could not identify competitors for %s", url)
         return None
+    # A fallback /boxer/ anchor can contain the athlete AND the club suffix,
+    # unlike a "Name vs Name results at ..." title. Only strip a VERIFIED club
+    # suffix on this fallback; keep exact name checks for normal title matches.
+    club_names = list(CONFIG.get("club_names", ["Riihimäen Kehä-Ketut ry"]))
+    if event.get("allow_alias_club_on_bouts") and event.get("verified_as_duplicate_label"):
+        club_names.append(event["verified_as_duplicate_label"])
     side = None
     club = None
     for i, competitor in enumerate(competitors[:2]):
         for name in names:
-            if same_person_name(competitor, name, CONFIG):
+            if (same_person_name(competitor, name, CONFIG) or
+                (not vs and participant_matches(competitor, name, club_names, CONFIG))):
                 side, club = i, name
                 break
         if side is not None:
@@ -244,13 +251,8 @@ def parse_match(html, url, boxers, event):
     if side is None:
         LOG.warning("No tracked club boxer in bout %s: %s", url, competitors)
         return None
-    # Names can be duplicated in BoxerBase. Reject bouts whose participant
-    # does not carry the exact verified club label, not a similarly named club.
-    club_names = list(CONFIG.get("club_names", ["Riihimäen Kehä-Ketut ry"]))
-    # Specific historic bouts were registered under BoxerBase's duplicate club.
-    # Accept that label only for a manually verified known competition, never generally.
-    if event.get("allow_alias_club_on_bouts") and event.get("verified_as_duplicate_label"):
-        club_names.append(event["verified_as_duplicate_label"])
+    # Names can be duplicated in BoxerBase. An exact verified club participant
+    # must still appear in the match page; false same-name claims are rejected.
     player_links = [compact(a.get_text(" ", strip=True)) for a in soup.select('a[href*="/participants/"], a[href*="/boxer/"]')]
     if not any(participant_matches(label, club, club_names, CONFIG) for label in player_links):
         LOG.warning("Skipping bout without verified club participant: %s", url)
