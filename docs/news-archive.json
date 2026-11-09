@@ -1,6 +1,7 @@
 {
-  "generated_at": "2026-11-09T15:01:37Z",
+  "generated_at": "2026-11-09T16:15:39Z",
   "source": "https://www.kehaketut.fi/uutiset/",
+  "coverage": "Previously observed publicly accessible CMS items; older history remains at the original Yhdistysavain archive.",
   "items": [
     {
       "url": "https://www.kehaketut.fi/uutiset/harjoitukset-peruttu-27-29-10-2026/",
@@ -27,7 +28,57 @@
         "competitive",
         "juniors"
       ]
+    },
+    {
+      "url": "https://www.kehaketut.fi/uutiset/vuosikokous-2026-2/",
+      "title": "VUOSIKOKOUS 2026",
+      "date": "19.2.2026",
+      "excerpt": "Riihimäen Kehä-Kettujen sääntömääräinen vuosikokous pidetään 3.3.2026 klo 17:00 osoitteessa Länsitie 88 (Harri). Kokouksen jälkeen pidetään myös Riihimäen Kehä-Ketut Tuki ry vuosikokous. Jäsenet…",
+      "groups": [
+        "general"
+      ]
+    },
+    {
+      "url": "https://www.kehaketut.fi/uutiset/nyrkkeilykoulu-nuorille-ja-kuntonyr/",
+      "title": "NYRKKEILYKOULU NUORILLE JA KUNTONYRKKEILYN PERUSKURSSI AIKUISILLE ALKAA TIISTAINA 13.1.2026 KLO 17",
+      "date": "30.12.2025",
+      "excerpt": "Nyrkkeilykoulu nuorille (>13v.)ja kuntonyrkkeilyn peruskurssi miehille ja naisille aloitetaan 13.1.2026 klo 17 kamppiksella, teollisuuskatu 10. Kurssi sisältää kuusi treeniä jonka jälkeen mahdollisuus…",
+      "groups": []
+    },
+    {
+      "url": "https://www.kehaketut.fi/uutiset/kettujen-uudet-asusteet/",
+      "title": "KETTUJEN UUDET ASUSTEET",
+      "date": "10.11.2025",
+      "excerpt": "Kettujen uudet asusteet nyt tilattavissa ja ostettavissa salilla. College asut ja verkkarit on sovitettavissa ja tilattavissa joko treeneissä tai mieluimmin tiistaisin klo 17-18 aikana marraskuun…",
+      "groups": []
+    },
+    {
+      "url": "https://www.kehaketut.fi/uutiset/syksy-25-nyrkkeilykoulu-nuorille-ja/",
+      "title": "SYKSY- 25 NYRKKEILYKOULU NUORILLE JA KUNTONYRKKEILYN PERUSKURSSI AIKUISILLE ALKAA TIISTAINA 26.8 KLO 17",
+      "date": "18.8.2025",
+      "excerpt": "Nyrkkeilykoulu nuorille (>13v.)ja kuntonyrkkeilyn peruskurssi miehille ja naisille aloitetaan 26.8.2025 klo 17 kamppiksella, teollisuuskatu 10. Kurssi sisältää kuusi treeniä jonka jälkeen mahdollisuus…",
+      "groups": []
+    },
+    {
+      "url": "https://www.kehaketut.fi/uutiset/kuntonyrkkeilyn-syyskausi-2025-kayn/",
+      "title": "KUNTONYRKKEILYN SYYSKAUSI 2025 KÄYNTIIN",
+      "date": "12.8.2025",
+      "excerpt": "Kuntonyrkkeilyn syyskausi 2025 aloitetaan ensi viikolla Naisten treenit tiistaina 19.8 klo 18 alk ja miesten 21.8 klo 17 alk Peruskurssin aloituksesta ilmoitetaan myöhemmin",
+      "groups": []
+    },
+    {
+      "url": "https://www.kehaketut.fi/uutiset/riihimaen-keha-ketut-ry-vuosikokous/",
+      "title": "RIIHIMÄEN KEHÄ-KETUT ry VUOSIKOKOUS 11.3.2025",
+      "date": "21.2.2025",
+      "excerpt": "Riihimäen Kehä-Kettujen sääntömääräinen vuosikokous pidetään 11.3.2025 klo 18.00 TT-talon 1.krs neuvotteluhuoneessa, osoitteessa Junailijankatu 5, 11100 Riihimäki. Ilmottautumiset kettujen…",
+      "groups": []
+    },
+    {
+      "url": "https://www.kehaketut.fi/uutiset/nuorten-nyrkkeilykoulu-ja-aikuisten/",
+      "title": "NUORTEN NYRKKEILYKOULU JA AIKUISTEN KUNTONYRKKEILYN PERUSKURSSI ALOITETAAN TIISTAINA 14.1.2025 KLO 17:00-18:00",
+      "date": "6.1.2025",
+      "excerpt": "Treeneihin sopivat varusteet esim: T-paita, sortsit, sisä(peli)tossut/vast, juomapullo,hikipyyhe. Muut varusteet löytyvät salilta. Kamppailukeskuksella (teollisuuskatu10) on pukuhuoneet suihkuineen.…",
+      "groups": []
     }
-  ],
-  "coverage": "Publicly observed native Yhdistysavain articles; older history remains at the original archive."
+  ]
 }
