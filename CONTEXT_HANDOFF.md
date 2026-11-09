@@ -10,7 +10,7 @@
 ## Säilyvät toimintaperiaatteet
 
 - Alkuperäinen sivustohistoria ja lähdetiedot säilytetään.
-- Yhdistysavain on seurauutisten ensisijainen julkaisupaikka; etusivun uutisnäkymä on sen esitys.
+- **9.11.2026 päätös:** toimitukselliset verkkouutiset julkaistaan ensisijaisesti brändättyinä, kuvallisina GitHub Pages -artikkeleina (esimerkkinä Ilon SM-kultauutinen); Yhdistysavain on tarvittaessa vaihtoehtoinen julkaisupaikka. Etusivulle ja arkistoon suunnitellaan yleiskäyttöinen GitHub-uutisindeksi; nykyinen Ilon uutisnosto on vielä väliaikainen, ei valmis yleinen uutisjärjestelmä. GitHub Pages -osoite kelpaa käyttäjälle.
 - Julkaistu ottelu, ilmoittautuminen ja ehdotettu ottelu ovat eri tiloja.
 - Seuran media-aineisto pidetään yksityisenä ennen nimenomaista tai ennalta rajattua julkaisupäätöstä.
 - Julkaisu- ja kuvauslupien rekisteri on eri asia kuin kuvaajan lomakkeen ilmoitus.
