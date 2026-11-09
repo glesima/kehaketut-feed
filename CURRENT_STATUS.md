@@ -1,3 +1,9 @@
+## 9.11.2026 – Facebook- ja Instagram-syötteiden PUBLISHED-fallback
+
+Ylläpitäjä havaitsi yli neljän tunnin jälkeen, ettei 9.11. klo 17 julkaistua Ilon SM-kultaa näy verkkosivun somekorteissa. Molemmat Metricool-julkaisujen tekniset tietueet vahvistavat `PUBLISHED`-tilan ja julkiset osoitteet, mutta Instagramin ja Facebookin Analytics-haku ei vielä palauta niitä. Olemassa olevia `docs/facebook.json` ja `docs/instagram.json` -syötteitä täydennettiin täsmälleen yhdellä jo julkaistulla postauksella per kanava brändi-/tilivarmennuksen jälkeen; vanhat viimeisimmät julkaisut säilytettiin ja 6 merkinnän yläraja pidettiin. Instagramin julkinen julkaisu on `https://www.instagram.com/p/DfhnknqFVBF/` ja Facebookin `https://facebook.com/1570416605115618/posts/1587214296769182`. Kummankaan kanavan uutta viestiä ei luotu.
+
+Instagramin esikatseluosoite tuli Metricoolin jo julkaistun postauksen mediatiedoista ja voidaan kopioida turvallisesti omaan `assets/instagram/DfhnknqFVBF.jpg`-polkuun vain tarkalla mediahostin/kuvatyypin tarkistuksella. Kirjautumista, yksityisiä Dropbox-linkkejä tai muita tilejä ei käytetä. Automaatioiden tuleva analytiikkaviive pitää käsitellä ilman syötteen palautumista vanhaan tai vahvistetun julkaisun katoamista.
+
 ## Uutisarkisto yhdistää GitHubin ja Yhdistysavaimen — 9.11.2026
 
 Ylläpitäjä osoitti kuvakaappauksella, että etusivun ”Kaikki uutiset” -linkki vei edelleen Yhdistysavaimen `/uutiset/`-arkistoon, josta Ilon hyväksyttyä GitHub Pages -SM-kultauutista ei löytynyt. Tämä oli käyttäjälle näkyvä virhe, koska 9.11. oli jo hyväksytty GitHub Pages uutisten ensisijaiseksi julkaisupinnaksi.

@@ -1,5 +1,5 @@
 """Cache already-public club Instagram JPEG thumbnails; no API credentials.
-Only allowlisted Meta CDN hosts, bounded downloads, atomic writes. A failed
+Only allowlisted Meta CDN and published Metricool media hosts, bounded downloads, atomic writes. A failed
 refresh retains the last image; new missing images use the UI's neutral tile.
 """
 from __future__ import annotations
@@ -15,9 +15,16 @@ MAX_BYTES = 3 * 1024 * 1024
 def allowed_image_url(value: str) -> bool:
     try:
         u = urlsplit(value)
+        host = u.hostname or ''
+        meta = (host.endswith('.cdninstagram.com') or host.endswith('.fbcdn.net'))
+        # Metricool copies photos into a public media CDN only once the post
+        # is published. Exact host and bounded media path, not arbitrary URLs.
+        published_metricool = (host == 'static.metricool.com'
+            and not u.query and not u.fragment
+            and bool(re.fullmatch(r'/planner/[0-9]{6}/[0-9]+-file-[0-9]+\.jpe?g', u.path)))
         return (u.scheme == 'https' and not u.username and not u.password
-                and u.port in (None, 443) and bool(u.hostname)
-                and (u.hostname.endswith('.cdninstagram.com') or u.hostname.endswith('.fbcdn.net')))
+                and u.port in (None, 443) and bool(host)
+                and (meta or published_metricool))
     except (ValueError, TypeError, AttributeError):
         return False
 
