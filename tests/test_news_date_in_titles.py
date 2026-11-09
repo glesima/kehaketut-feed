@@ -7,7 +7,7 @@ from pathlib import Path
 from bs4 import BeautifulSoup
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
-from update_news import extract_news, split_news_record
+from update_news import extract_news, split_news_record, merge_native_archive
 
 
 def anchor(html):
@@ -75,6 +75,34 @@ class NewsTitleDateTests(unittest.TestCase):
     def test_no_date_cannot_be_rendered(self):
         html = """<a href="/uutiset/ilman-paivaa/">Tämä artikkeli ei sisällä julkaisuaikaa</a>"""
         self.assertEqual(extract_news(html), [])
+
+    def test_public_news_archive_keeps_older_visible_articles(self):
+        html = "".join(
+            '<a href="/uutiset/story-%d/">Seuran uutinen %d %d.10.2026 Uutinen.</a>' %
+            (i, i, 29-i) for i in range(1, 5)
+        )
+        self.assertEqual(len(extract_news(html)), 3)
+        self.assertEqual(len(extract_news(html, limit=250)), 4)
+        observed = extract_news(html, limit=250)
+        prior = [{"url": "https://www.kehaketut.fi/uutiset/historia/",
+                  "title": "Seuran historia", "date": "1.3.2026", "excerpt": "", "groups": []}]
+        merged = merge_native_archive(prior, observed)
+        self.assertEqual(len(merged), 5)
+        self.assertEqual(merged[-1]["title"], "Seuran historia")
+        self.assertEqual(len(merge_native_archive(merged, observed)), 5)
+
+    def test_archive_rejects_invalid_or_third_party_urls(self):
+        allowed = {"url": "https://www.kehaketut.fi/uutiset/tarkistettu/",
+                   "title": "Tarkistettu", "date": "8.11.2026", "excerpt": "", "groups": []}
+        invalid = [
+            {**allowed, "url": "https://example.com/uutiset/tarkistettu/"},
+            {**allowed, "url": "https://www.kehaketut.fi.evil.test/uutiset/tarkistettu/"},
+            {**allowed, "url": "http://www.kehaketut.fi/uutiset/tarkistettu/"},
+            {**allowed, "url": "https://www.kehaketut.fi/uutiset/tarkistettu/?token=secret"},
+            {**allowed, "date": "31.02.2026"},
+        ]
+        result = merge_native_archive(invalid, [allowed])
+        self.assertEqual(result, [allowed])
 
     def test_explicit_today_for_relative_future_date(self):
         node = anchor('<a href="/uutiset/t/">Harjoitukset peruttu 27.–29.10.2026 26.10.2026 Lisää tietoa.</a>')

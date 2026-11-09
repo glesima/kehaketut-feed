@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Refresh the 3 most recent publicly visible Riihimaen Keha-Ketut news posts.
+"""Refresh native Riihimaen Keha-Ketut news and preserve observed public history.
 
 Runs on GitHub Actions, not in the Yhdistysavain browser. A failed fetch
 leaves the last known good news JSON/JS intact.
@@ -104,7 +104,7 @@ def split_news_record(raw, anchor, *, today=None):
             picked.group(1), clean(raw[picked.end():]))
 
 
-def extract_news(html):
+def extract_news(html, limit=3):
     soup = BeautifulSoup(html, "html.parser")
     articles = []
     seen = set()
@@ -138,7 +138,38 @@ def extract_news(html):
             "excerpt": excerpt[:240]
         })
     articles.sort(key=lambda a: datetime.strptime(a["date"], "%d.%m.%Y"), reverse=True)
-    return articles[:3]
+    return articles[:limit] if limit is not None else articles
+
+
+def merge_native_archive(previous, fresh, limit=500):
+    """Keep each previously observed PUBLIC native article even if paginated away.
+
+    A missing entry in a bounded archive view is not proof of deletion.
+    Explicit, reviewed removals must be handled separately.
+    """
+    records = {}
+    for item in list(previous or []) + list(fresh or []):
+        if not isinstance(item, dict):
+            continue
+        url = str(item.get("url") or "")
+        u = urlparse(url)
+        if (u.scheme != "https" or u.hostname not in ("www.kehaketut.fi", "kehaketut.fi")
+                or u.username or u.password or u.port or u.query or u.fragment
+                or not re.fullmatch(r"/uutiset/[^/]+/?", u.path)):
+            continue
+        try:
+            datetime.strptime(str(item.get("date") or ""), "%d.%m.%Y")
+        except (ValueError, TypeError):
+            continue
+        if not str(item.get("title") or "").strip():
+            continue
+        records[url] = {"url": url, "title": str(item["title"])[:180],
+                        "date": item["date"], "excerpt": str(item.get("excerpt") or "")[:240],
+                        "groups": [s for s in item.get("groups", [])
+                                   if isinstance(s, str) and s in GROUP_TAGS][:3]}
+    return sorted(records.values(),
+                  key=lambda n: datetime.strptime(n["date"], "%d.%m.%Y"),
+                  reverse=True)[:limit]
 
 
 def refresh_news():
@@ -156,18 +187,32 @@ def refresh_news():
     response.raise_for_status()
     if urlparse(response.url).hostname not in ("kehaketut.fi", "www.kehaketut.fi"):
         raise RuntimeError("Unexpected news redirect host")
-    news = extract_news(response.content.decode("utf-8", errors="replace"))
+    observed = extract_news(response.content.decode("utf-8", errors="replace"), limit=250)
     allowed_groups = load_approved_groups()
-    for item in news:
+    for item in observed:
         item["groups"] = allowed_groups.get(item["url"], [])
-    if not news:
+    if not observed:
         raise RuntimeError("No public news parsed; preserving last-known-good feed")
+    news = observed[:3]
     doc = {
         "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "source": BASE,
         "items": news
     }
     DEST.mkdir(parents=True, exist_ok=True)
+    archive_file = DEST / "news-archive.json"
+    try:
+        prior_archive = json.loads(archive_file.read_text(encoding="utf-8")).get("items", [])
+    except (OSError, ValueError, AttributeError):
+        prior_archive = []
+    merged_history = merge_native_archive(prior_archive, observed)
+    archive_doc = {
+        "generated_at": doc["generated_at"],
+        "source": BASE,
+        "coverage": "Previously observed publicly accessible CMS items; older history remains at the original Yhdistysavain archive.",
+        "items": merged_history,
+    }
+    archive_file.write_text(json.dumps(archive_doc, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     (DEST / "news.json").write_text(json.dumps(doc, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     (DEST / "news-data.js").write_text(
         "window.RKK_NEWS_PAYLOAD=" + json.dumps(doc, ensure_ascii=False) +
@@ -177,7 +222,7 @@ def refresh_news():
     # Approved newsroom articles, not every BoxerBase registration/bout.
     # Stable article URLs as GUIDs prevent the same item recurring on every run.
     (DEST / "news-rss.xml").write_bytes(build_rss(doc))
-    LOG.info("Updated news: %d posts, newest %s", len(news), news[0]["title"])
+    LOG.info("Updated news: %d recent, %d archived, newest %s", len(news), len(merged_history), news[0]["title"])
 
 
 if __name__ == "__main__":
