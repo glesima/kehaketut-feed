@@ -1,3 +1,11 @@
+## 9.11.2026 – julkaisun ja analytiikan eriaikaisuus
+
+Kehä-Kettujen Facebook- ja Instagram-postaukset Ilon Suomen mestaruudesta julkaistiin Metricoolin mukaan `PUBLISHED`-tilassa 9.11.2026 klo 17.00 Europe/Helsinki, mutta Metricoolin someanalytiikan julkaisuhaut palauttivat samana iltana edelleen vanhoja rivejä tai tyhjän listan. `docs/facebook.json` ja `docs/instagram.json` korjattiin varmennetusta julkaisutiedosta (brändi 7632678, Facebook-sivu 160875127258478, Instagram kehaketut ja suorat julkiset linkit), **ei uudesta postauksesta**. Syötteeseen otetaan vain jo `PUBLISHED`-tilaiset, julkisen osoitteen sisältävät julkaisut; luonnoksia, ajastettuja tai epäonnistuneita ei hyväksytä.
+
+Instagramin PUBLISHED-vastauksen kuvan julkinen media-URL voi olla `https://static.metricool.com/planner/YYYYMM/<brand>-file-<id>.jpeg`, ei vain Metan CDN. Kuvavälimuisti sallii nyt tarkasti rajatun HTTPS Metricool-mediaosoitteen ja tarkistaa kuvan JPEG-sisällön ennen atomista talletusta. Jos kuva ei ole saatavilla, aiemmat kuvat ja uusimman julkaisun linkki säilyvät; sivulla näytetään neutraali `KUVA`-ruutu.
+
+Jatkossa automaatiot tarkistavat julkisen Metricool `PUBLISHED`-tilan tarvittaessa erillisenä varmistettuna lähteenä, jos Analytics ei heti sisällä julkaisuja, eivätkä saa poistaa vahvistettua postausta yhden viiveellisen analytiikkahaun takia. Uudet nettisivun kortit ovat enintään kolme uusinta per kanava. Uutta Facebook- tai Instagram-julkaisua ei luoda tässä tietosynkronoinnissa.
+
 # Tiiviit Instagram- ja Facebook-nostot ilman Juiceria
 
 ## Toteutus
