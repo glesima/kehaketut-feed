@@ -1,3 +1,11 @@
+## Kempeleen Nuorten SM 2026 -otteluhistorian täydennys — 9.11.2026
+
+Julkisista virallisista BoxerBase-tuloksista varmennettu lauantain 7.11.2026 puuttunut otteluhistoria: Ilo Grönroos voitti B-juniorien 80+ kg finaalissa Kevin-Kristjan Veskuksen 5–0 (ottelu `nrAXlpdEXsze`) ja voitti siten Suomen mestaruuden. Kosmo Grönroos hävisi B-juniorien 70 kg välierässä Otto Elias Mieloselle 0–5 (ottelu `T8SUpZo9ejpR`). Ilon aiempi perjantain 6.11. välierävoitto Oscar Lindemanista 4–1 säilytettiin ennallaan.
+
+Molemmat julkisesti varmistetut ottelut lisättiin rajattuna historiallisena täydennyksenä nykyiseen `docs/data.json`-syötteeseen, säilyttäen lähde-URL, ottelun id, oikea kilpailupäivä, kulmat ja tuomaripisteet. Ottelutietoja ei keksitty eikä nyrkkeilijöiden palveluntarjoajan ilmoittamia kokonaisvoitto-/ottelumääriä summattu. `scripts/update.py` säilyttää aiemmat ottelumerkinnät URL-avaimella ja deduplikoi uuden provider-osuman saman tapahtuma-/ottelutunnisteen perusteella, joten täydentävä tietue säilyy myöhemmissä hauissa. Pitkän aikavälin kattava ottelulistojen aikajaksopoiminta on edelleen erillinen puute.
+
+Viralliset lähteet: https://fin.boxerbase.com/fi/e/zdyYMbmXqIuV/m/nrAXlpdEXsze ja https://fin.boxerbase.com/fi/e/zdyYMbmXqIuV/matches?t=Xa-OpJf1h8oK. Julkisia Facebook-/Instagram-/Yhdistysavain-tiedotteita ei tämän lähdekorjauksen yhteydessä tehty.
+
 ## Codexin havaintojen korjaukset — 9.11.2026
 
 GitHub PR #27:n Codex-katselmus havaitsi, että BoxerBase-ottelusivun otsikon puuttuessa varmistetun nyrkkeilijän linkkiteksti voi sisältää nimen perässä seuran nimen; aiempi täsmänimitarkistus saattoi pudottaa ottelun pois. Fallback-tunnistus hyväksyy nyt **vain täsmällisesti tunnetun seuran päätteen**, ja otsikon normaalit tarkistukset sekä erillinen osallistujan seuravarmennus säilyvät tiukkoina. Testit kattavat myös samannäköisen väärän seuran ja eri urheilijan torjunnan.
