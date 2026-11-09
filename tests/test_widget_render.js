@@ -135,7 +135,7 @@ async function main() {
   const conflictingText=collect(conflictingProfile.root);
   assert.match(conflictingText,/Ottelu- ja tulostiedoissa on ristiriita/);
   assert.doesNotMatch(conflictingText,/Näytetyt nollat koskevat/);
-  assert.match(conflictingText,/0 – – Ottelut Voitot Tappiot/);
+  assert.match(conflictingText,/0 Ottelut – Voitot – Tappiot/);
   const rami=cards.find(c=>collect(c).includes("Rami Vuori"));
   assert.match(collect(rami),/1 ottelu 1 voitto · 0 tappiota/);
   const josiasSingular=cards.find(c=>collect(c).includes("Josias Joseph Ndikumana"));
