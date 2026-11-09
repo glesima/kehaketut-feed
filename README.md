@@ -7,7 +7,7 @@ Tämä julkinen repositorio sisältää seuran verkkosivun näyttökomponentit, 
 Ensisijainen tilannekuva: [CURRENT_STATUS.md](CURRENT_STATUS.md). Uuden työtilan aloitusohje: [CONTEXT_HANDOFF.md](CONTEXT_HANDOFF.md). Päivätyt dokumentit `docs/`-hakemistossa kuvaavat myös aiempia työvaiheita ja suunnitelmia; niitä ei tule tulkita automaattisesti tämänhetkiseksi käyttöönottotilaksi.
 
 - Verkkosivun julkiset BoxerBase-tiedot, uutisten varasyöte ja GitHub Pages päivittyvät GitHub Actions -ajoilla.
-- Etusivun uutisnäkymä hakee ensisijaisesti julkaistut uutiset suoraan Yhdistysavaimen `/uutiset/`-sivulta. Varasyöte on erikseen ajastettu. Uutista ei tarvitse julkaista uudelleen etusivulle.
+- Uudet toimituksellisesti hyväksytyt, kuvalliset seurauutiset julkaistaan ensisijaisesti GitHub Pages -artikkeleina. Hyväksytyt artikkelit merkitään yhteiseen `docs/news-owned.js`-rekisteriin. Etusivun `Kaikki uutiset` vie omaan [yhteiseen uutisarkistoon](https://glesima.github.io/kehaketut-feed/uutiset/), jossa hyväksytyt omat uutiset ja Yhdistysavaimen julkisista sivuista säilytetty historiakooste näkyvät yhdessä. Etusivun kolme uutisnostoa yhdistävät omat uutiset ja Yhdistysavaimen tuoreimmat uutiset. Yhdistysavaimen oma arkisto ja vanhat linkit säilyvät, eikä uutta uutista pidä julkaista sinne uudestaan vain etusivun nostoa varten.
 - Uutisupotuksen lataajan vaihto on ylläpitäjän mukaan tehty. Käyttöönoton selaintesti on erotettava koodin yksikkötesteistä.
 - Kolme kilpailuvideokokonaisuutta on julkaistu seuran Facebookissa, Instagramissa ja YouTubessa, viimeisin 28.10.2026. Tämä ei tarkoita, että jatkuva Dropboxista somekanaviin toimiva automaatio olisi käytössä.
 - Ylläpitäjän raportti vahvistaa yksityisen v0.2.4-vastaanottopalvelun asennuksen ja onnistuneet Dropbox-lukukierrokset. Se ei käynnistä editointia tai julkaise videoita. Julkisen `scripts/media/`-hakemiston prototyypit eivät yksin kuvaa yksityisen palvelun koko käyttöönottotilaa.
@@ -39,6 +39,7 @@ python -m unittest discover -s tests -v
 python -m compileall -q scripts
 node tests/test_widget_render.js
 node tests/test_news_live.js
+node tests/test_news_archive.js
 ```
 
 Testien onnistuminen ei yksin osoita jatkuvan palvelun asennusta, julkaisulupien olemassaoloa tai onnistunutta somejulkaisua.
