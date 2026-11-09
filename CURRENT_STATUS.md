@@ -1,3 +1,11 @@
+## Uutisarkisto yhdistää GitHubin ja Yhdistysavaimen — 9.11.2026
+
+Ylläpitäjä osoitti kuvakaappauksella, että etusivun ”Kaikki uutiset” -linkki vei edelleen Yhdistysavaimen `/uutiset/`-arkistoon, josta Ilon hyväksyttyä GitHub Pages -SM-kultauutista ei löytynyt. Tämä oli käyttäjälle näkyvä virhe, koska 9.11. oli jo hyväksytty GitHub Pages uutisten ensisijaiseksi julkaisupinnaksi.
+
+Ratkaisuna tehdään **oma tyylikäs julkinen uutisarkisto** `docs/uutiset/index.html`. Tietolähteet: toimituksellisesti julkaistut GitHub Pages -artikkelit `docs/news-owned.js` ja alkuperäisestä Yhdistysavain-arkistosta kerätyt uutiskortit `docs/news-archive.json`. Jälkimmäistä voi täydentää vain jo julkisella CMS-sisällöllä; alkuperäistä arkistoa ei poisteta. Vanhat alkuperäiset CMS-linkit säilyvät. Ilon uutinen löytyy uudesta arkistosta ensimmäisenä ja artikkelin lopusta on paluulinkki arkistoon. Mukana on myös linkki alkuperäiseen vanhaan uutisarkistoon, koska kaikkia vanhoja sivuja ei välttämättä ole vielä inventoitu.
+
+Etusivun ”Kaikki uutiset” sekä news-loader-virhetilan linkki osoittavat nyt omaan uutisarkistoon. Etusivun kolme uutiskorttia yhdistävät julkisesti hyväksytyt omat uutiset ja CMS:n julkiset uutiset päivämäärän mukaan; uuden oman uutisen julkaisu vaatii toimituksellisen hyväksynnän ja lisäyksen `news-owned.js`-rekisteriin. Ilon väliaikainen 30.11.2026 vanhentumislogiikka on poistettu: uutinen pysyy arkistossa ja etusivun kolmen tuoreimman joukossa niin kauan kuin sen päivämäärä oikeuttaa, ei erillisellä kampanja-ajastuksella.
+
 ## Uusi päätös 9.11.2026 — omat näyttävät verkkouutiset ensisijaisiksi
 
 Seuran vastuuhenkilö hyväksyi Ilon SM-kultauutisen nykyisen GitHub Pages -ulkoasun ja totesi, ettei `glesima.github.io/kehaketut-feed/...` -osoite haittaa. Hän pitää Yhdistysavaimen omia uutisartikkeleita ulkoasultaan heikompina ja haluaa käyttää nykyisen kaltaista näyttävää, seuran brändin mukaista kuvallista GitHub Pages -artikkelipohjaa **ensisijaisesti aina kun voidaan**. Tämä päätös **korvaa vanhan ohjeen**, jonka mukaan Yhdistysavain oli uutisten ensisijainen julkaisupaikka. Yhdistysavainta voi käyttää tarvittaessa poikkeuksena esimerkiksi natiivitoiminnon tai erityisen yhteensopivuustarpeen vuoksi; sitä ei tarvitse käyttää vain oman domainin osoitteen saamiseksi.
