@@ -13,6 +13,27 @@ def feed():
 
 class InstagramThumbnailTests(unittest.TestCase):
     def test_allowed_meta_cdn(self): self.assertTrue(allowed_image_url(URL))
+    def test_public_published_metricool_image_source(self):
+        # Posted image returned with Metricool PUBLISHED post details.
+        url='https://static.metricool.com/planner/202611/7632678-file-18034551498224287573.jpeg'
+        self.assertTrue(allowed_image_url(url))
+        with tempfile.TemporaryDirectory() as td:
+            d=feed()
+            d['posts'][0]['image_source']=url
+            self.assertEqual(cache(d,Path(td),lambda _:JPEG)['updated'],1)
+
+    def test_metricool_host_and_path_restrictions(self):
+        for url in [
+            'https://static.metricool.com.evil.test/planner/202611/7632678-file-1.jpeg',
+            'http://static.metricool.com/planner/202611/7632678-file-1.jpeg',
+            'https://static.metricool.com/planner/202611/../../private.jpeg',
+            'https://static.metricool.com/private/202611/7632678-file-1.jpeg',
+            'https://static.metricool.com/planner/202611/7632678-file-1.jpeg?secret=x',
+            'https://user@static.metricool.com/planner/202611/7632678-file-1.jpeg',
+            'https://static.metricool.com:9999/planner/202611/7632678-file-1.jpeg',
+        ]:
+            self.assertFalse(allowed_image_url(url))
+
     def test_no_arbitrary_hosts(self):
         for url in ['https://evil.example/a','https://cdninstagram.com.evil.example/a','http://scontent-test.cdninstagram.com/a','https://127.0.0.1/a','https://user@x.cdninstagram.com/a','https://x.cdninstagram.com:8080/a']:
             self.assertFalse(allowed_image_url(url))
