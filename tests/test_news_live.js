@@ -78,3 +78,22 @@ assert(loader.includes("document.getElementById('rkk-news-slot')"));
 assert(loader.includes("news-embed.js?v='+Math.floor(Date.now()/60000)"));
 assert(loader.includes("__RKK_NEWS_LOADER_RUNNING"));
 console.log("Stable news bootstrap versioning checks: OK");
+
+// Regression: featured approved SM article is limited to three cards, stops
+// after Nov 2026 and is replaced by a matching native CMS article.
+const featureStart=file.indexOf("  function featureApprovedGoldNews(items,now){");
+const featureEnd=file.indexOf("  function render(items){",featureStart);
+assert(featureStart>=0&&featureEnd>featureStart);
+const feature=new Function(file.slice(featureStart,featureEnd)+"\nreturn featureApprovedGoldNews;")();
+const now=Date.parse("2026-11-09T18:00:00+02:00");
+const native=[{title:"Seuran muu uutinen",url:"https://www.kehaketut.fi/uutiset/muu"}];
+const item=feature(native,now);
+assert.equal(item.length,2);
+assert.match(item[0].title,/Ilo Grönroos nyrkkeili Suomen mestariksi/);
+assert.match(item[0].url,/^https:\/\/glesima\.github\.io\/kehaketut-feed\/tiedotteet\//);
+const alreadyNative=[{title:"Ilo Grönroos on Suomen mestari!",url:"https://www.kehaketut.fi/uutiset/ilo"}].concat(native);
+assert.deepEqual(feature(alreadyNative,now),alreadyNative);
+assert.deepEqual(feature(native,Date.parse("2026-12-01T01:00:00+02:00")),native);
+assert.equal(feature([native[0],native[0],native[0]],now).length,3);
+console.log("SM gold spotlight, CMS deduplication and expiry checks OK");
+
