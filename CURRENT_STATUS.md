@@ -1,3 +1,11 @@
+## Codexin havaintojen korjaukset — 9.11.2026
+
+GitHub PR #27:n Codex-katselmus havaitsi, että BoxerBase-ottelusivun otsikon puuttuessa varmistetun nyrkkeilijän linkkiteksti voi sisältää nimen perässä seuran nimen; aiempi täsmänimitarkistus saattoi pudottaa ottelun pois. Fallback-tunnistus hyväksyy nyt **vain täsmällisesti tunnetun seuran päätteen**, ja otsikon normaalit tarkistukset sekä erillinen osallistujan seuravarmennus säilyvät tiukkoina. Testit kattavat myös samannäköisen väärän seuran ja eri urheilijan torjunnan.
+
+GitHub PR #29:n Codex-katselmus havaitsi, että tilastoristiriidan vuoksi nollatuiksi piilotetut voitot ja tappiot voidaan tulkita virheellisesti 0–0-saldoksi, jos otteluita on kirjattu nolla. Sekä lista- että profiilinäkymä estävät nyt nollaesityksen, kun `stats_quality=provider_counts_conflict`. Tavallinen tyhjä nollaprofiili säilyy yhtenäisenä. Python- ja JS-regressiotestit lisätty.
+
+Erillinen lähdetietotarkistus: Kempeleen nuorten SM-turnauksen julkisella finaalisivulla Ilo Grönroos voitti Kevin-Kristjan Veskuksen 5–0 B-juniorien 80+ -sarjan finaalissa lauantaina 7.11.2026. Hän voitti myös Oscar Lindemanin välierässä 4–1. Nykyisestä syötteestä puuttuu finaali, joten historiallisten otteluiden poiminnan kattavuus vaatii erillistä jatkokorjausta. Tätä ei ole merkitty automaattisesti ratkaistuksi. Lähde: https://fin.boxerbase.com/fi/e/zdyYMbmXqIuV/m/nrAXlpdEXsze (julkinen ottelutulos), https://fin.boxerbase.com/fi/e/zdyYMbmXqIuV/g/MJpLlyyBZpSF (kilpailukaavio).
+
 ## Tulevien kilpailujen tiivistys — 9.11.2026
 Ylläpitäjän toive: seuran etusivu ei saa näyttää kuuden yleisen tulevan kilpailun pitkää listaa ilman yhtään Kehä-Kettujen osallistujaa. Kilpailusivu näyttää nyt yhteensä **enintään kolme** seurakohtaista tulevaa tapahtumaa: julkisesti vahvistettuja tulevia ottelupareja tai seuran nykyisiä, tunnistettuihin ottelijoihin sidottuja julkisia ilmoittautumisia. Pelkässä yleisessä BoxerBase-tapahtumakalenterissa olevia kilpailuja ei nosteta sivulle. Samassa tapahtumassa olevat ilmoittautumiset yhdistetään yhdeksi kortiksi. Otteluparin tapahtumaa ei näytetä toistamiseen ilmoittautumiskorttina.
 

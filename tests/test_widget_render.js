@@ -118,6 +118,24 @@ async function main() {
   assert.match(collect(otso),/0 voittoa · 0 tappiota/);
   assert.doesNotMatch(collect(otso),/BoxerBase-ottelua/);
   assert.match(collect(otso),/0 ottelua/);
+  // Source says zero bouts, but reports a positive result count; the importer
+  // correctly suppresses contradictory W/L values and marks the conflict.
+  // Neither the card nor the profile is allowed to manufacture a 0–0 record.
+  const normalizedConflict={
+    ...live,boxers:live.boxers.map(b=>b.name==="Otso Västilä"?
+      {...b,matches:0,wins:null,losses:null,stats_quality:"provider_counts_conflict"}:b)
+  };
+  const conflictingCards=await render("boxers",normalizedConflict);
+  const conflictingOtso=findAll(conflictingCards.root,"card")
+    .find(c=>collect(c).includes("Otso Västilä"));
+  assert.ok(conflictingOtso);
+  assert.match(collect(conflictingOtso),/Voitot ja tappiot tarkistettavana/);
+  assert.doesNotMatch(collect(conflictingOtso),/0 voittoa/);
+  const conflictingProfile=await render("profile",normalizedConflict,"?view=profile&slug=otso-vastila");
+  const conflictingText=collect(conflictingProfile.root);
+  assert.match(conflictingText,/Ottelu- ja tulostiedoissa on ristiriita/);
+  assert.doesNotMatch(conflictingText,/Näytetyt nollat koskevat/);
+  assert.match(conflictingText,/0 Ottelut – Voitot – Tappiot/);
   const rami=cards.find(c=>collect(c).includes("Rami Vuori"));
   assert.match(collect(rami),/1 ottelu 1 voitto · 0 tappiota/);
   const josiasSingular=cards.find(c=>collect(c).includes("Josias Joseph Ndikumana"));

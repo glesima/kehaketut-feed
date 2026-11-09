@@ -227,7 +227,7 @@ function boxers(d){
   c.appendChild(mk("p","",b.matches==null?"Ottelumäärä ei saatavilla":countText(b.matches,"ottelu","ottelua")));
   // With zero recorded bouts the public BoxerBase subset has zero recorded wins and losses.
   // This display-only convention must not overwrite unknown provider statistics.
-  if(b.matches===0&&b.wins==null&&b.losses==null){
+  if(b.matches===0&&b.wins==null&&b.losses==null&&b.stats_quality!=="provider_counts_conflict"){
     c.appendChild(mk("div","dim","0 voittoa · 0 tappiota"));
   }else if(Number.isInteger(b.wins)&&Number.isInteger(b.losses)){
     c.appendChild(mk("div","dim",countText(b.wins,"voitto","voittoa")+" · "+countText(b.losses,"tappio","tappiota")));
@@ -253,7 +253,7 @@ function profile(d){
  heading("Kilpailijaprofiili",b.name);
  var card=mk("div","card"),stat=mk("div","stats");
  function metric(num,txt){var e=mk("div","");add(e,mk("b","",num==null?"–":num),mk("span","",txt));return e}
- var zeroRecorded=b.matches===0&&b.wins==null&&b.losses==null;
+ var zeroRecorded=b.matches===0&&b.wins==null&&b.losses==null&&b.stats_quality!=="provider_counts_conflict";
  add(stat,metric(b.matches,"Ottelut"),metric(zeroRecorded?0:b.wins,"Voitot"),metric(zeroRecorded?0:b.losses,"Tappiot"));
  add(card,stat,link("Avaa lähdeprofiili ↗",b.stats_source_url||b.boxerbase_url));
  if(b.stats_quality==="provider_counts_conflict")card.appendChild(mk("p","dim","Ottelu- ja tulostiedoissa on ristiriita. Erittelyä tarkistetaan."));
