@@ -10,7 +10,7 @@
 ## Säilyvät toimintaperiaatteet
 
 - Alkuperäinen sivustohistoria ja lähdetiedot säilytetään.
-- **9.11.2026 päätös:** toimitukselliset verkkouutiset julkaistaan ensisijaisesti brändättyinä, kuvallisina GitHub Pages -artikkeleina (esimerkkinä Ilon SM-kultauutinen); Yhdistysavain on tarvittaessa vaihtoehtoinen julkaisupaikka. Etusivulle ja arkistoon suunnitellaan yleiskäyttöinen GitHub-uutisindeksi; nykyinen Ilon uutisnosto on vielä väliaikainen, ei valmis yleinen uutisjärjestelmä. GitHub Pages -osoite kelpaa käyttäjälle.
+- **9.11.2026 päätös ja toteutus:** toimitukselliset uutiset julkaistaan ensisijaisesti brändättyinä GitHub Pages -artikkeleina. Toimituksellisesti hyväksytyt ja julkaistut artikkelit listataan `docs/news-owned.js`-rekisterissä; etusivu yhdistää tämän ja Yhdistysavaimen uusimmat julkiset uutiset. Etusivun **Kaikki uutiset** -linkki osoittaa uuteen `docs/uutiset/index.html`-sivuun, joka yhdistää omat uutiset ja `docs/news-archive.json`-historiakoosteen. Alkuperäinen Yhdistysavaimen `/uutiset/` säilyy vanhojen uutisten lisälähteenä eikä sitä ole poistettu tai muokattu. Uutisten arkistointia päivitetään GitHub Actionsin kautta, mutta kaikkia CMS:n historiallisia sivuja ei vielä väitetä poimituksi. GitHub Pages -osoite hyväksytty käyttäjälle.
 - Julkaistu ottelu, ilmoittautuminen ja ehdotettu ottelu ovat eri tiloja.
 - Seuran media-aineisto pidetään yksityisenä ennen nimenomaista tai ennalta rajattua julkaisupäätöstä.
 - Julkaisu- ja kuvauslupien rekisteri on eri asia kuin kuvaajan lomakkeen ilmoitus.
