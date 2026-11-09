@@ -21,7 +21,7 @@
       notice.style.cssText='padding:15px;border-left:4px solid #b91c2b;background:#fff4f5;font:14px system-ui';
       notice.textContent='Uutisnäkymää ei saatu ladattua. ';
       var link=document.createElement('a');
-      link.href='/uutiset/';
+      link.href='https://glesima.github.io/kehaketut-feed/uutiset/';
       link.textContent='Avaa kaikki uutiset';
       notice.appendChild(link);
       slot.appendChild(notice);
