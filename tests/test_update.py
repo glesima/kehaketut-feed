@@ -44,6 +44,41 @@ class TestPublicViews(unittest.TestCase):
         self.assertEqual(b["matches"],4)
         self.assertEqual(b["stats_quality"],"provider_counts_conflict")
 
+    def test_conflicting_zero_matches_is_not_a_zero_win_loss(self):
+        boxer=suppress_conflicting_totals({"matches":0,"wins":1,"losses":0})
+        self.assertEqual(boxer["matches"],0)
+        self.assertIsNone(boxer["wins"])
+        self.assertIsNone(boxer["losses"])
+        self.assertEqual(boxer["stats_quality"],"provider_counts_conflict")
+        clean=suppress_conflicting_totals({"matches":0,"wins":None,"losses":None})
+        self.assertNotIn("stats_quality",clean)
+
+    def test_fallback_club_suffix_matches_without_weakening_identity(self):
+        event={"name":"Test","date":"2026-10-24","url":"https://fin.boxerbase.com/e/abc"}
+        roster=[{"name":"Gleb Simanov"}]
+        prefix='<html><head><title>Event results overview</title></head><body>'
+        suffix='<div>Winner Blue • 5-0</div></body></html>'
+        approved=prefix+(
+            '<a href="/boxer/a">Gleb Simanov (Riihimäen Kehä-Ketut ry)</a>'
+            '<a href="/boxer/b">Sampo Paananen Oiva Boxing</a>'
+        )+suffix
+        got=parse_match(approved,"https://fin.boxerbase.com/e/abc/m/abc",roster,event)
+        self.assertIsNotNone(got)
+        self.assertEqual(got["boxer"],"Gleb Simanov")
+        self.assertEqual(got["result"],"tappio")
+        # A similar-name club must never provide identity verification.
+        wrong=prefix+(
+            '<a href="/boxer/a">Gleb Simanov Riihimäen Kehä-Ketut Juniorit</a>'
+            '<a href="/boxer/b">Sampo Paananen Oiva Boxing</a>'
+        )+suffix
+        self.assertIsNone(parse_match(wrong,"https://fin.boxerbase.com/e/abc/m/wrong",roster,event))
+        # Another athlete must not match by a substring.
+        other=prefix+(
+            '<a href="/boxer/a">Gleb Simanovinen Riihimäen Kehä-Ketut ry</a>'
+            '<a href="/boxer/b">Sampo Paananen Oiva Boxing</a>'
+        )+suffix
+        self.assertIsNone(parse_match(other,"https://fin.boxerbase.com/e/abc/m/other",roster,event))
+
     def test_profile_totals_consistent_kept(self):
         b=suppress_conflicting_totals({"matches":11,"wins":6,"losses":5})
         self.assertEqual((b["matches"],b["wins"],b["losses"]),(11,6,5))
