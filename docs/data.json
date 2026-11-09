@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-09T10:43:50Z",
+  "generated_at": "2026-11-09T10:49:34Z",
   "data_origin": "BoxerBase public views and optionally Instagram official API",
   "boxers": [
     {
@@ -81,27 +81,6 @@
   ],
   "matches": [
     {
-      "id": "T8SUpZo9ejpR",
-      "boxer": "Kosmo Grönroos",
-      "opponent": "Otto Elias Mielonen",
-      "result": "tappio",
-      "decision": "5-0",
-      "method": "PTS",
-      "round": null,
-      "winner_corner": "blue",
-      "bout_contested": true,
-      "red_boxer": "Kosmo Grönroos",
-      "blue_boxer": "Otto Elias Mielonen",
-      "boxer_corner": "red",
-      "opponent_corner": "blue",
-      "event": "Nuorten SM-kilpailut",
-      "event_date": "2026-11-07",
-      "event_url": "https://fin.boxerbase.com/e/zdyYMbmXqIuV",
-      "url": "https://fin.boxerbase.com/fi/e/zdyYMbmXqIuV/m/T8SUpZo9ejpR",
-      "boxer_id": "jRMAAn1JtaN6",
-      "verification": "official_public_matchlist"
-    },
-    {
       "id": "nrAXlpdEXsze",
       "boxer": "Ilo Grönroos",
       "opponent": "Kevin-Kristjan Veskus",
@@ -123,6 +102,27 @@
       "verification": "official_public_match_result"
     },
     {
+      "id": "T8SUpZo9ejpR",
+      "boxer": "Kosmo Grönroos",
+      "opponent": "Otto Elias Mielonen",
+      "result": "tappio",
+      "decision": "5-0",
+      "method": "PTS",
+      "round": null,
+      "winner_corner": "blue",
+      "bout_contested": true,
+      "red_boxer": "Kosmo Grönroos",
+      "blue_boxer": "Otto Elias Mielonen",
+      "boxer_corner": "red",
+      "opponent_corner": "blue",
+      "event": "Nuorten SM-kilpailut",
+      "event_date": "2026-11-07",
+      "event_url": "https://fin.boxerbase.com/e/zdyYMbmXqIuV",
+      "url": "https://fin.boxerbase.com/fi/e/zdyYMbmXqIuV/m/T8SUpZo9ejpR",
+      "boxer_id": "jRMAAn1JtaN6",
+      "verification": "official_public_matchlist"
+    },
+    {
       "id": "u6SbzI-hc_DK",
       "boxer": "Ilo Grönroos",
       "opponent": "Oscar Lindeman",
@@ -141,25 +141,6 @@
       "event_url": "https://fin.boxerbase.com/e/zdyYMbmXqIuV",
       "url": "https://fin.boxerbase.com/e/zdyYMbmXqIuV/m/u6SbzI-hc_DK",
       "boxer_id": "W9dy-RM88aLL"
-    },
-    {
-      "id": "KUBbw2IueSRU",
-      "boxer": "Simo Pöyry",
-      "opponent": "Lauri Mäenpää",
-      "result": "tappio",
-      "decision": "3-2",
-      "method": "PTS",
-      "round": null,
-      "winner_corner": "red",
-      "bout_contested": true,
-      "red_boxer": "Lauri Mäenpää",
-      "blue_boxer": "Simo Pöyry",
-      "boxer_corner": "blue",
-      "opponent_corner": "red",
-      "event": "Hämeenlinnan Kisan 110-vuotisjuhlakisat",
-      "event_date": "2026-10-24",
-      "event_url": "https://fin.boxerbase.com/e/d6jfSSe5nRpe",
-      "url": "https://fin.boxerbase.com/e/d6jfSSe5nRpe/m/KUBbw2IueSRU"
     },
     {
       "id": "eqMxgdF-ilSr",
@@ -198,6 +179,25 @@
       "event_date": "2026-10-24",
       "event_url": "https://fin.boxerbase.com/e/d6jfSSe5nRpe",
       "url": "https://fin.boxerbase.com/e/d6jfSSe5nRpe/m/b2IAmmiSwxiR"
+    },
+    {
+      "id": "KUBbw2IueSRU",
+      "boxer": "Simo Pöyry",
+      "opponent": "Lauri Mäenpää",
+      "result": "tappio",
+      "decision": "3-2",
+      "method": "PTS",
+      "round": null,
+      "winner_corner": "red",
+      "bout_contested": true,
+      "red_boxer": "Lauri Mäenpää",
+      "blue_boxer": "Simo Pöyry",
+      "boxer_corner": "blue",
+      "opponent_corner": "red",
+      "event": "Hämeenlinnan Kisan 110-vuotisjuhlakisat",
+      "event_date": "2026-10-24",
+      "event_url": "https://fin.boxerbase.com/e/d6jfSSe5nRpe",
+      "url": "https://fin.boxerbase.com/e/d6jfSSe5nRpe/m/KUBbw2IueSRU"
     },
     {
       "id": "TLympII5-8lF",
@@ -297,12 +297,12 @@
   ],
   "instagram": [],
   "errors": [],
-  "boxers_checked_at": "2026-11-09T10:43:50Z",
+  "boxers_checked_at": "2026-11-09T10:49:34Z",
   "club_id": "mZjkT0LW248X",
   "club_url": "https://boxerbase.com/o/mZjkT0LW248X/boxers",
-  "matches_checked_at": "2026-11-09T10:43:50Z",
+  "matches_checked_at": "2026-11-09T10:49:34Z",
   "registrations": [],
-  "registrations_checked_at": "2026-11-09T10:45:37Z",
+  "registrations_checked_at": "2026-11-09T10:51:25Z",
   "registration_coverage": "Public browser search; organiser-hidden entries are unavailable.",
   "discovered_events": [
     {
@@ -342,8 +342,8 @@
       "url": "https://fin.boxerbase.com/e/DxgdbRx46tR-"
     }
   ],
-  "events_checked_at": "2026-11-09T10:43:50Z",
-  "registrations_first_page_checked_at": "2026-11-09T10:43:50Z",
+  "events_checked_at": "2026-11-09T10:49:34Z",
+  "registrations_first_page_checked_at": "2026-11-09T10:49:34Z",
   "boxer_id_aliases": {
     "KyEKnjm-NRp4": "Pi3gCaWD-7jD",
     "U2N_OOYxyFui": "h9XYEbAs3Py4",
