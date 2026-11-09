@@ -79,6 +79,27 @@ class TestPublicViews(unittest.TestCase):
         )+suffix
         self.assertIsNone(parse_match(other,"https://fin.boxerbase.com/e/abc/m/other",roster,event))
 
+    def test_2026_kempele_sm_verified_results_retained(self):
+        """Provider-published semifinal and final must survive subsequent refreshes."""
+        import json
+        from update import ROOT
+        feed=json.loads((ROOT/"docs"/"data.json").read_text(encoding="utf-8"))
+        bouts={m["id"]:m for m in feed["matches"]}
+        expected={
+            "nrAXlpdEXsze":("Ilo Grönroos","Kevin-Kristjan Veskus","voitto","5-0"),
+            "T8SUpZo9ejpR":("Kosmo Grönroos","Otto Elias Mielonen","tappio","5-0"),
+        }
+        for match_id,facts in expected.items():
+            with self.subTest(match=match_id):
+                self.assertIn(match_id,bouts)
+                m=bouts[match_id]
+                self.assertEqual((m["boxer"],m["opponent"],m["result"],m["decision"]),facts)
+                self.assertEqual(m["event_date"],"2026-11-07")
+                self.assertEqual(m["event_url"],"https://fin.boxerbase.com/e/zdyYMbmXqIuV")
+                self.assertEqual(m["boxer_id"],next(b["id"] for b in feed["boxers"] if b["name"]==facts[0]))
+                self.assertTrue(m["url"].startswith("https://fin.boxerbase.com/fi/e/zdyYMbmXqIuV/m/"))
+        self.assertEqual(sum(m["id"]=="nrAXlpdEXsze" for m in feed["matches"]),1)
+
     def test_profile_totals_consistent_kept(self):
         b=suppress_conflicting_totals({"matches":11,"wins":6,"losses":5})
         self.assertEqual((b["matches"],b["wins"],b["losses"]),(11,6,5))
