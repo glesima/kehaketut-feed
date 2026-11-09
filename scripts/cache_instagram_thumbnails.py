@@ -21,7 +21,7 @@ def allowed_image_url(value: str) -> bool:
         # is published. Exact host and bounded media path, not arbitrary URLs.
         published_metricool = (host == 'static.metricool.com'
             and not u.query and not u.fragment
-            and bool(re.fullmatch(r'/planner/[0-9]{6}/[0-9]+-file-[0-9]+\\.jpe?g', u.path)))
+            and bool(re.fullmatch(r'/planner/[0-9]{6}/[0-9]+-file-[0-9]+\.jpe?g', u.path)))
         return (u.scheme == 'https' and not u.username and not u.password
                 and u.port in (None, 443) and bool(host)
                 and (meta or published_metricool))
