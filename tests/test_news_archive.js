@@ -12,7 +12,7 @@ new Function(script);
 new Function(ownedJS);
 assert.match(archiveHTML,/Kaikki uutiset/);
 assert.match(archiveHTML,/https:\/\/www\.kehaketut\.fi\/uutiset\//,"Preserve original native archive access");
-assert.ok(native.items.length>=3,"Seed native article history");
+assert.ok(Array.isArray(native.items),"Native public history is a list");
 
 class Element {
   constructor(tag){this.tag=tag;this.children=[];this.textContent="";this.className="";this.href="";this.src="";}
@@ -47,10 +47,24 @@ async function render(snapshot){
 (async()=>{
  const root=await render(native);
  const cards=find(root,"article");
- assert.equal(cards.length,native.items.length+1,"Own news and all native entries are included");
- assert.match(text(cards[0]),/Ilo Grönroos/,"Approved SM gold article is first");
- assert.ok(find(cards[0],"img").length===1,"SM gold article retains its photo");
- for(const nativeItem of native.items)assert.ok(cards.some(c=>find(c,"a").some(a=>a.href===nativeItem.url)),nativeItem.url);
+ assert.ok(cards.length>=1,"At least one approved GitHub article is always present");
+ const goldURL="https://glesima.github.io/kehaketut-feed/tiedotteet/ilo-gronroos-suomen-mestariksi-2026-11-09.html";
+ const goldCard=cards.find(c=>find(c,"a").some(a=>a.href===goldURL));
+ assert.ok(goldCard,"SM gold story is present independent of its chronological position");
+ assert.match(text(goldCard),/Ilo Grönroos/);
+ assert.ok(find(goldCard,"img").length===1,"SM gold article retains its photo");
+ for(const nativeItem of native.items){
+  const title=String(nativeItem.title||"").toLocaleLowerCase("fi");
+  const goldMirror=title.includes("ilo grönroos")&&(title.includes("mestar")||title.includes("sm-kult"));
+  if(!goldMirror)assert.ok(cards.some(c=>find(c,"a").some(a=>a.href===nativeItem.url)),nativeItem.url);
+ }
+ // A later native story must come first WITHOUT removing the approved old story.
+ const fresh={url:"https://www.kehaketut.fi/uutiset/uusi-uutinen-2026/",
+  title:"Uudempi seurauutinen",date:"10.11.2026",excerpt:"Uusi uutinen"};
+ const newer=await render({items:native.items.concat([fresh])});
+ const newerCards=find(newer,"article");
+ assert.match(text(newerCards[0]),/Uudempi seurauutinen/);
+ assert.ok(newerCards.some(c=>find(c,"a").some(a=>a.href===goldURL)),"Older approved story remains in archive");
  const malicious={items:native.items.concat([
   {url:"https://attacker.example/uutiset/bad/",title:"Vaarallinen sivusto",date:"10.11.2026"},
   {url:"https://www.kehaketut.fi/uutiset/phish/?secret=1",title:"Ei sallittu",date:"10.11.2026"},
