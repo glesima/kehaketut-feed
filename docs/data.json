@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-10T09:45:27Z",
+  "generated_at": "2026-11-10T20:48:22Z",
   "data_origin": "BoxerBase public views and optionally Instagram official API",
   "boxers": [
     {
@@ -30,7 +30,7 @@
     },
     {
       "id": "vfT3Q-X7B3Tf",
-      "name": "Josias Joseph Ndikumana",
+      "name": "Josias Ndikumana",
       "boxerbase_url": "https://boxerbase.com/boxer/vfT3Q-X7B3Tf",
       "matches": 1,
       "wins": 0,
@@ -297,12 +297,12 @@
   ],
   "instagram": [],
   "errors": [],
-  "boxers_checked_at": "2026-11-10T09:45:27Z",
+  "boxers_checked_at": "2026-11-10T20:48:22Z",
   "club_id": "mZjkT0LW248X",
   "club_url": "https://boxerbase.com/o/mZjkT0LW248X/boxers",
-  "matches_checked_at": "2026-11-10T09:45:27Z",
+  "matches_checked_at": "2026-11-10T20:48:22Z",
   "registrations": [],
-  "registrations_checked_at": "2026-11-10T09:47:05Z",
+  "registrations_checked_at": "2026-11-10T20:50:18Z",
   "registration_coverage": "Public browser search; organiser-hidden entries are unavailable.",
   "discovered_events": [
     {
@@ -342,8 +342,8 @@
       "url": "https://fin.boxerbase.com/e/DxgdbRx46tR-"
     }
   ],
-  "events_checked_at": "2026-11-10T09:45:27Z",
-  "registrations_first_page_checked_at": "2026-11-10T09:45:27Z",
+  "events_checked_at": "2026-11-10T20:48:22Z",
+  "registrations_first_page_checked_at": "2026-11-10T20:48:22Z",
   "boxer_id_aliases": {
     "KyEKnjm-NRp4": "Pi3gCaWD-7jD",
     "U2N_OOYxyFui": "h9XYEbAs3Py4",
