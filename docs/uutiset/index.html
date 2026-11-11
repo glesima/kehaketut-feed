@@ -33,6 +33,7 @@ h1{font-size:clamp(33px,5vw,53px);letter-spacing:-.035em;line-height:1.12;margin
 .kicker{color:var(--red);font-weight:900;text-transform:uppercase;letter-spacing:.08em;margin-right:10px}
 h2{font-size:clamp(20px,2.5vw,26px);line-height:1.23;letter-spacing:-.02em;margin:0 0 13px;overflow-wrap:anywhere}
 .item.lead h2{font-size:clamp(25px,3.3vw,34px)}
+.video-tag{display:inline-flex;padding:3px 8px;background:#b91c2b;color:#fff;border-radius:7px;font-size:11px;letter-spacing:.08em;font-weight:900;margin-right:9px}
 h2 a{color:var(--ink)!important}
 .desc{color:#52606d;font-size:14px;line-height:1.6;margin:0 0 17px}
 .read{margin-top:auto;font-size:12px;color:var(--red);font-weight:850}
@@ -52,9 +53,16 @@ footer{text-align:center;font-size:12px;color:var(--muted);margin-top:44px}
 <div class="intro"><span class="stripe" aria-hidden="true"></span><div><div class="eyebrow">Seuran kuulumiset</div><h1>Kaikki uutiset</h1>
 <p class="subtitle">Kilpailut, saavutukset ja ajankohtaiset seurauutiset. Uudet artikkelit ja aiemmat uutiset yhdessä.</p></div></div>
 <div id="news-list" class="news-grid" aria-live="polite">
-<article class="item lead"><div class="body"><div class="meta"><span class="kicker">Kilpanyrkkeily</span>9.11.2026</div><h2><a href="../tiedotteet/ilo-gronroos-suomen-mestariksi-2026-11-09.html">Ilo Grönroos nyrkkeili Suomen mestariksi Kempeleessä!</a></h2>
-<p class="desc">Kaksi ottelua, kaksi voittoa ja SM-kultaa!</p><a class="read" href="../tiedotteet/ilo-gronroos-suomen-mestariksi-2026-11-09.html">Lue uutinen</a></div>
-<a class="media" href="../tiedotteet/ilo-gronroos-suomen-mestariksi-2026-11-09.html"><img src="https://static.metricool.com/planner/202611/7632678-file-18034551498224287573.jpeg" alt="Ilo Grönroos nuorten SM-kilpailuissa" loading="eager"></a></article>
+<article class="item lead"><div class="body"><div class="meta"><span class="video-tag">VIDEO</span>11.11.2026</div>
+<h2><a href="../tiedotteet/ilo-gronroos-mestaruushaastattelu-2026-11-11.html">Video: Ilo Grönroos kertoo mestaruustunnelmistaan</a></h2>
+<p class="desc">Nyt ääneen pääsee mestari itse! B-junioreiden yli 80 kg sarjan Suomen mestaruuden tunnelmat ja harjoittelu – katso 1 min 41 s video.</p>
+<a class="read" href="../tiedotteet/ilo-gronroos-mestaruushaastattelu-2026-11-11.html">Katso video</a></div>
+<a class="media" href="../tiedotteet/ilo-gronroos-mestaruushaastattelu-2026-11-11.html"><img src="https://static.metricool.com/planner/202611/7632678-file-18034551498224287573.jpeg" alt="Ilo Grönroos nuorten SM-kilpailuissa" loading="eager"></a>
+</article>
+<article class="item"><div class="body"><div class="meta">Kilpanyrkkeily · 9.11.2026</div>
+<h2><a href="../tiedotteet/ilo-gronroos-suomen-mestariksi-2026-11-09.html">Ilo Grönroos nyrkkeili Suomen mestariksi Kempeleessä!</a></h2>
+<p class="desc">Alkuperäinen mestaruusuutinen, kilpailujen tapahtumat ja tulokset.</p>
+<a class="read" href="../tiedotteet/ilo-gronroos-suomen-mestariksi-2026-11-09.html">Lue uutinen</a></div></article>
 </div>
 <section class="older" aria-labelledby="older-title">
 <h3 id="older-title">Vanhemmat uutiset</h3>
@@ -97,7 +105,7 @@ function normalized(n){
  if(!n||!validLink(n)||!dateNum(n.date)||!String(n.title||"").trim())return null;
  return {url:n.url,title:String(n.title).slice(0,180),date:n.date,
   excerpt:String(n.excerpt||"").slice(0,300),groups:Array.isArray(n.groups)?n.groups:[],
-  image:validImage(n.image),alt:String(n.image_alt||n.title).slice(0,150),
+  image:validImage(n.image),alt:String(n.image_alt||n.title).slice(0,150),kind:n.kind==="video"?"video":"article",
   isOwned:n.url.indexOf("https://glesima.github.io/")===0};
 }
 function collect(legacy){
@@ -135,13 +143,14 @@ function render(legacy){
    imgLink.appendChild(img);card.appendChild(imgLink);
   }
   var body=node("div","body"),meta=node("div","meta");
-  var group=(n.groups.indexOf("competitive")>=0?"Kilpanyrkkeily":"Seurauutiset");
+  var group=(n.kind==="video"?"Videohaastattelu":n.groups.indexOf("competitive")>=0?"Kilpanyrkkeily":"Seurauutiset");
   meta.appendChild(node("span","kicker",group));
+  if(n.kind==="video")meta.appendChild(node("span","video-tag","VIDEO"));
   meta.appendChild(document.createTextNode(n.date));
   var h2=node("h2"),title=node("a","",n.title);title.href=n.url;h2.appendChild(title);
   body.appendChild(meta);body.appendChild(h2);
   if(n.excerpt)body.appendChild(node("p","desc",n.excerpt));
-  var read=node("a","read","Lue uutinen");read.href=n.url;body.appendChild(read);
+  var read=node("a","read",n.kind==="video"?"Katso video":"Lue uutinen");read.href=n.url;body.appendChild(read);
   card.appendChild(body);root.appendChild(card);
  });
 }
