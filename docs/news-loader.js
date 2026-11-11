@@ -3,7 +3,17 @@
   'use strict';
   if(window.__RKK_NEWS_LOADER_RUNNING)return;
   window.__RKK_NEWS_LOADER_RUNNING=true;
+  // Only on the Yhdistysavain homepage: make visible native news navigation
+  // point to the club's unified GitHub news archive. Native /uutiset/ itself
+  // remains untouched and accessible for historical articles.
+  function fixHomepageNewsLinks(){
+    if(!/^(www\\.)?kehaketut\\.fi$/.test(location.hostname)||location.pathname!=="/")return;
+    var destination="https://glesima.github.io/kehaketut-feed/uutiset/";
+    var sel='a.d4-main-nav__link[href="/uutiset/"],a.d4-mobile-nav__link[href="/uutiset/"],a.button[href="/uutiset/"]';
+    document.querySelectorAll(sel).forEach(function(a){a.href=destination;});
+  }
   function boot(){
+    fixHomepageNewsLinks();
     if(!document.getElementById('rkk-boxerbase-link-fix')){
       var fix=document.createElement('script');fix.id='rkk-boxerbase-link-fix';
       fix.src='https://glesima.github.io/kehaketut-feed/boxerbase-links.js?v=20261108';
