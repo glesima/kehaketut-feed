@@ -7,7 +7,7 @@
   // point to the club's unified GitHub news archive. Native /uutiset/ itself
   // remains untouched and accessible for historical articles.
   function fixHomepageNewsLinks(){
-    if(!/^(www\\.)?kehaketut\\.fi$/.test(location.hostname)||location.pathname!=="/")return;
+    if(location.pathname!=="/"||(location.hostname!=="www.kehaketut.fi"&&location.hostname!=="kehaketut.fi"))return;
     var destination="https://glesima.github.io/kehaketut-feed/uutiset/";
     var sel='a.d4-main-nav__link[href="/uutiset/"],a.d4-mobile-nav__link[href="/uutiset/"],a.button[href="/uutiset/"]';
     document.querySelectorAll(sel).forEach(function(a){a.href=destination;});
