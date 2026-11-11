@@ -51,6 +51,13 @@ async function render(snapshot){
  const goldURL="https://glesima.github.io/kehaketut-feed/tiedotteet/ilo-gronroos-suomen-mestariksi-2026-11-09.html";
  const goldCard=cards.find(c=>find(c,"a").some(a=>a.href===goldURL));
  assert.ok(goldCard,"SM gold story is present independent of its chronological position");
+ const videoURL="https://glesima.github.io/kehaketut-feed/tiedotteet/ilo-gronroos-mestaruushaastattelu-2026-11-11.html";
+ const videoCard=cards.find(c=>find(c,"a").some(a=>a.href===videoURL));
+ assert.ok(videoCard,"Distinct video interview is visible in the shared archive");
+ assert.equal(cards[0],videoCard,"Most recent interview is first");
+ assert.match(text(videoCard),/Videohaastattelu/);
+ assert.match(text(videoCard),/Katso video/);
+ assert.ok(find(videoCard,"img").length===1,"Interview has an image");
  assert.match(text(goldCard),/Ilo Grönroos/);
  assert.ok(find(goldCard,"img").length===1,"SM gold article retains its photo");
  for(const nativeItem of native.items){
@@ -60,7 +67,7 @@ async function render(snapshot){
  }
  // A later native story must come first WITHOUT removing the approved old story.
  const fresh={url:"https://www.kehaketut.fi/uutiset/uusi-uutinen-2026/",
-  title:"Uudempi seurauutinen",date:"10.11.2026",excerpt:"Uusi uutinen"};
+  title:"Uudempi seurauutinen",date:"12.11.2026",excerpt:"Uusi uutinen"};
  const newer=await render({items:native.items.concat([fresh])});
  const newerCards=find(newer,"article");
  assert.match(text(newerCards[0]),/Uudempi seurauutinen/);
