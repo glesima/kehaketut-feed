@@ -1,3 +1,9 @@
+## 11.11.2026 – Ilon SM-kultavideo vain alkuperäisessä mestaruusuutisessa; yläpalkki palautettu
+
+Käyttäjä haluaa, että haastatteluvideo jää ainoastaan 9.11. julkaistuun SM-kultauutiseen eikä 11.11. videohaastattelun erillistä juttua pidetä uutisarkistossa. Alkuperäiseen artikkeliin lisätään kiinnitetty yläpalkki: seuran nimi, **Etusivulle** ja **Kaikki uutiset**. Video, sarjatieto B-juniorit yli 80 kg, ottelutulokset ja kuvat säilyvät. Erillinen 11.11. URL ohjaa alkuperäiseen juttuun, jotta vanhat jaetut linkit toimivat. Uutisluettelossa on yksi alkuperäinen artikkeli, jonka kuvauksessa mainitaan video.
+
+Yhdistysavaimen päävalikon Uutiset-linkki on käyttäjän itsensä piilottama. Se johtaa pakotetusti vanhaan arkistoon eikä sitä voi muuttaa. Aiempi epätoivottu uutisvalikon JavaScript-ohjaus poistetaan, eikä Yhdistysavaimen yläpalkkia yritetä hallita GitHubista. Korjattu oma yläpalkki koskee vain GitHub Pagesin alkuperäistä uutisartikkelia. Somejulkaisut säilyvät ennallaan.
+
 ## 11.11.2026 – videohaastattelu omaksi uutisnostoksi, native-valikon ongelma
 Käyttäjä ei löytänyt aiemmin julkaistua Ilon mestaruushaastattelua kohdasta **Uutiset**. Live-HTML-tarkistus vahvisti, että Yhdistysavaimen **päävalikon** `Uutiset` ja etusivun `Seuran uutiset` -painike avasivat yhä alkuperäisen `https://www.kehaketut.fi/uutiset/`-natiiviarkiston, vaikka GitHub Pagesissa oli ollut erillinen oma arkisto ja video upotettuna 9.11. alkuperäiseen mestaruusuutiseen. Native-sivulla ei ole vastaavaa GitHub-JS-lataajaa eikä siihen ole tässä suoraa kirjoitusyhteyttä.
 
