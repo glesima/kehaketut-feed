@@ -77,6 +77,11 @@ new Function(loader); // valid JS
 assert(loader.includes("document.getElementById('rkk-news-slot')"));
 assert(loader.includes("news-embed.js?v='+Math.floor(Date.now()/60000)"));
 assert(loader.includes("__RKK_NEWS_LOADER_RUNNING"));
+assert(loader.includes('function fixHomepageNewsLinks()'));
+assert(loader.includes('a.d4-main-nav__link[href="/uutiset/"]'));
+assert(loader.includes('a.d4-mobile-nav__link[href="/uutiset/"]'));
+assert(loader.includes('https://glesima.github.io/kehaketut-feed/uutiset/'));
+
 console.log("Stable news bootstrap versioning checks: OK");
 
 // Shared approved-news registry drives the homepage permanently (no expiry).
