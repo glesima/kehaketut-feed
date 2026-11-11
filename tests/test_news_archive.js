@@ -5,6 +5,16 @@ const fs=require("node:fs");
 const vm=require("node:vm");
 const archiveHTML=fs.readFileSync("docs/uutiset/index.html","utf8");
 const ownedJS=fs.readFileSync("docs/news-owned.js","utf8");
+const originalArticle=fs.readFileSync("docs/tiedotteet/ilo-gronroos-suomen-mestariksi-2026-11-09.html","utf8");
+const formerVideoPage=fs.readFileSync("docs/tiedotteet/ilo-gronroos-mestaruushaastattelu-2026-11-11.html","utf8");
+assert.match(originalArticle,/<header class="site-topbar"/);
+assert.match(originalArticle,/position:sticky;top:0/);
+assert.match(originalArticle,/href="https:\/\/www\.kehaketut\.fi\/"[^>]*>← Etusivulle<\/a>/);
+assert.match(originalArticle,/href="https:\/\/glesima\.github\.io\/kehaketut-feed\/uutiset\/"[^>]*>Kaikki uutiset<\/a>/);
+assert.match(originalArticle,/7632678-file-9567687806549624587\.mp4/);
+assert.match(originalArticle,/B-junioreiden yli 80/);
+assert.match(formerVideoPage,/http-equiv="refresh"/);
+assert.match(formerVideoPage,/ilo-gronroos-suomen-mestariksi-2026-11-09\.html/);
 const native=JSON.parse(fs.readFileSync("docs/news-archive.json","utf8"));
 const script=archiveHTML.match(/<script>([\s\S]*?)<\/script>/)?.[1];
 assert.ok(script,"Archive requires a browser renderer");
@@ -50,15 +60,11 @@ async function render(snapshot){
  assert.ok(cards.length>=1,"At least one approved GitHub article is always present");
  const goldURL="https://glesima.github.io/kehaketut-feed/tiedotteet/ilo-gronroos-suomen-mestariksi-2026-11-09.html";
  const goldCard=cards.find(c=>find(c,"a").some(a=>a.href===goldURL));
+ const videoOnlyURL="https://glesima.github.io/kehaketut-feed/tiedotteet/ilo-gronroos-mestaruushaastattelu-2026-11-11.html";
+ assert.ok(!cards.some(c=>find(c,"a").some(a=>a.href===videoOnlyURL)),"Do not duplicate the interview as a separate item");
  assert.ok(goldCard,"SM gold story is present independent of its chronological position");
- const videoURL="https://glesima.github.io/kehaketut-feed/tiedotteet/ilo-gronroos-mestaruushaastattelu-2026-11-11.html";
- const videoCard=cards.find(c=>find(c,"a").some(a=>a.href===videoURL));
- assert.ok(videoCard,"Distinct video interview is visible in the shared archive");
- assert.equal(cards[0],videoCard,"Most recent interview is first");
- assert.match(text(videoCard),/Videohaastattelu/);
- assert.match(text(videoCard),/Katso video/);
- assert.ok(find(videoCard,"img").length===1,"Interview has an image");
  assert.match(text(goldCard),/Ilo Grönroos/);
+ assert.match(text(goldCard),/Katso video/,"Original championship story keeps the embedded interview prominently advertised");
  assert.ok(find(goldCard,"img").length===1,"SM gold article retains its photo");
  for(const nativeItem of native.items){
   const title=String(nativeItem.title||"").toLocaleLowerCase("fi");
@@ -67,7 +73,7 @@ async function render(snapshot){
  }
  // A later native story must come first WITHOUT removing the approved old story.
  const fresh={url:"https://www.kehaketut.fi/uutiset/uusi-uutinen-2026/",
-  title:"Uudempi seurauutinen",date:"12.11.2026",excerpt:"Uusi uutinen"};
+  title:"Uudempi seurauutinen",date:"10.11.2026",excerpt:"Uusi uutinen"};
  const newer=await render({items:native.items.concat([fresh])});
  const newerCards=find(newer,"article");
  assert.match(text(newerCards[0]),/Uudempi seurauutinen/);
