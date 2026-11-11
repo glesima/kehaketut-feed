@@ -105,6 +105,31 @@ assert.equal(mergeApproved([gold],[cms,{...cms,url:"https://evil.test/uutiset/fa
 assert.equal(mergeApproved([gold],[cms,cms,cms,cms]).length,2);
 assert.ok(file.includes("https://glesima.github.io/kehaketut-feed/uutiset/"));
 assert.ok(loader.includes("https://glesima.github.io/kehaketut-feed/uutiset/"));
+
+// Homepage native header and hero news links must go to the shared archive.
+// Native inner pages and third-party hosts must remain unchanged.
+const homeTarget="https://glesima.github.io/kehaketut-feed/uutiset/";
+function simulateHomeLinks(host,path){
+ const anchors=[{href:"/uutiset/"},{href:"/uutiset/"},{href:"/uutiset/"}];
+ const doc={
+  readyState:"complete",
+  querySelectorAll(sel){
+   assert.match(sel,/d4-main-nav__link/);
+   assert.match(sel,/d4-mobile-nav__link/);
+   return anchors;
+  },
+  getElementById(id){if(id==="rkk-boxerbase-link-fix")return {};return null;}
+ };
+ const win={};
+ new Function("window","document","location",loader)(win,doc,{hostname:host,pathname:path});
+ return anchors.map(a=>a.href);
+}
+assert.deepEqual(simulateHomeLinks("www.kehaketut.fi","/"),[homeTarget,homeTarget,homeTarget]);
+assert.deepEqual(simulateHomeLinks("kehaketut.fi","/"),[homeTarget,homeTarget,homeTarget]);
+assert.deepEqual(simulateHomeLinks("www.kehaketut.fi","/uutiset/"),["/uutiset/","/uutiset/","/uutiset/"]);
+assert.deepEqual(simulateHomeLinks("kehaketut.fi.evil.test","/"),["/uutiset/","/uutiset/","/uutiset/"]);
+console.log("Homepage native navigation retargeting: OK");
+
 assert.ok(file.includes("news-owned.js?fresh="));
 assert.ok(!file.includes("featureApprovedGoldNews"));
 assert.ok(!file.includes("2026-12-01T00:00:00"));
