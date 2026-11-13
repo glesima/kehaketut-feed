@@ -138,9 +138,9 @@ async function main() {
   assert.match(conflictingText,/0 Ottelut – Voitot – Tappiot/);
   const rami=cards.find(c=>collect(c).includes("Rami Vuori"));
   assert.match(collect(rami),/1 ottelu 1 voitto · 0 tappiota/);
-  const josiasSingular=cards.find(c=>collect(c).includes("Josias Joseph Ndikumana"));
+  const josiasSingular=cards.find(c=>collect(c).includes("Josias Ndikumana"));
   assert.match(collect(josiasSingular),/1 ottelu 0 voittoa · 1 tappio/);
-  const josias=cards.find(c=>collect(c).includes("Josias Joseph Ndikumana"));
+  const josias=cards.find(c=>collect(c).includes("Josias Ndikumana"));
   assert.match(collect(josias),/1 ottelu/);
   const otsoProfile=await render("profile",live,"?view=profile&slug=otso-vastila");
   assert.match(collect(otsoProfile.root),/Näytetyt nollat koskevat saatavilla olevia tilastoja/);
