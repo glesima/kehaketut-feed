@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-13T07:22:04Z",
+  "generated_at": "2026-11-13T08:36:30Z",
   "data_origin": "BoxerBase public views and optionally Instagram official API",
   "boxers": [
     {
@@ -80,6 +80,44 @@
     }
   ],
   "matches": [
+    {
+      "id": "zoBIpK4vq9fH",
+      "boxer": "Otso Västilä",
+      "opponent": "Amir Elyasi",
+      "result": "vahvistettu ottelu",
+      "decision": null,
+      "method": null,
+      "round": null,
+      "winner_corner": null,
+      "bout_contested": null,
+      "red_boxer": "Amir Elyasi",
+      "blue_boxer": "Otso Västilä",
+      "boxer_corner": "blue",
+      "opponent_corner": "red",
+      "event": "Ruskiksen Skabat",
+      "event_date": "2026-11-14",
+      "event_url": "https://fin.boxerbase.com/e/pqlPYS5YEfAR",
+      "url": "https://fin.boxerbase.com/e/pqlPYS5YEfAR/m/zoBIpK4vq9fH"
+    },
+    {
+      "id": "K0Qn14-9VOz7",
+      "boxer": "Daniela Taskila",
+      "opponent": "Wilma Yliluoma",
+      "result": "vahvistettu ottelu",
+      "decision": null,
+      "method": null,
+      "round": null,
+      "winner_corner": null,
+      "bout_contested": null,
+      "red_boxer": "Daniela Taskila",
+      "blue_boxer": "Wilma Yliluoma",
+      "boxer_corner": "red",
+      "opponent_corner": "blue",
+      "event": "Ruskiksen Skabat",
+      "event_date": "2026-11-14",
+      "event_url": "https://fin.boxerbase.com/e/pqlPYS5YEfAR",
+      "url": "https://fin.boxerbase.com/e/pqlPYS5YEfAR/m/K0Qn14-9VOz7"
+    },
     {
       "id": "nrAXlpdEXsze",
       "boxer": "Ilo Grönroos",
@@ -297,12 +335,83 @@
   ],
   "instagram": [],
   "errors": [],
-  "boxers_checked_at": "2026-11-13T07:22:04Z",
+  "boxers_checked_at": "2026-11-13T08:36:30Z",
   "club_id": "mZjkT0LW248X",
   "club_url": "https://boxerbase.com/o/mZjkT0LW248X/boxers",
-  "matches_checked_at": "2026-11-13T07:22:04Z",
-  "registrations": [],
-  "registrations_checked_at": "2026-11-13T07:23:58Z",
+  "matches_checked_at": "2026-11-13T08:36:30Z",
+  "registrations": [
+    {
+      "boxer_id": "Pi3gCaWD-7jD",
+      "boxer": "Daniela Taskila",
+      "participant_url": "https://fin.boxerbase.com/e/pqlPYS5YEfAR/participants/rLzqFv42qnck",
+      "registered_club": "RIIHIMÄEN KEHÄ-KETUT",
+      "status": "registered",
+      "event_id": "pqlPYS5YEfAR",
+      "event": "Ruskiksen Skabat",
+      "event_url": "https://fin.boxerbase.com/e/pqlPYS5YEfAR",
+      "event_date": "2026-11-14",
+      "observed_at": "2026-11-13T08:38:10Z",
+      "coverage": "filtered_public_browser_ui",
+      "current_visibility": "verified_in_latest_public_search"
+    },
+    {
+      "boxer_id": "W9dy-RM88aLL",
+      "boxer": "Ilo Grönroos",
+      "participant_url": "https://fin.boxerbase.com/e/pqlPYS5YEfAR/participants/bll0JJIEePMB",
+      "registered_club": "RIIHIMÄEN KEHÄ-KETUT",
+      "status": "registered",
+      "event_id": "pqlPYS5YEfAR",
+      "event": "Ruskiksen Skabat",
+      "event_url": "https://fin.boxerbase.com/e/pqlPYS5YEfAR",
+      "event_date": "2026-11-14",
+      "observed_at": "2026-11-13T08:38:10Z",
+      "coverage": "filtered_public_browser_ui",
+      "current_visibility": "verified_in_latest_public_search"
+    },
+    {
+      "boxer_id": "ir_z7p9BvsZM",
+      "boxer": "Maarjo Ranne",
+      "participant_url": "https://fin.boxerbase.com/e/pqlPYS5YEfAR/participants/ju6VdVLsgFef",
+      "registered_club": "RIIHIMÄEN KEHÄ-KETUT",
+      "status": "registered",
+      "event_id": "pqlPYS5YEfAR",
+      "event": "Ruskiksen Skabat",
+      "event_url": "https://fin.boxerbase.com/e/pqlPYS5YEfAR",
+      "event_date": "2026-11-14",
+      "observed_at": "2026-11-13T08:38:10Z",
+      "coverage": "filtered_public_browser_ui",
+      "current_visibility": "verified_in_latest_public_search"
+    },
+    {
+      "boxer_id": "RyBcZO1fI2Rb",
+      "boxer": "Otso Västilä",
+      "participant_url": "https://fin.boxerbase.com/e/pqlPYS5YEfAR/participants/OT2dSsKXxB_6",
+      "registered_club": "RIIHIMÄEN KEHÄ-KETUT",
+      "status": "registered",
+      "event_id": "pqlPYS5YEfAR",
+      "event": "Ruskiksen Skabat",
+      "event_url": "https://fin.boxerbase.com/e/pqlPYS5YEfAR",
+      "event_date": "2026-11-14",
+      "observed_at": "2026-11-13T08:38:10Z",
+      "coverage": "filtered_public_browser_ui",
+      "current_visibility": "verified_in_latest_public_search"
+    },
+    {
+      "boxer_id": "PxXnRMHDTclP",
+      "boxer": "Simo Pöyry",
+      "participant_url": "https://fin.boxerbase.com/e/pqlPYS5YEfAR/participants/DZJQufQDYaRR",
+      "registered_club": "RIIHIMÄEN KEHÄ-KETUT",
+      "status": "registered",
+      "event_id": "pqlPYS5YEfAR",
+      "event": "Ruskiksen Skabat",
+      "event_url": "https://fin.boxerbase.com/e/pqlPYS5YEfAR",
+      "event_date": "2026-11-14",
+      "observed_at": "2026-11-13T08:38:10Z",
+      "coverage": "filtered_public_browser_ui",
+      "current_visibility": "verified_in_latest_public_search"
+    }
+  ],
+  "registrations_checked_at": "2026-11-13T08:38:27Z",
   "registration_coverage": "Public browser search; organiser-hidden entries are unavailable.",
   "discovered_events": [
     {
@@ -348,8 +457,8 @@
       "url": "https://fin.boxerbase.com/e/DxgdbRx46tR-"
     }
   ],
-  "events_checked_at": "2026-11-13T07:22:04Z",
-  "registrations_first_page_checked_at": "2026-11-13T07:22:04Z",
+  "events_checked_at": "2026-11-13T08:36:30Z",
+  "registrations_first_page_checked_at": "2026-11-13T08:36:30Z",
   "boxer_id_aliases": {
     "KyEKnjm-NRp4": "Pi3gCaWD-7jD",
     "U2N_OOYxyFui": "h9XYEbAs3Py4",
