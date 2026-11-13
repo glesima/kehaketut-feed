@@ -17,6 +17,8 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.common.exceptions import TimeoutException
+from public_registration_ui import public_filter_is_applied
 
 from update import CONFIG, OUT, allowed_url, robots_permits
 from event_discovery import event_id_from_url,parse_public_registrations
@@ -56,12 +58,40 @@ def examine_event(driver,event,boxers):
     if not allowed_url(url) or not robots_permits(url):
         raise RuntimeError("Participant list not allowed by public robots.txt")
     driver.get(url)
+    # BoxerBase's SSR input is visible before Svelte's client-side table
+    # hydration has finished. Earlier we typed immediately and often read the
+    # unchanged first 20 of 78 entries, silently concluding 0 registrations.
+    selector="input[placeholder*='Search by name, group, or organization']"
     search=WebDriverWait(driver,25).until(
-        lambda b:b.find_elements(By.CSS_SELECTOR,"input[placeholder*='Search']"))[0]
-    search.clear()
-    search.send_keys("Riihimäen")
-    time.sleep(2.7)
-    # The browser only exposes public rows. No data-hydration scraping.
+        lambda b:b.find_elements(By.CSS_SELECTOR,selector))[0]
+    time.sleep(1.2)
+    query="Riihimäen"
+    filtered=False
+    for attempt in range(3):
+        search=driver.find_element(By.CSS_SELECTOR,selector)
+        search.clear()
+        search.send_keys(query)
+        try:
+            WebDriverWait(driver,9).until(
+                lambda b:public_filter_is_applied(
+                    b.find_element(By.TAG_NAME,"body").text,
+                    b.find_element(By.CSS_SELECTOR,selector).get_attribute("value"),
+                    query
+                ))
+            # The browser's public filter is now applied; allow the DOM rows
+            # to settle before capturing. Do not scrape Svelte hydration data.
+            time.sleep(0.35)
+            filtered=True
+            break
+        except TimeoutException:
+            LOG.warning("Public search for %s not applied on attempt %d",
+                        event["id"],attempt+1)
+            time.sleep(1.0)
+    if not filtered:
+        # Retention layer preserves prior positive observations; failure to
+        # apply the public search is not evidence of withdrawn registrations.
+        raise RuntimeError("Public BoxerBase registration search did not apply")
+    # Only the browser-visible, filtered public rows enter our data.
     body=driver.find_element(By.TAG_NAME,"body").get_attribute("innerHTML")
     html="<html><body>"+body+"</body></html>"
     observed,meta=parse_public_registrations(
