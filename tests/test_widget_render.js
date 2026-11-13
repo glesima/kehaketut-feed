@@ -185,6 +185,19 @@ async function main() {
   const withBout=await render("updates",{...base,matches:[bout],registrations:entries});
   assert.equal(findAll(withBout.root,"bout").length,1);
   assert.equal(findAll(withBout.root,"public-event").length,2);
+  // A confirmed Otso/Ilo bout must not erase other registered athletes
+  // from the same event. Only that one paired boxer is removed from the
+  // separate "Ilmoittautuneet" card.
+  const sharedBout={...bout,boxer:"Ilo Grönroos",opponent:"Esimerkkivastustaja",
+    event:"Tuleva salikisa",event_date:known.event_date,
+    event_url:known.event_url,url:known.event_url+"/m/confirmed"};
+  const sameEvent=await render("updates",{...base,matches:[sharedBout],
+    registrations:[known,{...known,boxer:"Kosmo Grönroos",boxer_id:"k"}]});
+  const sameEventRegs=findAll(sameEvent.root,"public-event");
+  assert.equal(findAll(sameEvent.root,"bout").length,1);
+  assert.equal(sameEventRegs.length,1,"Unpaired registration remains even with a published bout at this event");
+  assert.match(collect(sameEventRegs[0]),/Kosmo Grönroos/);
+  assert.doesNotMatch(collect(sameEventRegs[0]),/Ilo Grönroos/);
   // Duplicate registrations in one event produce one compact card and unique names.
   const duplicates=await render("updates",{...base,registrations:[known,known,{...known,
     boxer:"Kosmo Grönroos",boxer_id:"k"}]});
