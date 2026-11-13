@@ -185,18 +185,21 @@ function updates(d){
   if(!m||(r.event_id&&r.event_id!==m[1]))return false;
   return roster.some(function(b){return b.name===r.boxer&&(!r.boxer_id||b.id===r.boxer_id)});
  }).sort(function(a,b){return a.event_date.localeCompare(b.event_date)});
+ // A published bout confirms the individual boxer, NOT every other
+ // registrant at the same event. Keep unpaired registrants visible separately.
+ var pairedBoxers=new Set(next.map(function(m){
+  var src=m.event_url||m.url||"";
+  var found=src.match(/\/e\/([A-Za-z0-9_-]+)/);
+  return found&&m.boxer?found[1]+"|"+m.boxer:null;
+ }).filter(Boolean));
  var events=new Map();
  regs.forEach(function(r){
   var id=r.event_id||r.event_url.match(/\/e\/([A-Za-z0-9_-]+)/)[1];
+  if(pairedBoxers.has(id+"|"+r.boxer))return;
   if(!events.has(id))events.set(id,{id:id,name:r.event||"Kilpailu",date:r.event_date,url:r.event_url,names:new Set()});
   events.get(id).names.add(r.boxer);
  });
- // A confirmed bout already represents that event in the column.
- var scheduled=new Set(next.map(function(m){
-  var src=m.event_url||m.url||"";
-  var found=src.match(/\/e\/([A-Za-z0-9_-]+)/);return found&&found[1];
- }).filter(Boolean));
- var registeredEvents=Array.from(events.values()).filter(function(e){return !scheduled.has(e.id)})
+ var registeredEvents=Array.from(events.values())
   .sort(function(a,b){return a.date.localeCompare(b.date)||a.name.localeCompare(b.name)})
   .slice(0,Math.max(0,3-next.length));
  if(registeredEvents.length){
