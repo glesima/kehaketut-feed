@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-13T09:29:05Z",
+  "generated_at": "2026-11-13T20:53:34Z",
   "data_origin": "BoxerBase public views and optionally Instagram official API",
   "boxers": [
     {
@@ -335,10 +335,10 @@
   ],
   "instagram": [],
   "errors": [],
-  "boxers_checked_at": "2026-11-13T09:29:05Z",
+  "boxers_checked_at": "2026-11-13T20:53:34Z",
   "club_id": "mZjkT0LW248X",
   "club_url": "https://boxerbase.com/o/mZjkT0LW248X/boxers",
-  "matches_checked_at": "2026-11-13T09:29:05Z",
+  "matches_checked_at": "2026-11-13T20:53:34Z",
   "registrations": [
     {
       "boxer_id": "Pi3gCaWD-7jD",
@@ -350,7 +350,7 @@
       "event": "Ruskiksen Skabat",
       "event_url": "https://fin.boxerbase.com/e/pqlPYS5YEfAR",
       "event_date": "2026-11-14",
-      "observed_at": "2026-11-13T09:30:34Z",
+      "observed_at": "2026-11-13T20:55:13Z",
       "coverage": "filtered_public_browser_ui",
       "current_visibility": "verified_in_latest_public_search"
     },
@@ -364,7 +364,7 @@
       "event": "Ruskiksen Skabat",
       "event_url": "https://fin.boxerbase.com/e/pqlPYS5YEfAR",
       "event_date": "2026-11-14",
-      "observed_at": "2026-11-13T09:30:34Z",
+      "observed_at": "2026-11-13T20:55:13Z",
       "coverage": "filtered_public_browser_ui",
       "current_visibility": "verified_in_latest_public_search"
     },
@@ -378,7 +378,7 @@
       "event": "Ruskiksen Skabat",
       "event_url": "https://fin.boxerbase.com/e/pqlPYS5YEfAR",
       "event_date": "2026-11-14",
-      "observed_at": "2026-11-13T09:30:34Z",
+      "observed_at": "2026-11-13T20:55:13Z",
       "coverage": "filtered_public_browser_ui",
       "current_visibility": "verified_in_latest_public_search"
     },
@@ -392,7 +392,7 @@
       "event": "Ruskiksen Skabat",
       "event_url": "https://fin.boxerbase.com/e/pqlPYS5YEfAR",
       "event_date": "2026-11-14",
-      "observed_at": "2026-11-13T09:30:34Z",
+      "observed_at": "2026-11-13T20:55:13Z",
       "coverage": "filtered_public_browser_ui",
       "current_visibility": "verified_in_latest_public_search"
     },
@@ -406,12 +406,12 @@
       "event": "Ruskiksen Skabat",
       "event_url": "https://fin.boxerbase.com/e/pqlPYS5YEfAR",
       "event_date": "2026-11-14",
-      "observed_at": "2026-11-13T09:30:34Z",
+      "observed_at": "2026-11-13T20:55:13Z",
       "coverage": "filtered_public_browser_ui",
       "current_visibility": "verified_in_latest_public_search"
     }
   ],
-  "registrations_checked_at": "2026-11-13T09:30:48Z",
+  "registrations_checked_at": "2026-11-13T20:55:29Z",
   "registration_coverage": "Public browser search; organiser-hidden entries are unavailable.",
   "discovered_events": [
     {
@@ -427,8 +427,14 @@
       "url": "https://fin.boxerbase.com/e/pqlPYS5YEfAR"
     },
     {
+      "id": "6kSJLmkdkOHN",
+      "name": "Isot sparrit",
+      "date": "2026-11-21",
+      "url": "https://fin.boxerbase.com/e/6kSJLmkdkOHN"
+    },
+    {
       "id": "FaxVeYPqjaIo",
-      "name": "Pikku kisat - isot sparrit",
+      "name": "Pikku kisat",
       "date": "2026-11-21",
       "url": "https://fin.boxerbase.com/e/FaxVeYPqjaIo"
     },
@@ -457,8 +463,8 @@
       "url": "https://fin.boxerbase.com/e/DxgdbRx46tR-"
     }
   ],
-  "events_checked_at": "2026-11-13T09:29:05Z",
-  "registrations_first_page_checked_at": "2026-11-13T09:29:05Z",
+  "events_checked_at": "2026-11-13T20:53:34Z",
+  "registrations_first_page_checked_at": "2026-11-13T20:53:34Z",
   "boxer_id_aliases": {
     "KyEKnjm-NRp4": "Pi3gCaWD-7jD",
     "U2N_OOYxyFui": "h9XYEbAs3Py4",
