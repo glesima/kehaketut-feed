@@ -65,6 +65,28 @@ class PublicEventParsing(unittest.TestCase):
         self.assertEqual(people[0]['boxer_id'],'0efaqUGeO1JP')
         self.assertEqual(details['coverage'],'limited_public_view')
 
+    def test_filtered_public_org_link_without_o_path(self):
+        # Actual Ruskiksen 14.11.2026 filtered public table links the club
+        # to an event organization-search tab, not an /o/ URL.
+        html = """<div>Showing 2 of 78</div><table><tbody>
+        <tr><td></td><td><a href="/e/ev/participants/one">Otso Västilä</a></td>
+        <td><a href='/e/ev/participants?tab=orgs&search=club'>RIIHIMÄEN KEHÄ-KETUT</a></td></tr>
+        <tr><td></td><td><a href="/e/ev/participants/two">Daniela Taskila</a></td>
+        <td><a href='/e/ev/participants?tab=orgs&search=club'>RIIHIMÄEN KEHÄ-KETUT</a></td></tr>
+        </tbody></table>"""
+        roster = [
+            {"id":"otso","name":"Otso Västilä"},
+            {"id":"daniela","name":"Daniela Taskila"}
+        ]
+        found,meta=parse_public_registrations(
+            html,"https://fin.boxerbase.com/e/ev/participants",
+            roster,CANONICAL)
+        self.assertEqual({p["boxer"] for p in found},
+                         {"Otso Västilä","Daniela Taskila"})
+        self.assertEqual(meta["visible_rows"],2)
+        self.assertEqual(meta["coverage"],"limited_public_view")
+        self.assertTrue(all("born" not in p for p in found))
+
     def test_hidden_or_partial_list_never_claimed_complete(self):
         found,meta = parse_public_registrations("<p>Names are not yet published</p>","https://boxerbase.com/e/comp/participants",ROSTER,CANONICAL)
         self.assertEqual(found,[])
