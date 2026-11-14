@@ -14,10 +14,10 @@ import time
 import logging
 import urllib.robotparser
 from pathlib import Path
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from email.utils import format_datetime
 from xml.etree import ElementTree as ET
-from urllib.parse import urljoin, urlparse
+from urllib.parse import urljoin, urlparse, parse_qs
 
 import requests
 from bs4 import BeautifulSoup
@@ -159,6 +159,36 @@ def event_urls_from_index(html, base_url, limit=8):
         if len(urls) >= limit:
             break
     return urls
+
+
+def public_match_session_urls(html, list_url, limit=8):
+    """Return only same-event public match-session tabs linked in the page.
+
+    BoxerBase chooses the current/future time slot automatically, so an event's
+    plain /matches URL can switch from Saturday to Sunday once Saturday's
+    bouts are finished. All tabs have publicly linked SSR HTML URLs like
+    /e/<id>/matches?t=<slot>. No private Svelte data or API is used.
+    """
+    page = urlparse(list_url)
+    out = []
+    for a in BeautifulSoup(html, "html.parser").select('a[href]'):
+        url = urljoin(list_url, a["href"])
+        candidate = urlparse(url)
+        if (candidate.scheme != "https" or candidate.netloc != page.netloc
+                or candidate.path != page.path or candidate.fragment):
+            continue
+        query = parse_qs(candidate.query)
+        if set(query) != {"t"} or len(query["t"]) != 1:
+            continue
+        slot = query["t"][0]
+        if not re.fullmatch(r"[A-Za-z0-9_-]{4,64}", slot):
+            continue
+        normalized = list_url + "?t=" + slot
+        if normalized not in out:
+            out.append(normalized)
+        if len(out) >= limit:
+            break
+    return out
 
 
 def match_links(html, base_url, known_names):
@@ -527,7 +557,21 @@ def update():
                 names = [b["name"] for b in boxers]
                 names += [n.replace("Joseph ", "") for n in names if "Joseph " in n]
                 links = match_links(html, list_url, names)
-                LOG.info("Event %s: %d candidate club matches", info["name"], len(links))
+                # The public /matches URL often defaults to the NEXT session
+                # after today's bouts finish. Read the event's explicitly
+                # linked public session tabs to include completed earlier
+                # sessions, including the same day's official decisions.
+                event_day = info.get("date") or ""
+                if event_day >= (datetime.now(timezone.utc).date()-timedelta(days=7)).isoformat():
+                    session_urls = public_match_session_urls(html, list_url)
+                    for session_url in session_urls:
+                        try:
+                            session_html = fetch(session_url)
+                            links.extend(match_links(session_html, session_url, names))
+                        except Exception as exc:
+                            errors.append(f"Public match session {session_url}: {exc}")
+                links = list(dict.fromkeys(links))
+                LOG.info("Event %s: %d candidate club matches from public sessions", info["name"], len(links))
                 for url in links:
                     try:
                         found = parse_match(fetch(url), url, boxers, info)
