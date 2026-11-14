@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-14T08:56:51Z",
+  "generated_at": "2026-11-14T16:08:42Z",
   "data_origin": "BoxerBase public views and optionally Instagram official API",
   "boxers": [
     {
@@ -84,12 +84,12 @@
       "id": "zoBIpK4vq9fH",
       "boxer": "Otso Västilä",
       "opponent": "Amir Elyasi",
-      "result": "vahvistettu ottelu",
-      "decision": null,
-      "method": null,
+      "result": "tappio",
+      "decision": "3-0",
+      "method": "PTS",
       "round": null,
-      "winner_corner": null,
-      "bout_contested": null,
+      "winner_corner": "red",
+      "bout_contested": true,
       "red_boxer": "Amir Elyasi",
       "blue_boxer": "Otso Västilä",
       "boxer_corner": "blue",
@@ -103,12 +103,12 @@
       "id": "K0Qn14-9VOz7",
       "boxer": "Daniela Taskila",
       "opponent": "Wilma Yliluoma",
-      "result": "vahvistettu ottelu",
-      "decision": null,
-      "method": null,
-      "round": null,
-      "winner_corner": null,
-      "bout_contested": null,
+      "result": "tappio",
+      "decision": "RSC R2",
+      "method": "RSC",
+      "round": 2,
+      "winner_corner": "blue",
+      "bout_contested": true,
       "red_boxer": "Daniela Taskila",
       "blue_boxer": "Wilma Yliluoma",
       "boxer_corner": "red",
@@ -335,10 +335,10 @@
   ],
   "instagram": [],
   "errors": [],
-  "boxers_checked_at": "2026-11-14T08:56:51Z",
+  "boxers_checked_at": "2026-11-14T16:08:42Z",
   "club_id": "mZjkT0LW248X",
   "club_url": "https://boxerbase.com/o/mZjkT0LW248X/boxers",
-  "matches_checked_at": "2026-11-14T08:56:51Z",
+  "matches_checked_at": "2026-11-14T16:08:42Z",
   "registrations": [
     {
       "boxer_id": "Pi3gCaWD-7jD",
@@ -350,7 +350,7 @@
       "event": "Ruskiksen Skabat",
       "event_url": "https://fin.boxerbase.com/e/pqlPYS5YEfAR",
       "event_date": "2026-11-14",
-      "observed_at": "2026-11-14T08:58:33Z",
+      "observed_at": "2026-11-14T16:11:01Z",
       "coverage": "filtered_public_browser_ui",
       "current_visibility": "verified_in_latest_public_search"
     },
@@ -364,7 +364,7 @@
       "event": "Ruskiksen Skabat",
       "event_url": "https://fin.boxerbase.com/e/pqlPYS5YEfAR",
       "event_date": "2026-11-14",
-      "observed_at": "2026-11-14T08:58:33Z",
+      "observed_at": "2026-11-14T16:11:01Z",
       "coverage": "filtered_public_browser_ui",
       "current_visibility": "verified_in_latest_public_search"
     },
@@ -378,7 +378,7 @@
       "event": "Ruskiksen Skabat",
       "event_url": "https://fin.boxerbase.com/e/pqlPYS5YEfAR",
       "event_date": "2026-11-14",
-      "observed_at": "2026-11-14T08:58:33Z",
+      "observed_at": "2026-11-14T16:11:01Z",
       "coverage": "filtered_public_browser_ui",
       "current_visibility": "verified_in_latest_public_search"
     },
@@ -392,7 +392,7 @@
       "event": "Ruskiksen Skabat",
       "event_url": "https://fin.boxerbase.com/e/pqlPYS5YEfAR",
       "event_date": "2026-11-14",
-      "observed_at": "2026-11-14T08:58:33Z",
+      "observed_at": "2026-11-14T16:11:01Z",
       "coverage": "filtered_public_browser_ui",
       "current_visibility": "verified_in_latest_public_search"
     },
@@ -406,12 +406,12 @@
       "event": "Ruskiksen Skabat",
       "event_url": "https://fin.boxerbase.com/e/pqlPYS5YEfAR",
       "event_date": "2026-11-14",
-      "observed_at": "2026-11-14T08:58:33Z",
+      "observed_at": "2026-11-14T16:11:01Z",
       "coverage": "filtered_public_browser_ui",
       "current_visibility": "verified_in_latest_public_search"
     }
   ],
-  "registrations_checked_at": "2026-11-14T08:58:51Z",
+  "registrations_checked_at": "2026-11-14T16:11:17Z",
   "registration_coverage": "Public browser search; organiser-hidden entries are unavailable.",
   "discovered_events": [
     {
@@ -463,8 +463,8 @@
       "url": "https://fin.boxerbase.com/e/DxgdbRx46tR-"
     }
   ],
-  "events_checked_at": "2026-11-14T08:56:51Z",
-  "registrations_first_page_checked_at": "2026-11-14T08:56:51Z",
+  "events_checked_at": "2026-11-14T16:08:42Z",
+  "registrations_first_page_checked_at": "2026-11-14T16:08:42Z",
   "boxer_id_aliases": {
     "KyEKnjm-NRp4": "Pi3gCaWD-7jD",
     "U2N_OOYxyFui": "h9XYEbAs3Py4",
