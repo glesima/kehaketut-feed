@@ -33,6 +33,7 @@ h1{font-size:clamp(33px,5vw,53px);letter-spacing:-.035em;line-height:1.12;margin
 .kicker{color:var(--red);font-weight:900;text-transform:uppercase;letter-spacing:.08em;margin-right:10px}
 h2{font-size:clamp(20px,2.5vw,26px);line-height:1.23;letter-spacing:-.02em;margin:0 0 13px;overflow-wrap:anywhere}
 .item.lead h2{font-size:clamp(25px,3.3vw,34px)}
+.item.lead.lead--text{display:flex;flex-direction:column;border-left:5px solid var(--red);background:linear-gradient(135deg,#fff,#fff8f7)}
 h2 a{color:var(--ink)!important}
 .desc{color:#52606d;font-size:14px;line-height:1.6;margin:0 0 17px}
 .read{margin-top:auto;font-size:12px;color:var(--red);font-weight:850}
@@ -52,7 +53,11 @@ footer{text-align:center;font-size:12px;color:var(--muted);margin-top:44px}
 <div class="intro"><span class="stripe" aria-hidden="true"></span><div><div class="eyebrow">Seuran kuulumiset</div><h1>Kaikki uutiset</h1>
 <p class="subtitle">Kilpailut, saavutukset ja ajankohtaiset seurauutiset. Uudet artikkelit ja aiemmat uutiset yhdessä.</p></div></div>
 <div id="news-list" class="news-grid" aria-live="polite">
-<article class="item lead"><div class="body"><div class="meta"><span class="kicker">Kilpanyrkkeily</span>9.11.2026</div><h2><a href="../tiedotteet/ilo-gronroos-suomen-mestariksi-2026-11-09.html">Ilo Grönroos nyrkkeili Suomen mestariksi Kempeleessä!</a></h2>
+<article class="item lead lead--text"><div class="body"><div class="meta"><span class="kicker">Kilpanyrkkeily</span>14.11.2026</div>
+<h2><a href="../tiedotteet/keha-ketut-ruskiksen-skabat-2026-11-14.html">Kehä-Ketut kehässä Ruskiksen Skaboissa – Otsolle debyytti</a></h2>
+<p class="desc">Otso Västilän ensimmäinen ottelu ja Daniela Taskilan kilpailukuulumiset Helsingistä.</p>
+<a class="read" href="../tiedotteet/keha-ketut-ruskiksen-skabat-2026-11-14.html">Lue uutinen</a></div></article>
+<article class="item"><div class="body"><div class="meta"><span class="kicker">Kilpanyrkkeily</span>9.11.2026</div><h2><a href="../tiedotteet/ilo-gronroos-suomen-mestariksi-2026-11-09.html">Ilo Grönroos nyrkkeili Suomen mestariksi Kempeleessä!</a></h2>
 <p class="desc">SM-kultauutinen ja videolla Ilon omat mestaruustunnelmat. B-junioreiden yli 80 kg sarja.</p><a class="read" href="../tiedotteet/ilo-gronroos-suomen-mestariksi-2026-11-09.html">Lue uutinen ja katso video</a></div>
 <a class="media" href="../tiedotteet/ilo-gronroos-suomen-mestariksi-2026-11-09.html"><img src="https://static.metricool.com/planner/202611/7632678-file-18034551498224287573.jpeg" alt="Ilo Grönroos nuorten SM-kilpailuissa" loading="eager"></a></article>
 </div>
@@ -127,7 +132,7 @@ function render(legacy){
  if(!items.length)return; // retain accessible hard-coded approved story
  root.replaceChildren();
  items.forEach(function(n,i){
-  var card=node("article","item"+(i===0?" lead":""));
+  var card=node("article","item"+(i===0?" lead":"")+(i===0&&!n.image?" lead--text":""));
   if(n.image){
    var imgLink=node("a","media"),img=node("img");
    imgLink.href=n.url;img.src=n.image;img.alt=n.alt;img.loading=i===0?"eager":"lazy";

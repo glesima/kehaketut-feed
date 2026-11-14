@@ -5,6 +5,13 @@
  window.RKK_OWNED_NEWS={
   version:1,
   items:[{
+   url:"https://glesima.github.io/kehaketut-feed/tiedotteet/keha-ketut-ruskiksen-skabat-2026-11-14.html",
+   title:"Kehä-Ketut kehässä Ruskiksen Skaboissa – Otsolle debyytti",
+   date:"14.11.2026",
+   excerpt:"Otso Västilä otteli ensimmäisen ottelunsa, ja Daniela Taskila oli myös kehässä Helsingissä. Lue kilpailukuulumiset ja tulokset.",
+   groups:["competitive","juniors"],
+   status:"published"
+  },{
    url:"https://glesima.github.io/kehaketut-feed/tiedotteet/ilo-gronroos-suomen-mestariksi-2026-11-09.html",
    title:"Ilo Grönroos nyrkkeili Suomen mestariksi Kempeleessä!",
    date:"9.11.2026",
