@@ -1,3 +1,17 @@
+## 14.11.2026 – korjaus: Ruskiksen Skabojen ottelutulosten automaattinen hakeminen eri ottelusessioista
+
+Käyttäjä ilmoitti, että lauantain 14.11. Ruskiksen Skabojen kaksi ottelutulosta eivät päivittyneet sivuille. Viimeisin onnistunut GitHub Actions -ajo 43578165147 oli 14.11.2026 klo 08.56 UTC (noin klo 10.56 Suomen aikaa) eli **ennen** Otson tuloksen julkaisua klo 11.19 ja Danielan tuloksen julkaisua klo 11.40. GitHubin 14.17 UTC -ajastus ei ollut tarkistushetkeen mennessä käynnistynyt; GitHubin schedule ei ole tarkka kelloaika ja voi viivästyä.
+
+Lisätestissä ilmeni varsinainen **uusienkin ajojen tulospäivityksen estävä vika**: BoxerBase `/e/pqlPYS5YEfAR/matches` näyttää tapahtuman nykyisen tai seuraavan ajanvarauksen, 14.11. iltapäivällä oletusarvoisesti **sunnuntain** ottelut. Lauantain ottelulista on omalla julkisella aikavälilehdellään `/matches?t=pRj18GNRKmds`. Vanha `scripts/update.py` poimi ottelulinkkejä vain oletussivulta, joka ei enää sisältänyt Kehä-Kettujen lauantain ottelijoita.
+
+Korjaus: `public_match_session_urls` löytää yksinomaan samalla tapahtumasivulla näkyvät **julkiset** sessiolinkit (validoitu sama domain, sama /matches-polku, vain `t`-parametri ja rajattu määrä). Tapahtumille, jotka ovat enintään 7 päivää vanhoja tai tulevia, `update.py` lukee myös nämä julkiset sessiosivut, poimii vain seuramme nimeltä täsmäävät ottelut ja yhdistää linkit ilman duplikaatteja. Ei BoxerBasen kirjautumista, yksityistä dataa tai piilotettua Svelte-dataa. Yksittäisen sessiosivun virhe ei pyyhi aiempia varmistettuja tuloksia. Regressiotestit kattavat vaihtuvan oletussession, linkkien validoinnin, kaksi oikean kilpailun tappiotulosta ja RSC-keskeytyksen.
+
+**Julkisen BoxerBasen nykyiset viralliset tulokset varmennettu 14.11.:**
+- Otso Västilä – Amir Elyasi: **Otso tappio 0–3** (Amir punaisessa kulmassa voitti 3–0); ottelu `zoBIpK4vq9fH`.
+- Daniela Taskila – Wilma Yliluoma: **Daniela tappio RSC R2**, tuomarin keskeytys toisessa erässä; ottelu `K0Qn14-9VOz7`.
+
+Ennen koodin yhdistämistä aito julkinen HTML-kokeilu vahvisti, että `/matches` palauttaa 0 seuran ottelulinkkiä mutta lauantain `?t=` palauttaa molemmat. Uusi parseri löysi ja tulkitsi kummankin oikein (`decision=3-0` ja `RSC R2`). Tuloksia ei kirjata käsin tekaistuna voittona eikä ilmoittautumisia sotketa ottelutuloksiin. GitHub Pages -päivityksen onnistuminen tarkistetaan erikseen tuotantoajosta.
+
 ## 13.11.2026 – virhe tulevien kilpailujen ilmoittautumishaussa; julkisen BoxerBasen selainhaku korjattu
 
 Käyttäjä huomasi, ettei **14.11.2026 lauantain** kilpailuihin odotetun kolmen seuranyrkkeilijän nimiä näkynyt Tulevat kilpailut -osiossa. GitHub Actions -ajon 43385217524 loki (13.11. noin 07.22–07.24 UTC) vahvisti: datassa `registrations=[]`, vaikka BoxerBase löytää 14.11. kaksi tapahtumaa (Ruskiksen Skabat `pqlPYS5YEfAR` ja SM2026-karsinta `fSrjel9qLJeu`). Etusivun widgetin seurakohtainen rajaus ei siis voinut näyttää osallistujia.
