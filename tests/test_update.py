@@ -1,7 +1,7 @@
 import sys,unittest
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'scripts'))
-from update import parse_club,parse_profile,match_links,parse_match,event_urls_from_index,prefer_alias_stats,parse_event_date,parse_official_outcome,suppress_conflicting_totals
+from update import parse_club,parse_profile,match_links,parse_match,event_urls_from_index,prefer_alias_stats,parse_event_date,parse_official_outcome,suppress_conflicting_totals,public_match_session_urls
 
 class TestPublicViews(unittest.TestCase):
     def test_club_table(self):
@@ -108,6 +108,70 @@ class TestPublicViews(unittest.TestCase):
     def test_profile(self):
         r=parse_profile('<div>Gleb Simanov 3 Matches 0 Wins 3 Losses</div>')
         self.assertEqual(r,{'matches':3,'wins':0,'losses':3})
+    def test_public_multisession_links_from_default_sunday_page(self):
+        base="https://fin.boxerbase.com/e/pqlPYS5YEfAR/matches"
+        current='''<h1>Ruskiksen Skabat</h1>
+        <a href="/e/pqlPYS5YEfAR/matches?t=pRj18GNRKmds">Saturday 11:00</a>
+        <a href="/e/pqlPYS5YEfAR/matches?t=JD9uNvLGV2cq">Sunday 11:00</a>
+        <a href="/e/pqlPYS5YEfAR/m/other">Sampo Paananen vs Aksa Mäkelä</a>'''
+        saturday='''<a href="/e/pqlPYS5YEfAR/m/zoBIpK4vq9fH">
+                      Amir Elyasi vs Otso Västilä</a>
+                     <a href="/e/pqlPYS5YEfAR/m/K0Qn14-9VOz7">
+                      Daniela Taskila vs Wilma Yliluoma</a>'''
+        names=["Otso Västilä","Daniela Taskila"]
+        self.assertEqual(match_links(current,base,names),[],
+                         "Plain URL's next-session-only SSR must not hide finished bouts")
+        links=public_match_session_urls(current,base)
+        self.assertEqual(links,[
+            base+"?t=pRj18GNRKmds",base+"?t=JD9uNvLGV2cq"
+        ])
+        self.assertEqual(match_links(saturday,links[0],names),[
+            "https://fin.boxerbase.com/e/pqlPYS5YEfAR/m/zoBIpK4vq9fH",
+            "https://fin.boxerbase.com/e/pqlPYS5YEfAR/m/K0Qn14-9VOz7"
+        ])
+
+    def test_public_session_links_reject_cross_event_malicious_and_duplicate(self):
+        base="https://fin.boxerbase.com/e/pqlPYS5YEfAR/matches"
+        h='''<a href="?t=pRj18GNRKmds">Saturday</a>
+        <a href="?t=pRj18GNRKmds">same again</a>
+        <a href="?t=JD9uNvLGV2cq">Sunday</a>
+        <a href="https://evil.example/e/pqlPYS5YEfAR/matches?t=evil">evil</a>
+        <a href="/e/unrelated/matches?t=another">other event</a>
+        <a href="?t=good%26bad=x">injected</a>
+        <a href="?t=abc">too short</a>
+        <a href="?t=legit&t=second">multiple</a>
+        <a href="?t=legit&auth=secret">extra query</a>
+        <a href="?t=legit#fragment">fragment</a>'''
+        self.assertEqual(public_match_session_urls(h,base),[
+            base+"?t=pRj18GNRKmds",base+"?t=JD9uNvLGV2cq"
+        ])
+        self.assertEqual(public_match_session_urls(h,base,limit=1),[base+"?t=pRj18GNRKmds"])
+        self.assertEqual(public_match_session_urls("<div>No sessions</div>",base),[])
+
+    def test_two_ruskis_official_results_are_parsed_when_public(self):
+        event={"name":"Ruskiksen Skabat","date":"2026-11-14",
+               "url":"https://fin.boxerbase.com/e/pqlPYS5YEfAR"}
+        cases=[
+            ("Amir Elyasi vs Otso Västilä", "Amir Elyasi","Otso Västilä",
+             "Winner Red Amir Elyasi 3-0","Otso Västilä","3-0",None),
+            ("Daniela Taskila vs Wilma Yliluoma","Daniela Taskila","Wilma Yliluoma",
+             "Winner Blue Wilma Yliluoma RSC R2","Daniela Taskila","RSC R2",2)
+        ]
+        for i,(title,red,blue,result,athlete,decision,rnd) in enumerate(cases):
+            with self.subTest(bout=i):
+                html=(f"<html><head><title>{title} results at Ruskiksen Skabat</title></head><body>"
+                      f"<a href='/e/pqlPYS5YEfAR/participants/red'>{red} "
+                      f"{'RIIHIMÄEN KEHÄ-KETUT' if athlete==red else 'Turun Teräs'}</a>"
+                      f"<a href='/e/pqlPYS5YEfAR/participants/blue'>{blue} "
+                      f"{'RIIHIMÄEN KEHÄ-KETUT' if athlete==blue else 'Savate Club Helsinki'}</a>"
+                      f"<div>{result}</div></body></html>")
+                got=parse_match(
+                    html,"https://fin.boxerbase.com/e/pqlPYS5YEfAR/m/"+str(i),
+                    [{"name":"Otso Västilä"},{"name":"Daniela Taskila"}],event)
+                self.assertIsNotNone(got)
+                self.assertEqual((got["boxer"],got["result"],got["decision"],got["round"]),
+                                 (athlete,"tappio",decision,rnd))
+
     def test_event_link_extraction_and_dedup(self):
         h='<a href="/e/abc/m/one">Gleb Simanov vs Sampo Paananen</a> <a href="/e/abc/m/two">Other vs Player</a>'
         rs=match_links(h,'https://fin.boxerbase.com/e/abc/matches',['Gleb Simanov'])
