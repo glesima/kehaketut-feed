@@ -60,6 +60,14 @@ async function render(snapshot){
  assert.ok(cards.length>=1,"At least one approved GitHub article is always present");
  const goldURL="https://glesima.github.io/kehaketut-feed/tiedotteet/ilo-gronroos-suomen-mestariksi-2026-11-09.html";
  const goldCard=cards.find(c=>find(c,"a").some(a=>a.href===goldURL));
+ const ruskisURL="https://glesima.github.io/kehaketut-feed/tiedotteet/keha-ketut-ruskiksen-skabat-2026-11-14.html";
+ const ruskisCard=cards.find(c=>find(c,"a").some(a=>a.href===ruskisURL));
+ assert.ok(ruskisCard,"Approved Ruskiksen Skabat article is in archive");
+ assert.equal(cards[0],ruskisCard,"The 14.11. article leads the archive");
+ assert.match(text(ruskisCard),/debyytti/);
+ assert.equal(find(ruskisCard,"img").length,0,"Do not display unrelated photos");
+ assert.match(fs.readFileSync("docs/tiedotteet/keha-ketut-ruskiksen-skabat-2026-11-14.html","utf8"),/ensimmäistä kertaa virallisessa nyrkkeilyottelussaan/);
+
  const videoOnlyURL="https://glesima.github.io/kehaketut-feed/tiedotteet/ilo-gronroos-mestaruushaastattelu-2026-11-11.html";
  assert.ok(!cards.some(c=>find(c,"a").some(a=>a.href===videoOnlyURL)),"Do not duplicate the interview as a separate item");
  assert.ok(goldCard,"SM gold story is present independent of its chronological position");
@@ -73,7 +81,7 @@ async function render(snapshot){
  }
  // A later native story must come first WITHOUT removing the approved old story.
  const fresh={url:"https://www.kehaketut.fi/uutiset/uusi-uutinen-2026/",
-  title:"Uudempi seurauutinen",date:"10.11.2026",excerpt:"Uusi uutinen"};
+  title:"Uudempi seurauutinen",date:"15.11.2026",excerpt:"Uusi uutinen"};
  const newer=await render({items:native.items.concat([fresh])});
  const newerCards=find(newer,"article");
  assert.match(text(newerCards[0]),/Uudempi seurauutinen/);
