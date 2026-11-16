@@ -1,6 +1,6 @@
 # Kehä-Ketut: julkisen sivuston automaattinen inventaario
 
-Tarkistettu (UTC): 2026-11-09T13:05:00+00:00
+Tarkistettu (UTC): 2026-11-16T12:57:07+00:00
 
 **Tämä on tekninen sisällön inventaario, ei todistus kaikkien sivujen ajantasaisuudesta tai kuva- ja käyttöoikeuksista.** Vanhat kilpailutulokset ovat arvokasta historiaa, eikä niitä poisteta.
 
