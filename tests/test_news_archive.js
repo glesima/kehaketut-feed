@@ -62,14 +62,23 @@ async function render(snapshot){
  const goldCard=cards.find(c=>find(c,"a").some(a=>a.href===goldURL));
  const ruskisURL="https://glesima.github.io/kehaketut-feed/tiedotteet/keha-ketut-ruskiksen-skabat-2026-11-14.html";
  const ruskisCard=cards.find(c=>find(c,"a").some(a=>a.href===ruskisURL));
+ const sparURL="https://glesima.github.io/kehaketut-feed/tiedotteet/sparripaiva-riihimaella-2026-11-21.html";
+ const sparCard=cards.find(c=>find(c,"a").some(a=>a.href===sparURL));
+ assert.ok(sparCard,"Approved 21.11. sparring day article is in archive");
+ assert.equal(cards[0],sparCard,"The 23.11. article leads the archive");
+ assert.match(text(sparCard),/sparripäivä/i);
  assert.ok(ruskisCard,"Approved Ruskiksen Skabat article is in archive");
- assert.equal(cards[0],ruskisCard,"The 14.11. article leads the archive");
  assert.match(text(ruskisCard),/debyytti/);
  assert.equal(find(ruskisCard,"img").length,0,"Do not display unrelated photos");
  assert.match(fs.readFileSync("docs/tiedotteet/keha-ketut-ruskiksen-skabat-2026-11-14.html","utf8"),/ensimmäistä kertaa virallisessa nyrkkeilyottelussaan/);
 
  const videoOnlyURL="https://glesima.github.io/kehaketut-feed/tiedotteet/ilo-gronroos-mestaruushaastattelu-2026-11-11.html";
  assert.ok(!cards.some(c=>find(c,"a").some(a=>a.href===videoOnlyURL)),"Do not duplicate the interview as a separate item");
+ const sparArticle=fs.readFileSync("docs/tiedotteet/sparripaiva-riihimaella-2026-11-21.html","utf8");
+ assert.match(sparArticle,/youtube-nocookie\.com\/embed\/OFtteT7I-MQ/,"Use confirmed, public RKK video");
+ assert.match(sparArticle,/https:\/\/www\.kehaketut\.fi\/liity\//,"Give visitors correct join link");
+ assert.match(sparArticle,/Hyvinkään Boxing-Team|Hämeenlinnan Kisa|Vanaja Boxing|Hattula Boxing/);
+ assert.doesNotMatch(sparArticle,/Forssa|Espoo/,"Respect final exclusions");
  assert.ok(goldCard,"SM gold story is present independent of its chronological position");
  assert.match(text(goldCard),/Ilo Grönroos/);
  assert.match(text(goldCard),/Katso video/,"Original championship story keeps the embedded interview prominently advertised");
@@ -81,7 +90,7 @@ async function render(snapshot){
  }
  // A later native story must come first WITHOUT removing the approved old story.
  const fresh={url:"https://www.kehaketut.fi/uutiset/uusi-uutinen-2026/",
-  title:"Uudempi seurauutinen",date:"15.11.2026",excerpt:"Uusi uutinen"};
+  title:"Uudempi seurauutinen",date:"24.11.2026",excerpt:"Uusi uutinen"};
  const newer=await render({items:native.items.concat([fresh])});
  const newerCards=find(newer,"article");
  assert.match(text(newerCards[0]),/Uudempi seurauutinen/);
