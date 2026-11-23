@@ -5,6 +5,13 @@
  window.RKK_OWNED_NEWS={
   version:1,
   items:[{
+   url:"https://glesima.github.io/kehaketut-feed/tiedotteet/maarjo-ranne-maaratietoista-nyrkkeilya-2026-11-23.html",
+   title:"Maarjo Ranne – määrätietoinen harjoittelu näkyy kehässä",
+   date:"23.11.2026",
+   excerpt:"Maarjo on Kehä-Kettujen salilla tuttu näky. Potkunyrkkeilytaustaa, vuosien säännöllistä nyrkkeilyä ja vahvaa sparria. Katso kolmen erän video.",
+   groups:["general"],
+   status:"published"
+  },{
    url:"https://glesima.github.io/kehaketut-feed/tiedotteet/sparripaiva-riihimaella-2026-11-21.html",
    title:"Sparripäivä kokosi nyrkkeilijät Riihimäelle – kiitos kaikille!",
    date:"23.11.2026",
