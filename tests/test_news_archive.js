@@ -65,7 +65,14 @@ async function render(snapshot){
  const sparURL="https://glesima.github.io/kehaketut-feed/tiedotteet/sparripaiva-riihimaella-2026-11-21.html";
  const sparCard=cards.find(c=>find(c,"a").some(a=>a.href===sparURL));
  assert.ok(sparCard,"Approved 21.11. sparring day article is in archive");
- assert.equal(cards[0],sparCard,"The 23.11. article leads the archive");
+ const maarjoURL="https://glesima.github.io/kehaketut-feed/tiedotteet/maarjo-ranne-maaratietoista-nyrkkeilya-2026-11-23.html";
+ const maarjoCard=cards.find(c=>find(c,"a").some(a=>a.href===maarjoURL));
+ assert.ok(maarjoCard,"Maarjo Ranne article is in the archive");
+ assert.equal(cards[0],maarjoCard,"The newest 23.11. athlete article leads the archive");
+ assert.match(text(maarjoCard),/Maarjo Ranne/);
+ const maarjoArticle=fs.readFileSync("docs/tiedotteet/maarjo-ranne-maaratietoista-nyrkkeilya-2026-11-23.html","utf8");
+ assert.match(maarjoArticle,/www\.kehaketut\.fi\/kilpailijat\/maarjo-ranne/);
+ assert.match(maarjoArticle,/potkunyrkkeilystä/i);
  assert.match(text(sparCard),/sparripäivä/i);
  assert.ok(ruskisCard,"Approved Ruskiksen Skabat article is in archive");
  assert.match(text(ruskisCard),/debyytti/);
