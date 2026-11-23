@@ -1,3 +1,12 @@
+## 23.11.2026 klo 15.46 — Maarjon kaikki kolme videota JULKAISTU, uutisen suorat linkit
+
+Riihimäen Kehä-Kettujen Metricool-brändi 7632678 vahvisti `PUBLISHED` jokaiselle alkuperäiselle Maarjo Ranne -julkaisulle:
+- [YouTube, kolme erää sparria (8:48)](https://www.youtube.com/watch?v=ZLjwFYwaxVQ).
+- [Instagram Reels, 42 s kooste](https://www.instagram.com/reel/DgFhL78mVz-/).
+- [Facebook Reels, 42 s kooste](https://facebook.com/reel/1188668130260272).
+
+Maarjon uutisen HTML `docs/tiedotteet/maarjo-ranne-maaratietoista-nyrkkeilya-2026-11-23.html` päivitettiin sisältämään **vahvistettu YouTube-upotus** (video-ID ZLjwFYwaxVQ) ja kumpikin Reel-linkki, commit `8635e91e2702cb91c5c57d1fef897aaf9e2f9778`. Aiemmin mainitut PENDING-tilat olivat **vain välitila ennen tätä tarkistusta**, ei nykytila. `docs/news-owned.js` sisältää artikkelin sekä uutisarkisto- ja etusivunostot. Ei uutta Metricool-uusintajulkaisua eikä Yhdistysavaimen CMS-duplikaattia. GitHubin tallennus vahvistettu; Pages live-HTTP-avauksen riippumaton tarkistus ei tässä ympäristössä onnistunut.
+
 ## 23.11.2026 — Maarjo Ranteen nyrkkeilijäesittely ja sparrivideot
 
 Uusi käyttäjän nimenomaisesti pyytämä seuran nyrkkeilijäesittely julkaistu GitHubin julkisena HTML-artikkelina: `docs/tiedotteet/maarjo-ranne-maaratietoista-nyrkkeilya-2026-11-23.html`. Uutisessa kerrotaan Maarjo Ranteen pitkästä potkunyrkkeily- ja nyrkkeilytaustasta, säännöllisestä harjoittelusta, painoluokan eteen tehdystä määrätietoisesta työstä ja kolmesta erästä 21.11.2026 sparripäivällä. Ei virallista kilpailutulosta tai varmistamatonta vastustajan nimeä. Artikkeli linkittää Maarjon alkuperäiseen kilpailijaprofiiliin, seuran harjoitteluun, liittymiseen ja YouTube-kanavaan.
