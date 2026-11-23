@@ -9,7 +9,7 @@
    title:"Sparripäivä kokosi nyrkkeilijät Riihimäelle – kiitos kaikille!",
    date:"23.11.2026",
    excerpt:"Katso video 21.11. sparripäivästä: yhteistyötä Hyvinkään Boxing-Teamin, HäKin, Vanaja Boxingin ja Hattula Boxingin kanssa sekä tietoa Kehä-Kettujen harjoittelusta.",
-   groups:["general","competitive"],
+   groups:["general"],
    status:"published"
   },{
    url:"https://glesima.github.io/kehaketut-feed/tiedotteet/keha-ketut-ruskiksen-skabat-2026-11-14.html",
