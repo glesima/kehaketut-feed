@@ -1,3 +1,11 @@
+## 23.11.2026 — Maarjo Ranteen nyrkkeilijäesittely ja sparrivideot
+
+Uusi käyttäjän nimenomaisesti pyytämä seuran nyrkkeilijäesittely julkaistu GitHubin julkisena HTML-artikkelina: `docs/tiedotteet/maarjo-ranne-maaratietoista-nyrkkeilya-2026-11-23.html`. Uutisessa kerrotaan Maarjo Ranteen pitkästä potkunyrkkeily- ja nyrkkeilytaustasta, säännöllisestä harjoittelusta, painoluokan eteen tehdystä määrätietoisesta työstä ja kolmesta erästä 21.11.2026 sparripäivällä. Ei virallista kilpailutulosta tai varmistamatonta vastustajan nimeä. Artikkeli linkittää Maarjon alkuperäiseen kilpailijaprofiiliin, seuran harjoitteluun, liittymiseen ja YouTube-kanavaan.
+
+Artikkeli on lisätty `docs/news-owned.js`-rekisteriin seurauutisena (`groups:["general"]`) ja uusimman uutisen paikka on päivitetty `tests/test_news_archive.js`-regressiotestiin. Yhdistysavaimen CMS:ään ei luotu duplikaattia eikä vanhoja uutisia poistettu.
+
+Videoiden 23.11.2026 sosiaalijulkaisut erillisessä yhdistetyssä Metricool-brändissä **7632678 Riihimäen Kehä-Ketut**, kaikki tallennushetkellä `PENDING`: YouTube pitkä kolme erää klo 15.42 (post uuid -9051540611275603806), Instagram 42s Reel klo 15.45 (uuid 5686417547681155078), Facebook 42s Reel klo 15.45 (uuid -6549050327958271586). Älä pidä ajastusta todisteena julkisesta URL:sta. Artikkelin video-osio sisältää siksi aluksi **virallisen YouTube-kanavalinkin**, joka täytyy korvata suoraan videoon vievällä linkillä tai upotuksella, kun julkaisun PUBLISHED-tila ja videon ID on varmennettu. Erillinen kertaluonteinen jälkitarkistus on jo luotu. Github-tiedostojen talletus on vahvistettu; Pagesin live-HTTP-saatavuutta ei tämän keskustelun verkkotyökalu pystynyt varmistamaan.
+
 ## 23.11.2026 – Riihimäen sparripäivän uutinen julkaistu omaan uutisjärjestelmään
 
 Käyttäjä hyväksyi 21.11.2026 Riihimäen yhteisen sparripäivän kiitosviestin ja pyysi julkaisemaan myös seuran nettisivuille itsenäisen uutisen linkkeineen. **Uusi julkisen GitHub Pages -uutisjärjestelmän artikkeli**:
